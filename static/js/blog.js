@@ -191,13 +191,13 @@ blog.ajax = function (option, success, fail) {
  */
 blog.initClickEffect = function (textArr) {
   function makeColor() {
-    var color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')';
-    document.getElementById('color').style.backgroundColor = color;
+    var color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')'
     return color
   }
   function ran(){
-    return Math.floor(Math.random() * 256);
+    return Math.floor(Math.random() * 256)
   }
+
   function createDOM(text) {
     var dom = document.createElement('span')
     dom.innerText = text
