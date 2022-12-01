@@ -3,7 +3,7 @@
   var style1 = 'background:#4BB596;color:#ffffff;border-radius: 2px;'
   var style2 = 'color:auto;'
   var author = ' TMaize'
-  var github = ' https://github.com/wu3227834/wu3227834.github.io'
+  var github = ' https://github.com/TMaize/tmaize-blog'
   var build = ' ' + blog.buildAt.substr(0, 4)
   build += '/' + blog.buildAt.substr(4, 2)
   build += '/' + blog.buildAt.substr(6, 2)
