@@ -190,10 +190,6 @@ blog.ajax = function (option, success, fail) {
  * 特效：点击页面文字冒出特效
  */
 blog.initClickEffect = function (textArr) {
-  function makeColor() {
-    var color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')'
-    return color
-  }
   function ran(){
     return Math.floor(Math.random() * 256)
   }
@@ -211,7 +207,7 @@ blog.initClickEffect = function (textArr) {
     dom.style.opacity = 0
     dom.style.transform = 'translateY(0)'
     dom.style.webkitTransform = 'translateY(0)'
-    dom.style.color = makeColor()
+    dom.style.color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')'
     return dom
   }
 
