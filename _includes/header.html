@@ -10,10 +10,10 @@
 
       {%- assign href = menu.url %}
       {%- unless href contains "://" %}
-        {% capture href %}{{ site.baseurl }}{{ menu.url }}{% endcapture %}
+        {% capture href %}{{ menu.url }}{% endcapture %}
       {%- endunless -%}
 
-      <a href="{{site.menu.title}}" {{target}} class="hover-underline">{{ menu.title }}</a>
+      <a href="{{href}}" {{target}} class="hover-underline">{{ menu.title }}</a>
     {% endfor -%}
   </nav>
 </header>
