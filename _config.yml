@@ -33,7 +33,7 @@ menu:
     url: {{ site.baseurl }} /pages/categories.html
   - title: 搜索
     url: {{ site.baseurl }} /pages/search.html
-  - title: 关于我
+  - title: 关于
     url: {{ site.baseurl }} /pages/about.md
 
 # 点击页面文字冒出特效,不需要请设置为false
