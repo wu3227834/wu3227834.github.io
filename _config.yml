@@ -5,7 +5,7 @@ title: pudding Blog
 description: pudding的个人博客
 keywords: pudding,Blog,linux,测试
 author: pudding
-footerText: 'Copyright © 2022'
+footerText: '前尘往事，莫再提及'
 
 # 这些不要动
 permalink: /posts/:year/:month/:day/:title.html
