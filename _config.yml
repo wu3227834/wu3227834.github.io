@@ -1,11 +1,11 @@
 encoding: utf-8
 
 # SEO相关信息
-title: Pudding Blog
-description: pudding的个人博客
-keywords: Pudding,Blog,linux,测试
+title: 小布丁
+description: 前尘往事，莫再提及
+keywords: 小布丁,pudding,测试开发,blog
 author: Pudding
-footerText: '前尘往事，莫再提及'
+footerText: 'Copyright © 2022 '
 
 # 这些不要动
 permalink: /posts/:year/:month/:day/:title.html
@@ -17,24 +17,26 @@ exclude: ['CNAME', 'README.md', 'LICENSE', '_site', 'dist', 'Gemfile', 'Gemfile.
 
 # 域名配置
 # baseurl配置,如果网站部署在根目录下的其他目录中，请设置为 /目录名
-domainUrl: 'https://wu3227834.github.io'
-baseurl: 'https://wu3227834.github.io'
+domainUrl: 'http://wu3227834.github.io'
+baseurl: ''
 
 # 吐个槽地址，会在chat页面中重定向到该地址
-tucaoUrl: ''
+tucaoUrl: https://support.qq.com/products/365559/
 
 # 菜单
-# 必填字段 title: '文本' url: '链接'
-# 可选字段 target: '_blank' 新页面打开 
 menu:
   - title: 首页
-    url: 
+    url: /
   - title: 归类
-    url:  /pages/categories.html
+    url: /pages/categories.html
   - title: 搜索
-    url:  /pages/search.html
-  # - title: 关于
-  #   url:  /pages/about.md
+    url: /pages/search.html
+  # - title: 友链
+  #   url: /pages/links.html
+  # - title: 留言
+  #   url: /pages/chat.html
+  - title: 关于
+    url: /pages/about.html
 
 # 点击页面文字冒出特效,不需要请设置为false
 extClickEffect: true
@@ -46,4 +48,11 @@ extAdsense: false
 # 数学公式支持，比较影响加载速度,不需要请设置为false
 extMath: false
 
+# 友情链接
+links:
+  # - title: 愿星光伴你左右--一个自律的有想法的程序员
+  #   url: http://shanks.link/
+
+
+ 
 

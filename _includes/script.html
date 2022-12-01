@@ -1,8 +1,8 @@
-{% assign buildAt = site.time | date: "%Y%m%d%H%M%S" %}
+{%- assign buildAt = site.time | date: "%Y%m%d%H%M%S" -%}
 <script type="text/javascript" src="{{site.baseurl}}/static/js/blog.js?t={{ buildAt }}"></script>
 <script type="text/javascript" src="{{site.baseurl}}/static/js/search.js?t={{ buildAt }}"></script>
 
-{% if site.extClickEffect %}
+{%- if site.extClickEffect %}
 <!-- 点击页面文字冒出特效 -->
 <script>
 ;(function(){
@@ -12,8 +12,8 @@
 </script>
 {% endif %}
 
-{% if page.layout=="mypost" %}
-  {% if site.extMath -%}
+{%- if page.layout=="mypost" -%}
+  {%- if site.extMath -%}
     {% include ext-mathjax.html %}
   {% elsif page.extMath %}
     {% include ext-mathjax.html %}

@@ -16,5 +16,3 @@ title: 关于我
 ## 联系我
 
 - Email&nbsp;: [3054562188@qq.com]
-
-- GitHub: [https://github.com/wu3227834/wu3227834.github.io](https://github.com/wu3227834/wu3227834.github.io)

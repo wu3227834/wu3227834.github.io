@@ -1,4 +1,15 @@
-{% assign buildAt = site.time | date: "%Y%m%d%H%M%S" %}
+{%- assign buildAt = site.time | date: "%Y%m%d%H%M%S" -%}
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c4c364a3b31f8b5c5fc112839ef5599e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JoVxvTki4cJIvSPC",ck: "JoVxvTki4cJIvSPC"})</script>
 <head>
   <title>{{ page.title }}-{{ site.title }}</title>
   <meta charset="utf-8" />
@@ -10,25 +21,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="applicable-device" content="pc,mobile">
   <meta name="author" content="{{ site.author }}" />
-  {% if page.categories %}
+  {%- if page.categories %}
   <meta name="description" content="{{ page.title }}"/>
   <meta name="keywords" content="{{ site.author }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
   {% else %}
   <meta name="description" content="{{ site.description }}"/>
   <meta name="keywords" content="{{ site.keywords }}"/>
-  {% endif %}
+  {% endif -%}
   <link rel="icon" href="{{site.baseurl}}/static/img/favicon.ico" />
   <link rel="apple-touch-icon" href="{{site.baseurl}}/static/img/logo.png" />
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/common.css?t={{buildAt}}">
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/theme-dark.css?t={{buildAt}}">
-  {% if page.layout == "mypost" %}
+  {%- if page.layout == "mypost" %}
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/post.css?t={{buildAt}}">
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/code-dark.css?t={{buildAt}}">
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/code-light.css?t={{buildAt}}">
-  {% endif %}
-  {% if page.layout == "page" %}
+  {%- endif %}
+  {%- if page.layout == "page" %}
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/page.css?t={{buildAt}}">
-  {% endif %}
+  {%- endif %}
   <link rel="prefetch" href="{{site.baseurl}}/static/xml/search.xml?t={{ buildAt }}">
   <link rel="prefetch" href="{{site.baseurl}}/static/js/search.js?t={{ buildAt }}">
   <script>
