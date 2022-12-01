@@ -9,9 +9,6 @@
       {%- endif %}
 
       {%- assign href = menu.url %}
-      {%- unless href contains "://" %}
-        {% capture href %}{{ menu.url }}{% endcapture %}
-      {%- endunless -%}
 
       <a href="{{href}}" {{target}} class="hover-underline">{{ menu.title }}</a>
     {% endfor -%}
