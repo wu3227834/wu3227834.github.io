@@ -5,6 +5,8 @@ title: 关于我
 
 > Hello 陌生人，欢迎访问 Pudding Blog
 
+# 最美的年华要留给最好的人，而我们已经错过了。
+
 主题参考：[tmaize-blog](https://github.com/TMaize/tmaize-blog)
 
 ## 相关技能
@@ -15,4 +17,4 @@ title: 关于我
 
 ## 联系我
 
-- Email&nbsp;: [3054562188@qq.com]
+- Email&nbsp;: [wu3227834@163.com]
