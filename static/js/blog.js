@@ -207,8 +207,8 @@ blog.initClickEffect = function (textArr) {
     dom.style.opacity = 0
     dom.style.transform = 'translateY(0)'
     dom.style.webkitTransform = 'translateY(0)'
-    // dom.style.color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')'
-    dom.style.color = 'lightblue'
+    dom.style.color = 'rgb(' + ran() + ',' + ran() + ',' + ran() + ')'
+    // dom.style.color = 'lightblue'
     return dom
   }
 
