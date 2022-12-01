@@ -19,11 +19,14 @@ title: 首页
           </div>
           <div class="categories">
             {% for categorie in post.categories -%}
-            <a href="{{ site.baseurl }}/pages/categories.html" class="hover-underline">{{ categorie }}</a>
+            <a href="{{ site.baseurl }}/pages/categories.html" class="hover-underline">{{ post.categorie }}</a>
             {%- endfor %}
           </div>
-          <div class="aboutme">
-            <a href="{{ site.baseurl }}/pages/about.md" class="hover-underline">{{ about }}</a>
+          <div class="search">
+            <a href="{{ site.baseurl }}/pages/search.html" class="hover-underline">{{ post.search }}</a>
+          </div>
+          <div class="about">
+            <a href="{{ site.baseurl }}/pages/about.md" class="hover-underline">{{ post.about }}</a>
           </div>
         </li>
     {%- if forloop.last or post_previous_year != post_year %}
