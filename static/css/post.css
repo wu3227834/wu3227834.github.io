@@ -1,165 +1,199 @@
-.page-post {
-  font-size: 14px;
-  line-height: 2;
-  word-break: break-all;
-}
-.page-post .title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #666666;
-}
-.page-post .subtitle {
-  font-size: 12px;
-  color: #999999;
-}
-.page-post .post > * {
-  margin: 18px 0;
-}
-.page-post .post > iframe {
-  margin: 0;
-  width: 100%;
-}
-.page-post .post h1,
-.page-post .post h2 {
-  font-weight: normal;
-  font-size: 17px;
-  position: relative;
-  cursor: pointer;
-}
-.page-post .post h1::before,
-.page-post .post h2::before {
-  content: '#';
-  top: 0;
-  font-weight: bold;
-  padding-right: 6px;
-}
-.page-post h3,
-.page-post h4,
-.page-post h5,
-.page-post h6 {
-  font-size: 15px;
-  font-weight: bold;
-}
-.page-post blockquote {
-  border-left: 3px solid #333333;
-  background-color: #f7f7f7;
-  padding: 9px 9px 9px 15px;
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 
-.page-post a {
-  color: #000000;
-  margin: 0 2px;
-  border-bottom: 1px solid #000000;
+html {
+  font-size: 12px;
 }
-.page-post strong,
-.page-post b {
-  color: #000000;
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  html {
+    font-size: 15px;
+  }
 }
-.page-post .post ul {
-  margin-left: 16px;
+
+@media screen and (min-width: 48rem) {
+  html {
+    font-size: 16px;
+  }
 }
-.page-post .post ol {
-  margin-left: 23px;
+
+body {
+  line-height: 1.85;
 }
-.page-post ul li {
-  list-style: disc;
+
+p,
+.air-p {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
 }
-.page-post ol li {
-  list-style: decimal;
+
+h1,
+.air-h1,
+h2,
+.air-h2,
+h3,
+.air-h3,
+h4,
+.air-h4 {
+  margin: 1.414rem 0 .5rem;
+  font-weight: inherit;
+  line-height: 1.42;
 }
-.page-post li > *{
-  margin: 6px 0;
+
+h1,
+.air-h1 {
+  margin-top: 0;
+  font-size: 3.998rem;
 }
-.page-post img {
-  display: block;
+
+h2,
+.air-h2 {
+  font-size: 2.827rem;
+}
+
+h3,
+.air-h3 {
+  font-size: 1.999rem;
+}
+
+h4,
+.air-h4 {
+  font-size: 1.414rem;
+}
+
+h5,
+.air-h5 {
+  font-size: 1.121rem;
+}
+
+h6,
+.air-h6 {
+  font-size: .88rem;
+}
+
+small,
+.air-small {
+  font-size: .707em;
+}
+
+/* https://github.com/mrmrs/fluidity */
+
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
   max-width: 100%;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,300);
+
+body {
+  color: #444;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: 300;
+  margin: 6rem auto 1rem;
+  max-width: 48rem;
+  text-align: center;
+}
+
+img {
+  border-radius: 50%;
+  height: 200px;
   margin: 0 auto;
-  height: auto;
-  box-shadow: 0 0 5px #e0e0e0;
+  width: 200px;
 }
-.page-post img[alt='line'] {
-  display: inline-block;
-  vertical-align: middle;
-  background-color: transparent;
-  box-shadow: none;
-  margin: 0 4px;
-  line-height: 1;
+
+a,
+a:visited {
+  color: #3498db;
 }
-.page-post pre {
-  font-size: 0;
-  padding: 10px;
-  overflow: auto;
-  border-radius: 2px;
-  max-height: 610px;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  line-height: 1.6;
+
+a:hover,
+a:focus,
+a:active {
+  color: #2980b9;
 }
-.page-post code {
-  font-size: 13px;
-  background-color: #eeeeee;
-  word-break: break-all;
-  padding: 3px 5px;
-  margin: 0 4px;
-  border-radius: 5px;
-  color: #4d4d4c;
-  transition: all 500ms ease;
-}
-.page-post pre code {
-  font-size: 13px;
-  background-color: transparent !important;
-  word-break: keep-all;
-  padding: 0;
-  margin: 0;
-  border-radius: unset;
-  color: inherit;
-}
-.page-post hr {
-  border: none;
-  height: 3px;
-  background-color: #eeeeee;
-}
-.page-post table {
-  min-width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 1px solid #dddddd;
-}
-.page-post tr {
-  border-bottom: 1px solid #dddddd;
-}
-.page-post th {
-  font-weight: bold;
-}
-.page-post th,
-.page-post td {
-  padding: 5px 10px;
+
+pre {
+  background-color: #fafafa;
+  padding: 1rem;
   text-align: left;
 }
-.page-post table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-.page-post .table-container {
-  overflow: auto;
-  margin: 14px 0;
-  border: 1px solid #dddddd;
-}
-.page-post .table-container table {
+
+blockquote {
   margin: 0;
-  border: 0;
+  border-left: 5px solid #7a7a7a;
+  font-style: italic;
+  padding: 1.33em;
+  text-align: left;
 }
-.page-post .table-container table tbody tr:last-child {
-  border-bottom: 0;
+
+ul,
+ol,
+li {
+  text-align: left;
 }
-@media screen and (max-width: 560px) {
-  .page-post {
-    font-size: 13px;
-  }
-  .page-post pre code {
-    font-size: 12px;
-  }
-  .page-post .post > * {
-    margin: 15px 0;
-  }
+
+p {
+  color: #777;
 }
