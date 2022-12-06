@@ -1,5 +1,5 @@
 .page-post {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2;
   word-break: break-all;
 }
@@ -19,6 +19,7 @@
   margin: 0;
   width: 100%;
 }
+
 .page-post .octicon {
   display: inline-block;
   fill: currentColor;
