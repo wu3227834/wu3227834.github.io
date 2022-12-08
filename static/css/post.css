@@ -113,6 +113,26 @@
   top: -0.5em;
 }
 
+.page-post .post ul {
+  margin-left: 16px;
+}
+
+.page-post .post ol {
+  margin-left: 23px;
+}
+
+.page-post ul > li {
+  list-style: disc;
+}
+
+.page-post ol > li {
+  list-style: decimal;
+}
+
+.page-post li > *{
+  margin: 6px 0;
+}
+
 .page-post img {
   border-style: none;
   max-width: 100%;
