@@ -21,7 +21,7 @@ domainUrl: 'http://wu3227834.github.io'
 baseurl: ''
 
 # 吐个槽地址，会在chat页面中重定向到该地址
-tucaoUrl: https://support.qq.com/product/1221
+tucaoUrl: https://support.qq.com/product/468448
 
 # 菜单
 menu:
@@ -31,10 +31,10 @@ menu:
     url: /pages/categories.html
   - title: 搜索
     url: /pages/search.html
-  # - title: 友链
-  #   url: /pages/links.html
-  # - title: 留言
-  #   url: /pages/chat.html
+  - title: 友链
+    url: /pages/links.html
+  - title: 留言
+    url: /pages/chat.html
   - title: 关于
     url: /pages/about.html
 
@@ -52,6 +52,8 @@ extMath: false
 links:
   # - title: 愿星光伴你左右--一个自律的有想法的程序员
   #   url: http://shanks.link/
+  - title: Kalzn的个人博客--信工所巨佬 rn2
+    url: https://kalzncc.github.io/
 
 
  
