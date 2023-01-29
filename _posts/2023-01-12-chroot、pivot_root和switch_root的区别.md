@@ -38,12 +38,12 @@ pviot_root 主要是把整个系统切换到一个新的 root 目录，然后去
 
 例子：
 
-   从 127.0.0.1:/home/qianjiang/nfsroot 挂载新的文件系统并且运行 init
+   从 127.0.0.1:/home/puser/nfsroot 挂载新的文件系统并且运行 init
 
 <ul>
     <li> 拷贝 sh, ls 至 nfsroot/bin，以及相关的共享库至 nfsroot/lib </li>
     <li> 在 nfsroot 下面建立目录 old_root </li>
-    <li> mount -o ro 127.0.0.1:/home/qianjiang/nfsroot /mnt </li>
+    <li> mount -o ro 127.0.0.1:/home/puser/nfsroot /mnt </li>
     <li> cd /mnt </li>
     <li>
         pivot_root . old_root <br/>
@@ -62,14 +62,15 @@ initramfs 是 rootfs， 且不能 umount， 所以不能使用 pivot_root。
 switch_root做的工作：
 
 <ul>
-   <li> 删除早的 rootfs 内的全部内容，目的是为了释放空间，因为用的内存空间<li> 
-   <li> 安装新的根文件系统<li> 
-   <li> 切换到新的文件系统，并执行新文件系统的 init 程序<li> 
+   <li> 删除早的 rootfs 内的全部内容，目的是为了释放空间，因为用的内存空间</li> 
+   <li> 安装新的根文件系统</li> 
+   <li> 切换到新的文件系统，并执行新文件系统的 init 程序</li> 
 </ul>
 
 （switch_root 必须由 pid=1 的进程调用，否则会错误，例如在 init 脚本: exec switch_root new_rootfs  /init）
 
-参考：
+## 参考：
+
 <ul>
     <li>
         <a href='https://blog.csdn.net/u012385733/article/details/102565591'>chroot，pivot_root和switch_root 区别</a>
