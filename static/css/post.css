@@ -137,7 +137,8 @@
   border-style: none;
   max-width: 100%;
   box-sizing: content-box;
-  vertical-align: middle;
+  display: flex;
+  justify-content: center;
   background-color: var(--color-canvas-default);
 }
 
