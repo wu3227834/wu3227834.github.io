@@ -120,10 +120,10 @@ result:返回结果中score都是被指定的8.8
 布尔查询，由一个或者多个子句组成，每个子句都有特定的类型。
 <ul>
     <li>
-        must：返回的文档必须满足 must 字句的条件，并且参与计算分值
+        must：返回的文档必须满足 must 子句的条件，并且参与计算分值
     </li>
     <li>
-        filter：返回的文档必须满足 filter 字句的条件。但不会像 must 一样参与计算分值
+        filter：返回的文档必须满足 filter 子句的条件。但不会像 must 一样参与计算分值
     </li>
     <li>
         should：返回的文档可能满足 should 子句的条件。布尔查询在 query context 中，如果某条文档未匹配 should 的条件，但是匹配 must 或 filter 的条件，则文档仍会被返回，此时 should 只影响分数；如果不存在 must 和 filter，则必须匹配 should。这种行为由 minimum_should_match 参与决定。
