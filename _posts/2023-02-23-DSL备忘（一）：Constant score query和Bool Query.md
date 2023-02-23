@@ -4,7 +4,7 @@ title: DSL备忘（一）：Constant score query 和 Bool Query
 categories: [Elasticsearch]
 ---
 
-# <center>DSL备忘（一）：Constant score query和 Bool Query</center>
+# <center>DSL备忘（一）：Constant score query 和 Bool Query</center>
 
 ## Constant score query
 
@@ -135,7 +135,7 @@ result:返回结果中score都是被指定的8.8
 
 ### 官网例子
 
-第一步：查询name为“李云龙”的文档
+第一步：查询 name 为 "李云龙" 的文档
 
 ```
 GET /customer/_search
@@ -195,7 +195,7 @@ GET /customer/_search
 }
 ```
 
-第二步：加入过滤条件，只保留id为510221197001013611的文档
+第二步：加入过滤条件，只保留 id 为 510221197001013611 的文档
 
 ```
 GET /customer/_search
@@ -216,7 +216,7 @@ GET /customer/_search
   }
 }
 
-返回结果减少到2个文档，并且score相同：
+返回结果减少到 2 个文档，并且 score 相同：
 {
   "hits" : {
     "total" : 2,
@@ -251,7 +251,7 @@ GET /customer/_search
 }
 ```
 
-第三步：使用should，判断addr中必须有昆明市，这种情况下should子句会影响计分
+第三步：使用 should，判断 addr 中必须有昆明市，这种情况下 should 子句会影响计分
 
 ```
 GET /customer/_search
@@ -278,7 +278,7 @@ GET /customer/_search
     }
   }
 }
-返回结果中，地址是昆明市的文档score加重
+返回结果中，地址是昆明市的文档 score 加重
 {
   "hits" : {
     "total" : 2,
@@ -313,7 +313,7 @@ GET /customer/_search
 }
 ```
 
-第四步：加入must_not排除上海
+第四步：加入 must_not 排除上海
 
 ```
 GET /customer/_search
