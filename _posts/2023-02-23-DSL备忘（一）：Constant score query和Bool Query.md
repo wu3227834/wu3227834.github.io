@@ -4,7 +4,7 @@ title: DSL备忘（一）：Constant score query 和 Bool Query
 categories: [Elasticsearch]
 ---
 
-# <center>DSL备忘（一）：Constant score query 和 Bool Query</center>
+# <center>Constant score query 和 Bool Query</center>
 
 ## Constant score query
 
