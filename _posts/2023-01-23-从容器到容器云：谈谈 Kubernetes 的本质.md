@@ -55,3 +55,11 @@ K8s架构图：
 
 **而 kubelet 的另一个重要功能，则是调用网络插件和存储插件为容器配置网络和持久化存储。** 这两个插件与 kubelet 进行交互的接口，分别是 CNI（Container Networking Interface）和 CSI（Container Storage Interface）。
 
+但实际上，虽然 kubelet 这个奇怪的名字，来自于 Borg 项目里的同源组件 Borglet。不过，如果你浏览过 Borg 论文的话，就会发现，这个命名方式可能是 kubelet 组件与 Borglet 组件的唯一相似之处。因为 Borg 项目，并不支持我们这里所讲的容器技术，而只是简单地使用了 Linux Cgroups 对进程进行限制。
+
+Borg 对于 Kubernetes 项目的指导作用主要体现在 Master 节点。
+
+虽然在 Master 节点的实现细节上 Borg 项目与 Kubernetes 项目不尽相同，但它们的出发点却高度一致，即：如何编排、管理、调度用户提交的作业？
+
+
+
