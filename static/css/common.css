@@ -36,16 +36,16 @@ body {
 }
 
 /* 中型设备 */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 1024px) {
   body {
     max-width: 680px;
-    padding: 0 20px;
+    padding: 0 14px;
     margin: 0 auto;
   }
 }
 
 /* 大型设备 */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 2048px) {
   body {
     max-width: 1200px;
     padding: 0 30px;
