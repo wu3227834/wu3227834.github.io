@@ -36,7 +36,7 @@ body {
 }
 
 /* 中型设备 */
-@media screen and (min-width: 481px) and (max-width: 1024px) {
+@media screen and (min-width: 481px) and (max-width: 2048px) {
   body {
     max-width: 680px;
     padding: 0 14px;
