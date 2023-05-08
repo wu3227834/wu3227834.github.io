@@ -12,7 +12,6 @@ win10 下，jmeter 高并发压测 scope
 
 ## 报错信息
 
-![error_information1](pho1.png)
 ![error_information2](pho2.png)
 
 ## 原因
