@@ -12,6 +12,8 @@ categories: [性能测试]
 查看 perf stat 只显示 cpu-clock, context-switches, cpu-migrations
 剩余cycles, instructions, branches, branch-misses均为not supported
 
+![problem_test](pho1.jpg)
+
 ## 原因分析
 该参数使用物理机可测量，猜测问题出在虚拟化。
 
