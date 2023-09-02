@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2023-09-02T13:53:17.520Z</updated>
+  <updated>2023-09-02T14:08:39.162Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -17,72 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>jmeter 常用函数</title>
-    <link href="https://wu3227834.github.io/2023/09/02/2023-04-05-jmeter-chang-yong-han-shu/"/>
-    <id>https://wu3227834.github.io/2023/09/02/2023-04-05-jmeter-chang-yong-han-shu/</id>
-    <published>2023-09-02T13:53:17.520Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
+    <title>yum 卡住</title>
+    <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
+    <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
+    <published>2023-08-30T16:00:00.000Z</published>
+    <updated>2023-09-02T14:08:39.162Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;jmeter-常用函数&quot;&gt;&lt;a href=&quot;#jmeter-常用函数&quot; class=&quot;headerlink&quot; title=&quot;jmeter 常用函数&quot;&gt;&lt;/a&gt;&lt;center&gt;jmeter 常用函数&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;获取使用时间戳&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;执行-yum-卡住，只能-kill-9-退出&quot;&gt;&lt;a href=&quot;#执行-yum-卡住，只能-kill-9-退出&quot; class=&quot;headerlink&quot; title=&quot; 执行 yum 卡住，只能 kill -9 退出 &quot;&gt;&lt;/a&gt;&lt;center&gt; 执行 yum</summary>
         
       
     
     
     
-    <category term="jmeter实操技术" scheme="https://wu3227834.github.io/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/"/>
+    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
     
     
-  </entry>
-  
-  <entry>
-    <title>ES：Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</title>
-    <link href="https://wu3227834.github.io/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/"/>
-    <id>https://wu3227834.github.io/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/</id>
-    <published>2023-09-02T13:53:17.520Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
     
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;发生缘故&quot;&gt;&lt;a href=&quot;#发生缘故&quot; class=&quot;headerlink&quot; title=&quot;发生缘故&quot;&gt;&lt;/a&gt;发生缘故&lt;/h2&gt;&lt;p&gt;jmeter 压测，写入 elasticsearch 报错&lt;/p&gt;
-&lt;h2 id=&quot;运行环境&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Jmeter Address already in use connect 解决方案</title>
-    <link href="https://wu3227834.github.io/2023/09/02/2023-05-08-jmeter-wen-ti-yi/"/>
-    <id>https://wu3227834.github.io/2023/09/02/2023-05-08-jmeter-wen-ti-yi/</id>
-    <published>2023-09-02T13:53:17.520Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Jmeter-Address-already-in-use-connect-解决方案&quot;&gt;&lt;a href=&quot;#Jmeter-Address-already-in-use-connect-解决方案&quot; class=&quot;headerlink&quot; title=&quot;Jmeter</summary>
-        
-      
-    
-    
-    
-    <category term="jmeter实操技术" scheme="https://wu3227834.github.io/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/"/>
-    
+    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
     
   </entry>
   
@@ -91,7 +48,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -104,9 +61,7 @@
     
     
     
-    <category term="Kubernetes" scheme="https://wu3227834.github.io/categories/Kubernetes/"/>
-    
-    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/Kubernetes/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="k8s" scheme="https://wu3227834.github.io/tags/k8s/"/>
@@ -116,38 +71,11 @@
   </entry>
   
   <entry>
-    <title>ES6.7 一些有趣的语句</title>
-    <link href="https://wu3227834.github.io/2023/07/06/2023-04-17-es-you-qu-de-yu-ju/"/>
-    <id>https://wu3227834.github.io/2023/07/06/2023-04-17-es-you-qu-de-yu-ju/</id>
-    <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;ES-6-7-一些有趣的语句&quot;&gt;&lt;a href=&quot;#ES-6-7-一些有趣的语句&quot; class=&quot;headerlink&quot; title=&quot; ES 6.7 一些有趣的语句 &quot;&gt;&lt;/a&gt;&lt;center&gt; ES 6.7 一些有趣的语句 &lt;/center&gt;&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
-    
-    <category term="ES6.7" scheme="https://wu3227834.github.io/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/ES6-7/"/>
-    
-    
-    <category term="Elasticsearch" scheme="https://wu3227834.github.io/tags/Elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
     <title>虚拟机 Linux 使用 perf stat 提示 cycles not supported</title>
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.536Z</updated>
+    <updated>2023-09-02T14:08:39.150Z</updated>
     
     
       
@@ -176,7 +104,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.536Z</updated>
+    <updated>2023-09-02T14:08:39.150Z</updated>
     
     
       
@@ -203,7 +131,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.540Z</updated>
+    <updated>2023-09-02T14:08:39.154Z</updated>
     
     
       
@@ -228,38 +156,11 @@
   </entry>
   
   <entry>
-    <title>yum 卡住</title>
-    <link href="https://wu3227834.github.io/2023/07/06/2023-08-31-yum-qia-zhu/"/>
-    <id>https://wu3227834.github.io/2023/07/06/2023-08-31-yum-qia-zhu/</id>
-    <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.548Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;执行-yum-卡住，只能-kill-9-退出&quot;&gt;&lt;a href=&quot;#执行-yum-卡住，只能-kill-9-退出&quot; class=&quot;headerlink&quot; title=&quot; 执行 yum 卡住，只能 kill -9 退出 &quot;&gt;&lt;/a&gt;&lt;center&gt; 执行 yum</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
-    
-    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>寻找一种易于理解的一致性算法（扩展版）</title>
     <link href="https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/"/>
     <id>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</id>
     <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.524Z</updated>
+    <updated>2023-09-02T14:08:39.138Z</updated>
     
     
       
@@ -282,11 +183,36 @@
   </entry>
   
   <entry>
+    <title>Jmeter Address already in use connect 解决方案</title>
+    <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/"/>
+    <id>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</id>
+    <published>2023-05-07T16:00:00.000Z</published>
+    <updated>2023-09-02T14:08:39.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Jmeter-Address-already-in-use-connect-解决方案&quot;&gt;&lt;a href=&quot;#Jmeter-Address-already-in-use-connect-解决方案&quot; class=&quot;headerlink&quot; title=&quot;Jmeter</summary>
+        
+      
+    
+    
+    
+    <category term="jmeter实操技术" scheme="https://wu3227834.github.io/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="jmeter" scheme="https://wu3227834.github.io/tags/jmeter/"/>
+    
+  </entry>
+  
+  <entry>
     <title>git add 问题</title>
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.520Z</updated>
+    <updated>2023-09-02T14:08:39.130Z</updated>
     
     
       
@@ -307,11 +233,93 @@
   </entry>
   
   <entry>
+    <title>ES6.7 一些有趣的语句</title>
+    <link href="https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/"/>
+    <id>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</id>
+    <published>2023-04-16T16:00:00.000Z</published>
+    <updated>2023-09-02T14:08:39.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ES-6-7-一些有趣的语句&quot;&gt;&lt;a href=&quot;#ES-6-7-一些有趣的语句&quot; class=&quot;headerlink&quot; title=&quot; ES 6.7 一些有趣的语句 &quot;&gt;&lt;/a&gt;&lt;center&gt; ES 6.7 一些有趣的语句 &lt;/center&gt;&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Elasticsearch" scheme="https://wu3227834.github.io/categories/Elasticsearch/"/>
+    
+    
+    <category term="Elasticsearch" scheme="https://wu3227834.github.io/tags/Elasticsearch/"/>
+    
+    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ES：Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</title>
+    <link href="https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi.md/"/>
+    <id>https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi.md/</id>
+    <published>2023-04-13T16:00:00.000Z</published>
+    <updated>2023-09-02T14:08:39.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;发生缘故&quot;&gt;&lt;a href=&quot;#发生缘故&quot; class=&quot;headerlink&quot; title=&quot;发生缘故&quot;&gt;&lt;/a&gt;发生缘故&lt;/h2&gt;&lt;p&gt;jmeter 压测，写入 elasticsearch 报错&lt;/p&gt;
+&lt;h2 id=&quot;运行环境&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Elasticsearch" scheme="https://wu3227834.github.io/categories/Elasticsearch/"/>
+    
+    
+    <category term="Elasticsearch" scheme="https://wu3227834.github.io/tags/Elasticsearch/"/>
+    
+    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+    
+    <category term="jmter" scheme="https://wu3227834.github.io/tags/jmter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jmeter 常用函数</title>
+    <link href="https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/"/>
+    <id>https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/</id>
+    <published>2023-04-04T16:00:00.000Z</published>
+    <updated>2023-09-02T14:08:39.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;jmeter-常用函数&quot;&gt;&lt;a href=&quot;#jmeter-常用函数&quot; class=&quot;headerlink&quot; title=&quot;jmeter 常用函数&quot;&gt;&lt;/a&gt;&lt;center&gt;jmeter 常用函数&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;获取使用时间戳&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="jmeter实操技术" scheme="https://wu3227834.github.io/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="jmeter" scheme="https://wu3227834.github.io/tags/jmeter/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DSL备忘（一）：Constant score query 和 Bool Query</title>
     <link href="https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/"/>
     <id>https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/</id>
     <published>2023-02-22T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -336,7 +344,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -361,7 +369,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -386,7 +394,7 @@
     <link href="https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/"/>
     <id>https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/</id>
     <published>2023-01-22T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -400,9 +408,7 @@
     
     
     
-    <category term="Kubernetes" scheme="https://wu3227834.github.io/categories/Kubernetes/"/>
-    
-    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/Kubernetes/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="k8s" scheme="https://wu3227834.github.io/tags/k8s/"/>
@@ -416,7 +422,7 @@
     <link href="https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/</id>
     <published>2023-01-11T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -441,7 +447,7 @@
     <link href="https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/"/>
     <id>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</id>
     <published>2023-01-03T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.126Z</updated>
     
     
       
@@ -454,9 +460,7 @@
     
     
     
-    <category term="Docker" scheme="https://wu3227834.github.io/categories/Docker/"/>
-    
-    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/Docker/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="docker" scheme="https://wu3227834.github.io/tags/docker/"/>
@@ -470,7 +474,7 @@
     <link href="https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/"/>
     <id>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</id>
     <published>2022-12-18T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.122Z</updated>
     
     
       
@@ -483,9 +487,7 @@
     
     
     
-    <category term="Docker" scheme="https://wu3227834.github.io/categories/Docker/"/>
-    
-    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/Docker/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="docker" scheme="https://wu3227834.github.io/tags/docker/"/>
@@ -499,7 +501,7 @@
     <link href="https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/"/>
     <id>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</id>
     <published>2022-12-16T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.516Z</updated>
+    <updated>2023-09-02T14:08:39.122Z</updated>
     
     
       
@@ -524,7 +526,7 @@
     <link href="https://wu3227834.github.io/2022/12/13/2022-12-14-tu-jie-paxos-suan-fa/"/>
     <id>https://wu3227834.github.io/2022/12/13/2022-12-14-tu-jie-paxos-suan-fa/</id>
     <published>2022-12-13T16:00:00.000Z</published>
-    <updated>2023-09-02T13:53:17.512Z</updated>
+    <updated>2023-09-02T14:08:39.122Z</updated>
     
     
       
@@ -537,16 +539,14 @@
     
     
     
-    <category term="分布式架构" scheme="https://wu3227834.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="Paxos" scheme="https://wu3227834.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/Paxos/"/>
-    
-    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/Paxos/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="学习笔记" scheme="https://wu3227834.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     <category term="paxos" scheme="https://wu3227834.github.io/tags/paxos/"/>
+    
+    <category term="分布式架构" scheme="https://wu3227834.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   

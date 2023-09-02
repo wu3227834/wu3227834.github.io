@@ -4,57 +4,27 @@
   
     
     <entry>
-      <title>jmeter 常用函数</title>
-      <link href="/2023/09/02/2023-04-05-jmeter-chang-yong-han-shu/"/>
-      <url>/2023/09/02/2023-04-05-jmeter-chang-yong-han-shu/</url>
+      <title>yum 卡住</title>
+      <link href="/2023/08/30/2023-08-31-yum-qia-zhu/"/>
+      <url>/2023/08/30/2023-08-31-yum-qia-zhu/</url>
       
-        <content type="html"><![CDATA[<h1 id="jmeter-常用函数"><a href="#jmeter-常用函数" class="headerlink" title="jmeter 常用函数"></a><center>jmeter 常用函数</center></h1><h2 id="获取使用时间戳"><a href="#获取使用时间戳" class="headerlink" title="获取使用时间戳"></a>获取使用时间戳</h2><pre><code>默认时间戳：$&#123;__time(,)&#125;：精确到毫秒级别，13位$&#123;__time(/1000,)&#125;：精确到秒级别，10位设置时间格式：$&#123;__time(yyyy-MM-dd,)&#125;$&#123;__time(YMDHMS,)&#125;</code></pre><h2 id="获取线程相关"><a href="#获取线程相关" class="headerlink" title="获取线程相关"></a>获取线程相关</h2><pre><code>$&#123;__BeanShell(ctx.getThread().getThreadName())&#125;：获取线程名称$&#123;__BeanShell(ctx.getThread().getThreadNum())&#125;：获取线程号</code></pre><h2 id="获取属性值"><a href="#获取属性值" class="headerlink" title="获取属性值"></a>获取属性值</h2><pre><code>$&#123;__P(access_token,)&#125;：从属性中取出变量值</code></pre><h2 id="多节点-htpp-请求"><a href="#多节点-htpp-请求" class="headerlink" title="多节点 htpp 请求"></a>多节点 htpp 请求</h2><pre><code>$&#123;__RandomFromMultipleVars(adapterHost-single|adapterHost-single2|adapterHost-single3,schost)&#125;</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> jmeter实操技术 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>ES：Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</title>
-      <link href="/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/"/>
-      <url>/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/</url>
-      
-        <content type="html"><![CDATA[<h2 id="发生缘故"><a href="#发生缘故" class="headerlink" title="发生缘故"></a>发生缘故</h2><p>jmeter 压测，写入 elasticsearch 报错</p><h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ul>    <li>elasticsearch 6.7.2</li>    <li>jmeter 5.5</li>    <li>jdbc 1.8</li></ul><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p><img src="/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/error_information.png" alt="error_information"></p><h2 id="分析排查"><a href="#分析排查" class="headerlink" title="分析排查"></a>分析排查</h2><ul>    <li>Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</li>    <li>压缩器检测只能在某些 xcontent 字节或压缩的 xcontent 字节上面调用</li></ul><p>根据报错原因可以将错误定位至 io.xwt.BulkDoument.runTest(BulkDoument.java 87)，代码如下：</p><pre><code>// 解析 jsonfor(int i = 0; i &lt; datas.length; ++i) &#123;    datas[i] = datas[i].replace(&quot;&#123;DATET&#125;&quot;, datasdf.format(System.currentTimeMillis()));    if (this.threadNum != 0) &#123;        String id = &quot;t&quot; + this.threadNum + &quot;_&quot; + System.currentTimeMillis() + &quot;_&quot; + UUID.randomUUID();        br.add((new IndexRequest(this.indexName, default_type, id)).source(datas[i], XContentType.JSON));    &#125; else &#123;br.add((new IndexRequest()).source(datas[i], XContentType.JSON));    &#125;&#125;try &#123;// 生成 bulk 连接    sampleResult.sampleStart();    BulkResponse bulkResponse = this.client.bulk(br, RequestOptions.DEFAULT);    sampleResult.sampleEnd();    sampleResult.setSuccessful(true);    sampleResult.setResponseCodeOK();    if (bulkResponse.hasFailures()) &#123;        sampleResult.setSuccessful(false);        sampleResult.setResponseCode(&quot;500&quot;);        sampleResult.setResponseData(bulkResponse.buildFailureMessage(), &quot;utf-8&quot;);    &#125; else &#123;        sampleResult.setResponseData(&quot;all in&quot;, &quot;utf-8&quot;);    &#125;// 报错&#125; catch (Exception var8) &#123;    sampleResult.sampleEnd();    sampleResult.setSuccessful(false);    sampleResult.setResponseCode(&quot;500&quot;);    sampleResult.setResponseMessage(var8.getMessage());    var8.printStackTrace();&#125;</code></pre><p>那么就可以将报错信息转为人话了：语句的类型不是JSON风格的或者JSON格式化错误了。</p><p>定位写入数据，数据如下：<br><img src="/2023/09/02/2023-04-14-es-compressor-detection-can-only-be-called-on-some-xcontent-bytes-or-compressed-xcontent-bytes/eventdate.png" alt="eventdate"></p><p>@timestamp 为 date类型，这里用了 string，修改这个值&#x2F;jmx上替换。</p><p>注：</p><ul>    <li>有时网络差，也可能会出现这个报错</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="执行-yum-卡住，只能-kill-9-退出"><a href="#执行-yum-卡住，只能-kill-9-退出" class="headerlink" title=" 执行 yum 卡住，只能 kill -9 退出 "></a><center> 执行 yum 卡住，只能 kill -9 退出 </center></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>执行 yum 卡住，Ctrl + c 也退不出来<br>只能 kill -9 退出</p><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>在Linux中，通过rpm&#x2F;yum安装应用时没有任何响应，执行“ps -ef | grep rpm”发现之前执行过的rpm&#x2F;yum命令全被挂起，故障原因是rpm数据库异常，解决方法是重建rpm数据库。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><pre><code># 删除rpm数据库rm -f /var/lib/rpm/__db.00*# 重建rpm数据库rpm -vv --rebuilddb# 清理yum资源锁rm -f /var/lib/rpm/.rpm.lockrm -f /var/lib/rpm/.dbenv.lock# 清理yum缓存yum clean all# 或删除cache目录# rm -rf /var/cache/yum/*</code></pre>]]></content>
       
       
       <categories>
           
-          <category> 那些年遇到的坑 </category>
+          <category> linux </category>
           
       </categories>
       
       
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Jmeter Address already in use connect 解决方案</title>
-      <link href="/2023/09/02/2023-05-08-jmeter-wen-ti-yi/"/>
-      <url>/2023/09/02/2023-05-08-jmeter-wen-ti-yi/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Jmeter-Address-already-in-use-connect-解决方案"><a href="#Jmeter-Address-already-in-use-connect-解决方案" class="headerlink" title="Jmeter Address already in use connect 解决方案"></a><center>Jmeter Address already in use connect 解决方案</center></h1><h2 id="发生缘故"><a href="#发生缘故" class="headerlink" title="发生缘故"></a>发生缘故</h2><p>win10 下，jmeter 高并发压测 scope</p><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p><img src="/2023/09/02/2023-05-08-jmeter-wen-ti-yi/pho2.png" alt="error_information2"></p><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>Jmeter 里的 http sample 勾选了 keep alive，导致会话一直保持，而 windows 本身的端口有限，导致端口被占用完后，无法分配新的端口，因此会产生 java.net.BindException: Address already in use: connect 报错。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>HTTP SAMPLE 不勾选 keep alive</p><p><img src="/2023/09/02/2023-05-08-jmeter-wen-ti-yi/pho3.png" alt="solve_plan"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> jmeter实操技术 </category>
-          
-      </categories>
-      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 那些年遇到的坑 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -70,8 +40,6 @@
       
       <categories>
           
-          <category> Kubernetes </category>
-          
           <category> 极客时间——学习笔记 </category>
           
       </categories>
@@ -82,33 +50,6 @@
             <tag> k8s </tag>
             
             <tag> 学习笔记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>ES6.7 一些有趣的语句</title>
-      <link href="/2023/07/06/2023-04-17-es-you-qu-de-yu-ju/"/>
-      <url>/2023/07/06/2023-04-17-es-you-qu-de-yu-ju/</url>
-      
-        <content type="html"><![CDATA[<h1 id="ES-6-7-一些有趣的语句"><a href="#ES-6-7-一些有趣的语句" class="headerlink" title=" ES 6.7 一些有趣的语句 "></a><center> ES 6.7 一些有趣的语句 </center></h1><h2 id="1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年"><a href="#1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年" class="headerlink" title="1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年"></a>1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年</h2><pre class=" language-json"><code class="language-json">curl -XGET <span class="token string">"vqa132:19200/script_common/_search?&amp;size=0&amp;pretty"</span> -H 'Content-Type<span class="token operator">:</span> application/json' -d'&amp;#<span class="token number">123</span><span class="token punctuation">;</span>  <span class="token property">"aggs"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token property">"agg_name"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>      <span class="token property">"date_histogram"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>        <span class="token property">"script"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>          <span class="token property">"lang"</span><span class="token operator">:</span> <span class="token string">"painless"</span><span class="token punctuation">,</span>          <span class="token property">"source"</span><span class="token operator">:</span> <span class="token string">"if (doc[\u0027class\u0027].size()==0)&amp;#123;return params.date&amp;#125;else &amp;#123;return doc[\u0027birthday\u0027].value.plusDays(1)&amp;#125;"</span><span class="token punctuation">,</span>          <span class="token property">"params"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>            <span class="token property">"date"</span> <span class="token operator">:</span> <span class="token number">2208960000000</span>          &amp;#<span class="token number">125</span><span class="token punctuation">;</span>        &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>        <span class="token property">"interval"</span><span class="token operator">:</span> <span class="token string">"year"</span><span class="token punctuation">,</span>        <span class="token property">"min_doc_count"</span><span class="token operator">:</span> <span class="token number">1</span>      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>'<span class="token punctuation">;</span></code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 那些年遇到的坑 </category>
-          
-          <category> ES6.7 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Elasticsearch </tag>
             
         </tags>
       
@@ -202,33 +143,6 @@
     
     
     <entry>
-      <title>yum 卡住</title>
-      <link href="/2023/07/06/2023-08-31-yum-qia-zhu/"/>
-      <url>/2023/07/06/2023-08-31-yum-qia-zhu/</url>
-      
-        <content type="html"><![CDATA[<h1 id="执行-yum-卡住，只能-kill-9-退出"><a href="#执行-yum-卡住，只能-kill-9-退出" class="headerlink" title=" 执行 yum 卡住，只能 kill -9 退出 "></a><center> 执行 yum 卡住，只能 kill -9 退出 </center></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>执行 yum 卡住，Ctrl + c 也退不出来<br>只能 kill -9 退出</p><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>在Linux中，通过rpm&#x2F;yum安装应用时没有任何响应，执行“ps -ef | grep rpm”发现之前执行过的rpm&#x2F;yum命令全被挂起，故障原因是rpm数据库异常，解决方法是重建rpm数据库。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><pre><code># 删除rpm数据库rm -f /var/lib/rpm/__db.00*# 重建rpm数据库rpm -vv --rebuilddb# 清理yum资源锁rm -f /var/lib/rpm/.rpm.lockrm -f /var/lib/rpm/.dbenv.lock# 清理yum缓存yum clean all# 或删除cache目录# rm -rf /var/cache/yum/*</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> 那些年遇到的坑 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>寻找一种易于理解的一致性算法（扩展版）</title>
       <link href="/2023/06/24/2023-06-25-raft-zh-cn/"/>
       <url>/2023/06/24/2023-06-25-raft-zh-cn/</url>
@@ -256,6 +170,31 @@
     
     
     <entry>
+      <title>Jmeter Address already in use connect 解决方案</title>
+      <link href="/2023/05/07/2023-05-08-jmeter-wen-ti-yi/"/>
+      <url>/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Jmeter-Address-already-in-use-connect-解决方案"><a href="#Jmeter-Address-already-in-use-connect-解决方案" class="headerlink" title="Jmeter Address already in use connect 解决方案"></a><center>Jmeter Address already in use connect 解决方案</center></h1><h2 id="发生缘故"><a href="#发生缘故" class="headerlink" title="发生缘故"></a>发生缘故</h2><p>win10 下，jmeter 高并发压测 scope</p><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p><img src="/2023/05/07/2023-05-08-jmeter-wen-ti-yi/pho2.png" alt="error_information2"></p><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>Jmeter 里的 http sample 勾选了 keep alive，导致会话一直保持，而 windows 本身的端口有限，导致端口被占用完后，无法分配新的端口，因此会产生 java.net.BindException: Address already in use: connect 报错。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>HTTP SAMPLE 不勾选 keep alive</p><p><img src="/2023/05/07/2023-05-08-jmeter-wen-ti-yi/pho3.png" alt="solve_plan"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> jmeter实操技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jmeter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>git add 问题</title>
       <link href="/2023/05/07/2023-05-08-git-add-wen-ti/"/>
       <url>/2023/05/07/2023-05-08-git-add-wen-ti/</url>
@@ -273,6 +212,87 @@
         <tags>
             
             <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ES6.7 一些有趣的语句</title>
+      <link href="/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/"/>
+      <url>/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ES-6-7-一些有趣的语句"><a href="#ES-6-7-一些有趣的语句" class="headerlink" title=" ES 6.7 一些有趣的语句 "></a><center> ES 6.7 一些有趣的语句 </center></h1><h2 id="1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年"><a href="#1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年" class="headerlink" title="1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年"></a>1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年</h2><pre class=" language-json"><code class="language-json">curl -XGET <span class="token string">"vqa132:19200/script_common/_search?&amp;size=0&amp;pretty"</span> -H 'Content-Type<span class="token operator">:</span> application/json' -d'&amp;#<span class="token number">123</span><span class="token punctuation">;</span>  <span class="token property">"aggs"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token property">"agg_name"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>      <span class="token property">"date_histogram"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>        <span class="token property">"script"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>          <span class="token property">"lang"</span><span class="token operator">:</span> <span class="token string">"painless"</span><span class="token punctuation">,</span>          <span class="token property">"source"</span><span class="token operator">:</span> <span class="token string">"if (doc[\u0027class\u0027].size()==0)&amp;#123;return params.date&amp;#125;else &amp;#123;return doc[\u0027birthday\u0027].value.plusDays(1)&amp;#125;"</span><span class="token punctuation">,</span>          <span class="token property">"params"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>            <span class="token property">"date"</span> <span class="token operator">:</span> <span class="token number">2208960000000</span>          &amp;#<span class="token number">125</span><span class="token punctuation">;</span>        &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>        <span class="token property">"interval"</span><span class="token operator">:</span> <span class="token string">"year"</span><span class="token punctuation">,</span>        <span class="token property">"min_doc_count"</span><span class="token operator">:</span> <span class="token number">1</span>      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>'<span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Elasticsearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Elasticsearch </tag>
+            
+            <tag> 那些年遇到的坑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ES：Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</title>
+      <link href="/2023/04/13/2023-04-14-es-wen-ti-yi.md/"/>
+      <url>/2023/04/13/2023-04-14-es-wen-ti-yi.md/</url>
+      
+        <content type="html"><![CDATA[<h2 id="发生缘故"><a href="#发生缘故" class="headerlink" title="发生缘故"></a>发生缘故</h2><p>jmeter 压测，写入 elasticsearch 报错</p><h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ul>    <li>elasticsearch 6.7.2</li>    <li>jmeter 5.5</li>    <li>jdbc 1.8</li></ul><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p><img src="/2023/04/13/2023-04-14-es-wen-ti-yi.md/error_information.png" alt="error_information"></p><h2 id="分析排查"><a href="#分析排查" class="headerlink" title="分析排查"></a>分析排查</h2><ul>    <li>Compressor detection can only be called on some xcontent bytes or compressed xcontent bytes</li>    <li>压缩器检测只能在某些 xcontent 字节或压缩的 xcontent 字节上面调用</li></ul><p>根据报错原因可以将错误定位至 io.xwt.BulkDoument.runTest(BulkDoument.java 87)，代码如下：</p><pre><code>// 解析 jsonfor(int i = 0; i &lt; datas.length; ++i) &#123;    datas[i] = datas[i].replace(&quot;&#123;DATET&#125;&quot;, datasdf.format(System.currentTimeMillis()));    if (this.threadNum != 0) &#123;        String id = &quot;t&quot; + this.threadNum + &quot;_&quot; + System.currentTimeMillis() + &quot;_&quot; + UUID.randomUUID();        br.add((new IndexRequest(this.indexName, default_type, id)).source(datas[i], XContentType.JSON));    &#125; else &#123;br.add((new IndexRequest()).source(datas[i], XContentType.JSON));    &#125;&#125;try &#123;// 生成 bulk 连接    sampleResult.sampleStart();    BulkResponse bulkResponse = this.client.bulk(br, RequestOptions.DEFAULT);    sampleResult.sampleEnd();    sampleResult.setSuccessful(true);    sampleResult.setResponseCodeOK();    if (bulkResponse.hasFailures()) &#123;        sampleResult.setSuccessful(false);        sampleResult.setResponseCode(&quot;500&quot;);        sampleResult.setResponseData(bulkResponse.buildFailureMessage(), &quot;utf-8&quot;);    &#125; else &#123;        sampleResult.setResponseData(&quot;all in&quot;, &quot;utf-8&quot;);    &#125;// 报错&#125; catch (Exception var8) &#123;    sampleResult.sampleEnd();    sampleResult.setSuccessful(false);    sampleResult.setResponseCode(&quot;500&quot;);    sampleResult.setResponseMessage(var8.getMessage());    var8.printStackTrace();&#125;</code></pre><p>那么就可以将报错信息转为人话了：语句的类型不是JSON风格的或者JSON格式化错误了。</p><p>定位写入数据，数据如下：<br><img src="/2023/04/13/2023-04-14-es-wen-ti-yi.md/eventdate.png" alt="eventdate"></p><p>@timestamp 为 date类型，这里用了 string，修改这个值&#x2F;jmx上替换。</p><p>注：</p><ul>    <li>有时网络差，也可能会出现这个报错</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Elasticsearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Elasticsearch </tag>
+            
+            <tag> 那些年遇到的坑 </tag>
+            
+            <tag> jmter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jmeter 常用函数</title>
+      <link href="/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/"/>
+      <url>/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="jmeter-常用函数"><a href="#jmeter-常用函数" class="headerlink" title="jmeter 常用函数"></a><center>jmeter 常用函数</center></h1><h2 id="获取使用时间戳"><a href="#获取使用时间戳" class="headerlink" title="获取使用时间戳"></a>获取使用时间戳</h2><pre class=" language-bash"><code class="language-bash">默认时间戳：$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(,)&amp;#125;：精确到毫秒级别，13位</span>$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(/1000,)&amp;#125;：精确到秒级别，10位</span>设置时间格式：$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(yyyy-MM-dd,)&amp;#125;</span>$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(YMDHMS,)&amp;#125;</span></code></pre><h2 id="获取线程相关"><a href="#获取线程相关" class="headerlink" title="获取线程相关"></a>获取线程相关</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__BeanShell(ctx.getThread().getThreadName())&amp;#125;：获取线程名称</span>$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__BeanShell(ctx.getThread().getThreadNum())&amp;#125;：获取线程号</span></code></pre><h2 id="获取属性值"><a href="#获取属性值" class="headerlink" title="获取属性值"></a>获取属性值</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__P(access_token,)&amp;#125;：从属性中取出变量值</span></code></pre><h2 id="多节点-htpp-请求"><a href="#多节点-htpp-请求" class="headerlink" title="多节点 htpp 请求"></a>多节点 htpp 请求</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__RandomFromMultipleVars(adapterHost-single|adapterHost-single2|adapterHost-single3,schost)&amp;#125;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> jmeter实操技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jmeter </tag>
             
         </tags>
       
@@ -365,8 +385,6 @@
       
       <categories>
           
-          <category> Kubernetes </category>
-          
           <category> 极客时间——学习笔记 </category>
           
       </categories>
@@ -419,8 +437,6 @@
       
       <categories>
           
-          <category> Docker </category>
-          
           <category> 极客时间——学习笔记 </category>
           
       </categories>
@@ -447,8 +463,6 @@
       
       
       <categories>
-          
-          <category> Docker </category>
           
           <category> 极客时间——学习笔记 </category>
           
@@ -502,10 +516,6 @@
       
       <categories>
           
-          <category> 分布式架构 </category>
-          
-          <category> Paxos </category>
-          
           <category> 极客时间——学习笔记 </category>
           
       </categories>
@@ -516,6 +526,8 @@
             <tag> 学习笔记 </tag>
             
             <tag> paxos </tag>
+            
+            <tag> 分布式架构 </tag>
             
         </tags>
       
@@ -557,8 +569,6 @@
       
       
       <categories>
-          
-          <category> Docker </category>
           
           <category> 极客时间——学习笔记 </category>
           
@@ -691,7 +701,7 @@
       
       <categories>
           
-          <category> linux-vim </category>
+          <category> linux 命令 </category>
           
       </categories>
       
@@ -718,7 +728,7 @@
       
       <categories>
           
-          <category> linux-vim </category>
+          <category> linux 命令 </category>
           
       </categories>
       
