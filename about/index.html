@@ -50,7 +50,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
 <body>
@@ -399,18 +400,23 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">1</a></span>
+    <span class="count"><a href="/">29</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">1</a></span>
+    <span class="count"><a href="/categories">21</a></span>
     <span class="name">分类</span>
 </div>
 
 
+
+<div class="statis">
+    <span class="count"><a href="/tags">10</a></span>
+    <span class="name">标签</span>
+</div>
 
 
                     </div>
@@ -424,18 +430,23 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">1</a></span>
+    <span class="count"><a href="/">29</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">1</a></span>
+    <span class="count"><a href="/categories">21</a></span>
     <span class="name">分类</span>
 </div>
 
 
+
+<div class="statis">
+    <span class="count"><a href="/tags">10</a></span>
+    <span class="name">标签</span>
+</div>
 
 
                                 </div>
@@ -577,7 +588,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,1,0,0,0,0,0,0,0,0,0],
+                data: [0,0,0,12,5,1,0,0,0,0,0,0,11],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -619,7 +630,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"杂文","value":1}],
+                data: [{"name":"linux-vim","value":2},{"name":"sql","value":1},{"name":"python","value":2},{"name":"Docker","value":4},{"name":"杂文","value":3},{"name":"分布式架构","value":1},{"name":"linux","value":2},{"name":"Kubernetes","value":2},{"name":"Kubernetes","value":1},{"name":"linux 命令","value":1},{"name":"Elasticsearch","value":2},{"name":"极客时间——学习笔记","value":3},{"name":"jmeter实操技术","value":2},{"name":"那些年遇到的坑","value":2},{"name":"Paxos","value":1},{"name":"Git","value":1},{"name":"Raft","value":1},{"name":"性能测试","value":3},{"name":"极客时间——学习笔记","value":2},{"name":"极客时间——学习笔记","value":1},{"name":"ES6.7","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -643,7 +654,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: []
+                data: ["学习笔记","linux","docker","随记","vim","python","k8s","Elasticsearch","sql","paxos"]
             }
         ],
         yAxis: [
@@ -656,7 +667,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [],
+                data: [5,4,4,3,2,2,2,2,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -824,6 +835,66 @@
     <div class="other-skills chip-container" data-aos="zoom-in-up">
         <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;其他技能</div>
         <div class="tag-chips center-align">
+            
+            
+            <a href="/tags/linux/">
+                <span class="chip center-align waves-effect waves-light chip-default">linux</span>
+            </a>
+            
+            
+            
+            <a href="/tags/vim/">
+                <span class="chip center-align waves-effect waves-light chip-default">vim</span>
+            </a>
+            
+            
+            
+            <a href="/tags/sql/">
+                <span class="chip center-align waves-effect waves-light chip-default">sql</span>
+            </a>
+            
+            
+            
+            <a href="/tags/python/">
+                <span class="chip center-align waves-effect waves-light chip-default">python</span>
+            </a>
+            
+            
+            
+            <a href="/tags/docker/">
+                <span class="chip center-align waves-effect waves-light chip-default">docker</span>
+            </a>
+            
+            
+            
+            <a href="/tags/k8s/">
+                <span class="chip center-align waves-effect waves-light chip-default">k8s</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E9%9A%8F%E8%AE%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">随记</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">学习笔记</span>
+            </a>
+            
+            
+            
+            <a href="/tags/paxos/">
+                <span class="chip center-align waves-effect waves-light chip-default">paxos</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Elasticsearch/">
+                <span class="chip center-align waves-effect waves-light chip-default">Elasticsearch</span>
+            </a>
+            
             
         </div>
     </div>
