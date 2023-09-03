@@ -412,7 +412,7 @@
 <p>具体的说：<strong>Pod 里的所有容器，共享的是同一个 Network Namespace，并且可以声明共享同一个 Volume（磁盘目录）</strong>。</p>
 <p>那这么来看的话，一个有 A、B 两个容器的 Pod，不就是等同于一个容器（容器 A）共享另外一个容器（容器 B）的网络和 Volume 的玩儿法么？</p>
 <p>这好像通过 docker run –net –volumes-from 这样的命令就能实现嘛，比如：</p>
-<pre><code>$ docker run --net=B --volumes-from=B --name=A image-A ...
+<pre class=" language-bash"><code class="language-bash">$ docker run --net<span class="token operator">=</span>B --volumes-from<span class="token operator">=</span>B --name<span class="token operator">=</span>A image-A <span class="token punctuation">..</span>.
 </code></pre>
 <p>但是，这样做存在一个问题，那就是容器 B 就必须比容器 A 先启动，这样一个 Pod 里的多个容器就不是对等关系，而是拓扑关系了。</p>
 <p>所以，在 Kubernetes 项目里，Pod 的实现需要使用一个中间容器，这个容器叫作 Infra 容器。在这个 Pod 中，Infra 容器永远都是第一个被创建的容器，而其他用户定义的容器，则通过 Join Network Namespace 的方式，与 Infra 容器关联在一起。这样的组织关系，可以用下面这样一个示意图来表达：</p>
@@ -427,29 +427,29 @@
 <p>这就意味着，如果你的网络插件需要在容器里安装某些包或者配置才能完成的话，是不可取的：Infra 容器镜像的 rootfs 里几乎什么都没有，没有你随意发挥的空间。当然，这同时也意味着你的网络插件完全不必关心用户容器的启动与否，而只需要关注如何配置 Pod，也就是 Infra 容器的 Network Namespace 即可。</p>
 <p>有了这个设计之后，共享 Volume 就简单多了：Kubernetes 项目只要把所有 Volume 的定义都设计在 Pod 层级即可。</p>
 <p>这样，一个 Volume 对应的宿主机目录对于 Pod 来说就只有一个，Pod 里的容器只要声明挂载这个 Volume，就一定可以共享这个 Volume 对应的宿主机目录。比如下面这个例子：</p>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: two-containers
-spec:
-  restartPolicy: Never
-  volumes:
-  - name: shared-data
-    hostPath: 
-      path: /data
-  containers:
-  - name: nginx-container
-    image: nginx
-    volumeMounts:
-    - name: shared-data
-      mountPath: /usr/share/nginx/html
-  - name: debian-container
-    image: debian
-    volumeMounts:
-    - name: shared-data
-      mountPath: /pod-data
-    command: [&quot;/bin/sh&quot;]
-    args: [&quot;-c&quot;, &quot;echo Hello from the debian container &gt; /pod-data/index.html&quot;]
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> two<span class="token punctuation">-</span>containers
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+    <span class="token key atrule">hostPath</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">path</span><span class="token punctuation">:</span> /data
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> debian<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> debian
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /pod<span class="token punctuation">-</span>data
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/bin/sh"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"-c"</span><span class="token punctuation">,</span> <span class="token string">"echo Hello from the debian container > /pod-data/index.html"</span><span class="token punctuation">]</span>
 </code></pre>
 <p>在这个例子中，debian-container 和 nginx-container 都声明挂载了 shared-data 这个 Volume。而 shared-data 是 hostPath 类型。所以，它对应在宿主机上的目录就是：&#x2F;data。而这个目录，其实就被同时绑定挂载进了上述两个容器当中。</p>
 <p>这就是为什么，nginx-container 可以从它的 &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html 目录中，读取到 debian-container 生成的 index.html 文件的原因。</p>
@@ -468,31 +468,31 @@ spec:
 </ul>
 
 <p>实际上，有了 Pod 之后，这样的问题就很容易解决了。我们可以把 WAR 包和 Tomcat 分别做成镜像，然后把它们作为一个 Pod 里的两个容器“组合”在一起。这个 Pod 的配置文件如下所示：</p>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: javaweb-2
-spec:
-  initContainers:
-  - image: geektime/sample:v2
-    name: war
-    command: [&quot;cp&quot;, &quot;/sample.war&quot;, &quot;/app&quot;]
-    volumeMounts:
-    - mountPath: /app
-        name: app-volume
-  containers:
-  - image: geektime/tomcat:7.0
-    name: tomcat
-    command: [&quot;sh&quot;,&quot;-c&quot;,&quot;/root/apache-tomcat-7.0.42-v2/bin/start.sh&quot;]
-    volumeMounts:
-    - mountPath: /root/apache-tomcat-7.0.42-v2/webapps
-      name: app-volume
-    ports:
-    - containerPort: 8080
-      hostPort: 8001 
-  volumes:
-  - name: app-volume
-    emptyDir: &#123;&#125;
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> javaweb<span class="token punctuation">-</span><span class="token number">2</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">initContainers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> geektime/sample<span class="token punctuation">:</span>v2
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> war
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"cp"</span><span class="token punctuation">,</span> <span class="token string">"/sample.war"</span><span class="token punctuation">,</span> <span class="token string">"/app"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /app
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> geektime/tomcat<span class="token punctuation">:</span><span class="token number">7.0</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> tomcat
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"sh"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"/root/apache-tomcat-7.0.42-v2/bin/start.sh"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /root/apache<span class="token punctuation">-</span>tomcat<span class="token punctuation">-</span>7.0.42<span class="token punctuation">-</span>v2/webapps
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">hostPort</span><span class="token punctuation">:</span> <span class="token number">8001 </span>
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+    <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
 <p>在这个 Pod 中，我们定义了两个容器，第一个容器使用的镜像是 geektime&#x2F;sample:v2，这个镜像里只有一个 WAR 包（sample.war）放在根目录下。而第二个容器则使用的是一个标准的 Tomcat 镜像。</p>
 <p>不过，你可能已经注意到，WAR 包容器的类型不再是一个普通容器，而是一个 Init Container 类型的容器。</p>
@@ -859,7 +859,7 @@ spec:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">53.9k</span>
+                        class="white-color">53.8k</span>
             
             
             

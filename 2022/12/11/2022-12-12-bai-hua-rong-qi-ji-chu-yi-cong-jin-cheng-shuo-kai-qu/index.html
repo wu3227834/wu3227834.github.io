@@ -410,7 +410,7 @@
 <p>&emsp;&emsp;对于 Docker 等大多数 Linux 容器来说，<strong>Cgroups</strong> 技术是用来制造约束的主要手段，而 <strong>Namespace</strong> 技术则是用来修改进程视图的主要方法。</p>
 <h3 id="那什么是-Cgroups-和-Namespace-？"><a href="#那什么是-Cgroups-和-Namespace-？" class="headerlink" title="那什么是 Cgroups 和 Namespace ？"></a>那什么是 Cgroups 和 Namespace ？</h3><p>&emsp;&emsp;假设你已经有了一个 Linux 操作系统上的 Docker 项目在运行，比如我的虚拟机环境是 Ubuntu 16.04 和 Docker CE 18.05。</p>
 <p>&emsp;&emsp;接下来，让我们首先创建一个容器来试试。</p>
-<pre><code>docker run -it mydocker /bin/sh
+<pre class=" language-bash"><code class="language-bash">docker run -it mydocker /bin/sh
 </code></pre>
 <p>&emsp;&emsp;这个命令是 Docker 项目最重要的一个操作，即大名鼎鼎的 docker run。</p>
 <p>其中：</p>
@@ -425,10 +425,10 @@
 <p>&emsp;&emsp;所以，上面这条指令“说人话”就是：请帮我启动一个容器，在容器里执行&#x2F;bin&#x2F;sh，并且给我分配一个命令行终端跟这个容器交互。</p>
 <p>&emsp;&emsp;这样，我的虚拟机就变成了一个宿主机，而一个运行着 &#x2F;bin&#x2F;sh 的容器，就跑在了这个宿主机里面。</p>
 <p>&emsp;&emsp;此时，如果我们在容器里执行一下 ps 指令，就会发现：</p>
-<pre><code># ps
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># ps</span>
 PID USER TIME COMMAND
  1 root 0:00 /bin/sh
-10 root 0:00 ps
+10 root 0:00 <span class="token function">ps</span>
 </code></pre>
 <p>&emsp;&emsp;可以看到，Docker 里只有两个进程在运行。这就意味着，前面执行的 &#x2F;bin&#x2F;sh，以及我们刚刚执行的 ps，已经被 Docker 隔离在了一个跟宿主机完全不同的世界当中。</p>
 <p>这究竟是怎么做到呢？</p>
@@ -809,7 +809,7 @@ PID USER TIME COMMAND
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">53.9k</span>
+                        class="white-color">53.8k</span>
             
             
             
