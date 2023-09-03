@@ -6,10 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="jmeter 常用函数, 个人博客">
     <meta name="description" content="jmeter 常用函数获取使用时间戳默认时间戳：
-$&amp;amp;#123;__time(,)&amp;amp;#125;：精确到毫秒级别，13位
-$&amp;amp;#123;__time(/1000,)&amp;amp;#125;：精确到秒级别，10位
+${__time(,)}：精确到毫秒级别，13位
+${__time(/1000,)}：精确到秒级别，10位
 
-设置时间">
+设置时间格式：
+${__time(yyyy-MM-dd,)}
+${__time(">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -54,8 +56,8 @@ $&amp;amp;#123;__time(/1000,)&amp;amp;#125;：精确到秒级别，10位
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -356,7 +358,7 @@ $&amp;amp;#123;__time(/1000,)&amp;amp;#125;：精确到秒级别，10位
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    136
+                    104
                 </div>
                 
 
@@ -379,19 +381,19 @@ $&amp;amp;#123;__time(/1000,)&amp;amp;#125;：精确到秒级别，10位
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="jmeter-常用函数"><a href="#jmeter-常用函数" class="headerlink" title="jmeter 常用函数"></a><center>jmeter 常用函数</center></h1><h2 id="获取使用时间戳"><a href="#获取使用时间戳" class="headerlink" title="获取使用时间戳"></a>获取使用时间戳</h2><pre class=" language-bash"><code class="language-bash">默认时间戳：
-$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(,)&amp;#125;：精确到毫秒级别，13位</span>
-$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(/1000,)&amp;#125;：精确到秒级别，10位</span>
+<span class="token variable">${__time(,)}</span>：精确到毫秒级别，13位
+<span class="token variable">${__time(/1000,)}</span>：精确到秒级别，10位
 
 设置时间格式：
-$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(yyyy-MM-dd,)&amp;#125;</span>
-$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__time(YMDHMS,)&amp;#125;</span>
+<span class="token variable">${__time(yyyy-MM-dd,)}</span>
+<span class="token variable">${__time(YMDHMS,)}</span>
 </code></pre>
-<h2 id="获取线程相关"><a href="#获取线程相关" class="headerlink" title="获取线程相关"></a>获取线程相关</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__BeanShell(ctx.getThread().getThreadName())&amp;#125;：获取线程名称</span>
-$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__BeanShell(ctx.getThread().getThreadNum())&amp;#125;：获取线程号</span>
+<h2 id="获取线程相关"><a href="#获取线程相关" class="headerlink" title="获取线程相关"></a>获取线程相关</h2><pre class=" language-bash"><code class="language-bash"><span class="token variable">${__BeanShell(ctx.getThread().getThreadName())}</span>：获取线程名称
+<span class="token variable">${__BeanShell(ctx.getThread().getThreadNum())}</span>：获取线程号
 </code></pre>
-<h2 id="获取属性值"><a href="#获取属性值" class="headerlink" title="获取属性值"></a>获取属性值</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__P(access_token,)&amp;#125;：从属性中取出变量值</span>
+<h2 id="获取属性值"><a href="#获取属性值" class="headerlink" title="获取属性值"></a>获取属性值</h2><pre class=" language-bash"><code class="language-bash"><span class="token variable">${__P(access_token,)}</span>：从属性中取出变量值
 </code></pre>
-<h2 id="多节点-htpp-请求"><a href="#多节点-htpp-请求" class="headerlink" title="多节点 htpp 请求"></a>多节点 htpp 请求</h2><pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;__RandomFromMultipleVars(adapterHost-single|adapterHost-single2|adapterHost-single3,schost)&amp;#125;</span>
+<h2 id="多节点-htpp-请求"><a href="#多节点-htpp-请求" class="headerlink" title="多节点 htpp 请求"></a>多节点 htpp 请求</h2><pre class=" language-bash"><code class="language-bash"><span class="token variable">${__RandomFromMultipleVars(adapterHost-single|adapterHost-single2|adapterHost-single3,schost)}</span>
 </code></pre>
 
                 
@@ -739,7 +741,7 @@ $<span class="token operator">&amp;</span><span class="token comment" spellcheck
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             

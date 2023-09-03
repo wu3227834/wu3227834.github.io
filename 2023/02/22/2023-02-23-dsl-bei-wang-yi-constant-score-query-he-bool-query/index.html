@@ -50,8 +50,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -352,14 +352,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    866
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    3 分
                 </div>
                 
 
@@ -378,18 +378,18 @@
 <h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>多用于结合bool查询实现自定义得分，其基本语法如下:</p>
 <pre class=" language-json"><code class="language-json">POST /index_name/_search
 </code></pre>
-<pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"constant_score"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"filter"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"match"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"constant_score"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"field_name"</span><span class="token operator">:</span> <span class="token string">"query_clause"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token property">"boost"</span><span class="token operator">:</span> score
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <ul>
     <li>const_score：关键字</li>
@@ -400,74 +400,74 @@
 </ul>
 
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre class=" language-json"><code class="language-json">GET /customer/_search
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"constant_score"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"filter"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"range"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-          <span class="token property">"age"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"constant_score"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"range"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"age"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token property">"gt"</span><span class="token operator">:</span> <span class="token number">25</span>
-          &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token property">"boost"</span><span class="token operator">:</span> <span class="token number">8.8</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 result<span class="token operator">:</span>返回结果中score都是被指定的<span class="token number">8.8</span>
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
   <span class="token property">"took"</span> <span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
   <span class="token property">"timed_out"</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-  <span class="token property">"_shards"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token property">"_shards"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
     <span class="token property">"successful"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
     <span class="token property">"skipped"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
     <span class="token property">"failed"</span> <span class="token operator">:</span> <span class="token number">0</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-   <span class="token property">"hits"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token property">"hits"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span><span class="token operator">:</span> <span class="token number">8.8</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"constant_index"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"default_type_"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span><span class="token operator">:</span> <span class="token number">8.8</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Emma Edgar"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"constant_index"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"default_type_"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"2"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span><span class="token operator">:</span> <span class="token number">8.8</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Underwood Verda"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"constant_index"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"default_type_"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span><span class="token operator">:</span> <span class="token number">8.8</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Rivera Interpreter"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span><span class="token operator">:</span> <span class="token string">"constant_index"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span><span class="token operator">:</span> <span class="token string">"default_type_"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"6"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span><span class="token operator">:</span> <span class="token number">8.8</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Lucy Seaman"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="bool-query"><a href="#bool-query" class="headerlink" title="bool query"></a>bool query</h2><p>布尔查询，由一个或者多个子句组成，每个子句都有特定的类型。</p>
 <ul>
@@ -487,223 +487,223 @@ result<span class="token operator">:</span>返回结果中score都是被指定�
 
 <h3 id="官网例子"><a href="#官网例子" class="headerlink" title="官网例子"></a>官网例子</h3><p>第一步：查询 name 为 “李云龙” 的文档</p>
 <pre class=" language-json"><code class="language-json">GET /customer/_search
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"bool"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"must"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"name.keyword"</span><span class="token operator">:</span><span class="token string">"李云龙"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"bool"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"must"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"name.keyword"</span><span class="token operator">:</span><span class="token string">"李云龙"</span><span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 返回三个文档：
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"hits"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"昆明市滇池路阳光时代1栋1单元"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13808712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"224"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"224"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"天津市阳光路2008号"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13908712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"上海市浦东区华北路8号"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13908712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>第二步：加入过滤条件，只保留 id 为 510221197001013611 的文档</p>
 <pre class=" language-json"><code class="language-json">GET /customer/_search
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"bool"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"must"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"bool"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"must"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span><span class="token punctuation">{</span>
           <span class="token property">"name.keyword"</span><span class="token operator">:</span><span class="token string">"李云龙"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      <span class="token property">"filter"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"510221197001013611"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 返回结果减少到 <span class="token number">2</span> 个文档，并且 score 相同：
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"hits"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"昆明市滇池路阳光时代1栋1单元"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13808712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.4916549</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"上海市浦东区华北路8号"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13908712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>第三步：使用 should，判断 addr 中必须有昆明市，这种情况下 should 子句会影响计分</p>
 <pre class=" language-json"><code class="language-json">GET /customer/_search
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"bool"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"must"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"bool"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"must"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span><span class="token punctuation">{</span>
           <span class="token property">"name.keyword"</span><span class="token operator">:</span><span class="token string">"李云龙"</span>\
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      <span class="token property">"filter"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"510221197001013611"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token property">"should"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-          <span class="token property">"match"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token property">"addr"</span><span class="token operator">:</span> <span class="token string">"昆明市"</span>
-          &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
       <span class="token punctuation">]</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 返回结果中，地址是昆明市的文档 score 加重
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"hits"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span> <span class="token operator">:</span> <span class="token number">3.408528</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">3.408528</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"昆明市滇池路阳光时代1栋1单元"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13808712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">1.5720221</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"上海市浦东区华北路8号"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13908712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>第四步：加入 must_not 排除上海</p>
 <pre class=" language-json"><code class="language-json">GET /customer/_search
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"query"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"bool"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"must"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"bool"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"must"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span><span class="token punctuation">{</span>
           <span class="token property">"name.keyword"</span><span class="token operator">:</span><span class="token string">"李云龙"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      <span class="token property">"filter"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"term"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"term"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"510221197001013611"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token property">"should"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"match"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span><span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"addr"</span><span class="token operator">:</span> <span class="token string">"昆明市"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">}</span>
       <span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token property">"must_not"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"match"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span><span class="token property">"match"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"addr"</span><span class="token operator">:</span> <span class="token string">"上海"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">}</span>
       <span class="token punctuation">]</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 只返回一个文档：
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"hits"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
     <span class="token property">"max_score"</span> <span class="token operator">:</span> <span class="token number">3.408528</span><span class="token punctuation">,</span>
     <span class="token property">"hits"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
         <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"customer"</span><span class="token punctuation">,</span>
         <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"doc"</span><span class="token punctuation">,</span>
         <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
         <span class="token property">"_score"</span> <span class="token operator">:</span> <span class="token number">3.408528</span><span class="token punctuation">,</span>
-        <span class="token property">"_source"</span> <span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token property">"_source"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"李云龙"</span><span class="token punctuation">,</span>
           <span class="token property">"id"</span> <span class="token operator">:</span> <span class="token string">"510221197001013611"</span><span class="token punctuation">,</span>
           <span class="token property">"addr"</span> <span class="token operator">:</span> <span class="token string">"昆明市滇池路阳光时代1栋1单元"</span><span class="token punctuation">,</span>
           <span class="token property">"tel"</span> <span class="token operator">:</span> <span class="token string">"13808712808"</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
                 
@@ -1043,7 +1043,7 @@ result<span class="token operator">:</span>返回结果中score都是被指定�
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             

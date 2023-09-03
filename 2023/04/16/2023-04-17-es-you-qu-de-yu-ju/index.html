@@ -50,8 +50,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -356,7 +356,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    112
+                    80
                 </div>
                 
 
@@ -379,23 +379,23 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="ES-6-7-一些有趣的语句"><a href="#ES-6-7-一些有趣的语句" class="headerlink" title=" ES 6.7 一些有趣的语句 "></a><center> ES 6.7 一些有趣的语句 </center></h1><h2 id="1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年"><a href="#1、判断-date-类型是不是-null-值，不是-null-值的加-1-天-月年" class="headerlink" title="1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年"></a>1、判断 date 类型是不是 null 值，不是 null 值的加 1 天&#x2F;月年</h2><pre class=" language-json"><code class="language-json">curl -XGET <span class="token string">"vqa132:19200/script_common/_search?&amp;size=0&amp;pretty"</span> -H 'Content-Type<span class="token operator">:</span> application/json' -d'
-&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token property">"aggs"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"agg_name"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token property">"date_histogram"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token property">"script"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"aggs"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"agg_name"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"date_histogram"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"script"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
           <span class="token property">"lang"</span><span class="token operator">:</span> <span class="token string">"painless"</span><span class="token punctuation">,</span>
-          <span class="token property">"source"</span><span class="token operator">:</span> <span class="token string">"if (doc[\u0027class\u0027].size()==0)&amp;#123;return params.date&amp;#125;else &amp;#123;return doc[\u0027birthday\u0027].value.plusDays(1)&amp;#125;"</span><span class="token punctuation">,</span>
-          <span class="token property">"params"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token property">"source"</span><span class="token operator">:</span> <span class="token string">"if (doc[\u0027class\u0027].size()==0){return params.date}else {return doc[\u0027birthday\u0027].value.plusDays(1)}"</span><span class="token punctuation">,</span>
+          <span class="token property">"params"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token property">"date"</span> <span class="token operator">:</span> <span class="token number">2208960000000</span>
-          &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-        &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token property">"interval"</span><span class="token operator">:</span> <span class="token string">"year"</span><span class="token punctuation">,</span>
         <span class="token property">"min_doc_count"</span><span class="token operator">:</span> <span class="token number">1</span>
-      &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 '<span class="token punctuation">;</span>
 </code></pre>
 
@@ -748,7 +748,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             

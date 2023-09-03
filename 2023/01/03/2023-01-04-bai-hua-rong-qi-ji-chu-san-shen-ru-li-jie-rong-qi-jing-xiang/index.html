@@ -50,8 +50,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -391,16 +391,16 @@
 <p>假设，现在有一个 $HOME&#x2F;test 目录，要让它作为一个 &#x2F;bin&#x2F;bash 进程的根目录。</p>
 <p>首先，创建一个 test 目录和几个 lib 文件夹：</p>
 <pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> -p <span class="token variable">$HOME</span>/test
-$ <span class="token function">mkdir</span> -p <span class="token variable">$HOME</span>/test/<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;bin,lib64,lib&amp;#125;</span>
+$ <span class="token function">mkdir</span> -p <span class="token variable">$HOME</span>/test/<span class="token punctuation">{</span>bin,lib64,lib<span class="token punctuation">}</span>
 $ <span class="token function">cd</span> <span class="token variable">$T</span>
 </code></pre>
 <p>然后，把 bash 命令拷贝到 test 目录对应的 bin 路径下：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> -v /bin/<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;bash,ls&amp;#125; $HOME/test/bin</span>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> -v /bin/<span class="token punctuation">{</span>bash,ls<span class="token punctuation">}</span> <span class="token variable">$HOME</span>/test/bin
 </code></pre>
 <p>接下来，把 bash 命令需要的所有 so 文件，也拷贝到 test 目录对应的 lib 路径下。找到 so 文件可以用 ldd 命令：</p>
 <pre class=" language-bash"><code class="language-bash">$ T<span class="token operator">=</span><span class="token variable">$HOME</span>/test
 $ list<span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>ldd /bin/ls <span class="token operator">|</span> <span class="token function">egrep</span> -o '/lib.*\.<span class="token punctuation">[</span>0-9<span class="token punctuation">]</span>'<span class="token variable">)</span></span>"</span>
-$ <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token variable">$list</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">cp</span> -v <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token string">"$&amp;#123;T&amp;#125;$&amp;#123;i&amp;#125;"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+$ <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token variable">$list</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">cp</span> -v <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token string">"<span class="token variable">${T}</span><span class="token variable">${i}</span>"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
 </code></pre>
 <p>最后，执行 chroot 命令，告诉操作系统，我们将使用 $HOME&#x2F;test 目录作为 &#x2F;bin&#x2F;bash 进程的根目录：</p>
 <pre class=" language-bash"><code class="language-bash">$ <span class="token function">chroot</span> <span class="token variable">$HOME</span>/test /bin/bash
@@ -485,7 +485,7 @@ $ <span class="token function">mount</span> -t aufs -o dirs<span class="token op
 <p>这个所谓的“镜像”，实际上就是一个 Ubuntu 操作系统的 rootfs，它的内容是 Ubuntu 操作系统的所有文件和目录。不过，与之前我们讲述的 rootfs 稍微不同的是，Docker 镜像使用的 rootfs，往往由多个“层”组成：</p>
 <pre class=" language-bash"><code class="language-bash">$ docker image inspect ubuntu:latest
 <span class="token punctuation">..</span>.
-    <span class="token string">"RootFS"</span><span class="token keyword">:</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    <span class="token string">"RootFS"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
         <span class="token string">"Type"</span><span class="token keyword">:</span> <span class="token string">"layers"</span>,
         <span class="token string">"Layers"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
             <span class="token string">"sha256:f49017d4d5ce9c0f544c..."</span>,
@@ -494,7 +494,7 @@ $ <span class="token function">mount</span> -t aufs -o dirs<span class="token op
             <span class="token string">"sha256:c01d74f99de40e097c73..."</span>,
             <span class="token string">"sha256:268a067217b5fe78e000..."</span>
         <span class="token punctuation">]</span>
-    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token punctuation">}</span>
 </code></pre>
 <p>可以看到，这个 Ubuntu 镜像，实际上由五个层组成。这五个层就是五个增量 rootfs，每一层都是 Ubuntu 操作系统文件与目录的一部分；而在使用镜像时，Docker 会把这些增量联合挂载在一个统一的挂载点上（等价于前面例子里的“&#x2F;C”目录）。</p>
 <p>这个挂载点就是 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;mnt&#x2F;，比如：</p>
@@ -902,7 +902,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             

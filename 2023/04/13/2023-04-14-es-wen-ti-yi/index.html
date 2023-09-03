@@ -59,8 +59,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    333
+                    301
                 </div>
                 
 
@@ -406,37 +406,37 @@
 
 <p>根据报错原因可以将错误定位至 io.xwt.BulkDoument.runTest(BulkDoument.java 87)，代码如下：</p>
 <pre class=" language-json"><code class="language-json">// 解析 json
-for(int i = <span class="token number">0</span><span class="token punctuation">;</span> i &lt; datas.length<span class="token punctuation">;</span> ++i<span class="token punctuation">)</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span> = datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.replace(<span class="token string">"&amp;#123;DATET&amp;#125;"</span><span class="token punctuation">,</span> datasdf.format(System.currentTimeMillis(<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    if (this.threadNum != <span class="token number">0</span><span class="token punctuation">)</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+for(int i = <span class="token number">0</span><span class="token punctuation">;</span> i &lt; datas.length<span class="token punctuation">;</span> ++i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span> = datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.replace(<span class="token string">"{DATET}"</span><span class="token punctuation">,</span> datasdf.format(System.currentTimeMillis(<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    if (this.threadNum != <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         String id = <span class="token string">"t"</span> + this.threadNum + <span class="token string">"_"</span> + System.currentTimeMillis(<span class="token punctuation">)</span> + <span class="token string">"_"</span> + UUID.randomUUID(<span class="token punctuation">)</span><span class="token punctuation">;</span>
         br.add((new IndexRequest(this.indexName<span class="token punctuation">,</span> default_type<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">)</span>.source(datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> XContentType.JSON<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span> else &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> else <span class="token punctuation">{</span>
 br.add((new IndexRequest(<span class="token punctuation">)</span><span class="token punctuation">)</span>.source(datas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> XContentType.JSON<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-try &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+try <span class="token punctuation">{</span>
 // 生成 bulk 连接
     sampleResult.sampleStart(<span class="token punctuation">)</span><span class="token punctuation">;</span>
     BulkResponse bulkResponse = this.client.bulk(br<span class="token punctuation">,</span> RequestOptions.DEFAULT<span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.sampleEnd(<span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.setSuccessful(<span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.setResponseCodeOK(<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    if (bulkResponse.hasFailures(<span class="token punctuation">)</span><span class="token punctuation">)</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    if (bulkResponse.hasFailures(<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         sampleResult.setSuccessful(<span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         sampleResult.setResponseCode(<span class="token string">"500"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         sampleResult.setResponseData(bulkResponse.buildFailureMessage(<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span> else &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> else <span class="token punctuation">{</span>
         sampleResult.setResponseData(<span class="token string">"all in"</span><span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 // 报错
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span> catch (Exception var8<span class="token punctuation">)</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> catch (Exception var8<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     sampleResult.sampleEnd(<span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.setSuccessful(<span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.setResponseCode(<span class="token string">"500"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     sampleResult.setResponseMessage(var8.getMessage(<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     var8.printStackTrace(<span class="token punctuation">)</span><span class="token punctuation">;</span>
-&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>那么就可以将报错信息转为人话了：语句的类型不是JSON风格的或者JSON格式化错误了。</p>
 <p>定位写入数据，数据如下：<br><img src="/2023/04/13/2023-04-14-es-wen-ti-yi/eventdate.png" alt="eventdate"></p>
@@ -794,7 +794,7 @@ try &amp;#<span class="token number">123</span><span class="token punctuation">;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             

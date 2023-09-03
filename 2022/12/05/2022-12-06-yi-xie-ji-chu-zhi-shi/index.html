@@ -58,8 +58,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -360,14 +360,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    8 分
                 </div>
                 
 
@@ -485,9 +485,9 @@ tup2 <span class="token operator">=</span> <span class="token punctuation">(</sp
 </ul>
 
 <h3 id="2-5-Sets（集合）"><a href="#2-5-Sets（集合）" class="headerlink" title="2.5 Sets（集合）"></a>2.5 Sets（集合）</h3><p>集合（set）是一个无序不重复元素的序列。<br><br>基本功能是进行成员关系测试和删除重复元素。<br><br>可以使用大括号 { } 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。<br><br>例子：<br></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> student <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'Tom', 'Jim', 'Mary', 'Tom', 'Jack', 'Rose'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> student <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'Tom'</span><span class="token punctuation">,</span> <span class="token string">'Jim'</span><span class="token punctuation">,</span> <span class="token string">'Mary'</span><span class="token punctuation">,</span> <span class="token string">'Tom'</span><span class="token punctuation">,</span> <span class="token string">'Jack'</span><span class="token punctuation">,</span> <span class="token string">'Rose'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'Mary', 'Jim', 'Rose', 'Jack', 'Tom'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'Mary'</span><span class="token punctuation">,</span> <span class="token string">'Jim'</span><span class="token punctuation">,</span> <span class="token string">'Rose'</span><span class="token punctuation">,</span> <span class="token string">'Jack'</span><span class="token punctuation">,</span> <span class="token string">'Tom'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'Rose'</span> <span class="token keyword">in</span> student<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Rose 在集合中'</span><span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">else</span><span class="token punctuation">:</span>
@@ -497,39 +497,39 @@ Rose 在集合中
 <span class="token operator">>></span><span class="token operator">></span> a <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token string">'abracadabra'</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> b <span class="token operator">=</span> set<span class="token punctuation">(</span><span class="token string">'alacazam'</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'c', 'b', 'r', 'a', 'd'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'c', 'z', 'm', 'a', 'l'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'l'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># a 和 b 的差集</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'b', 'r', 'd'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>b <span class="token operator">-</span> a<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># b 和 a 的差集</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'l', 'm', 'z'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'l'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">|</span> b<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># a 和 b 的并集</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'c', 'z', 'b', 'r', 'm', 'a', 'l', 'd'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'l'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">&amp;</span> b<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># a 和 b 的交集</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'a', 'c'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">^</span> b<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># a 和 b 中不同时存在的元素</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'l', 'd', 'z', 'b', 'r', 'm'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'l'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">}</span>
 </code></pre>
 <h3 id="2-6-Dictionary（字典）"><a href="#2-6-Dictionary（字典）" class="headerlink" title="2.6 Dictionary（字典）"></a>2.6 Dictionary（字典）</h3><p>列表是有序的对象结合，字典是无序的对象集合。<br><br>两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。<br><br>字典是一种映射类型，字典用”{ }”标识，它是一个无序的键(key) : 值(value)对集合。<br><br>键(key)必须使用不可变类型。<br><br>在同一个字典中，键(key)必须是唯一的。<br><br>例子：<br></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dict <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> dict<span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"1 - hello,world"</span>
 <span class="token operator">>></span><span class="token operator">></span> dict<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"2 - 嘿嘿"</span>
-<span class="token operator">>></span><span class="token operator">></span> tinydict <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'name': 'lucy', 'code': 100, 'class': '5年级6班'&amp;#125;</span>
+<span class="token operator">>></span><span class="token operator">></span> tinydict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'lucy'</span><span class="token punctuation">,</span> <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">:</span> <span class="token string">'5年级6班'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dict<span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出键为 'one' 的值</span>
 <span class="token number">1</span> <span class="token operator">-</span> hello<span class="token punctuation">,</span>world
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dict<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出键为 2 的值</span>
 <span class="token number">2</span> <span class="token operator">-</span> 嘿嘿
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>tinydict<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出完整的字典</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'name': 'lucy', 'code': 100, 'class': '5年级6班'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'lucy'</span><span class="token punctuation">,</span> <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">:</span> <span class="token string">'5年级6班'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>tinydict<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出所有键</span>
 dict_keys<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'code'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>tinydict<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出所有值</span>
 dict_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'lucy'</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'5年级6班'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 </code></pre>
 <p><strong>1、内置函数：</strong><br><br>get 根据 key 值去取对应的 value，取不到值返回 None，不报错。</p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> v <span class="token operator">=</span> dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'k1'</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> n <span class="token operator">=</span> dic<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'k4'</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
@@ -538,51 +538,51 @@ v1
 None
 </code></pre>
 <p><strong>2、clear 清空</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1', 'k2': 'v2'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">,</span> <span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> dic<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
 <p><strong>2、copy 拷贝（浅拷贝）</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> v <span class="token operator">=</span> dic<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1', 'k2': 'v2'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">,</span> <span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">}</span>
 </code></pre>
 <p><strong>3、pop 删除并获取对应的 value 值</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> v <span class="token operator">=</span> dic<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token string">'k1'</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k2': 'v2'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
 v1
 </code></pre>
 <p><strong>4、popitem 随机删除键值对，并获取到删除的键值</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> v <span class="token operator">=</span> dic<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
 <span class="token punctuation">(</span><span class="token string">'k2'</span><span class="token punctuation">,</span> <span class="token string">'v2'</span><span class="token punctuation">)</span>
 </code></pre>
 <p><strong>5、setdefault 增加，如果 key 值存在，则不操作</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> dic<span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span><span class="token string">'k3'</span><span class="token punctuation">,</span><span class="token string">'v3'</span><span class="token punctuation">)</span>
 <span class="token string">'v3'</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1', 'k2': 'v2', 'k3': 'v3'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">,</span> <span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">,</span> <span class="token string">'k3'</span><span class="token punctuation">:</span> <span class="token string">'v3'</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> dic<span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span><span class="token string">'k3'</span><span class="token punctuation">,</span><span class="token string">'v3'</span><span class="token punctuation">)</span>
 <span class="token string">'v3'</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1', 'k2': 'v2', 'k3': 'v3'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">,</span> <span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">,</span> <span class="token string">'k3'</span><span class="token punctuation">:</span> <span class="token string">'v3'</span><span class="token punctuation">}</span>
 </code></pre>
 <p><strong>6、update 批量增加或修改</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1':'v1','k2':'v2'&amp;#125;</span>
-<span class="token operator">>></span><span class="token operator">></span> dic<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k3':'v3','k4':'v4'&amp;#125;)</span>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'v1'</span><span class="token punctuation">,</span><span class="token string">'k2'</span><span class="token punctuation">:</span><span class="token string">'v2'</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> dic<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'k3'</span><span class="token punctuation">:</span><span class="token string">'v3'</span><span class="token punctuation">,</span><span class="token string">'k4'</span><span class="token punctuation">:</span><span class="token string">'v4'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'k1': 'v1', 'k2': 'v2', 'k3': 'v3', 'k4': 'v4'&amp;#125;</span>
+<span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span> <span class="token string">'v1'</span><span class="token punctuation">,</span> <span class="token string">'k2'</span><span class="token punctuation">:</span> <span class="token string">'v2'</span><span class="token punctuation">,</span> <span class="token string">'k3'</span><span class="token punctuation">:</span> <span class="token string">'v3'</span><span class="token punctuation">,</span> <span class="token string">'k4'</span><span class="token punctuation">:</span> <span class="token string">'v4'</span><span class="token punctuation">}</span>
 </code></pre>
 <p><strong>注意：</strong><br></p>
 <ul>
@@ -1005,7 +1005,7 @@ v1
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">54.5k</span>
+                        class="white-color">53.9k</span>
             
             
             
