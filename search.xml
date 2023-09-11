@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>pycharm-2023.1 closing project window stuck</title>
+      <link href="/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
+      <url>/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</url>
+      
+        <content type="html"><![CDATA[<h1 id="pycharm-2023-1-closing-project-window-stuck"><a href="#pycharm-2023-1-closing-project-window-stuck" class="headerlink" title=" pycharm-2023.1 closing project window stuck "></a><center> pycharm-2023.1 closing project window stuck </center></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>pycharm 切换项目&#x2F;重启，一直卡在 closing project</p><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><a href="https://youtrack.jetbrains.com/issue/PY-59980/PyCharm-2023.1-issue-closing-project-window-stuck-PyPIPackageUtil.lambdaparsePyPIListFromWeb">https://youtrack.jetbrains.com/issue/PY-59980/PyCharm-2023.1-issue-closing-project-window-stuck-PyPIPackageUtil.lambdaparsePyPIListFromWeb</a></p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol><li>升级 pycharm 到 2023.3</li><li>pycharm 主页 HELP -&gt; Find Action -&gt; 输入 Registry -&gt; 禁用 ide.await.scope.completion</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> pycharm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 那些年遇到的坑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>yum 卡住</title>
       <link href="/2023/08/30/2023-08-31-yum-qia-zhu/"/>
       <url>/2023/08/30/2023-08-31-yum-qia-zhu/</url>
