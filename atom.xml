@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2023-09-11T03:08:15.163Z</updated>
+  <updated>2023-09-16T08:54:19.175Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>什么是向量数据库</title>
+    <link href="https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/"/>
+    <id>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</id>
+    <published>2023-09-15T16:00:00.000Z</published>
+    <updated>2023-09-16T08:54:19.175Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是向量数据库&quot;&gt;&lt;a href=&quot;#什么是向量数据库&quot; class=&quot;headerlink&quot; title=&quot;什么是向量数据库&quot;&gt;&lt;/a&gt;什么是向量数据库&lt;/h1&gt;&lt;p&gt;我们正处于 AI</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>pycharm-2023.1 closing project window stuck</title>
     <link href="https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
     <id>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
     <published>2023-09-10T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.163Z</updated>
+    <updated>2023-09-16T08:54:19.175Z</updated>
     
     
       
@@ -46,7 +71,7 @@
     <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
     <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
     <published>2023-08-30T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.163Z</updated>
+    <updated>2023-09-16T08:54:19.175Z</updated>
     
     
       
@@ -73,7 +98,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -100,7 +125,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.155Z</updated>
+    <updated>2023-09-16T08:54:19.167Z</updated>
     
     
       
@@ -129,7 +154,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.155Z</updated>
+    <updated>2023-09-16T08:54:19.167Z</updated>
     
     
       
@@ -156,7 +181,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.159Z</updated>
+    <updated>2023-09-16T08:54:19.167Z</updated>
     
     
       
@@ -185,7 +210,7 @@
     <link href="https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/"/>
     <id>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</id>
     <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.139Z</updated>
+    <updated>2023-09-16T08:54:19.155Z</updated>
     
     
       
@@ -212,7 +237,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -237,7 +262,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.135Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -262,7 +287,7 @@
     <link href="https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/"/>
     <id>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</id>
     <published>2023-04-16T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -289,7 +314,7 @@
     <link href="https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/</id>
     <published>2023-04-13T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -319,7 +344,7 @@
     <link href="https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/"/>
     <id>https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/</id>
     <published>2023-04-04T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -344,7 +369,7 @@
     <link href="https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/"/>
     <id>https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/</id>
     <published>2023-02-22T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -369,7 +394,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -394,7 +419,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -419,7 +444,7 @@
     <link href="https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/"/>
     <id>https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/</id>
     <published>2023-01-22T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -447,7 +472,7 @@
     <link href="https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/</id>
     <published>2023-01-11T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.147Z</updated>
     
     
       
@@ -472,7 +497,7 @@
     <link href="https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/"/>
     <id>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</id>
     <published>2023-01-03T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.131Z</updated>
+    <updated>2023-09-16T08:54:19.143Z</updated>
     
     
       
@@ -499,7 +524,7 @@
     <link href="https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/"/>
     <id>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</id>
     <published>2022-12-18T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.127Z</updated>
+    <updated>2023-09-16T08:54:19.143Z</updated>
     
     
       
@@ -518,31 +543,6 @@
     <category term="docker" scheme="https://wu3227834.github.io/tags/docker/"/>
     
     <category term="学习笔记" scheme="https://wu3227834.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阳了个阳</title>
-    <link href="https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/"/>
-    <id>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</id>
-    <published>2022-12-16T16:00:00.000Z</published>
-    <updated>2023-09-11T03:08:15.127Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;上周开始就感觉喉咙不舒服，冲了几包板蓝根和999，无果。&lt;br&gt;&lt;br&gt;周三、周四开始咳嗽，以为是咽炎。&lt;br&gt;&lt;br&gt;周四，跟我一块的小伙伴检测：阴性。&lt;br&gt;&lt;br&gt;周五，喉咙感觉有“一团火”，去检测。&lt;br&gt;&lt;br&gt;&lt;strong&gt;2022-12-17 凌晨2点</summary>
-        
-      
-    
-    
-    
-    <category term="杂文" scheme="https://wu3227834.github.io/categories/%E6%9D%82%E6%96%87/"/>
-    
-    
-    <category term="随记" scheme="https://wu3227834.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
     
   </entry>
   
