@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="yum 卡住, 个人博客">
-    <meta name="description" content=" 执行 yum 卡住，只能 kill -9 退出 问题描述执行 yum 卡住，Ctrl + c 也退不出来只能 kill -9 退出
-原因分析在Linux中，通过rpm&amp;#x2F;yum安装应用时没有任何响应，执行“ps -ef | gre">
+    <meta name="keywords" content="什么是向量嵌入, 个人博客">
+    <meta name="description" content="什么是向量嵌入简介向量嵌入是机器学习中最有趣、最有用的概念之一。它们是许多 NLP、推荐和搜索算法的核心。如果你曾经使用过推荐算法、语音助手、语音翻译器等工具，那么你可能就已经遇到过依赖嵌入的系统。
+和大多数软件算法一样，机器学习算法也需要">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>yum 卡住 | Pudding 个人博客</title>
+    <title>什么是向量嵌入 | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -292,12 +292,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">yum 卡住</h1>
+                    <h1 class="description center-align post-title">什么是向量嵌入</h1>
                 </div>
             </div>
         </div>
@@ -321,12 +321,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
-                            <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
-                                <span class="chip bg-color">那些年遇到的坑</span>
+                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">向量数据库</span>
                             </a>
                         
                     </div>
@@ -337,8 +333,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/linux/" class="post-category">
-                                linux
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                向量数据库
                             </a>
                         
                     </div>
@@ -350,7 +346,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-08-31
+                    2023-09-16
                 </div>
                 
 
@@ -359,14 +355,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    166
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -381,23 +377,32 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="执行-yum-卡住，只能-kill-9-退出"><a href="#执行-yum-卡住，只能-kill-9-退出" class="headerlink" title=" 执行 yum 卡住，只能 kill -9 退出 "></a><center> 执行 yum 卡住，只能 kill -9 退出 </center></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>执行 yum 卡住，Ctrl + c 也退不出来<br>只能 kill -9 退出</p>
-<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>在Linux中，通过rpm&#x2F;yum安装应用时没有任何响应，执行“ps -ef | grep rpm”发现之前执行过的rpm&#x2F;yum命令全被挂起，故障原因是rpm数据库异常，解决方法是重建rpm数据库。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 删除rpm数据库</span>
-<span class="token function">rm</span> -f /var/lib/rpm/__db.00*
-
-<span class="token comment" spellcheck="true"># 重建rpm数据库</span>
-rpm -vv --rebuilddb
-
-<span class="token comment" spellcheck="true"># 清理yum资源锁</span>
-<span class="token function">rm</span> -f /var/lib/rpm/.rpm.lock
-<span class="token function">rm</span> -f /var/lib/rpm/.dbenv.lock
-
-<span class="token comment" spellcheck="true"># 清理yum缓存</span>
-yum clean all
-<span class="token comment" spellcheck="true"># 或删除cache目录</span>
-<span class="token comment" spellcheck="true"># rm -rf /var/cache/yum/*</span>
-</code></pre>
+                <h1 id="什么是向量嵌入"><a href="#什么是向量嵌入" class="headerlink" title="什么是向量嵌入"></a>什么是向量嵌入</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>向量嵌入是机器学习中最有趣、最有用的概念之一。它们是许多 NLP、推荐和搜索算法的核心。如果你曾经使用过推荐算法、语音助手、语音翻译器等工具，那么你可能就已经遇到过依赖嵌入的系统。</p>
+<p>和大多数软件算法一样，机器学习算法也需要数据集。有时，我们的数据集包含数值列或可以转换为数值的值（序数、分类等）。其他时候，我们会遇到一些更抽象的东西，比如整个文本文档。我们可以创建向量嵌入，将抽象的数据集转换为数字列表，便于后续操作。整段文本或其他任何对象都可以简化为一个向量。</p>
+<p><img src="/2023/09/15/2023-09-22-vector-embeddings/pho1.png" alt="向量嵌入模型"></p>
+<p>但向量有一些特殊之处，使得它们如此有用。这种表示使得人类感知的语义相似性转化为向量空间的邻近性成为可能。</p>
+<p>换句话说，当我们将现实世界的对象和概念（例如图像、录音、新闻文章、用户资料、天气预报和政治观点）表示为向量嵌入时，这些对象和概念的语义相似性可以通过它们作为向量空间中的点彼此之间的距离来量化。因此，向量嵌入表示适用于常见的机器学习任务，例如聚类、推荐和分类。</p>
+<p><img src="/2023/09/15/2023-09-22-vector-embeddings/pho2.png" alt="Source: DeepAI"></p>
+<p>例如，在聚类任务中，聚类算法将相似的点分配到同一聚类，同时保持不同聚类的点尽可能不相似。在推荐任务中，当对未见过的对象进行推荐时，推荐系统会寻找与该对象最相似的对象，通过它们与向量嵌入的相似度来衡量。在分类任务中，我们通过对最相似对象的标签进行主要投票来对未见过的对象的标签进行分类。</p>
+<h2 id="创建向量嵌入"><a href="#创建向量嵌入" class="headerlink" title="创建向量嵌入"></a>创建向量嵌入</h2><p>创建向量嵌入的一张方法是使用领域知识来设计向量值。这就是所谓的特征工程。例如，在医学成像中，我们利用医学专业知识来量化一组特征，例如图像中捕捉语义的形状、颜色和区域。然而，工程向量嵌入需要领域知识，但是扩展成本太高。</p>
+<p>我们通常训练模型将对象转化为向量，而不是设计向量嵌入。深度神经网络是训练此类模型的常见工具。由此产生的嵌入通常是高纬度的（高达两千维）和密集的（所有值都不为零）。对于文本数据来说，Word2Vec、GLoVE 和 BERT 等模型将单词、句子或段落转换为向量嵌入。</p>
+<p>可以使用卷积神经网络（CNN）等模型嵌入图像，CNN 的示例包括 VGG 和 Inception。可以使用音频视觉表示上的图像嵌入变换将音频记录转换为向量（例如，使用其频谱图）。</p>
+<h2 id="例如-用卷积神经网络嵌入图像"><a href="#例如-用卷积神经网络嵌入图像" class="headerlink" title="例如: 用卷积神经网络嵌入图像"></a>例如: 用卷积神经网络嵌入图像</h2><p>思考以下示例，其中原始图像表示为灰度像素。这相当于 0 到 255 范围内的整数值的矩阵（或表）。其中 0 对应黑色，255 对应白色。下图描绘了灰度图像及其对应的矩阵。</p>
+<p><img src="/2023/09/15/2023-09-22-vector-embeddings/pho3.png" alt="Source: Serena Young"></p>
+<p>左侧子图像描绘灰度像素，中间子图像包括像素灰度值，最右侧子图像定义矩阵。请注意，矩阵值定义了一个向量嵌入，其中它的第一个左边是矩阵左上角的单元格，然后从左到右直到对应于右下角矩阵单元格的最后一个坐标。</p>
+<p>这种嵌入技术能更好地维护图像中像素领域地语义信息。然而，它们对诸如移位、缩放、裁剪和其他图像处理操作之类地转换非常敏感。因此，它们通常作为原始输入，以学习更健壮地嵌入。</p>
+<p>卷积神经网络（CNN）是一类深度学习框架，通常应用于将图像转换为嵌入的视觉数据。</p>
+<p>CNN 通过分层的小型局部子输入（称为感受野）来处理输入。每个网络层中的每个神经元处理来自前一层的特定感受野。每层要么在感受野上应用卷积，要么减小输入大小，这称为子采样。</p>
+<p>下图描绘了一个典型的 CNN 结构。注意感受野，在每一层被描绘成子方块，作为前一层中单个神经元的输入。还要注意，子采样操作会减小层大小，而卷积操作会扩展层大小。生成的向量嵌入通过全连接层接收。</p>
+<p><img src="/2023/09/15/2023-09-22-vector-embeddings/pho4.png" alt="Source: Aphex34，CC BY-SA 4.0"></p>
+<p>学习网络权重（即嵌入模型）需要大量标记图像。权重的优化方式是，与具有不同标签的图像相比，具有相同标签的图像嵌入得更近。一旦我们学习了 CNN 嵌入模型，我们就可以将图像转换为向量，并使用 K 最近邻索引来储存它们。现在，给定一个新的未见过的图像，我们可以使用 CNN 模型对其进行转换，检索其 K 个最相似的向量，从而得到相应的相似图像。</p>
+<p>尽管本文使用图像和 CNN 作为示例，但我们可以为任何类型的数据创建向量嵌入，并且可以使用多种模型&#x2F;方法来创建它们。</p>
+<h2 id="使用向量嵌入"><a href="#使用向量嵌入" class="headerlink" title="使用向量嵌入"></a>使用向量嵌入</h2><p>嵌入可以将对象表示为一个包含其语义信息的密集向量，这一事实使得嵌入在机器学习应用中非常有用。</p>
+<p>相似性搜索是向量嵌入最常见的用途之一。KNN 和 ANN 等搜索算法要求我们计算向量之间的距离以确定相似度。向量嵌入可用于计算这些距离。最近邻搜索又可用于诸如去复制、推荐、异常检测、反向图像搜索等任务。</p>
+<p>即使我们不直接在应用程序中使用嵌入，许多流行的 ML 模型和方法也在内部依赖它们。例如，在编码器-解码器架构中，编码器生成的嵌入包含解码器生成结果所需的信息。这种架构广泛应用于机器翻译和字幕生成等应用中。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/vector-embeddings/">What are Vector Embeddings</a></li>
+</ul>
 
                 
             </div>
@@ -424,7 +429,7 @@ yum clean all
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/">https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</a>
+                    <a href="https://wu3227834.github.io/2023/09/15/2023-09-22-vector-embeddings/">https://wu3227834.github.io/2023/09/15/2023-09-22-vector-embeddings/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -462,12 +467,8 @@ yum clean all
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
-                                <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
-                                    <span class="chip bg-color">那些年遇到的坑</span>
+                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">向量数据库</span>
                                 </a>
                             
                         </div>
@@ -517,6 +518,55 @@ yum clean all
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2023/09/15/2023-09-16-vector-database/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="什么是向量数据库">
+                        
+                        <span class="card-title">什么是向量数据库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/">
                     <div class="card-image">
                         
@@ -533,9 +583,9 @@ yum clean all
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -553,59 +603,6 @@ yum clean all
                     
                     <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
                         <span class="chip bg-color">那些年遇到的坑</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="为什么我们需要Pod？">
-                        
-                        <span class="card-title">为什么我们需要Pod？</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    极客时间——学习笔记
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>
