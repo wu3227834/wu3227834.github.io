@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>向量相似性解释</title>
+      <link href="/2023/10/08/2023-10-09-vector-similarity-explained/"/>
+      <url>/2023/10/08/2023-10-09-vector-similarity-explained/</url>
+      
+        <content type="html"><![CDATA[<h1 id="向量相似性解释"><a href="#向量相似性解释" class="headerlink" title="向量相似性解释"></a>向量相似性解释</h1><p>在自然语言处理和计算机视觉等领域，向量嵌入已被证明是一个高校的工具。比较项链嵌入并确定它们的相似性是语义检索、推荐系统和异常检测等等的重要组成部分。</p><p>在本文中，我们将更深入地了解这些相似度量是如何工作的，以直观地了解在特定用例的上下文中两个向量嵌入相似意味着什么。例如，在自然语言处理中，如果表示词义的两个向量如果在相似的上下文中使用或有着相似的含义，那么它们可能是“接近”的；在推荐系统的背景下，如果表示用户偏好的两个向量有共同的兴趣或者之前做出了相同的选择，那么它们可能是相似的。</p><p>在下面的表格中，您可以看到我们将在本文中讨论的相似性度量，以及影响度量的向量的属性。</p><p><strong>Table 1: Similarity metrics</strong></p><table><thead><tr><th>Similarity Metric</th><th>Vector properties considered</th></tr></thead><tbody><tr><td>Euclidean distance</td><td>Magnitudes and direction</td></tr><tr><td>Cosine similarity</td><td>Only direction</td></tr><tr><td>Dot product similarity</td><td>Magnitudes and direction</td></tr></tbody></table><h2 id="Euclidean-distance"><a href="#Euclidean-distance" class="headerlink" title="Euclidean distance"></a>Euclidean distance</h2><p>欧几里得距离（Euclidean distance）是多维空间中两个向量之间的直线距离。</p><p>它被计算为向量相应分量之间差值平方和的平方根。以下是计算两个向量a和b之间的欧几里得距离的方程：</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul><li><a href="https://www.pinecone.io/learn/vector-similarity/">Vector Similarity Explained</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 向量数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 向量数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>什么是向量嵌入</title>
       <link href="/2023/09/21/2023-09-22-vector-embeddings/"/>
       <url>/2023/09/21/2023-09-22-vector-embeddings/</url>
