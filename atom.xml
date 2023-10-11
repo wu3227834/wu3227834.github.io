@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2023-10-11T03:37:57.778Z</updated>
+  <updated>2023-10-11T12:08:05.192Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>向量检索简介</title>
+    <link href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
+    <id>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
+    <published>2023-10-10T16:00:00.000Z</published>
+    <updated>2023-10-11T12:08:05.192Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;向量检索简介&quot;&gt;&lt;a href=&quot;#向量检索简介&quot; class=&quot;headerlink&quot; title=&quot;向量检索简介&quot;&gt;&lt;/a&gt;向量检索简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;向量检索在推荐系统，图⽚检索，语义检索中均有⼤量应⽤&lt;/li&gt;
+&lt;li&gt;向量检索的核⼼是</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>向量相似性解释</title>
     <link href="https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/"/>
     <id>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</id>
     <published>2023-10-08T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.778Z</updated>
+    <updated>2023-10-11T12:08:05.192Z</updated>
     
     
       
@@ -46,7 +73,7 @@
     <link href="https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/"/>
     <id>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</id>
     <published>2023-09-21T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.778Z</updated>
+    <updated>2023-10-11T12:08:05.188Z</updated>
     
     
       
@@ -71,7 +98,7 @@
     <link href="https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/"/>
     <id>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</id>
     <published>2023-09-15T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.774Z</updated>
+    <updated>2023-10-11T12:08:05.184Z</updated>
     
     
       
@@ -96,7 +123,7 @@
     <link href="https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
     <id>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
     <published>2023-09-10T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.774Z</updated>
+    <updated>2023-10-11T12:08:05.184Z</updated>
     
     
       
@@ -121,7 +148,7 @@
     <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
     <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
     <published>2023-08-30T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.774Z</updated>
+    <updated>2023-10-11T12:08:05.184Z</updated>
     
     
       
@@ -148,7 +175,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -175,7 +202,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.762Z</updated>
+    <updated>2023-10-11T12:08:05.176Z</updated>
     
     
       
@@ -204,7 +231,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.762Z</updated>
+    <updated>2023-10-11T12:08:05.176Z</updated>
     
     
       
@@ -231,7 +258,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.766Z</updated>
+    <updated>2023-10-11T12:08:05.180Z</updated>
     
     
       
@@ -260,7 +287,7 @@
     <link href="https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/"/>
     <id>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</id>
     <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.754Z</updated>
+    <updated>2023-10-11T12:08:05.164Z</updated>
     
     
       
@@ -287,7 +314,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -312,7 +339,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -337,7 +364,7 @@
     <link href="https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/"/>
     <id>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</id>
     <published>2023-04-16T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -364,7 +391,7 @@
     <link href="https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/</id>
     <published>2023-04-13T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -394,7 +421,7 @@
     <link href="https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/"/>
     <id>https://wu3227834.github.io/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/</id>
     <published>2023-04-04T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -419,7 +446,7 @@
     <link href="https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/"/>
     <id>https://wu3227834.github.io/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/</id>
     <published>2023-02-22T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.746Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -444,7 +471,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.742Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -469,7 +496,7 @@
     <link href="https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/"/>
     <id>https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/</id>
     <published>2023-01-31T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.742Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -494,7 +521,7 @@
     <link href="https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/"/>
     <id>https://wu3227834.github.io/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/</id>
     <published>2023-01-22T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.742Z</updated>
+    <updated>2023-10-11T12:08:05.156Z</updated>
     
     
       
@@ -514,31 +541,6 @@
     <category term="k8s" scheme="https://wu3227834.github.io/tags/k8s/"/>
     
     <category term="学习笔记" scheme="https://wu3227834.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>chroot、pivot_root 和 switch_root 的区别</title>
-    <link href="https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/"/>
-    <id>https://wu3227834.github.io/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/</id>
-    <published>2023-01-11T16:00:00.000Z</published>
-    <updated>2023-10-11T03:37:57.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;chroot、pivot-root-和-switch-root-的区别&quot;&gt;&lt;a href=&quot;#chroot、pivot-root-和-switch-root-的区别&quot; class=&quot;headerlink&quot; title=&quot;chroot、pivot_root 和</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
     
   </entry>
   

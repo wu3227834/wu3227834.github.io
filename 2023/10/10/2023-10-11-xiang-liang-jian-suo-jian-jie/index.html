@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git add 问题, 个人博客">
-    <meta name="description" content="Git add 问题问题一：中文路径下，git status 只显示数字串问题现象
-原因在默认设置下，中文文件名在工作区状态输出，中文名不能正确显示，而是显示为八进制的字符编码。
-解决方案
-  在 git bash 的界面中右击空白处，弹出">
+    <meta name="keywords" content="向量检索简介, 个人博客">
+    <meta name="description" content="向量检索简介
+向量检索在推荐系统，图⽚检索，语义检索中均有⼤量应⽤
+向量检索的核⼼是 ANN（Approximate Nearset Neighbor）问题
+旨在向量空间中找到与查询向量近似最近邻的向量。
+
+1.何为相似评估两个向量的相似程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git add 问题 | Pudding 个人博客</title>
+    <title>向量检索简介 | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -294,12 +296,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git add 问题</h1>
+                    <h1 class="description center-align post-title">向量检索简介</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +325,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
+                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">向量数据库</span>
                             </a>
                         
                     </div>
@@ -335,8 +337,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Git/" class="post-category">
-                                Git
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                向量数据库
                             </a>
                         
                     </div>
@@ -348,7 +350,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-08
+                    2023-10-11
                 </div>
                 
 
@@ -357,14 +359,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    153
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -379,17 +381,83 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Git-add-问题"><a href="#Git-add-问题" class="headerlink" title="Git add 问题"></a><center>Git add 问题</center></h1><h2 id="问题一：中文路径下，git-status-只显示数字串"><a href="#问题一：中文路径下，git-status-只显示数字串" class="headerlink" title="问题一：中文路径下，git status 只显示数字串"></a>问题一：中文路径下，git status 只显示数字串</h2><h3 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h3><p><img src="/2023/05/07/2023-05-08-git-add-wen-ti/git_add1.png" alt="中文路径乱码"></p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>在默认设置下，中文文件名在工作区状态输出，中文名不能正确显示，而是显示为八进制的字符编码。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
-  <li>在 git bash 的界面中右击空白处，弹出菜单，选择 Options->Text->Locale 改为 zh_CN，Character set 改为 UTF-8</li>
-  <li>git bash 终端输入命令：git config --global core.quotepath false</li>
+                <h1 id="向量检索简介"><a href="#向量检索简介" class="headerlink" title="向量检索简介"></a>向量检索简介</h1><ol>
+<li>向量检索在推荐系统，图⽚检索，语义检索中均有⼤量应⽤</li>
+<li>向量检索的核⼼是 ANN（Approximate Nearset Neighbor）问题</li>
+<li>旨在向量空间中找到与查询向量近似最近邻的向量。</li>
+</ol>
+<h2 id="1-何为相似"><a href="#1-何为相似" class="headerlink" title="1.何为相似"></a>1.何为相似</h2><p>评估两个向量的相似程度有多种指标（Metrics）</p>
+<ul>
+<li>欧式距离（Euclidean Distance）</li>
+<li>余弦相似度（Cosine Similarity）</li>
+<li>杰卡德相似度（Jaccard Similariy）</li>
 </ul>
-
-<p><img src="/2023/05/07/2023-05-08-git-add-wen-ti/git_add2.gif" alt="解决方案"></p>
-<p><img src="/2023/05/07/2023-05-08-git-add-wen-ti/git_add3.png" alt="预期结果"></p>
-<h2 id="问题二：-文件名带空格无法-add"><a href="#问题二：-文件名带空格无法-add" class="headerlink" title="问题二： 文件名带空格无法 add"></a>问题二： 文件名带空格无法 add</h2><h3 id="问题现象-1"><a href="#问题现象-1" class="headerlink" title="问题现象"></a>问题现象</h3><p><img src="/2023/05/07/2023-05-08-git-add-wen-ti/git_add4.png" alt="add失败"></p>
-<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>文件名两端加上双引号即可, 比如 ​​git add “demo copy”​​</p>
+<h3 id="1-1-欧氏距离（Euclidean-Distance）"><a href="#1-1-欧氏距离（Euclidean-Distance）" class="headerlink" title="1.1 欧氏距离（Euclidean Distance）"></a>1.1 欧氏距离（Euclidean Distance）</h3><p>**即欧氏空间中，两个向量的距离</p>
+<p>$$||x-y||<em>2 &#x3D; \displaystyle \sum^{n}</em>{i&#x3D;1}{(x_i-y_i)^2} &#x3D;\sqrt{(x_1-y_1)^2+(x_2-y_2)^2+…+(x_n-y_n)^2}$$</p>
+<h3 id="1-2-余弦相似度（Cosine-Similarity）"><a href="#1-2-余弦相似度（Cosine-Similarity）" class="headerlink" title="1.2 余弦相似度（Cosine Similarity）"></a>1.2 余弦相似度（Cosine Similarity）</h3><p><strong>两个向量间的角距离</strong></p>
+<p>$$cos(θ)&#x3D;\frac{x \cdot y}{||x|| \cdot ||y||}$$</p>
+<h3 id="1-3-杰卡德相似度（Jaccard-Similariy）"><a href="#1-3-杰卡德相似度（Jaccard-Similariy）" class="headerlink" title="1.3 杰卡德相似度（Jaccard Similariy）"></a>1.3 杰卡德相似度（Jaccard Similariy）</h3><p><strong>两个向量交集占并集的比例</strong></p>
+<p>$$J(A,B)&#x3D;\frac{|A∩B|}{|A∪B|}$$</p>
+<p>不同的评价指标从不同的⾓度分析数据</p>
+<h2 id="向量索引算法"><a href="#向量索引算法" class="headerlink" title="向量索引算法"></a>向量索引算法</h2><p>最直接的⽅法是查询向量遍历向量空间中所有的向量计算距离暴⼒解，缺点是计算复杂度过⾼。</p>
+<p><strong>为了加快查找的速度，⼏乎所有的 ANN ⽅法都是通过对全空间分割，将其分割成很多⼩的⼦空间，在搜索的时候，通过某种⽅式，快速锁定在某⼀（多）个⼦空间，然后在该（多个）⼦空间里做遍历。</strong></p>
+<p>目前主流方法分为四大类：</p>
+<h3 id="2-1-基于树的方法"><a href="#2-1-基于树的方法" class="headerlink" title="2.1 基于树的方法"></a>2.1 基于树的方法</h3><p><strong>KD 树</strong></p>
+<p>下面是 KD 树对全空间的划分过程，以及用树这种数据结构：</p>
+<p><img src="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/pho1.png" alt="KD树的子划分（左）和树结构（右）"></p>
+<p>KD 树选择从哪一维度进行开始划分的标准，采用的策略是：求每一个维度的方差，然后选择方差最大的那个维度开始划分。</p>
+<p><strong>为何要选择方差作为维度划分选取的标准？</strong></p>
+<ul>
+<li>因为方差的大小可以反映数据的波动性。方差大表示数据波动性越大，选择方差最大作为划分空间标准的好处在于，可以使得所需的划分面数据最小，反映到树数据结构上，可以使得我们构建的 KD 树的树深度尽可能的小。</li>
+</ul>
+<p>一般而言，在空间维度比较低的时候，KD树是比较高效的，当空间维度较高时，可以用小面即将介绍的哈希方法或者矢量量化方法。</p>
+<h3 id="2-2-哈希方法"><a href="#2-2-哈希方法" class="headerlink" title="2.2 哈希方法"></a>2.2 哈希方法</h3><p>通过哈希函数将连续的实值散列化为 0、1 的离散值，将向量以相似性为度量指标进行分割，将向量归类到不同的桶（cell）中。</p>
+<p>查找时，查询向量通过哈希函数后，也会归类到相似向量的桶中，以缩小检索范围。</p>
+<p>工程中的经典方法是<strong>局部敏感哈希（Local Sensitive Hashing, LSH）</strong>，即相近的样本点对比较远的样本点更容易发生碰撞。</p>
+<p><img src="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/pho2.png" alt="Local Sensitive Hashing"></p>
+<p>LSH 中重要的参数：</p>
+<ul>
+<li>K，每一个哈希表的哈希函数（空间划分）数目</li>
+<li>L，哈希表（每一个哈希表有 K 个哈希函数）的数目</li>
+<li>T，近邻哈希桶的数目，即 the number of probes</li>
+</ul>
+<p>为了增加 LSH 召回率精度，在查询向量落入桶周围时，再选几个近邻的桶，以增加召回率。</p>
+<p>通常 K T 之间要做取舍，哈希函数数目 K 越大，相应地，近邻哈希桶的数目的数目 T 也应该设置的越大，反之 K 越小，L 也可以相应的减小。</p>
+<h3 id="2-3-矢量量化方法"><a href="#2-3-矢量量化方法" class="headerlink" title="2.3 矢量量化方法"></a>2.3 矢量量化方法</h3><p>乘积量化（Product Quantization，PQ）是 Herve Jegou 在 2011 年提出的一种非常经典实用的矢量量化索引的方法，在工业界向量索引中已得到广泛的应用，并作为主要的向量索引方法，在 Fasis 中有非常高效的实现。乘积量化的核心思想是分段（划分子空间）和聚类，或者说具体应用到 ANN 近似最近邻搜索上，KMeans 是 PQ 乘积量化子空间数目为 1 的特例。PQ 乘积量化生成码本和量化的过程可以用如下图示来说明：</p>
+<p><img src="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/pho3.png" alt="PQ 乘积量化生成码本和量化的过程"></p>
+<p>在训练阶段，针对 N 个训练样本，假设样本维度是 128 维，我们将其划分为 4 个子空间，则每一个子空间的维度为 32 维，然后我们在每一个子空间中，对子向量采用 K-Means 对其进行聚类（图中示意聚类为 256 类），这样每一个子空间都能得到一个码本。这样训练样本的每个子段，都可以用子样本仅使用的最短的一个编码得以表示，从而达到量化的目的。对于待编码的样本，将它进行相同的切分，然后在每个子空间里逐一找到距离它们最近的类中心，然后用类中心的 id 来表示它们，即完成了待编码样本的编码。</p>
+<p>查询阶段有两种计算距离方式：</p>
+<ol>
+<li>对称距离，用于查询向量对应的类中心代表查询向量的位置，各个类中心代表各个类中所有点的位置，计算类中心间的距离。该方式计算快，但损失精度大。</li>
+<li>非对称距离，用于查询向量本身位置，各个类中心代表各个类中所有点的位置，计算查询向量到每个类中心的位置。该方式计算较快，且损失精度较低。</li>
+</ol>
+<p>同时对特征进行编码后，可以用一个相对比较短的编码来表示样本，对于内存的消耗要显著减少。</p>
+<p>倒排 PQ 乘积量化（IVFPQ）是 PQ 乘积量化的进一步加速版。</p>
+<p>其算法思想是，在 PQ 乘积量化之前，增加了一个粗量化过程。先对 N 个训练样本采用 KMeans 进行聚类，这里聚类的数目一般不超过 1024。在得到了聚类中心后，针对每一个样本查询向量，在对应的聚类中心再进行 PQ。</p>
+<p>IVFPQ 中的主要参数：</p>
+<ul>
+<li>nProbe：IVF 中聚类中心数，聚类中心越多，分类越精细，查询越慢</li>
+<li>N：将向量平均分为 N 个子向量，子向量段数越多，分类越精细，查询越慢</li>
+<li>K：将每个子向量聚类为 $2^K$ 个聚类中心，聚类中心越多，分类越精细，查询越慢</li>
+</ul>
+<h3 id="2-4-基于图索引量化方法"><a href="#2-4-基于图索引量化方法" class="headerlink" title="2.4 基于图索引量化方法"></a>2.4 基于图索引量化方法</h3><p>Hierarchical Navigable Small World Graphs（HNSW）是 Yury A. Malkov 提出的一种基于图索引的方法，它是 Yury A. Malkov 在他本人之前工作 NSW 上的一种改进，通过采用分层状结构，将边按特征半径进行分层，是每个顶点在所有层中平均度数边为常数，从而将 NSW 的计算复杂度由多重对数（Ploylogarithmic）复杂度降低到了对数（logarithmic）复杂度。</p>
+<p><img src="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/pho4.png" alt="Hierarchical结构"></p>
+<p>每一个插入的元素对应的最大 layer 由指数衰减概率分布函数给出</p>
+<pre class=" language-c"><code class="language-c">mult_ <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1.0</span> <span class="token operator">*</span> M_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+revSize_ <span class="token operator">=</span> <span class="token number">1.0</span><span class="token operator">/</span>mult_<span class="token punctuation">;</span>
+std<span class="token punctuation">:</span>uniform_real_distribution<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> <span class="token function">distribution</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">distribution</span><span class="token punctuation">(</span>level generator_<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> revSize_
+</code></pre>
+<ul>
+<li>从最大层 layer 开始贪心遍历，寻找局部最小值（最近邻）</li>
+<li>将当前层找到的最近邻作为进入点（entry point）在下一层寻找局部最小。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/9-distance-measures-in-data-science-918109d069fa">Distance Measures in Data Science</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/FALCONN-LIB/FALCONN/wiki/LSH-Primer">Locality-Sensitive Hashing: a Primer</a></li>
+<li><a target="_blank" rel="noopener" href="https://inria.hal.science/inria-00514462/document">Product Quantizer</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1603.09320">Hierarchical Navigable Small World Graphs</a></li>
+</ul>
 
                 
             </div>
@@ -416,7 +484,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/">https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</a>
+                    <a href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/">https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -454,8 +522,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
+                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">向量数据库</span>
                                 </a>
                             
                         </div>
@@ -501,17 +569,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/05/07/2023-05-08-jmeter-wen-ti-yi/">
+                <a href="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Jmeter Address already in use connect 解决方案">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="向量检索简介">
                         
-                        <span class="card-title">Jmeter Address already in use connect 解决方案</span>
+                        <span class="card-title">向量检索简介</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -521,26 +590,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/" class="post-category">
-                                    jmeter实操技术
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jmeter/">
-                        <span class="chip bg-color">jmeter</span>
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
                     </a>
                     
                 </div>
@@ -554,13 +624,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/">
+                <a href="/2023/10/08/2023-10-09-vector-similarity-explained/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="ES6.7 一些有趣的语句">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="向量相似性解释">
                         
-                        <span class="card-title">ES6.7 一些有趣的语句</span>
+                        <span class="card-title">向量相似性解释</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -571,14 +641,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Elasticsearch/" class="post-category">
-                                    Elasticsearch
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
                                 </a>
                             
                             
@@ -588,12 +658,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Elasticsearch/">
-                        <span class="chip bg-color">Elasticsearch</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
-                        <span class="chip bg-color">那些年遇到的坑</span>
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
                     </a>
                     
                 </div>
@@ -712,6 +778,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
