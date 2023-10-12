@@ -10,7 +10,7 @@
 向量检索的核⼼是 ANN（Approximate Nearset Neighbor）问题
 旨在向量空间中找到与查询向量近似最近邻的向量。
 
-1.何为相似评估两个向量的相似程">
+1 何为相似评估两个向量的相似程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -359,14 +359,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    10 分
                 </div>
                 
 
@@ -386,7 +386,7 @@
 <li>向量检索的核⼼是 ANN（Approximate Nearset Neighbor）问题</li>
 <li>旨在向量空间中找到与查询向量近似最近邻的向量。</li>
 </ol>
-<h2 id="1-何为相似"><a href="#1-何为相似" class="headerlink" title="1.何为相似"></a>1.何为相似</h2><p>评估两个向量的相似程度有多种指标（Metrics）</p>
+<h2 id="1-何为相似"><a href="#1-何为相似" class="headerlink" title="1 何为相似"></a>1 何为相似</h2><p>评估两个向量的相似程度有多种指标（Metrics）</p>
 <ul>
 <li>欧式距离（Euclidean Distance）</li>
 <li>余弦相似度（Cosine Similarity）</li>
@@ -399,7 +399,7 @@
 <h3 id="1-3-杰卡德相似度（Jaccard-Similariy）"><a href="#1-3-杰卡德相似度（Jaccard-Similariy）" class="headerlink" title="1.3 杰卡德相似度（Jaccard Similariy）"></a>1.3 杰卡德相似度（Jaccard Similariy）</h3><p><strong>两个向量交集占并集的比例</strong></p>
 <p>$$J(A,B)&#x3D;\frac{|A∩B|}{|A∪B|}$$</p>
 <p>不同的评价指标从不同的⾓度分析数据</p>
-<h2 id="向量索引算法"><a href="#向量索引算法" class="headerlink" title="向量索引算法"></a>向量索引算法</h2><p>最直接的⽅法是查询向量遍历向量空间中所有的向量计算距离暴⼒解，缺点是计算复杂度过⾼。</p>
+<h2 id="2-向量索引算法"><a href="#2-向量索引算法" class="headerlink" title="2 向量索引算法"></a>2 向量索引算法</h2><p>最直接的⽅法是查询向量遍历向量空间中所有的向量计算距离暴⼒解，缺点是计算复杂度过⾼。</p>
 <p><strong>为了加快查找的速度，⼏乎所有的 ANN ⽅法都是通过对全空间分割，将其分割成很多⼩的⼦空间，在搜索的时候，通过某种⽅式，快速锁定在某⼀（多）个⼦空间，然后在该（多个）⼦空间里做遍历。</strong></p>
 <p>目前主流方法分为四大类：</p>
 <h3 id="2-1-基于树的方法"><a href="#2-1-基于树的方法" class="headerlink" title="2.1 基于树的方法"></a>2.1 基于树的方法</h3><p><strong>KD 树</strong></p>
@@ -415,7 +415,7 @@
 <p>查找时，查询向量通过哈希函数后，也会归类到相似向量的桶中，以缩小检索范围。</p>
 <p>工程中的经典方法是<strong>局部敏感哈希（Local Sensitive Hashing, LSH）</strong>，即相近的样本点对比较远的样本点更容易发生碰撞。</p>
 <p><img src="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/pho2.png" alt="Local Sensitive Hashing"></p>
-<p>LSH 中重要的参数：</p>
+<p><strong>LSH 中重要的参数：</strong></p>
 <ul>
 <li>K，每一个哈希表的哈希函数（空间划分）数目</li>
 <li>L，哈希表（每一个哈希表有 K 个哈希函数）的数目</li>
@@ -434,7 +434,7 @@
 <p>同时对特征进行编码后，可以用一个相对比较短的编码来表示样本，对于内存的消耗要显著减少。</p>
 <p>倒排 PQ 乘积量化（IVFPQ）是 PQ 乘积量化的进一步加速版。</p>
 <p>其算法思想是，在 PQ 乘积量化之前，增加了一个粗量化过程。先对 N 个训练样本采用 KMeans 进行聚类，这里聚类的数目一般不超过 1024。在得到了聚类中心后，针对每一个样本查询向量，在对应的聚类中心再进行 PQ。</p>
-<p>IVFPQ 中的主要参数：</p>
+<p><strong>IVFPQ 中的主要参数：</strong></p>
 <ul>
 <li>nProbe：IVF 中聚类中心数，聚类中心越多，分类越精细，查询越慢</li>
 <li>N：将向量平均分为 N 个子向量，子向量段数越多，分类越精细，查询越慢</li>
@@ -452,11 +452,169 @@ std<span class="token punctuation">:</span>uniform_real_distribution<span class=
 <li>从最大层 layer 开始贪心遍历，寻找局部最小值（最近邻）</li>
 <li>将当前层找到的最近邻作为进入点（entry point）在下一层寻找局部最小。</li>
 </ul>
+<p>从若干输入点（随机抽取或分割算法）开始迭代整个近邻图。整个搜索过程可以类比在地图上某个位置空间的过程：我们可以把地球当作最顶层，五大洲作为第一层，国家作为第三层，省份作为第四层……，现在如果要找海淀五道口，我们可以通过顶层以逐步递减的特征半径对其进行路由（第一层地球-&gt;第二层亚洲-&gt;第三层中国-&gt;第四层北京-&gt;海淀区），到了第 0 层后，再在局部区域做更细致的搜索。</p>
+<p><strong>HNSW 索引的主要参数：</strong></p>
+<ul>
+<li>M：每个向量在图中的邻居数，M越大，图中每个顶点邻居越多，图越精细，建索引时间越长，查询时间越久，召回率越高，推荐范围 5~100</li>
+<li>ef_construction：构建图时，每个顶点候选的最近邻居，值越大，图越精细，建索引时间越长，查询越久，召回率越高，推荐范围 100~2000</li>
+<li>num_candidates：查询时，要返回的总候选最近向量数，值越大，召回率越大，查询时间越久，值不能超过 10000</li>
+<li>ef_search：搜索时，每个顶点候选的最近邻居数，值越大，查询时间越久，召回率越高，推荐范围 100~2000</li>
+</ul>
+<h2 id="3-Faiss-向量检索库"><a href="#3-Faiss-向量检索库" class="headerlink" title="3 Faiss 向量检索库"></a>3 Faiss 向量检索库</h2><h3 id="3-1-基础索引类型"><a href="#3-1-基础索引类型" class="headerlink" title="3.1 基础索引类型"></a>3.1 基础索引类型</h3><table>
+<thead>
+<tr>
+<th align="center">索引类型</th>
+<th align="center">索引简介</th>
+<th align="center">全量检索</th>
+<th align="center">内存占用</th>
+<th align="center">召回率</th>
+<th align="center">查询速率</th>
+<th align="center">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IndexFlatL2</td>
+<td align="center">计算L2距离暴力搜索</td>
+<td align="center">是</td>
+<td align="center">中等</td>
+<td align="center">准确结果</td>
+<td align="center">低</td>
+<td align="center">百万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexFlatIP</td>
+<td align="center">计算内积暴力搜索</td>
+<td align="center">是</td>
+<td align="center">中等</td>
+<td align="center">准确结果</td>
+<td align="center">低</td>
+<td align="center">百万数数据量</td>
+</tr>
+<tr>
+<td align="center">IndexHNSWFlat</td>
+<td align="center">使用HNSW图结构加速搜索</td>
+<td align="center">否</td>
+<td align="center">高</td>
+<td align="center">高</td>
+<td align="center">中</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexIVFFlat</td>
+<td align="center">使⽤聚类缩⼩检索范围</td>
+<td align="center">否</td>
+<td align="center">中等</td>
+<td align="center">高</td>
+<td align="center">中</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexLSH</td>
+<td align="center">使用哈希方法将向量二进制化加速搜索</td>
+<td align="center">否</td>
+<td align="center">低</td>
+<td align="center">高</td>
+<td align="center">中</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexScalarQuantizer</td>
+<td align="center">使⽤标量量化将向量降维加速搜索</td>
+<td align="center">是</td>
+<td align="center">中等</td>
+<td align="center">中等</td>
+<td align="center">中</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexPQ</td>
+<td align="center">使⽤乘积量化将向量降维加速搜索</td>
+<td align="center">是</td>
+<td align="center">低</td>
+<td align="center">中等</td>
+<td align="center">高</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexIVFScalarQuantizer</td>
+<td align="center">先使用聚类在使用标量量化降维</td>
+<td align="center">是</td>
+<td align="center">中等</td>
+<td align="center">中等</td>
+<td align="center">高</td>
+<td align="center">千万数据量</td>
+</tr>
+<tr>
+<td align="center">IndexIVFPQ</td>
+<td align="center">先使用聚类再使用乘积量化降维</td>
+<td align="center">否</td>
+<td align="center">低</td>
+<td align="center">低</td>
+<td align="center">高</td>
+<td align="center">亿级数据量</td>
+</tr>
+<tr>
+<td align="center">IndexIVFPQR</td>
+<td align="center">先使用聚类再使用乘积量化降维最后重排序</td>
+<td align="center">否</td>
+<td align="center">低</td>
+<td align="center">低</td>
+<td align="center">中</td>
+<td align="center">亿级数据量</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-Faiss-索引选取"><a href="#3-2-Faiss-索引选取" class="headerlink" title="3.2 Faiss 索引选取"></a>3.2 Faiss 索引选取</h3><p>向量检索主要是检索速度和召回率之间的权衡</p>
+<p>L2 距离暴力搜索一定可以得到精准结果，但由于全库遍历的 L2 计算，速度过慢，一般作为评估召回率的基准</p>
+<p>目前的主流算法均从以下方面或结合优化检索速度：</p>
+<ul>
+<li>缩小搜索范围（IVF|LAS|HNSW）</li>
+<li>向量降维以减少内存使用（PQ|SQ）</li>
+</ul>
+<p>但这也不可避免地在不同程度上牺牲了检索精度，每种算法的参数也决定了速度与精度间的平衡</p>
+<h4 id="3-2-1-需要精确结果"><a href="#3-2-1-需要精确结果" class="headerlink" title="3.2.1 需要精确结果"></a>3.2.1 需要精确结果</h4><ul>
+<li>使用 IndexFlatL2 或 IndexFlatIP，不需要压缩数据或训练，常作为其他索引检索结果的基准</li>
+<li>支持 GPU 加速</li>
+</ul>
+<h4 id="3-3-2-需要考虑内存限制"><a href="#3-3-2-需要考虑内存限制" class="headerlink" title="3.3.2 需要考虑内存限制"></a>3.3.2 需要考虑内存限制</h4><p><strong>内存充裕</strong></p>
+<ul>
+<li>IndexHNSWFlat 是最优选，速度与精度俱佳，然而十分消耗内存，不训练且不支持删除</li>
+<li>支持 GPU 加速</li>
+</ul>
+<p><strong>需要考虑</strong></p>
+<ul>
+<li>可以先聚类，再使用 FlatL2 或 FlatIP</li>
+<li>支持 GPU 加速</li>
+</ul>
+<p><strong>内存有限</strong></p>
+<ul>
+<li>使用 OPQ 降低向量维度</li>
+<li>使用 PQ 量化向量</li>
+<li>支持 GOU 加速（OPQ 降维在 CPU 中进行，但不是性能瓶颈）</li>
+</ul>
+<h4 id="3-3-3-需要考虑数据集大小"><a href="#3-3-3-需要考虑数据集大小" class="headerlink" title="3.3.3 需要考虑数据集大小"></a>3.3.3 需要考虑数据集大小</h4><p><strong>低于 1 百万</strong></p>
+<ul>
+<li>IVF 使用 K-means 聚类</li>
+<li>支持 CPU 加速</li>
+</ul>
+<p><strong>1 百万 - 1千万</strong></p>
+<ul>
+<li>IVF 使用 HNSW 聚类，需要 30 × 65536 到 256 × 65536 个向量训练</li>
+<li>不支持 GPU 加速</li>
+</ul>
+<p><strong>1 千万 - 1 亿</strong></p>
+<ul>
+<li>依然使用 HNSW 聚类，需要 30 × 262144 ($2^{18}$) 到 256 × 262144 ($2^{18}$) 个向量训练</li>
+<li>只在 GPU 上训练，其他步骤在 CPU 进行，参考 <a target="_blank" rel="noopener" href="https://gist.github.com/mdouze/46d6bbbaabca0b9778fca37ed2bcccf6"> train_ivf_with_gpu.ipynb</a></li>
+<li>使用二级聚类，<a target="_blank" rel="noopener" href="https://gist.github.com/mdouze/1b2483d72c0b8984dd152cd81354b7b4">demo_two_level_clustering.ipynb</a></li>
+</ul>
+<p><strong>1 亿 - 10 亿</strong></p>
+<p>同上 65536 替换成 1048576 ($2^{20}$)</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/9-distance-measures-in-data-science-918109d069fa">Distance Measures in Data Science</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/FALCONN-LIB/FALCONN/wiki/LSH-Primer">Locality-Sensitive Hashing: a Primer</a></li>
 <li><a target="_blank" rel="noopener" href="https://inria.hal.science/inria-00514462/document">Product Quantizer</a></li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1603.09320">Hierarchical Navigable Small World Graphs</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss">faiss</a></li>
 </ul>
 
                 
@@ -805,7 +963,7 @@ std<span class="token punctuation">:</span>uniform_real_distribution<span class=
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">65.1k</span>
+                        class="white-color">66.2k</span>
             
             
             
