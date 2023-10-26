@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux 安装 python 3.10</title>
+      <link href="/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/"/>
+      <url>/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</url>
+      
+        <content type="html"><![CDATA[<h1 id="linux-安装-python-3-10"><a href="#linux-安装-python-3-10" class="headerlink" title="linux 安装 python 3.10"></a>linux 安装 python 3.10</h1><h2 id="相关工具安装"><a href="#相关工具安装" class="headerlink" title="相关工具安装"></a>相关工具安装</h2><pre class=" language-shell"><code class="language-shell">yum -y groupinstall "Development tools"yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-develyum install libffi-devel -y</code></pre><h2 id="openssl-安装"><a href="#openssl-安装" class="headerlink" title="openssl 安装"></a>openssl 安装</h2><pre class=" language-shell"><code class="language-shell">cd /home/wget http://www.openssl.org/source/openssl-1.1.1.tar.gztar -zxvf openssl-1.1.1.tar.gzcd openssl-1.1.1/mkdir /usr/local/openssl./config --prefix=/usr/local/openssl --openssldir=/usr/local/opensslmake && make install</code></pre><h2 id="python-3-10-安装"><a href="#python-3-10-安装" class="headerlink" title="python 3.10 安装"></a>python 3.10 安装</h2><pre class=" language-shell"><code class="language-shell">cd /homewget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgztar -zxvf Python-3.10.8.tgzcd Python-3.10.8mkdir /usr/local/python310./configure --prefix=/usr/local/python310 --with-openssl=/usr/local/openssl --with-openssl-rpath=automake && make install</code></pre><h2 id="设置软链接"><a href="#设置软链接" class="headerlink" title="设置软链接"></a>设置软链接</h2><pre class=" language-shell"><code class="language-shell">sudo ln -s /usr/local/python310/bin/python3.10 /usr/bin/python310sudo ln -s /usr/local/python310/bin/pip3.10 /usr/bin/pip310</code></pre><h2 id="一些-pip-源"><a href="#一些-pip-源" class="headerlink" title="一些 pip 源"></a>一些 pip 源</h2><pre class=" language-josn"><code class="language-josn">https://pypi.tuna.tsinghua.edu.cn/simplehttps://pypi.mirrors.ustc.edu.cn/simplehttp://pypi.douban.com/simple/http://mirrors.aliyun.com/pypi/simple/</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>向量检索简介</title>
       <link href="/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
       <url>/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</url>
