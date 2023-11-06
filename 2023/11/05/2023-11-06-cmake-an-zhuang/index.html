@@ -382,55 +382,55 @@ yum remove -y cmake
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="linux-centos-安装-cmake"><a href="#linux-centos-安装-cmake" class="headerlink" title="linux_centos 安装 cmake"></a>linux_centos 安装 cmake</h1><h2 id="卸载已安装的-cmake"><a href="#卸载已安装的-cmake" class="headerlink" title="卸载已安装的 cmake"></a>卸载已安装的 cmake</h2><pre><code>cmake --version
+                <h1 id="linux-centos-安装-cmake"><a href="#linux-centos-安装-cmake" class="headerlink" title="linux_centos 安装 cmake"></a>linux_centos 安装 cmake</h1><h2 id="卸载已安装的-cmake"><a href="#卸载已安装的-cmake" class="headerlink" title="卸载已安装的 cmake"></a>卸载已安装的 cmake</h2><pre class=" language-c"><code class="language-c">cmake <span class="token operator">--</span>version
 
 # 若已安装版本以满足我们需求，则不需要更新安装
 # 如果已安装版本不符合我们需求，则下卸载旧版
 
-yum remove -y cmake
+yum remove <span class="token operator">-</span>y cmake
 </code></pre>
 <h2 id="下载-cmake"><a href="#下载-cmake" class="headerlink" title="下载 cmake"></a>下载 cmake</h2><p>前往官网 <a target="_blank" rel="noopener" href="https://cmake.org/">CMake</a> 下载我们需要的版本，我们 <a target="_blank" rel="noopener" href="https://cmake.org/files/v3.26/">下载最新稳定版3.26.4</a> 并安全验证。</p>
-<pre><code>curl -OL https://cmake.org/files/v3.26/cmake-3.26.4-SHA-256.txt
-curl -OL https://cmake.org/files/v3.26/cmake-3.26.4.tar.gz
+<pre class=" language-c"><code class="language-c">curl <span class="token operator">-</span>OL https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>cmake<span class="token punctuation">.</span>org<span class="token operator">/</span>files<span class="token operator">/</span>v3<span class="token number">.26</span><span class="token operator">/</span>cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token operator">-</span>SHA<span class="token number">-256</span><span class="token punctuation">.</span>txt
+curl <span class="token operator">-</span>OL https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>cmake<span class="token punctuation">.</span>org<span class="token operator">/</span>files<span class="token operator">/</span>v3<span class="token number">.26</span><span class="token operator">/</span>cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz
 
--- 安全验证：
-[root@pudding cmake]# sha256sum -c cmake-3.26.4-SHA-256.txt
+<span class="token operator">--</span> 安全验证：
+<span class="token punctuation">[</span>root@pudding cmake<span class="token punctuation">]</span># sha256sum <span class="token operator">-</span>c cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token operator">-</span>SHA<span class="token number">-256</span><span class="token punctuation">.</span>txt
 # 其他版本未找到日志已忽略
-cmake-3.26.4.tar.gz: OK
-sha256sum: WARNING: 16 listed files could not be read
+cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz<span class="token punctuation">:</span> OK
+sha256sum<span class="token punctuation">:</span> WARNING<span class="token punctuation">:</span> <span class="token number">16</span> listed files could not be read
 </code></pre>
-<h2 id="解压，编译安装"><a href="#解压，编译安装" class="headerlink" title="解压，编译安装"></a>解压，编译安装</h2><pre><code>tar zxvf cmake-3.26.4.tar.gz &amp;&amp; cd cmake-3.26.4
+<h2 id="解压，编译安装"><a href="#解压，编译安装" class="headerlink" title="解压，编译安装"></a>解压，编译安装</h2><pre class=" language-c"><code class="language-c">tar zxvf cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz <span class="token operator">&amp;&amp;</span> cd cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span>
 
-./bootstrap &amp;&amp; gmake &amp;&amp; gmake install
+<span class="token punctuation">.</span><span class="token operator">/</span>bootstrap <span class="token operator">&amp;&amp;</span> gmake <span class="token operator">&amp;&amp;</span> gmake install
 </code></pre>
-<h3 id="缺少-c-c-编译环境："><a href="#缺少-c-c-编译环境：" class="headerlink" title="缺少 c&#x2F;c++ 编译环境："></a>缺少 c&#x2F;c++ 编译环境：</h3><pre><code>[root@pudding cmake-3.26.4]# ./bootstrap &amp;&amp; gmake &amp;&amp; gmake install
----------------------------------------------
-CMake 3.26.4, Copyright 2000-2023 Kitware, Inc. and Contributors
----------------------------------------------
-Error when bootstrapping CMake:
-Cannot find appropriate C compiler on this system.
-Please specify one using environment variable CC.
-See cmake_bootstrap.log for compilers attempted.
+<h3 id="缺少-c-c-编译环境："><a href="#缺少-c-c-编译环境：" class="headerlink" title="缺少 c&#x2F;c++ 编译环境："></a>缺少 c&#x2F;c++ 编译环境：</h3><pre class=" language-c"><code class="language-c"><span class="token punctuation">[</span>root@pudding cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>bootstrap <span class="token operator">&amp;&amp;</span> gmake <span class="token operator">&amp;&amp;</span> gmake install
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+CMake <span class="token number">3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">,</span> Copyright <span class="token number">2000</span><span class="token operator">-</span><span class="token number">2023</span> Kitware<span class="token punctuation">,</span> Inc<span class="token punctuation">.</span> and Contributors
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+Error when bootstrapping CMake<span class="token punctuation">:</span>
+Cannot find appropriate C compiler on this system<span class="token punctuation">.</span>
+Please specify one using environment variable CC<span class="token punctuation">.</span>
+See cmake_bootstrap<span class="token punctuation">.</span>log <span class="token keyword">for</span> compilers attempted<span class="token punctuation">.</span>
 
----------------------------------------------
-Log of errors: /home/work/cmake-3.26.4/Bootstrap.cmk/cmake_bootstrap.log
----------------------------------------------
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+Log of errors<span class="token punctuation">:</span> <span class="token operator">/</span>home<span class="token operator">/</span>work<span class="token operator">/</span>cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token operator">/</span>Bootstrap<span class="token punctuation">.</span>cmk<span class="token operator">/</span>cmake_bootstrap<span class="token punctuation">.</span>log
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
 </code></pre>
 <p><strong>安装 gcc|g++</strong></p>
-<pre><code>sudo yum -y install gcc gcc-c++ kernel-devel
+<pre class=" language-c"><code class="language-c">sudo yum <span class="token operator">-</span>y install gcc gcc<span class="token operator">-</span>c<span class="token operator">++</span> kernel<span class="token operator">-</span>devel
 
-gcc --version
-g++ --version
+gcc <span class="token operator">--</span>version
+g<span class="token operator">++</span> <span class="token operator">--</span>version
 </code></pre>
-<h2 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h2><pre><code>[root@pudding cmake-3.26.4]# /usr/local/bin/cmake --version
-cmake version 3.26.4
+<h2 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h2><pre class=" language-c"><code class="language-c"><span class="token punctuation">[</span>root@pudding cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">]</span># <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>bin<span class="token operator">/</span>cmake <span class="token operator">--</span>version
+cmake version <span class="token number">3.26</span><span class="token punctuation">.</span><span class="token number">4</span>
 
-CMake suite maintained and supported by Kitware (kitware.com/cmake).
-[root@pudding cmake-3.26.4]# ln -s /usr/local/bin/cmake /usr/bin
-[root@pudding cmake-3.26.4]# cmake --version
-cmake version 3.26.4
+CMake suite maintained and supported by <span class="token function">Kitware</span> <span class="token punctuation">(</span>kitware<span class="token punctuation">.</span>com<span class="token operator">/</span>cmake<span class="token punctuation">)</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span>root@pudding cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">]</span># ln <span class="token operator">-</span>s <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>bin<span class="token operator">/</span>cmake <span class="token operator">/</span>usr<span class="token operator">/</span>bin
+<span class="token punctuation">[</span>root@pudding cmake<span class="token number">-3.26</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">]</span># cmake <span class="token operator">--</span>version
+cmake version <span class="token number">3.26</span><span class="token punctuation">.</span><span class="token number">4</span>
 
-CMake suite maintained and supported by Kitware (kitware.com/cmake).
+CMake suite maintained and supported by <span class="token function">Kitware</span> <span class="token punctuation">(</span>kitware<span class="token punctuation">.</span>com<span class="token operator">/</span>cmake<span class="token punctuation">)</span><span class="token punctuation">.</span>
 </code></pre>
 
                 
