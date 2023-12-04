@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
     <loc>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
@@ -21,6 +13,18 @@
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
+    <loc>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
     <loc>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
@@ -30,10 +34,6 @@
   </url>
   <url>
     <loc>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
@@ -101,15 +101,31 @@
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2022/12/13/2022-12-14-tu-jie-paxos-suan-fa/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
     <loc>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
     <loc>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/11/2022-12-12-a-zhuan-zheng/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/11/2022-12-12-bai-hua-rong-qi-ji-chu-yi-cong-jin-cheng-shuo-kai-qu/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/13/2022-12-14-tu-jie-paxos-suan-fa/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-dao-du/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/03/2022-12-04-tu-jie-sql-de-zhi-xing-shun-xu/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
@@ -125,27 +141,11 @@
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2022/12/11/2022-12-12-a-zhuan-zheng/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/11/2022-12-12-bai-hua-rong-qi-ji-chu-yi-cong-jin-cheng-shuo-kai-qu/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
     <loc>https://wu3227834.github.io/2022/12/01/2022-12-01-a-xin-de-kai-shi/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
   <url>
     <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-dao-du/</loc>
-    <lastmod>2023-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/03/2022-12-04-tu-jie-sql-de-zhi-xing-shun-xu/</loc>
     <lastmod>2023-12-04</lastmod>
   </url>
 </urlset> 
