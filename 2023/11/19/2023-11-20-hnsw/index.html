@@ -482,7 +482,7 @@ sentence_embeddings[0:5]
     np.save(file, sentence_embeddings)
 </code></pre>
 <p>在上面的代码中，我使用了“npy”文件扩展名，这是 NumPy 数组文件的常规扩展名。下面是加载数据的代码:</p>
-<pre><code>with open (path + &#39;/AG_news.npy&#39;, &#39;rb&#39;) as f:
+<pre class=" language-py"><code class="language-py">with open (path + '/AG_news.npy', 'rb') as f:
     sentence_embeddings = np.load(f, allow_pickle=True)
 </code></pre>
 <p>有了这些 Embeddings，我们就可以在HNSW数据结构中组织它们了。</p>
