@@ -435,7 +435,7 @@ bin dev etc home lib lib64 mnt opt proc root run sbin sys tmp usr var
 <p>这是容器相较于虚拟机的缺陷之一：毕竟后者不仅有模拟出来的硬件机器当作沙盒，而且每个沙盒里还运行着一个完整的 Guest OS 给应用随便折腾。</p>
 <p>不过，<strong>正是由于 rootfs 的存在，容器才有了一个被反复宣传至今的重要特性：一致性。</strong></p>
 <p>什么是容器的“一致性”呢？</p>
-<p>由于云端与本地服务器环境不同，应用的打包过程，一直是使用 PaaS 时最“痛苦”的一个步骤。</p>
+<h2 id="容器的一致性"><a href="#容器的一致性" class="headerlink" title="容器的一致性"></a>容器的一致性</h2><p>由于云端与本地服务器环境不同，应用的打包过程，一直是使用 PaaS 时最“痛苦”的一个步骤。</p>
 <p>但有了容器之后，更准确地说，有了容器镜像（即 rootfs）之后，这个问题被非常优雅地解决了。</p>
 <p><strong>由于 rootfs 里打包的不只是应用，而是整个操作系统的文件和目录，也就意味着，应用以及它运行所需要的所有依赖，都被封装在了一起。</strong></p>
 <p>事实上，对于大多数开发者而言，他们对应用依赖的理解，一直局限在编程语言层面。比如Golang 的 Godeps.json。但实际上，一个一直以来很容易被忽视的事实是，<strong>对一个应用来说，操作系统本身才是它运行所需要的最完整的“依赖库”</strong>。</p>
@@ -475,7 +475,7 @@ $ <span class="token function">mount</span> -t aufs -o dirs<span class="token op
 </code></pre>
 <p>可以看到，在这个合并后的目录 C 里，有 a、b、x 三个文件，并且 x 文件只有一份。这就是“合并”的含义。此外，如果你在目录 C 里对 a、b、x 文件做修改，这些修改也会在对应的目录 A、B 中生效。</p>
 <p>那么，在 Docker 项目中，又是如何使用这种 Union File System 的呢？</p>
-<p>如果你的环境是 Ubuntu 16.04 和 Docker CE 18.05，这对组合默认使用的是 AuFS 这个联合文件系统的实现。你可以通过 docker info 命令，查看到这个信息。</p>
+<h2 id="Union-File-System"><a href="#Union-File-System" class="headerlink" title="Union File System"></a>Union File System</h2><p>如果你的环境是 Ubuntu 16.04 和 Docker CE 18.05，这对组合默认使用的是 AuFS 这个联合文件系统的实现。你可以通过 docker info 命令，查看到这个信息。</p>
 <p>对于 AuFS 来说，它最关键的目录结构在 &#x2F;var&#x2F;lib&#x2F;docker 路径下的 diff 目录：</p>
 <pre class=" language-bash"><code class="language-bash">/var/lib/docker/aufs/diff/<span class="token operator">&lt;</span>layer_id<span class="token operator">></span>
 </code></pre>
@@ -525,8 +525,7 @@ none /var/lib/docker/aufs/mnt/6e3be5d2ecccae7cc0fc<span class="token punctuation
 <p>从这些信息里，我们可以看到，镜像的层都放置在 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;diff 目录下，然后被联合挂载在 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;mnt 里面。</p>
 <p><strong>而且，从这个结构可以看出来，这个容器的 rootfs 由如下图所示的三部分组成：</strong></p>
 <p><img src="/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/pho1.png" alt="rootfs"></p>
-<p><strong>第一部分，只读层。</strong></p>
-<p>它是这个容器的 rootfs 最下面的五层，对应的正是 ubuntu:latest 镜像的五层。可以看到，它们的挂载方式都是只读的（ro+wh，即 readonly+whiteout）。</p>
+<h3 id="第一部分，只读层"><a href="#第一部分，只读层" class="headerlink" title="第一部分，只读层"></a>第一部分，只读层</h3><p>它是这个容器的 rootfs 最下面的五层，对应的正是 ubuntu:latest 镜像的五层。可以看到，它们的挂载方式都是只读的（ro+wh，即 readonly+whiteout）。</p>
 <p>这时，我们可以分别查看一下这些层的内容：</p>
 <pre class=" language-bash"><code class="language-bash">$ <span class="token function">ls</span> /var/lib/docker/aufs/diff/72b0744e06247c7d0<span class="token punctuation">..</span>.
 etc sbin usr var
@@ -536,14 +535,12 @@ $ <span class="token function">ls</span> /var/lib/docker/aufs/diff/a524a729adade
 bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
 </code></pre>
 <p>可以看到，这些层，都以增量的方式分别包含了 Ubuntu 操作系统的一部分。</p>
-<p><strong>第二部分，可读写层。</strong></p>
-<p>它是这个容器的 rootfs 最上面的一层（6e3be5d2ecccae7cc），它的挂载方式为：rw，即 read write。在没有写入文件之前，这个目录是空的。而一旦在容器里做了写操作，你修改所产生的内容就会以增量的方式出现在这个层中。</p>
+<h3 id="第二部分，可读写层"><a href="#第二部分，可读写层" class="headerlink" title="第二部分，可读写层"></a>第二部分，可读写层</h3><p>它是这个容器的 rootfs 最上面的一层（6e3be5d2ecccae7cc），它的挂载方式为：rw，即 read write。在没有写入文件之前，这个目录是空的。而一旦在容器里做了写操作，你修改所产生的内容就会以增量的方式出现在这个层中。</p>
 <p>可是，你有没有想到这样一个问题：如果我现在要做的是，删除只读层里的一个文件呢？</p>
 <p><font color="pink">为了实现这样的删除操作，AuFS 会在可读写层创建一个 whiteout 文件，把只读层里的文件“遮挡”起来。</font></p>
 <p>比如，你要删除只读层里一个名叫 foo 的文件，那么这个删除操作实际上是在可读写层创建了一个名叫 .wh.foo 的文件。这样，当这两个层被联合挂载之后，foo 文件就会被 .wh.foo 文件“遮挡”起来，“消失”了。这个功能，就是“ro+wh”的挂载方式，即只读 +whiteout 的含义。</p>
 <p>所以，最上面这个可读写层的作用，就是专门用来存放你修改 rootfs 后产生的增量，无论是增、删、改，都发生在这里。而当我们使用完了这个被修改过的容器之后，还可以使用docker commit 和 push 指令，保存这个被修改过的可读写层，并上传到 Docker Hub 上，供其他人使用；而与此同时，原先的只读层里的内容则不会有任何变化。这，就是增量 rootfs 的好处。</p>
-<p><strong>第三部分，Init 层。</strong></p>
-<p>它是一个以“-init”结尾的层，夹在只读层和读写层之间。Init 层是 Docker 项目单独生成的一个内部层，专门用来存放 &#x2F;etc&#x2F;hosts、&#x2F;etc&#x2F;resolv.conf 等信息。</p>
+<h3 id="第三部分，Init-层"><a href="#第三部分，Init-层" class="headerlink" title="第三部分，Init 层"></a>第三部分，Init 层</h3><p>它是一个以“-init”结尾的层，夹在只读层和读写层之间。Init 层是 Docker 项目单独生成的一个内部层，专门用来存放 &#x2F;etc&#x2F;hosts、&#x2F;etc&#x2F;resolv.conf 等信息。</p>
 <p>需要这样一层的原因是，这些文件本来属于只读的 Ubuntu 镜像的一部分，但是用户往往需要在启动容器时写入一些指定的值比如 hostname，所以就需要在可读写层对它们进行修改。</p>
 <p>可是，这些修改往往只对当前的容器有效，我们并不希望执行 docker commit 时，把这些信息连同可读写层一起提交掉。</p>
 <p>所以，Docker 做法是，在修改了这些文件之后，以一个单独的层挂载了出来。而用户执行docker commit 只会提交可读写层，所以是不包含这些内容的。</p>
