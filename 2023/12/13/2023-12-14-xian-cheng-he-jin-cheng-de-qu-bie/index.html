@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="面向开发人员的向量嵌入：基础知识, 个人博客">
-    <meta name="description" content="面向开发人员的向量嵌入：基础知识
-本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。原英文链接：https://www.pinecone.io/learn/vector-embeddings-for-developers/
-
-你">
+    <meta name="keywords" content="线程和进程的区别, 个人博客">
+    <meta name="description" content="线程和进程的区别">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>面向开发人员的向量嵌入：基础知识 | Pudding 个人博客</title>
+    <title>线程和进程的区别 | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -294,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">面向开发人员的向量嵌入：基础知识</h1>
+                    <h1 class="description center-align post-title">线程和进程的区别</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +320,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">向量数据库</span>
+                            <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">性能测试</span>
                             </a>
                         
                     </div>
@@ -335,8 +332,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                向量数据库
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-category">
+                                性能测试
                             </a>
                         
                     </div>
@@ -348,7 +345,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-12-13
+                    2023-12-14
                 </div>
                 
 
@@ -357,14 +354,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    8
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
 
@@ -379,44 +376,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="面向开发人员的向量嵌入：基础知识"><a href="#面向开发人员的向量嵌入：基础知识" class="headerlink" title="面向开发人员的向量嵌入：基础知识"></a>面向开发人员的向量嵌入：基础知识</h1><blockquote>
-<p>本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。<br><br>原英文链接：<a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/vector-embeddings-for-developers/">https://www.pinecone.io/learn/vector-embeddings-for-developers/</a><br></p>
-</blockquote>
-<p>你可能还不知道，但是向量已经嵌入无处不在。它们是许多机器学习和深度学习算法的基石，从搜索到人工智能助手等应用程序都是用这些算法。如果你正在考虑在这些领域中构建自己的应用程序，那么未来你可能会遇到向量嵌入。在这篇文章中，我们将尝试介绍向量嵌入是什么以及如何使用它们。</p>
-<h2 id="我们要解决什么问题？"><a href="#我们要解决什么问题？" class="headerlink" title="我们要解决什么问题？"></a>我们要解决什么问题？</h2><p>在构建传统应用程序时，数据结构表示为可能来自数据库的对象。这些对象具有与你正在构建的应用程序相同的属性（或数据库中的列）。</p>
-<p>随着时间的推移，这些对象的属性数量不断增强，以至于你可能需要更加谨慎地选择完成给定任务所需的属性。你甚至可能最终构建这些对象的专门表示来解决特定的任务，而不必支付必须处理非常“胖”的对象开销。这个过程被称为特征工程（Feature Engineering）——通过只挑选与手头任务相关的基本特征来优化应用程序。</p>
-<p>当你处理<strong>非结构化</strong>数据时，你将不得不经历相同的特征工程过程。然而，非结构化数据可能有更多相关特征，而执行手动特征工程注定是不可行的。</p>
-<p>在这些情况下，我们可以使用<strong>向量嵌入</strong>作为一种形式的自动特征工程。我们不再从数据中手动挑选所需的特征，而是应用一个预先训练好的机器学习模型，该模型将生成一个更紧凑的数据表示，同时保留数据的有意义之处。</p>
-<h2 id="什么是向量嵌入？"><a href="#什么是向量嵌入？" class="headerlink" title="什么是向量嵌入？"></a>什么是向量嵌入？</h2><p>在我们深入研究向量嵌入之前，让我们先讨论一下向量。向量是一种具有大小和方向的数据结构。例如，我们可以把向量看作空间中的一个点，“方向”是从 (0,0,0) 到向量空间中该点的箭头。</p>
-<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho1.png" alt="向量"></p>
-<p>作为开发人员，可能更容易把向量想象成一个包含数值的数组。例如：</p>
-<pre class=" language-py"><code class="language-py">vector = [0,-2,...4]
-</code></pre>
-<p>但我们在一个空间中观察一组向量时，我们可以说是有些向量彼此接近，而有些则相距甚远。一些向量似乎可以聚集在一起，而其他向量可以稀疏地分布在空间中：</p>
-<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho2.png" alt="向量分布"></p>
-<p>我们将很快探索向量之间的这些关系是如何有用的。</p>
-<p>向量是机器学习算法的理想数据结构——现代 CPU 和 GPU 都进行了优化，以执行处理它们所需的数学运算。但是我们的数据很少用矢量表示。这就是向量嵌入发挥作用的地方。这种技术允许我们获取几乎任何数据类型，并将其表示为向量。</p>
-<p>但是这不仅仅是把数据转换为向量那么简单。我们希望确保能够在转换后的数据上执行任务，而不会丢失数据的原始含义。例如，如果我们要比较两个句子——我们不仅要比较它们所包含的单词，而且要比较它们是否意味着同一件事。为了保持数据的含义，我们需要了解如何在向量之间的关系有意义的地方生成向量。</p>
-<p>要做到这一点，我们需要一个所谓的<strong>嵌入模型</strong>。许多现代嵌入模型都是通过将大量的标记数据传递给神经网络来建立的。你可能以前听说过神经网络——它们是用来解决各种复杂问题的流行算法。用非常简单的术语来说，神经网络是由函数连接的节点层组成的；然后我们训练这些神经网络来执行各种任务。</p>
-<p>我们通过监督式学习训练神经网络——向神经网络提供由成对输入和标记输出组成的大量训练数据。或者，我们可以应用自我监督或非监督式学习，其中任何一个都不需要标记输出。这些值通过网络激活和操作的每一层进行转换。通过每次迭代训练，神经网络修改每一层的激活。最终，它可以预测给定输入的输出标签应该是什么——即使它以前从来未见过这种特定输入。</p>
-<p>嵌入模型基本上是去掉最后一层的神经网络。我们得到的不是输入的特定标记值，而是向量嵌入。</p>
-<p>嵌入模型的一个很好的例子是流行的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Word2vec">word2vec</a>，它经常用于各种基于文本的任务。让我们看看<a target="_blank" rel="noopener" href="https://projector.tensorflow.org/"> TensorFlow 的投影仪工具</a>产生的可视化，它使嵌入更容易可视化。</p>
-<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho3.png" alt="TensorFlow&#39;s projector tool"></p>
-<p>尽管这种可视化只表示嵌入的三个维度，但它可以帮助我们理解嵌入模型是如何工作的。可视化中突出显示了多个数据点，每个数据点表示一个单词的向量嵌入。顾名思义，word2vec 嵌入了单词。相邻的词语在语义上是相似的，而相距较远的词语在词义上是不同的。</p>
-<p>经过训练，嵌入模型可以将原始数据转换为向量嵌入。这意味着它知道在向量空间中放置新的数据点。</p>
-<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho3.png" alt="word2vec 流程"></p>
-<p>正如我们在 word2vec 中看到的，在模型的上下文中，紧密相连的向量具有上下文相似性，而相距较远的向量彼此不同。这就是赋予向量意义的东西——它与向量空间中其他向量的关系取决于嵌入模型如何“理解”它所训练的领域。</p>
-<h2 id="我能用向量嵌入做什么？"><a href="#我能用向量嵌入做什么？" class="headerlink" title="我能用向量嵌入做什么？"></a>我能用向量嵌入做什么？</h2><p>向量嵌入是一个非常通用的工具，可以应用于许多领域。一般来说，应用程序会使用一个向量嵌入作为它的查询，并产生其他类似的向量嵌入，其相应的值。每个领域的应用程序之间的差异就是这种相似性的重要性。</p>
-<p>下面是一些例子：</p>
-<ul>
-<li>语义搜索：传统的搜索引擎通过搜索关键字的重叠来工作。通过利用向量嵌入，语义搜索可以超越关键词匹配，基于查询的语义进行查询。</li>
-<li>问答应用程序：通过训练一个嵌入式模型，其中包含成对的问题和相应的答案，我们可以创建一个应用程序来回答以前从未见过的问题。</li>
-<li>图像搜索：向量嵌入非常适合作为图像检索任务的基础。有多种现成的模型，如 CLIP、 ResNet 等。不同的模型可以处理不同类型的任务，比如图像相似性、目标检测等等。</li>
-<li>音频搜索：通过将音频转换成一组激活(音频光谱图) ，我们生成可用于音频最近邻搜索的向量嵌入。</li>
-<li>推荐系统：我们可以创建嵌入的结构化数据，关联到不同的实体，如产品，文章，等。在大多数情况下，你必须创建自己的嵌入模型，因为它是特定于你的特定应用程序的。有时，当找到图像或文本描述时，这可以与非结构化嵌入方法结合使用。</li>
-<li>异常检测：我们可以创建嵌入异常检测使用标记传感器信息的大数据集，识别异常事件。</li>
-</ul>
-
+                <h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a><center>线程和进程的区别</center></h1>
                 
             </div>
             <hr/>
@@ -442,7 +402,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/">https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</a>
+                    <a href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/">https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -480,8 +440,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">向量数据库</span>
+                                <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">性能测试</span>
                                 </a>
                             
                         </div>
@@ -527,9 +487,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="线程和进程的区别">
+                        
+                        <span class="card-title">线程和进程的区别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-category">
+                                    性能测试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">性能测试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2023/12/12/2023-12-13-vector-embeddings-for-developers/">
                     <div class="card-image">
@@ -547,57 +558,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-13
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    向量数据库
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">向量数据库</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/11/19/2023-11-20-hnsw/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="像光一样搜索——HNSW算法介绍">
-                        
-                        <span class="card-title">像光一样搜索——HNSW算法介绍</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-13
                             </span>
                         <span class="publish-author">
                             
@@ -754,7 +716,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">79.4k</span>
+                        class="white-color">77.4k</span>
             
             
             

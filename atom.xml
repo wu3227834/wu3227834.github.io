@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2023-12-14T08:32:26.449Z</updated>
+  <updated>2023-12-14T08:39:57.699Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -17,36 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>面向开发人员的向量嵌入：基础知识</title>
-    <link href="https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/"/>
-    <id>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</id>
-    <published>2023-12-12T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.449Z</updated>
+    <title>线程和进程的区别</title>
+    <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
+    <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
+    <published>2023-12-13T16:00:00.000Z</published>
+    <updated>2023-12-14T08:39:57.699Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;面向开发人员的向量嵌入：基础知识&quot;&gt;&lt;a href=&quot;#面向开发人员的向量嵌入：基础知识&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;线程和进程的区别&quot;&gt;&lt;a href=&quot;#线程和进程的区别&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
     
-    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>面向开发人员的向量嵌入：基础知识</title>
-    <link href="https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
-    <id>https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
+    <link href="https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/"/>
+    <id>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</id>
     <published>2023-12-12T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.449Z</updated>
+    <updated>2023-12-14T08:39:57.695Z</updated>
     
     
       
@@ -71,7 +71,7 @@
     <link href="https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/"/>
     <id>https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/</id>
     <published>2023-11-19T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.445Z</updated>
+    <updated>2023-12-14T08:39:57.691Z</updated>
     
     
       
@@ -96,14 +96,14 @@
     <link href="https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/"/>
     <id>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</id>
     <published>2023-11-05T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.445Z</updated>
+    <updated>2023-12-14T08:39:57.691Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;linux-centos-安装-cmake&quot;&gt;&lt;a href=&quot;#linux-centos-安装-cmake&quot; class=&quot;headerlink&quot; title=&quot;linux_centos 安装 cmake&quot;&gt;&lt;/a&gt;linux_centos 安装</summary>
+    <summary type="html">&lt;h1 id=&quot;linux-centos-安装-cmake&quot;&gt;&lt;a href=&quot;#linux-centos-安装-cmake&quot; class=&quot;headerlink&quot; title=&quot;linux_centos 安装 cmake&quot;&gt;&lt;/a&gt;&lt;center&gt;linux_centos</summary>
         
       
     
@@ -121,14 +121,14 @@
     <link href="https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/"/>
     <id>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</id>
     <published>2023-10-25T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.445Z</updated>
+    <updated>2023-12-14T08:39:57.691Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;linux-安装-python-3-10&quot;&gt;&lt;a href=&quot;#linux-安装-python-3-10&quot; class=&quot;headerlink&quot; title=&quot;linux 安装 python 3.10&quot;&gt;&lt;/a&gt;linux 安装 python</summary>
+    <summary type="html">&lt;h1 id=&quot;linux-安装-python-3-10&quot;&gt;&lt;a href=&quot;#linux-安装-python-3-10&quot; class=&quot;headerlink&quot; title=&quot;linux 安装 python 3.10&quot;&gt;&lt;/a&gt;&lt;center&gt;linux 安装 python</summary>
         
       
     
@@ -146,16 +146,14 @@
     <link href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
     <id>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
     <published>2023-10-10T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.441Z</updated>
+    <updated>2023-12-14T08:39:57.687Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;向量检索简介&quot;&gt;&lt;a href=&quot;#向量检索简介&quot; class=&quot;headerlink&quot; title=&quot;向量检索简介&quot;&gt;&lt;/a&gt;向量检索简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;向量检索在推荐系统，图片检索，语义检索中均有⼤量应用&lt;/li&gt;
-&lt;li&gt;向量检索的核心是</summary>
+    <summary type="html">&lt;h1 id=&quot;向量检索简介&quot;&gt;&lt;a href=&quot;#向量检索简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -173,7 +171,7 @@
     <link href="https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/"/>
     <id>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</id>
     <published>2023-10-08T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.441Z</updated>
+    <updated>2023-12-14T08:39:57.687Z</updated>
     
     
       
@@ -198,14 +196,14 @@
     <link href="https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/"/>
     <id>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</id>
     <published>2023-09-21T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.437Z</updated>
+    <updated>2023-12-14T08:39:57.683Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;什么是向量嵌入&quot;&gt;&lt;a href=&quot;#什么是向量嵌入&quot; class=&quot;headerlink&quot; title=&quot;什么是向量嵌入&quot;&gt;&lt;/a&gt;什么是向量嵌入&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;什么是向量嵌入&quot;&gt;&lt;a href=&quot;#什么是向量嵌入&quot; class=&quot;headerlink&quot; title=&quot;什么是向量嵌入&quot;&gt;&lt;/a&gt;&lt;center&gt;什么是向量嵌入&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot;</summary>
         
       
     
@@ -223,14 +221,14 @@
     <link href="https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/"/>
     <id>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</id>
     <published>2023-09-15T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.433Z</updated>
+    <updated>2023-12-14T08:39:57.679Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;什么是向量数据库&quot;&gt;&lt;a href=&quot;#什么是向量数据库&quot; class=&quot;headerlink&quot; title=&quot;什么是向量数据库&quot;&gt;&lt;/a&gt;什么是向量数据库&lt;/h1&gt;&lt;p&gt;我们正处于 AI</summary>
+    <summary type="html">&lt;h1 id=&quot;什么是向量数据库&quot;&gt;&lt;a href=&quot;#什么是向量数据库&quot; class=&quot;headerlink&quot; title=&quot;什么是向量数据库&quot;&gt;&lt;/a&gt;&lt;center&gt;什么是向量数据库&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;我们正处于 AI</summary>
         
       
     
@@ -248,7 +246,7 @@
     <link href="https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
     <id>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
     <published>2023-09-10T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.433Z</updated>
+    <updated>2023-12-14T08:39:57.679Z</updated>
     
     
       
@@ -273,7 +271,7 @@
     <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
     <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
     <published>2023-08-30T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.433Z</updated>
+    <updated>2023-12-14T08:39:57.679Z</updated>
     
     
       
@@ -300,7 +298,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.405Z</updated>
+    <updated>2023-12-14T08:39:57.643Z</updated>
     
     
       
@@ -327,7 +325,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.425Z</updated>
+    <updated>2023-12-14T08:39:57.667Z</updated>
     
     
       
@@ -356,7 +354,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.425Z</updated>
+    <updated>2023-12-14T08:39:57.667Z</updated>
     
     
       
@@ -383,7 +381,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.429Z</updated>
+    <updated>2023-12-14T08:39:57.671Z</updated>
     
     
       
@@ -412,14 +410,14 @@
     <link href="https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/"/>
     <id>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</id>
     <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.413Z</updated>
+    <updated>2023-12-14T08:39:57.651Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;寻找一种易于理解的一致性算法（扩展版）&quot;&gt;&lt;a href=&quot;#寻找一种易于理解的一致性算法（扩展版）&quot; class=&quot;headerlink&quot; title=&quot;寻找一种易于理解的一致性算法（扩展版）&quot;&gt;&lt;/a&gt;寻找一种易于理解的一致性算法（扩展版）&lt;/h1&gt;&lt;h2</summary>
+    <summary type="html">&lt;h1 id=&quot;寻找一种易于理解的一致性算法（扩展版）&quot;&gt;&lt;a href=&quot;#寻找一种易于理解的一致性算法（扩展版）&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -439,7 +437,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.409Z</updated>
+    <updated>2023-12-14T08:39:57.643Z</updated>
     
     
       
@@ -464,7 +462,7 @@
     <link href="https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/"/>
     <id>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</id>
     <published>2023-05-07T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.409Z</updated>
+    <updated>2023-12-14T08:39:57.647Z</updated>
     
     
       
@@ -489,7 +487,7 @@
     <link href="https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/"/>
     <id>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</id>
     <published>2023-04-16T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.409Z</updated>
+    <updated>2023-12-14T08:39:57.643Z</updated>
     
     
       
@@ -516,7 +514,7 @@
     <link href="https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/04/13/2023-04-14-es-wen-ti-yi/</id>
     <published>2023-04-13T16:00:00.000Z</published>
-    <updated>2023-12-14T08:32:26.405Z</updated>
+    <updated>2023-12-14T08:39:57.643Z</updated>
     
     
       
