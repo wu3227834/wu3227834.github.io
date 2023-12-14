@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="线程和进程的区别, 个人博客">
-    <meta name="description" content="线程和进程的区别">
+    <meta name="description" content="线程和进程的区别进程（process）和线程（thread）彼此相关，非常相似，因为它们是独立的执行顺序。进程和线程的基本区别在于，进程发生在不同的内存空间，而线程在相同的内存空间中执行。
+通读本文，希望你能找出在操作系统上下文中进程与线程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -354,14 +355,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8
+                    994
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -376,7 +377,82 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a><center>线程和进程的区别</center></h1>
+                <h1 id="线程和进程的区别"><a href="#线程和进程的区别" class="headerlink" title="线程和进程的区别"></a><center>线程和进程的区别</center></h1><p><strong>进程</strong>（process）和<strong>线程</strong>（thread）彼此相关，非常相似，因为它们是独立的执行顺序。进程和线程的基本区别在于，进程发生在不同的内存空间，而线程在相同的内存空间中执行。</p>
+<p>通读本文，希望你能找出在操作系统上下文中进程与线程的不同之处。让我们从线程和进程的一些基本知识开始。</p>
+<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><p><strong>进程</strong>是一个活动的程序，也就是说，一个正在执行的程序。它不仅仅是程序代码，因为它包括程序计数器、进程堆栈、寄存器、程序代码等。与此相比，程序代码只是文本部分。</p>
+<p>当计算机程序被触发执行时，它并不是直接运行，而是首先确定程序执行所需的步骤，而遵循这些步骤执行的过程称为进程。</p>
+<p>进程可以分为两种类型，即<strong>克隆进程</strong>和<strong>父进程</strong>。克隆进程也称为子进程，是由另一个进程创建的进程，而主进程是负责创建其他进程，以同时执行多个任务的进程，称为父进程。</p>
+<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><p><strong>线程</strong>是可由调度程序独立管理的轻量级进程。它使用并行性提高了应用程序的性能。线程与其对等线程共享数据段、代码段、文件等信息，同时包含自己的寄存器、堆栈、计数器等。</p>
+<p>线程基本上是大型进程的一个子部分。在进程中，进程中的所有线程都是相互关联的。典型的线程包含一些信息，如数据段、代码段等。这些信息将在执行期间共享给它们的对等线程。</p>
+<p>线程最重要的特性是它们与它们所属的进程中的对等线程共享内存、数据、资源等。此外，进程中的所有线程都需要进行同步，以避免意外的结果。</p>
+<h2 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h2><p>下表突出显示了进程和线程之间的主要区别：</p>
+<table>
+<thead>
+<tr>
+<th>比较</th>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>进程是一个正在执行的程序，也就是活动的程序</td>
+<td>线程是可由调度程序独立管理的轻量级进程</td>
+</tr>
+<tr>
+<td>上下文切换时间</td>
+<td>进程需要更多的时间进行上下文切换，因为它们比较繁重</td>
+<td>线程需要更少的时间进行上下文切换，因为它们比进程轻</td>
+</tr>
+<tr>
+<td>内存共享</td>
+<td>进程是完全独立的，不共享内存</td>
+<td>进程是完全独立的，不共享内存。</td>
+</tr>
+<tr>
+<td>通信耗时</td>
+<td>进程之间的通信比线程之间的通信需要更多的时间</td>
+<td>线程之间的通信比进程之间的通信需要更少的时间</td>
+</tr>
+<tr>
+<td>阻塞处理</td>
+<td>如果一个进程被阻塞，其余进程可以继续执行</td>
+<td>如果用户级线程被阻塞，它的所有对等线程也会被阻塞</td>
+</tr>
+<tr>
+<td>资源消耗</td>
+<td>进程比线程需要更多的资源</td>
+<td>线程通常比进程需要更少的资源</td>
+</tr>
+<tr>
+<td>依赖性</td>
+<td>各个过程是相互独立的</td>
+<td>线程是进程的一部分，因此是依赖的</td>
+</tr>
+<tr>
+<td>数据和代码共享</td>
+<td>进程具有独立的数据和代码段</td>
+<td>线程与其对等线程共享数据段、代码段、文件等</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>进程创建需要更多的时间</td>
+<td>线程创建所需的时间更少</td>
+</tr>
+<tr>
+<td>终止时间</td>
+<td>进程需要更多的时间来终止</td>
+<td>进程需要更多的时间来终止</td>
+</tr>
+</tbody></table>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>进程和线程之间最显著的区别在于，进程被定义为由计算机完成的任务，而线程是可由调度程序独立管理的轻量级进程。</p>
+<blockquote>
+<p>参考链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/difference-between-process-and-thread">https://www.tutorialspoint.com/difference-between-process-and-thread</a></li>
+</ul>
+</blockquote>
+
                 
             </div>
             <hr/>
@@ -716,7 +792,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">77.4k</span>
+                        class="white-color">78.4k</span>
             
             
             
