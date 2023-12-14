@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="白话容器基础（三）：深入理解容器镜像, 个人博客">
-    <meta name="description" content="白话容器基础（三）：深入理解容器镜像Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是">
+    <meta name="keywords" content="面向开发人员的向量嵌入：基础知识, 个人博客">
+    <meta name="description" content="面向开发人员的向量嵌入：基础知识
+本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。原英文链接：https://www.pinecone.io/learn/vector-embeddings-for-developers/
+
+你">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>白话容器基础（三）：深入理解容器镜像 | Pudding 个人博客</title>
+    <title>面向开发人员的向量嵌入：基础知识 | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -291,12 +294,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">白话容器基础（三）：深入理解容器镜像</h1>
+                    <h1 class="description center-align post-title">面向开发人员的向量嵌入：基础知识</h1>
                 </div>
             </div>
         </div>
@@ -320,12 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/docker/">
-                                <span class="chip bg-color">docker</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">学习笔记</span>
+                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">向量数据库</span>
                             </a>
                         
                     </div>
@@ -336,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                极客时间——学习笔记
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                向量数据库
                             </a>
                         
                     </div>
@@ -349,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-04
+                    2023-12-13
                 </div>
                 
 
@@ -358,14 +357,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    6 分
                 </div>
                 
 
@@ -380,182 +379,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="白话容器基础（三）：深入理解容器镜像"><a href="#白话容器基础（三）：深入理解容器镜像" class="headerlink" title="白话容器基础（三）：深入理解容器镜像"></a><center>白话容器基础（三）：深入理解容器镜像</center></h1><p>Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是“限制”，它给这个“世界”围上了一圈看不见的墙。</p>
-<p>这么一折腾，进程就真的被“装”在了一个与世隔绝的房间里，而这些房间就是 PaaS 项目赖以生存的应用“沙盒”。</p>
-<p>可是，现在这个房间四周虽然有了墙，但是如果容器进程低头一看地面，又是怎样一副景象呢？</p>
-<p>换句话说，容器里的进程看到的文件系统又是什么样子的呢？</p>
-<p>可能你立刻就能想到，这一定是一个关于 Mount Namespace 的问题：容器里的应用进程，理应看到一份完全独立的文件系统。这样，它就可以在自己的容器目录（比如 &#x2F;tmp）下进行操作，而完全不会受宿主机以及其他容器的影响。</p>
-<p>但是，Mount Namespace 修改的是容器进程对文件系统“挂载点”的认知。这也就意味着，只有在“挂载”这个操作发生之后，进程的视图才会被改变。而在此之前，新创建的容器会直接继承宿主机的各个挂载点。</p>
-<p>因此，创建新进程时，除了声明要启用 Mount Namespace 之外，我们还应该告诉容器进程，有哪些目录需要重新挂载，就比如这个 &#x2F;tmp 目录；更重要的是，因为我们创建的新进程启用了 Mount Namespace，所以这次重新挂载的操作，只在容器进程的 Mount Namespace 中有效。这就是 Mount Namespace 跟其他 Namespace 的使用略有不同的地方：它对容器进程视图的改变，一定是伴随着挂载操作（mount）才能生效。</p>
-<p>但是，作为一个普通用户，我们希望的是一个更友好的情况：每当创建一个新容器时，我希望容器进程看到的文件系统就是一个独立的隔离环境，而不是继承自宿主机的文件系统。那应该怎么才能做到这一点呢？</p>
-<p>不难想到，我们可以在容器进程启动之前重新挂载它的整个根目录“&#x2F;”。而由于 Mount Namespace 的存在，这个挂载对宿主机不可见，所以容器进程就可以在里面随便折腾了。</p>
-<p>在 Linux 操作系统里，有一个名为 chroot 的命令可以帮助你在 shell 中方便地完成这个工作。顾名思义，它的作用就是帮你“change root file system”，即改变进程的根目录到你指定的位置。它的用法也非常简单。</p>
-<p>假设，现在有一个 $HOME&#x2F;test 目录，要让它作为一个 &#x2F;bin&#x2F;bash 进程的根目录。</p>
-<p>首先，创建一个 test 目录和几个 lib 文件夹：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> -p <span class="token variable">$HOME</span>/test
-$ <span class="token function">mkdir</span> -p <span class="token variable">$HOME</span>/test/<span class="token punctuation">{</span>bin,lib64,lib<span class="token punctuation">}</span>
-$ <span class="token function">cd</span> <span class="token variable">$T</span>
-</code></pre>
-<p>然后，把 bash 命令拷贝到 test 目录对应的 bin 路径下：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> -v /bin/<span class="token punctuation">{</span>bash,ls<span class="token punctuation">}</span> <span class="token variable">$HOME</span>/test/bin
-</code></pre>
-<p>接下来，把 bash 命令需要的所有 so 文件，也拷贝到 test 目录对应的 lib 路径下。找到 so 文件可以用 ldd 命令：</p>
-<pre class=" language-bash"><code class="language-bash">$ T<span class="token operator">=</span><span class="token variable">$HOME</span>/test
-$ list<span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>ldd /bin/ls <span class="token operator">|</span> <span class="token function">egrep</span> -o '/lib.*\.<span class="token punctuation">[</span>0-9<span class="token punctuation">]</span>'<span class="token variable">)</span></span>"</span>
-$ <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token variable">$list</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">cp</span> -v <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token string">"<span class="token variable">${T}</span><span class="token variable">${i}</span>"</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
-</code></pre>
-<p>最后，执行 chroot 命令，告诉操作系统，我们将使用 $HOME&#x2F;test 目录作为 &#x2F;bin&#x2F;bash 进程的根目录：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">chroot</span> <span class="token variable">$HOME</span>/test /bin/bash
-</code></pre>
-<p>这时，你如果执行 “ls &#x2F;“，就会看到，它返回的都是 $HOME&#x2F;test 目录下面的内容，而不是宿主机的内容。</p>
-<p>更重要的是，对于被 chroot 的进程来说，它并不会感受到自己的根目录已经被“修改”成 $HOME&#x2F;test 了。</p>
-<p>这种视图被修改的原理，是不是和 Linux Namespace 很类似呢？</p>
-<p>没错！</p>
-<p><strong>实际上，Mount Namespace 正是基于对 chroot 的不断改良才被发明出来的，它也是 Linux 操作系统里的第一个 Namespace。</strong></p>
-<p>当然，为了能够让容器的这个根目录看起来更“真实”，我们一般会在这个容器的根目录下挂载一个完整操作系统的文件系统，比如 Ubuntu16.04 的 ISO。这样，在容器启动之后，我们在容器里通过执行 “ls &#x2F;“ 查看根目录下的内容，就是 Ubuntu 16.04 的所有目录和文件。</p>
-<p><strong>而这个挂载在容器根目录上、用来为容器进程提供隔离后执行环境的文件系统，就是所谓的“容器镜像”。它还有一个更为专业的名字，叫作：rootfs（根文件系统）。</strong></p>
-<p>所以，一个最常见的 rootfs，或者说容器镜像，会包括如下所示的一些目录和文件，比如 &#x2F;bin，&#x2F;etc，&#x2F;proc 等等：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ls</span> /
-bin dev etc home lib lib64 mnt opt proc root run sbin sys tmp usr var
-</code></pre>
-<p>而你进入容器之后执行的 &#x2F;bin&#x2F;bash，就是 &#x2F;bin 目录下的可执行文件，与宿主机的 &#x2F;bin&#x2F;bash 完全不同。</p>
-<p>现在，你应该可以理解，对 Docker 项目来说，它最核心的原理实际上就是为待创建的用户进程：</p>
-<ol>
-    <li> 启用 Linux Namespace 配置 </li>
-    <li> 设置指定的 Cgroups 参数 </li>
-    <li> 切换进程的根目录（Change Root） </li>
-</ol>
-
-<p>这样，一个完整的容器就诞生了。不过，Docker 项目在最后一步的切换上会优先使用 pivot_root 系统调用，如果系统不支持，才会使用 chroot。</p>
-<p>另外，<strong>需要明确的是，rootfs 只是一个操作系统所包含的文件、配置和目录，并不包括操作系统内核。在 Linux 操作系统中，这两部分是分开存放的，操作系统只有在开机启动时才会加载指定版本的内核镜像。</strong></p>
-<p>所以说，rootfs 只包括了操作系统的“躯壳”，并没有包括操作系统的“灵魂”。</p>
-<p>那么，对于容器来说，这个操作系统的“灵魂”又在哪里呢？</p>
-<p>实际上，同一台机器上的所有容器，都共享宿主机操作系统的内核。</p>
-<p>这就意味着，如果你的应用程序需要配置内核参数、加载额外的内核模块，以及跟内核进行直接的交互，你就需要注意了：这些操作和依赖的对象，都是宿主机操作系统的内核，它对于该机器上的所有容器来说是一个“全局变量”，牵一发而动全身。</p>
-<p>这是容器相较于虚拟机的缺陷之一：毕竟后者不仅有模拟出来的硬件机器当作沙盒，而且每个沙盒里还运行着一个完整的 Guest OS 给应用随便折腾。</p>
-<p>不过，<strong>正是由于 rootfs 的存在，容器才有了一个被反复宣传至今的重要特性：一致性。</strong></p>
-<p>什么是容器的“一致性”呢？</p>
-<h2 id="容器的一致性"><a href="#容器的一致性" class="headerlink" title="容器的一致性"></a>容器的一致性</h2><p>由于云端与本地服务器环境不同，应用的打包过程，一直是使用 PaaS 时最“痛苦”的一个步骤。</p>
-<p>但有了容器之后，更准确地说，有了容器镜像（即 rootfs）之后，这个问题被非常优雅地解决了。</p>
-<p><strong>由于 rootfs 里打包的不只是应用，而是整个操作系统的文件和目录，也就意味着，应用以及它运行所需要的所有依赖，都被封装在了一起。</strong></p>
-<p>事实上，对于大多数开发者而言，他们对应用依赖的理解，一直局限在编程语言层面。比如Golang 的 Godeps.json。但实际上，一个一直以来很容易被忽视的事实是，<strong>对一个应用来说，操作系统本身才是它运行所需要的最完整的“依赖库”</strong>。</p>
-<p>有了容器镜像“打包操作系统”的能力，这个最基础的依赖环境也终于变成了应用沙盒的一部分。这就赋予了容器所谓的一致性：无论在本地、云端，还是在一台任何地方的机器上，用户只需要解压打包好的容器镜像，那么这个应用运行所需要的完整的执行环境就被重现出<br>来了。</p>
-<p><strong>这种深入到操作系统级别的运行环境一致性，打通了应用在本地开发和远端执行环境之间难以逾越的鸿沟。</strong></p>
-<p>不过，这时你可能已经发现了另一个非常棘手的问题：难道我每开发一个应用，或者升级一下现有的应用，都要重复制作一次 rootfs 吗？</p>
-<p>比如，我现在用 Ubuntu 操作系统的 ISO 做了一个 rootfs，然后又在里面安装了 Java 环境，用来部署我的 Java 应用。那么，我的另一个同事在发布他的 Java 应用时，显然希望能够直接使用我安装过 Java 环境的 rootfs，而不是重复这个流程。</p>
-<p>一种比较直观的解决办法是，我在制作 rootfs 的时候，每做一步“有意义”的操作，就保存一个 rootfs 出来，这样其他同事就可以按需求去用他需要的 rootfs 了。</p>
-<p>但是，这个解决办法并不具备推广性。原因在于，一旦你的同事们修改了这个 rootfs，新旧两个 rootfs 之间就没有任何关系了。这样做的结果就是极度的碎片化。</p>
-<p>那么，既然这些修改都基于一个旧的 rootfs，我们能不能以增量的方式去做这些修改呢？这样做的好处是，所有人都只需要维护相对于 base rootfs 修改的增量内容，而不是每次修改都制造一个“fork”。</p>
-<p>答案当然是肯定的。</p>
-<p>这也正是为何，Docker 公司在实现 Docker 镜像时并没有沿用以前制作 rootfs 的标准流程，而是做了一个小小的创新：</p>
-<blockquote>
-<p>  Docker 在镜像的设计中，引入了层（layer）的概念。也就是说，用户制作镜像的每一步操作，都会生成一个层，也就是一个增量 rootfs。</p>
+                <h1 id="面向开发人员的向量嵌入：基础知识"><a href="#面向开发人员的向量嵌入：基础知识" class="headerlink" title="面向开发人员的向量嵌入：基础知识"></a>面向开发人员的向量嵌入：基础知识</h1><blockquote>
+<p>本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。<br><br>原英文链接：<a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/vector-embeddings-for-developers/">https://www.pinecone.io/learn/vector-embeddings-for-developers/</a><br></p>
 </blockquote>
-<p>当然，这个想法不是凭空臆造出来的，而是用到了一种叫作联合文件系统（Union File System）的能力。</p>
-<p>Union File System 也叫 UnionFS，最主要的功能是将多个不同位置的目录联合挂载（union mount）到同一个目录下。比如，我现在有两个目录 A 和 B，它们分别有两个文件：</p>
-<pre class=" language-bash"><code class="language-bash">$ tree
-<span class="token keyword">.</span>
-├── A
-│ ├── a
-│ └── x
-└── B
- ├── b
- └── x
+<p>你可能还不知道，但是向量已经嵌入无处不在。它们是许多机器学习和深度学习算法的基石，从搜索到人工智能助手等应用程序都是用这些算法。如果你正在考虑在这些领域中构建自己的应用程序，那么未来你可能会遇到向量嵌入。在这篇文章中，我们将尝试介绍向量嵌入是什么以及如何使用它们。</p>
+<h2 id="我们要解决什么问题？"><a href="#我们要解决什么问题？" class="headerlink" title="我们要解决什么问题？"></a>我们要解决什么问题？</h2><p>在构建传统应用程序时，数据结构表示为可能来自数据库的对象。这些对象具有与你正在构建的应用程序相同的属性（或数据库中的列）。</p>
+<p>随着时间的推移，这些对象的属性数量不断增强，以至于你可能需要更加谨慎地选择完成给定任务所需的属性。你甚至可能最终构建这些对象的专门表示来解决特定的任务，而不必支付必须处理非常“胖”的对象开销。这个过程被称为特征工程（Feature Engineering）——通过只挑选与手头任务相关的基本特征来优化应用程序。</p>
+<p>当你处理<strong>非结构化</strong>数据时，你将不得不经历相同的特征工程过程。然而，非结构化数据可能有更多相关特征，而执行手动特征工程注定是不可行的。</p>
+<p>在这些情况下，我们可以使用<strong>向量嵌入</strong>作为一种形式的自动特征工程。我们不再从数据中手动挑选所需的特征，而是应用一个预先训练好的机器学习模型，该模型将生成一个更紧凑的数据表示，同时保留数据的有意义之处。</p>
+<h2 id="什么是向量嵌入？"><a href="#什么是向量嵌入？" class="headerlink" title="什么是向量嵌入？"></a>什么是向量嵌入？</h2><p>在我们深入研究向量嵌入之前，让我们先讨论一下向量。向量是一种具有大小和方向的数据结构。例如，我们可以把向量看作空间中的一个点，“方向”是从 (0,0,0) 到向量空间中该点的箭头。</p>
+<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho1.png" alt="向量"></p>
+<p>作为开发人员，可能更容易把向量想象成一个包含数值的数组。例如：</p>
+<pre class=" language-py"><code class="language-py">vector = [0,-2,...4]
 </code></pre>
-<p>然后，我使用联合挂载的方式，将这两个目录挂载到一个公共的目录 C 上：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> C
-$ <span class="token function">mount</span> -t aufs -o dirs<span class="token operator">=</span>./A:./B none ./C
-</code></pre>
-<p>这时，我再查看目录 C 的内容，就能看到目录 A 和 B 下的文件被合并到了一起：</p>
-<pre class=" language-bash"><code class="language-bash">$ tree ./C
-./C
-├── a
-├── b
-└── x
-</code></pre>
-<p>可以看到，在这个合并后的目录 C 里，有 a、b、x 三个文件，并且 x 文件只有一份。这就是“合并”的含义。此外，如果你在目录 C 里对 a、b、x 文件做修改，这些修改也会在对应的目录 A、B 中生效。</p>
-<p>那么，在 Docker 项目中，又是如何使用这种 Union File System 的呢？</p>
-<h2 id="Union-File-System"><a href="#Union-File-System" class="headerlink" title="Union File System"></a>Union File System</h2><p>如果你的环境是 Ubuntu 16.04 和 Docker CE 18.05，这对组合默认使用的是 AuFS 这个联合文件系统的实现。你可以通过 docker info 命令，查看到这个信息。</p>
-<p>对于 AuFS 来说，它最关键的目录结构在 &#x2F;var&#x2F;lib&#x2F;docker 路径下的 diff 目录：</p>
-<pre class=" language-bash"><code class="language-bash">/var/lib/docker/aufs/diff/<span class="token operator">&lt;</span>layer_id<span class="token operator">></span>
-</code></pre>
-<p><strong>而这个目录的作用，我们不妨通过一个具体例子来看一下。</strong></p>
-<p>现在，我们启动一个容器，比如：</p>
-<pre class=" language-bash"><code class="language-bash">$ docker run -d ubuntu:latest <span class="token function">sleep</span> 3600
-</code></pre>
-<p>这时候，Docker 就会从 Docker Hub 上拉取一个 Ubuntu 镜像到本地。</p>
-<p>这个所谓的“镜像”，实际上就是一个 Ubuntu 操作系统的 rootfs，它的内容是 Ubuntu 操作系统的所有文件和目录。不过，与之前我们讲述的 rootfs 稍微不同的是，Docker 镜像使用的 rootfs，往往由多个“层”组成：</p>
-<pre class=" language-bash"><code class="language-bash">$ docker image inspect ubuntu:latest
-<span class="token punctuation">..</span>.
-    <span class="token string">"RootFS"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
-        <span class="token string">"Type"</span><span class="token keyword">:</span> <span class="token string">"layers"</span>,
-        <span class="token string">"Layers"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"sha256:f49017d4d5ce9c0f544c..."</span>,
-            <span class="token string">"sha256:8f2b771487e9d6354080..."</span>,
-            <span class="token string">"sha256:ccd4d61916aaa2159429..."</span>,
-            <span class="token string">"sha256:c01d74f99de40e097c73..."</span>,
-            <span class="token string">"sha256:268a067217b5fe78e000..."</span>
-        <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
-</code></pre>
-<p>可以看到，这个 Ubuntu 镜像，实际上由五个层组成。这五个层就是五个增量 rootfs，每一层都是 Ubuntu 操作系统文件与目录的一部分；而在使用镜像时，Docker 会把这些增量联合挂载在一个统一的挂载点上（等价于前面例子里的“&#x2F;C”目录）。</p>
-<p>这个挂载点就是 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;mnt&#x2F;，比如：</p>
-<pre class=" language-bash"><code class="language-bash">/var/lib/docker/aufs/mnt/6e3be5d2ecccae7cc0fc<span class="token punctuation">..</span>.
-</code></pre>
-<p>不出意外的话，这个目录里面正是一个完整的 Ubuntu 操作系统：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ls</span> /var/lib/docker/aufs/mnt/6e3be5d2ecccae7cc0fc<span class="token punctuation">..</span>.
-bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
-</code></pre>
-<p>那么，前面提到的五个镜像层，又是如何被联合挂载成这样一个完整的 Ubuntu 文件系统的呢？</p>
-<p>这个信息记录在 AuFS 的系统目录 &#x2F;sys&#x2F;fs&#x2F;aufs 下面。</p>
-<p>首先，通过查看 AuFS 的挂载信息，我们可以找到这个目录对应的 AuFS 的内部 ID（也叫：si）：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cat</span> /proc/mounts<span class="token operator">|</span> <span class="token function">grep</span> aufs
-none /var/lib/docker/aufs/mnt/6e3be5d2ecccae7cc0fc<span class="token punctuation">..</span>. aufs rw,relatime,si<span class="token operator">=</span>972c6d361e6b32ba
-</code></pre>
-<p>然后使用这个 ID，你就可以在 &#x2F;sys&#x2F;fs&#x2F;aufs 下查看被联合挂载在一起的各个层的信息：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cat</span> /sys/fs/aufs/si_972c6d361e6b32ba/br<span class="token punctuation">[</span>0-9<span class="token punctuation">]</span>*
-/var/lib/docker/aufs/diff/6e3be5d2ecccae7cc<span class="token punctuation">..</span>.<span class="token operator">=</span>rw
-/var/lib/docker/aufs/diff/6e3be5d2ecccae7cc<span class="token punctuation">..</span>.-init<span class="token operator">=</span>ro+wh
-/var/lib/docker/aufs/diff/32e8e20064858c0f2<span class="token punctuation">..</span>.<span class="token operator">=</span>ro+wh
-/var/lib/docker/aufs/diff/2b8858809bce62e62<span class="token punctuation">..</span>.<span class="token operator">=</span>ro+wh
-/var/lib/docker/aufs/diff/20707dce8efc0d267<span class="token punctuation">..</span>.<span class="token operator">=</span>ro+wh
-/var/lib/docker/aufs/diff/72b0744e06247c7d0<span class="token punctuation">..</span>.<span class="token operator">=</span>ro+wh
-/var/lib/docker/aufs/diff/a524a729adadedb90<span class="token punctuation">..</span>.<span class="token operator">=</span>ro+wh
-</code></pre>
-<p>从这些信息里，我们可以看到，镜像的层都放置在 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;diff 目录下，然后被联合挂载在 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;mnt 里面。</p>
-<p><strong>而且，从这个结构可以看出来，这个容器的 rootfs 由如下图所示的三部分组成：</strong></p>
-<p><img src="/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/pho1.png" alt="rootfs"></p>
-<h3 id="第一部分，只读层"><a href="#第一部分，只读层" class="headerlink" title="第一部分，只读层"></a>第一部分，只读层</h3><p>它是这个容器的 rootfs 最下面的五层，对应的正是 ubuntu:latest 镜像的五层。可以看到，它们的挂载方式都是只读的（ro+wh，即 readonly+whiteout）。</p>
-<p>这时，我们可以分别查看一下这些层的内容：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ls</span> /var/lib/docker/aufs/diff/72b0744e06247c7d0<span class="token punctuation">..</span>.
-etc sbin usr var
-$ <span class="token function">ls</span> /var/lib/docker/aufs/diff/32e8e20064858c0f2<span class="token punctuation">..</span>.
-run
-$ <span class="token function">ls</span> /var/lib/docker/aufs/diff/a524a729adadedb900<span class="token punctuation">..</span>.
-bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
-</code></pre>
-<p>可以看到，这些层，都以增量的方式分别包含了 Ubuntu 操作系统的一部分。</p>
-<h3 id="第二部分，可读写层"><a href="#第二部分，可读写层" class="headerlink" title="第二部分，可读写层"></a>第二部分，可读写层</h3><p>它是这个容器的 rootfs 最上面的一层（6e3be5d2ecccae7cc），它的挂载方式为：rw，即 read write。在没有写入文件之前，这个目录是空的。而一旦在容器里做了写操作，你修改所产生的内容就会以增量的方式出现在这个层中。</p>
-<p>可是，你有没有想到这样一个问题：如果我现在要做的是，删除只读层里的一个文件呢？</p>
-<p><font color="pink">为了实现这样的删除操作，AuFS 会在可读写层创建一个 whiteout 文件，把只读层里的文件“遮挡”起来。</font></p>
-<p>比如，你要删除只读层里一个名叫 foo 的文件，那么这个删除操作实际上是在可读写层创建了一个名叫 .wh.foo 的文件。这样，当这两个层被联合挂载之后，foo 文件就会被 .wh.foo 文件“遮挡”起来，“消失”了。这个功能，就是“ro+wh”的挂载方式，即只读 +whiteout 的含义。</p>
-<p>所以，最上面这个可读写层的作用，就是专门用来存放你修改 rootfs 后产生的增量，无论是增、删、改，都发生在这里。而当我们使用完了这个被修改过的容器之后，还可以使用docker commit 和 push 指令，保存这个被修改过的可读写层，并上传到 Docker Hub 上，供其他人使用；而与此同时，原先的只读层里的内容则不会有任何变化。这，就是增量 rootfs 的好处。</p>
-<h3 id="第三部分，Init-层"><a href="#第三部分，Init-层" class="headerlink" title="第三部分，Init 层"></a>第三部分，Init 层</h3><p>它是一个以“-init”结尾的层，夹在只读层和读写层之间。Init 层是 Docker 项目单独生成的一个内部层，专门用来存放 &#x2F;etc&#x2F;hosts、&#x2F;etc&#x2F;resolv.conf 等信息。</p>
-<p>需要这样一层的原因是，这些文件本来属于只读的 Ubuntu 镜像的一部分，但是用户往往需要在启动容器时写入一些指定的值比如 hostname，所以就需要在可读写层对它们进行修改。</p>
-<p>可是，这些修改往往只对当前的容器有效，我们并不希望执行 docker commit 时，把这些信息连同可读写层一起提交掉。</p>
-<p>所以，Docker 做法是，在修改了这些文件之后，以一个单独的层挂载了出来。而用户执行docker commit 只会提交可读写层，所以是不包含这些内容的。</p>
-<p>最终，这 7 个层都被联合挂载到 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;aufs&#x2F;mnt 目录下，表现为一个完整的 Ubuntu 操作系统供容器使用。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Linux 容器文件系统的实现方式机制：rootfs。它只是一个操作系统的所有文件和目录，并不包含内核，最多也就几百兆。而相比之下，传统虚拟机的镜像大多是一个磁盘的“快照”，磁盘有多大，镜像就至少有多大。</p>
-<p>通过结合使用 Mount Namespace 和 rootfs，容器就能够为进程构建出一个完善的文件系统隔离环境。当然，这个功能的实现还必须感谢 chroot 和 pivot_root 这两个系统调用切换进程根目录的能力。</p>
-<p>而在 rootfs 的基础上，Docker 公司创新性地提出了使用多个增量 rootfs 联合挂载一个完整 rootfs 的方案，这就是容器镜像中“层”的概念。</p>
-<p>通过“分层镜像”的设计，以 Docker 镜像为核心，来自不同公司、不同团队的技术人员被紧密地联系在了一起。而且，由于容器镜像的操作是增量式的，这样每次镜像拉取、推送的内容，比原本多个完整的操作系统的大小要小得多；而共享层的存在，可以使得所有这些容器镜像需要的总空间，也比每个镜像的总和要小。这样就使得基于容器镜像的团队协作，要比基于动则几个 GB 的虚拟机磁盘镜像的协作要敏捷得多。</p>
-<p>更重要的是，一旦这个镜像被发布，那么你在全世界的任何一个地方下载这个镜像，得到的内容都完全一致，可以完全复现这个镜像制作者当初的完整环境。这，就是容器技术“强一致性”的重要体现。</p>
-<p>而这种价值正是支撑 Docker 公司在 2014~2016 年间迅猛发展的核心动力。容器镜像的发明，不仅打通了“开发 - 测试 - 部署”流程的每一个环节，更重要的是：</p>
-<center>
-    <font color="red">
-        容器镜像将会成为未来软件的主流发布方式。
-    </font>
-</center>
+<p>但我们在一个空间中观察一组向量时，我们可以说是有些向量彼此接近，而有些则相距甚远。一些向量似乎可以聚集在一起，而其他向量可以稀疏地分布在空间中：</p>
+<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho2.png" alt="向量分布"></p>
+<p>我们将很快探索向量之间的这些关系是如何有用的。</p>
+<p>向量是机器学习算法的理想数据结构——现代 CPU 和 GPU 都进行了优化，以执行处理它们所需的数学运算。但是我们的数据很少用矢量表示。这就是向量嵌入发挥作用的地方。这种技术允许我们获取几乎任何数据类型，并将其表示为向量。</p>
+<p>但是这不仅仅是把数据转换为向量那么简单。我们希望确保能够在转换后的数据上执行任务，而不会丢失数据的原始含义。例如，如果我们要比较两个句子——我们不仅要比较它们所包含的单词，而且要比较它们是否意味着同一件事。为了保持数据的含义，我们需要了解如何在向量之间的关系有意义的地方生成向量。</p>
+<p>要做到这一点，我们需要一个所谓的<strong>嵌入模型</strong>。许多现代嵌入模型都是通过将大量的标记数据传递给神经网络来建立的。你可能以前听说过神经网络——它们是用来解决各种复杂问题的流行算法。用非常简单的术语来说，神经网络是由函数连接的节点层组成的；然后我们训练这些神经网络来执行各种任务。</p>
+<p>我们通过监督式学习训练神经网络——向神经网络提供由成对输入和标记输出组成的大量训练数据。或者，我们可以应用自我监督或非监督式学习，其中任何一个都不需要标记输出。这些值通过网络激活和操作的每一层进行转换。通过每次迭代训练，神经网络修改每一层的激活。最终，它可以预测给定输入的输出标签应该是什么——即使它以前从来未见过这种特定输入。</p>
+<p>嵌入模型基本上是去掉最后一层的神经网络。我们得到的不是输入的特定标记值，而是向量嵌入。</p>
+<p>嵌入模型的一个很好的例子是流行的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Word2vec">word2vec</a>，它经常用于各种基于文本的任务。让我们看看<a target="_blank" rel="noopener" href="https://projector.tensorflow.org/"> TensorFlow 的投影仪工具</a>产生的可视化，它使嵌入更容易可视化。</p>
+<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho3.png" alt="TensorFlow&#39;s projector tool"></p>
+<p>尽管这种可视化只表示嵌入的三个维度，但它可以帮助我们理解嵌入模型是如何工作的。可视化中突出显示了多个数据点，每个数据点表示一个单词的向量嵌入。顾名思义，word2vec 嵌入了单词。相邻的词语在语义上是相似的，而相距较远的词语在词义上是不同的。</p>
+<p>经过训练，嵌入模型可以将原始数据转换为向量嵌入。这意味着它知道在向量空间中放置新的数据点。</p>
+<p><img src="/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/pho3.png" alt="word2vec 流程"></p>
+<p>正如我们在 word2vec 中看到的，在模型的上下文中，紧密相连的向量具有上下文相似性，而相距较远的向量彼此不同。这就是赋予向量意义的东西——它与向量空间中其他向量的关系取决于嵌入模型如何“理解”它所训练的领域。</p>
+<h2 id="我能用向量嵌入做什么？"><a href="#我能用向量嵌入做什么？" class="headerlink" title="我能用向量嵌入做什么？"></a>我能用向量嵌入做什么？</h2><p>向量嵌入是一个非常通用的工具，可以应用于许多领域。一般来说，应用程序会使用一个向量嵌入作为它的查询，并产生其他类似的向量嵌入，其相应的值。每个领域的应用程序之间的差异就是这种相似性的重要性。</p>
+<p>下面是一些例子：</p>
+<ul>
+<li>语义搜索：传统的搜索引擎通过搜索关键字的重叠来工作。通过利用向量嵌入，语义搜索可以超越关键词匹配，基于查询的语义进行查询。</li>
+<li>问答应用程序：通过训练一个嵌入式模型，其中包含成对的问题和相应的答案，我们可以创建一个应用程序来回答以前从未见过的问题。</li>
+<li>图像搜索：向量嵌入非常适合作为图像检索任务的基础。有多种现成的模型，如 CLIP、 ResNet 等。不同的模型可以处理不同类型的任务，比如图像相似性、目标检测等等。</li>
+<li>音频搜索：通过将音频转换成一组激活(音频光谱图) ，我们生成可用于音频最近邻搜索的向量嵌入。</li>
+<li>推荐系统：我们可以创建嵌入的结构化数据，关联到不同的实体，如产品，文章，等。在大多数情况下，你必须创建自己的嵌入模型，因为它是特定于你的特定应用程序的。有时，当找到图像或文本描述时，这可以与非结构化嵌入方法结合使用。</li>
+<li>异常检测：我们可以创建嵌入异常检测使用标记传感器信息的大数据集，识别异常事件。</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -581,7 +442,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/">https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</a>
+                    <a href="https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/">https://wu3227834.github.io/2023/12/12/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -619,12 +480,8 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/docker/">
-                                    <span class="chip bg-color">docker</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">学习笔记</span>
+                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">向量数据库</span>
                                 </a>
                             
                         </div>
@@ -674,13 +531,13 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/01/11/2023-01-12-chroot-pivot-root-he-switch-root-de-qu-bie/">
+                <a href="/2023/12/12/2023-12-13-vector-embeddings-for-developers/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="chroot、pivot_root 和 switch_root 的区别">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="面向开发人员的向量嵌入：基础知识">
                         
-                        <span class="card-title">chroot、pivot_root 和 switch_root 的区别</span>
+                        <span class="card-title">面向开发人员的向量嵌入：基础知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -691,14 +548,14 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-13
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
                                 </a>
                             
                             
@@ -708,8 +565,8 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
                     </a>
                     
                 </div>
@@ -723,13 +580,13 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/">
+                <a href="/2023/11/19/2023-11-20-hnsw/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="白话容器基础（二）：隔离与限制">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="像光一样搜索——HNSW算法介绍">
                         
-                        <span class="card-title">白话容器基础（二）：隔离与限制</span>
+                        <span class="card-title">像光一样搜索——HNSW算法介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -740,14 +597,14 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    极客时间——学习笔记
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
                                 </a>
                             
                             
@@ -757,12 +614,8 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
                     </a>
                     
                 </div>
