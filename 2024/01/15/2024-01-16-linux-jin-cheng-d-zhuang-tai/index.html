@@ -406,7 +406,7 @@
     <ul>
       <li>获取处于 "D" 状态的线程列表：<code>ps auxH | awk '$8 ~ /^D/&#123;print&#125;'</code></li>
       <li>显示每个线程<code>sudo cat /proc/&lt;PID&gt;/stack</code> 的堆栈：
-        <pre>for D_PID in $(ps auxH | awk '$8 ~ /^D/{print $2}');do ps -Llp $D_PID;sudo cat /proc/$D_PID/stack;echo;done</pre>
+        <code>for D_PID in $(ps auxH | awk '$8 ~ /^D/&#123;print $2&#125;');do ps -Llp $D_PID;sudo cat /proc/$D_PID/stack;echo;done</code>
       </li>
     </ul>
   </li>
@@ -418,9 +418,7 @@
 <li>如果一个进程在 D 状态停滞太久，那么内核中的“<a target="_blank" rel="noopener" href="https://access.redhat.com/solutions/31453">停滞任务</a>”逻辑将被启用</li>
 </ul>
 <h2 id="诊断步骤"><a href="#诊断步骤" class="headerlink" title="诊断步骤"></a>诊断步骤</h2><ul>
-<li>检查 ps 输出中是否有处于 D 状态的线程，可以使用类似于以下内容的内容：<pre><code>ps auxH | awk &#39;$8 ~ /^D/&#123;print&#125;&#39;
-</code></pre>
-</li>
+<li>检查 ps 输出中是否有处于 D 状态的线程，可以使用类似于以下内容的内容：<code>ps auxH | awk '$8 ~ /^D/&#123;print&#125;'</code></li>
 <li>负载可能很高而且还在增加（可能有成百甚至到数千，1 分钟负载始终高于 5 分钟，5 分钟始终高于 15 分钟，暗示报告的负载不断增加）；机器的响应能力与这个高数字不匹配（机器还能响应命令，但是如果所有核心都被占据之后，可能系统就不再响应）</li>
 <li>解决问题的第一步（假设前两个步骤得到了验证）是隔离导致这种情况的资源（最有可能的存储&#x2F;文件系统），例如查看处于 d 状态（当前工作）的进程的共同使用的文件或者目录等</li>
 <li>一旦确定了所涉及的资源，就应采取措施恢复对它的访问；根据具体情况，可能会重新获得对在线文件系统&#x2F;存储的访问，或者可能需要重新启动机器才能完全恢复（最有可能的情况）</li>
