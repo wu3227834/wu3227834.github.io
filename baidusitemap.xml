@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
     <loc>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
@@ -21,7 +17,7 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
+    <loc>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
@@ -37,11 +33,11 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</loc>
+    <loc>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</loc>
+    <loc>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
@@ -57,11 +53,11 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</loc>
+    <loc>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</loc>
+    <loc>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
@@ -69,7 +65,27 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
+    <loc>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
     <loc>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
@@ -105,38 +121,6 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-yi-xie-ji-chu-zhi-shi/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/07/2022-12-08-docker-he-k8s-de-guan-xi/</loc>
-    <lastmod>2024-02-18</lastmod>
-  </url>
-  <url>
     <loc>https://wu3227834.github.io/2022/12/11/2022-12-12-a-zhuan-zheng/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
@@ -149,11 +133,11 @@
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2022/12/01/2022-12-01-a-xin-de-kai-shi/</loc>
+    <loc>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
-    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</loc>
+    <loc>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
   <url>
@@ -166,6 +150,22 @@
   </url>
   <url>
     <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-python-zhi-jie-fu-zhi-qian-kao-bei-he-shen-du-kao-bei-jie-xi/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-yi-xie-ji-chu-zhi-shi/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/07/2022-12-08-docker-he-k8s-de-guan-xi/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/01/2022-12-01-a-xin-de-kai-shi/</loc>
+    <lastmod>2024-02-18</lastmod>
+  </url>
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</loc>
     <lastmod>2024-02-18</lastmod>
   </url>
 </urlset> 
