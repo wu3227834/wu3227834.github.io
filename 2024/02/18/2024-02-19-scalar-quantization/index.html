@@ -419,8 +419,8 @@ SQuantizer<span class="token punctuation">.</span><span class="token function">t
 <span class="token comment" spellcheck="true">// SQuantizer.add(num_db, xb);    </span>
 faiss<span class="token operator">::</span><span class="token function">write_index</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>SQuantizer<span class="token punctuation">,</span> model_path<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>在 <code>sq_train.cpp</code> 里面，对比了自己实现的训练过程结果和faiss训练出来的结果，训练出来的参数结果，两者是一致的。</p>
-<p>faiss encode的实现，如 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L328">L328</a> 所示：</p>
+<p>在 <code>sq_train.cpp</code> 里面，对比了自己实现的训练过程结果和 faiss 训练出来的结果，训练出来的参数结果，两者是一致的。</p>
+<p>faiss encode 的实现，如 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L328">L328</a> 所示：</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">encode_vector</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">float</span><span class="token operator">*</span> x<span class="token punctuation">,</span> uint8_t<span class="token operator">*</span> code<span class="token punctuation">)</span> <span class="token keyword">const</span> final <span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span>size_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> d<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">float</span> xi <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -437,7 +437,7 @@ faiss<span class="token operator">::</span><span class="token function">write_in
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>其中vdiff &#x3D; max - min。faiss decode的实现，如 <a hef="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L344">L344</a> 所示：</p>
+<p>其中 vdiff &#x3D; max - min。faiss decode 的实现，如 <a hef="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L344">L344</a> 所示：</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">decode_vector</span><span class="token punctuation">(</span><span class="token keyword">const</span> uint8_t<span class="token operator">*</span> code<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token keyword">const</span> final <span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span>size_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> d<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">float</span> xi <span class="token operator">=</span> Codec<span class="token operator">::</span><span class="token function">decode_component</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -445,7 +445,7 @@ faiss<span class="token operator">::</span><span class="token function">write_in
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>针对小白菜Scalar Quantization，小白菜实现的编解码过程，同时提供了 faiss 实现的接口调用，也提供了自己实现的接口调用，具体可以阅读 <a target="_blank" rel="noopener" href="https://github.com/willard-yuan/cvtk/blob/master/scalar_quantization/scalar_quantization/int8_quan.cc">int8_quan.cc</a>。</p>
+<p>针对小白菜 Scalar Quantization，小白菜实现的编解码过程，同时提供了 faiss 实现的接口调用，也提供了自己实现的接口调用，具体可以阅读 <a target="_blank" rel="noopener" href="https://github.com/willard-yuan/cvtk/blob/master/scalar_quantization/scalar_quantization/int8_quan.cc">int8_quan.cc</a>。</p>
 <p>另外，关于 Faiss 实现的 decode 接口，由于采用了多线程方式，在实际使用的时候，<strong>当请求解码的数据量不够大的时候，多线程的方式，性能反而下降</strong>，具体可以看这里提到的<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/issues/1530">Issue: Scale quantization decodes does not fast</a>。</p>
 
                 
