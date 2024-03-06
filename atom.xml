@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2024-03-06T09:36:01.755Z</updated>
+  <updated>2024-03-06T11:55:13.366Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://wu3227834.github.io/2024/03/05/2024-03-06-faiss-diao-yan-zi-liao/"/>
     <id>https://wu3227834.github.io/2024/03/05/2024-03-06-faiss-diao-yan-zi-liao/</id>
     <published>2024-03-05T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.755Z</updated>
+    <updated>2024-03-06T11:55:13.366Z</updated>
     
     
       
@@ -42,11 +42,36 @@
   </entry>
   
   <entry>
+    <title>量化索引：Scalar Quantization标量量化</title>
+    <link href="https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/"/>
+    <id>https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/</id>
+    <published>2024-02-18T16:00:00.000Z</published>
+    <updated>2024-03-06T11:55:13.362Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;量化索引：Scalar-Quantization-标量量化&quot;&gt;&lt;a href=&quot;#量化索引：Scalar-Quantization-标量量化&quot; class=&quot;headerlink&quot; title=&quot;量化索引：Scalar Quantization</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HDF5 文件转 vecs 文件</title>
     <link href="https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/"/>
     <id>https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</id>
     <published>2024-02-05T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.755Z</updated>
+    <updated>2024-03-06T11:55:13.362Z</updated>
     
     
       
@@ -71,7 +96,7 @@
     <link href="https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/"/>
     <id>https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/</id>
     <published>2024-01-15T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.755Z</updated>
+    <updated>2024-03-06T11:55:13.362Z</updated>
     
     
       
@@ -96,7 +121,7 @@
     <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.755Z</updated>
+    <updated>2024-03-06T11:55:13.362Z</updated>
     
     
       
@@ -121,7 +146,7 @@
     <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.755Z</updated>
+    <updated>2024-03-06T11:55:13.362Z</updated>
     
     
       
@@ -146,7 +171,7 @@
     <link href="https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/"/>
     <id>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</id>
     <published>2023-12-12T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.751Z</updated>
+    <updated>2024-03-06T11:55:13.358Z</updated>
     
     
       
@@ -171,7 +196,7 @@
     <link href="https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/"/>
     <id>https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/</id>
     <published>2023-11-19T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.747Z</updated>
+    <updated>2024-03-06T11:55:13.350Z</updated>
     
     
       
@@ -196,7 +221,7 @@
     <link href="https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/"/>
     <id>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</id>
     <published>2023-11-05T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.743Z</updated>
+    <updated>2024-03-06T11:55:13.350Z</updated>
     
     
       
@@ -221,7 +246,7 @@
     <link href="https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/"/>
     <id>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</id>
     <published>2023-10-25T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.743Z</updated>
+    <updated>2024-03-06T11:55:13.350Z</updated>
     
     
       
@@ -246,7 +271,7 @@
     <link href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
     <id>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
     <published>2023-10-10T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.743Z</updated>
+    <updated>2024-03-06T11:55:13.350Z</updated>
     
     
       
@@ -271,7 +296,7 @@
     <link href="https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/"/>
     <id>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</id>
     <published>2023-10-08T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.743Z</updated>
+    <updated>2024-03-06T11:55:13.346Z</updated>
     
     
       
@@ -296,7 +321,7 @@
     <link href="https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/"/>
     <id>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</id>
     <published>2023-09-21T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.739Z</updated>
+    <updated>2024-03-06T11:55:13.346Z</updated>
     
     
       
@@ -321,7 +346,7 @@
     <link href="https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/"/>
     <id>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</id>
     <published>2023-09-15T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.735Z</updated>
+    <updated>2024-03-06T11:55:13.342Z</updated>
     
     
       
@@ -346,7 +371,7 @@
     <link href="https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
     <id>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
     <published>2023-09-10T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.735Z</updated>
+    <updated>2024-03-06T11:55:13.342Z</updated>
     
     
       
@@ -371,7 +396,7 @@
     <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
     <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
     <published>2023-08-30T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.735Z</updated>
+    <updated>2024-03-06T11:55:13.338Z</updated>
     
     
       
@@ -398,7 +423,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.695Z</updated>
+    <updated>2024-03-06T11:55:13.302Z</updated>
     
     
       
@@ -425,7 +450,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.723Z</updated>
+    <updated>2024-03-06T11:55:13.326Z</updated>
     
     
       
@@ -454,7 +479,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.723Z</updated>
+    <updated>2024-03-06T11:55:13.330Z</updated>
     
     
       
@@ -481,7 +506,7 @@
     <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
     <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.727Z</updated>
+    <updated>2024-03-06T11:55:13.334Z</updated>
     
     
       
@@ -502,33 +527,6 @@
     <category term="火焰图" scheme="https://wu3227834.github.io/tags/%E7%81%AB%E7%84%B0%E5%9B%BE/"/>
     
     <category term="pref" scheme="https://wu3227834.github.io/tags/pref/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>寻找一种易于理解的一致性算法（扩展版）</title>
-    <link href="https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/"/>
-    <id>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</id>
-    <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2024-03-06T09:36:01.707Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;寻找一种易于理解的一致性算法（扩展版）&quot;&gt;&lt;a href=&quot;#寻找一种易于理解的一致性算法（扩展版）&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Raft" scheme="https://wu3227834.github.io/categories/Raft/"/>
-    
-    
-    <category term="Git" scheme="https://wu3227834.github.io/tags/Git/"/>
-    
-    <category term="论文学习" scheme="https://wu3227834.github.io/tags/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
