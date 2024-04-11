@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2024-04-11T14:47:56.530Z</updated>
+  <updated>2024-04-11T17:00:34.142Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>量化索引：Product Quantization 乘积量化</title>
-    <link href="https://wu3227834.github.io/2024/04/01/2024-04-01-product-quantization/"/>
-    <id>https://wu3227834.github.io/2024/04/01/2024-04-01-product-quantization/</id>
+    <link href="https://wu3227834.github.io/2024/03/31/2024-04-01-product-quantization/"/>
+    <id>https://wu3227834.github.io/2024/03/31/2024-04-01-product-quantization/</id>
     <published>2024-03-31T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.530Z</updated>
+    <updated>2024-04-11T17:00:34.142Z</updated>
     
     
       
@@ -43,10 +43,10 @@
   
   <entry>
     <title>量化索引：Scalar Quantization 标量量化</title>
-    <link href="https://wu3227834.github.io/2024/02/19/2024-02-19-scalar-quantization/"/>
-    <id>https://wu3227834.github.io/2024/02/19/2024-02-19-scalar-quantization/</id>
+    <link href="https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/"/>
+    <id>https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/</id>
     <published>2024-02-18T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.528Z</updated>
+    <updated>2024-04-11T17:00:34.142Z</updated>
     
     
       
@@ -68,10 +68,10 @@
   
   <entry>
     <title>HDF5 文件转 vecs 文件</title>
-    <link href="https://wu3227834.github.io/2024/02/06/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/"/>
-    <id>https://wu3227834.github.io/2024/02/06/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</id>
+    <link href="https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/"/>
+    <id>https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</id>
     <published>2024-02-05T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.526Z</updated>
+    <updated>2024-04-11T17:00:34.138Z</updated>
     
     
       
@@ -93,10 +93,10 @@
   
   <entry>
     <title>一文让你应对 Linux 进程 &quot;D&quot; 状态</title>
-    <link href="https://wu3227834.github.io/2024/01/16/2024-01-16-linux-jin-cheng-d-zhuang-tai/"/>
-    <id>https://wu3227834.github.io/2024/01/16/2024-01-16-linux-jin-cheng-d-zhuang-tai/</id>
+    <link href="https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/"/>
+    <id>https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/</id>
     <published>2024-01-15T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.526Z</updated>
+    <updated>2024-04-11T17:00:34.138Z</updated>
     
     
       
@@ -118,10 +118,10 @@
   
   <entry>
     <title>线程上下文切换与进程上下文切换的区别</title>
-    <link href="https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/"/>
-    <id>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</id>
+    <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/"/>
+    <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.525Z</updated>
+    <updated>2024-04-11T17:00:34.138Z</updated>
     
     
       
@@ -143,10 +143,10 @@
   
   <entry>
     <title>线程和进程的区别</title>
-    <link href="https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
-    <id>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
+    <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
+    <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.525Z</updated>
+    <updated>2024-04-11T17:00:34.138Z</updated>
     
     
       
@@ -168,10 +168,10 @@
   
   <entry>
     <title>面向开发人员的向量嵌入：基础知识</title>
-    <link href="https://wu3227834.github.io/2023/12/13/2023-12-13-vector-embeddings-for-developers/"/>
-    <id>https://wu3227834.github.io/2023/12/13/2023-12-13-vector-embeddings-for-developers/</id>
+    <link href="https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/"/>
+    <id>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</id>
     <published>2023-12-12T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.522Z</updated>
+    <updated>2024-04-11T17:00:34.138Z</updated>
     
     
       
@@ -193,10 +193,10 @@
   
   <entry>
     <title>像光一样搜索——HNSW算法介绍</title>
-    <link href="https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/"/>
-    <id>https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/</id>
+    <link href="https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/"/>
+    <id>https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/</id>
     <published>2023-11-19T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.510Z</updated>
+    <updated>2024-04-11T17:00:34.134Z</updated>
     
     
       
@@ -218,10 +218,10 @@
   
   <entry>
     <title>linux_centos 安装 cmake</title>
-    <link href="https://wu3227834.github.io/2023/11/06/2023-11-06-cmake-an-zhuang/"/>
-    <id>https://wu3227834.github.io/2023/11/06/2023-11-06-cmake-an-zhuang/</id>
+    <link href="https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/"/>
+    <id>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</id>
     <published>2023-11-05T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.509Z</updated>
+    <updated>2024-04-11T17:00:34.134Z</updated>
     
     
       
@@ -243,10 +243,10 @@
   
   <entry>
     <title>linux 安装 python 3.10</title>
-    <link href="https://wu3227834.github.io/2023/10/26/2023-10-26-linux-an-zhuang-python-3.10/"/>
-    <id>https://wu3227834.github.io/2023/10/26/2023-10-26-linux-an-zhuang-python-3.10/</id>
+    <link href="https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/"/>
+    <id>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</id>
     <published>2023-10-25T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.509Z</updated>
+    <updated>2024-04-11T17:00:34.134Z</updated>
     
     
       
@@ -268,10 +268,10 @@
   
   <entry>
     <title>向量检索简介</title>
-    <link href="https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
-    <id>https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
+    <link href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
+    <id>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
     <published>2023-10-10T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.505Z</updated>
+    <updated>2024-04-11T17:00:34.130Z</updated>
     
     
       
@@ -293,10 +293,10 @@
   
   <entry>
     <title>向量相似性解释</title>
-    <link href="https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/"/>
-    <id>https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/</id>
+    <link href="https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/"/>
+    <id>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</id>
     <published>2023-10-08T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.503Z</updated>
+    <updated>2024-04-11T17:00:34.130Z</updated>
     
     
       
@@ -318,10 +318,10 @@
   
   <entry>
     <title>什么是向量嵌入</title>
-    <link href="https://wu3227834.github.io/2023/09/22/2023-09-22-vector-embeddings/"/>
-    <id>https://wu3227834.github.io/2023/09/22/2023-09-22-vector-embeddings/</id>
+    <link href="https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/"/>
+    <id>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</id>
     <published>2023-09-21T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.499Z</updated>
+    <updated>2024-04-11T17:00:34.126Z</updated>
     
     
       
@@ -343,10 +343,10 @@
   
   <entry>
     <title>什么是向量数据库</title>
-    <link href="https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/"/>
-    <id>https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/</id>
+    <link href="https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/"/>
+    <id>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</id>
     <published>2023-09-15T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.491Z</updated>
+    <updated>2024-04-11T17:00:34.126Z</updated>
     
     
       
@@ -368,10 +368,10 @@
   
   <entry>
     <title>pycharm-2023.1 closing project window stuck</title>
-    <link href="https://wu3227834.github.io/2023/09/11/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
-    <id>https://wu3227834.github.io/2023/09/11/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
+    <link href="https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
+    <id>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
     <published>2023-09-10T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.490Z</updated>
+    <updated>2024-04-11T17:00:34.126Z</updated>
     
     
       
@@ -393,10 +393,10 @@
   
   <entry>
     <title>yum 卡住</title>
-    <link href="https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/"/>
-    <id>https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/</id>
+    <link href="https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/"/>
+    <id>https://wu3227834.github.io/2023/08/30/2023-08-31-yum-qia-zhu/</id>
     <published>2023-08-30T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.490Z</updated>
+    <updated>2024-04-11T17:00:34.126Z</updated>
     
     
       
@@ -420,10 +420,10 @@
   
   <entry>
     <title>为什么我们需要Pod？</title>
-    <link href="https://wu3227834.github.io/2023/07/07/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
-    <id>https://wu3227834.github.io/2023/07/07/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
+    <link href="https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
+    <id>https://wu3227834.github.io/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.442Z</updated>
+    <updated>2024-04-11T17:00:34.098Z</updated>
     
     
       
@@ -447,10 +447,10 @@
   
   <entry>
     <title>虚拟机 Linux 使用 perf stat 提示 cycles not supported</title>
-    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-perf-stat-wen-ti-yi/"/>
-    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-perf-stat-wen-ti-yi/</id>
+    <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/"/>
+    <id>https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.475Z</updated>
+    <updated>2024-04-11T17:00:34.114Z</updated>
     
     
       
@@ -476,10 +476,10 @@
   
   <entry>
     <title>浏览器中如何快速下载SVG图片</title>
-    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
-    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
+    <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
+    <id>https://wu3227834.github.io/2023/07/06/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.476Z</updated>
+    <updated>2024-04-11T17:00:34.114Z</updated>
     
     
       
@@ -503,10 +503,10 @@
   
   <entry>
     <title>性能测试——火焰图</title>
-    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/"/>
-    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/</id>
+    <link href="https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/"/>
+    <id>https://wu3227834.github.io/2023/07/06/2023-07-07-huo-yan-tu/</id>
     <published>2023-07-06T16:00:00.000Z</published>
-    <updated>2024-04-11T14:47:56.482Z</updated>
+    <updated>2024-04-11T17:00:34.118Z</updated>
     
     
       
