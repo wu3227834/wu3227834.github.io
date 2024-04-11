@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Pudding 个人博客</title>
+  
+  <subtitle>前尘往事，莫再提及</subtitle>
+  <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://wu3227834.github.io/"/>
+  <updated>2024-04-11T14:47:56.530Z</updated>
+  <id>https://wu3227834.github.io/</id>
+  
+  <author>
+    <name>Pudding</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>量化索引：Product Quantization 乘积量化</title>
+    <link href="https://wu3227834.github.io/2024/04/01/2024-04-01-product-quantization/"/>
+    <id>https://wu3227834.github.io/2024/04/01/2024-04-01-product-quantization/</id>
+    <published>2024-03-31T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.530Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;量化索引：Product-Quantization-乘积量化&quot;&gt;&lt;a href=&quot;#量化索引：Product-Quantization-乘积量化&quot; class=&quot;headerlink&quot; title=&quot;量化索引：Product Quantization</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>量化索引：Scalar Quantization 标量量化</title>
+    <link href="https://wu3227834.github.io/2024/02/19/2024-02-19-scalar-quantization/"/>
+    <id>https://wu3227834.github.io/2024/02/19/2024-02-19-scalar-quantization/</id>
+    <published>2024-02-18T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.528Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;量化索引：Scalar-Quantization-标量量化&quot;&gt;&lt;a href=&quot;#量化索引：Scalar-Quantization-标量量化&quot; class=&quot;headerlink&quot; title=&quot;量化索引：Scalar Quantization</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HDF5 文件转 vecs 文件</title>
+    <link href="https://wu3227834.github.io/2024/02/06/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/"/>
+    <id>https://wu3227834.github.io/2024/02/06/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</id>
+    <published>2024-02-05T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.526Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HDF5-文件转-vecs-文件&quot;&gt;&lt;a href=&quot;#HDF5-文件转-vecs-文件&quot; class=&quot;headerlink&quot; title=&quot;HDF5 文件转 vecs 文件&quot;&gt;&lt;/a&gt;&lt;center&gt;HDF5 文件转 vecs</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文让你应对 Linux 进程 &quot;D&quot; 状态</title>
+    <link href="https://wu3227834.github.io/2024/01/16/2024-01-16-linux-jin-cheng-d-zhuang-tai/"/>
+    <id>https://wu3227834.github.io/2024/01/16/2024-01-16-linux-jin-cheng-d-zhuang-tai/</id>
+    <published>2024-01-15T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.526Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一文让你应对-Linux-进程-“D”-状态&quot;&gt;&lt;a href=&quot;#一文让你应对-Linux-进程-“D”-状态&quot; class=&quot;headerlink&quot; title=&quot;一文让你应对 Linux 进程 “D” 状态&quot;&gt;&lt;/a&gt;&lt;center&gt;一文让你应对</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程上下文切换与进程上下文切换的区别</title>
+    <link href="https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/"/>
+    <id>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</id>
+    <published>2023-12-13T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.525Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;线程上下文切换与进程上下文切换的区别&quot;&gt;&lt;a href=&quot;#线程上下文切换与进程上下文切换的区别&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程和进程的区别</title>
+    <link href="https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
+    <id>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
+    <published>2023-12-13T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.525Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;线程和进程的区别&quot;&gt;&lt;a href=&quot;#线程和进程的区别&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向开发人员的向量嵌入：基础知识</title>
+    <link href="https://wu3227834.github.io/2023/12/13/2023-12-13-vector-embeddings-for-developers/"/>
+    <id>https://wu3227834.github.io/2023/12/13/2023-12-13-vector-embeddings-for-developers/</id>
+    <published>2023-12-12T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.522Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;面向开发人员的向量嵌入：基础知识&quot;&gt;&lt;a href=&quot;#面向开发人员的向量嵌入：基础知识&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>像光一样搜索——HNSW算法介绍</title>
+    <link href="https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/"/>
+    <id>https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/</id>
+    <published>2023-11-19T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.510Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HNSW算法介绍&quot;&gt;&lt;a href=&quot;#HNSW算法介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux_centos 安装 cmake</title>
+    <link href="https://wu3227834.github.io/2023/11/06/2023-11-06-cmake-an-zhuang/"/>
+    <id>https://wu3227834.github.io/2023/11/06/2023-11-06-cmake-an-zhuang/</id>
+    <published>2023-11-05T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.509Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;linux-centos-安装-cmake&quot;&gt;&lt;a href=&quot;#linux-centos-安装-cmake&quot; class=&quot;headerlink&quot; title=&quot;linux_centos 安装 cmake&quot;&gt;&lt;/a&gt;&lt;center&gt;linux_centos</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux 安装 python 3.10</title>
+    <link href="https://wu3227834.github.io/2023/10/26/2023-10-26-linux-an-zhuang-python-3.10/"/>
+    <id>https://wu3227834.github.io/2023/10/26/2023-10-26-linux-an-zhuang-python-3.10/</id>
+    <published>2023-10-25T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.509Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;linux-安装-python-3-10&quot;&gt;&lt;a href=&quot;#linux-安装-python-3-10&quot; class=&quot;headerlink&quot; title=&quot;linux 安装 python 3.10&quot;&gt;&lt;/a&gt;&lt;center&gt;linux 安装 python</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://wu3227834.github.io/categories/python/"/>
+    
+    
+    <category term="python" scheme="https://wu3227834.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>向量检索简介</title>
+    <link href="https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
+    <id>https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
+    <published>2023-10-10T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.505Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;向量检索简介&quot;&gt;&lt;a href=&quot;#向量检索简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>向量相似性解释</title>
+    <link href="https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/"/>
+    <id>https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/</id>
+    <published>2023-10-08T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.503Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;向量相似性解释&quot;&gt;&lt;a href=&quot;#向量相似性解释&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是向量嵌入</title>
+    <link href="https://wu3227834.github.io/2023/09/22/2023-09-22-vector-embeddings/"/>
+    <id>https://wu3227834.github.io/2023/09/22/2023-09-22-vector-embeddings/</id>
+    <published>2023-09-21T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.499Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是向量嵌入&quot;&gt;&lt;a href=&quot;#什么是向量嵌入&quot; class=&quot;headerlink&quot; title=&quot;什么是向量嵌入&quot;&gt;&lt;/a&gt;&lt;center&gt;什么是向量嵌入&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是向量数据库</title>
+    <link href="https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/"/>
+    <id>https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/</id>
+    <published>2023-09-15T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.491Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是向量数据库&quot;&gt;&lt;a href=&quot;#什么是向量数据库&quot; class=&quot;headerlink&quot; title=&quot;什么是向量数据库&quot;&gt;&lt;/a&gt;&lt;center&gt;什么是向量数据库&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;我们正处于 AI</summary>
+        
+      
+    
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pycharm-2023.1 closing project window stuck</title>
+    <link href="https://wu3227834.github.io/2023/09/11/2023-09-11-pycharm-2023.1-closing-project-stuck/"/>
+    <id>https://wu3227834.github.io/2023/09/11/2023-09-11-pycharm-2023.1-closing-project-stuck/</id>
+    <published>2023-09-10T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;pycharm-2023-1-closing-project-window-stuck&quot;&gt;&lt;a href=&quot;#pycharm-2023-1-closing-project-window-stuck&quot; class=&quot;headerlink&quot; title=&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="pycharm" scheme="https://wu3227834.github.io/categories/pycharm/"/>
+    
+    
+    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>yum 卡住</title>
+    <link href="https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/"/>
+    <id>https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/</id>
+    <published>2023-08-30T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;执行-yum-卡住，只能-kill-9-退出&quot;&gt;&lt;a href=&quot;#执行-yum-卡住，只能-kill-9-退出&quot; class=&quot;headerlink&quot; title=&quot; 执行 yum 卡住，只能 kill -9 退出 &quot;&gt;&lt;/a&gt;&lt;center&gt; 执行 yum</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
+    
+    <category term="那些年遇到的坑" scheme="https://wu3227834.github.io/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么我们需要Pod？</title>
+    <link href="https://wu3227834.github.io/2023/07/07/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/"/>
+    <id>https://wu3227834.github.io/2023/07/07/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</id>
+    <published>2023-07-06T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.442Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;为什么我们需要Pod？&quot;&gt;&lt;a href=&quot;#为什么我们需要Pod？&quot; class=&quot;headerlink&quot; title=&quot;为什么我们需要Pod？&quot;&gt;&lt;/a&gt;&lt;center&gt;为什么我们需要Pod？&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="极客时间——学习笔记" scheme="https://wu3227834.github.io/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="k8s" scheme="https://wu3227834.github.io/tags/k8s/"/>
+    
+    <category term="学习笔记" scheme="https://wu3227834.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>虚拟机 Linux 使用 perf stat 提示 cycles not supported</title>
+    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-perf-stat-wen-ti-yi/"/>
+    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-perf-stat-wen-ti-yi/</id>
+    <published>2023-07-06T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.475Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;虚拟机Linux使用perf-stat提示cycles-not-supported&quot;&gt;&lt;a href=&quot;#虚拟机Linux使用perf-stat提示cycles-not-supported&quot; class=&quot;headerlink&quot; title=&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="perf" scheme="https://wu3227834.github.io/tags/perf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器中如何快速下载SVG图片</title>
+    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/"/>
+    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-liu-lan-qi-ru-he-kuai-su-xia-zai-svg-tu-pian/</id>
+    <published>2023-07-06T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.476Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;浏览器中如何快速下载SVG图片&quot;&gt;&lt;a href=&quot;#浏览器中如何快速下载SVG图片&quot; class=&quot;headerlink&quot; title=&quot; 浏览器中如何快速下载SVG图片 &quot;&gt;&lt;/a&gt;&lt;center&gt; 浏览器中如何快速下载SVG图片</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="火焰图" scheme="https://wu3227834.github.io/tags/%E7%81%AB%E7%84%B0%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>性能测试——火焰图</title>
+    <link href="https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/"/>
+    <id>https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/</id>
+    <published>2023-07-06T16:00:00.000Z</published>
+    <updated>2024-04-11T14:47:56.482Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;性能测试——火焰图&quot;&gt;&lt;a href=&quot;#性能测试——火焰图&quot; class=&quot;headerlink&quot; title=&quot; 性能测试——火焰图 &quot;&gt;&lt;/a&gt;&lt;center&gt; 性能测试——火焰图 &lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;0-perf-简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="火焰图" scheme="https://wu3227834.github.io/tags/%E7%81%AB%E7%84%B0%E5%9B%BE/"/>
+    
+    <category term="pref" scheme="https://wu3227834.github.io/tags/pref/"/>
+    
+  </entry>
+  
+</feed>

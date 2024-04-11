@@ -1,0 +1,1167 @@
+<!DOCTYPE HTML>
+<html lang="zh-ch">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="什么是向量数据库, 个人博客">
+    <meta name="description" content="什么是向量数据库我们正处于 AI 智能革命的中期。向量数据库引导了伟大的创新，并正在颠覆任何与之相关的行业，但是它也带了新的挑战。对于涉及大型语言模型、生成式人工智能和语义搜索的应用程序来说，高效的数据处理变得比以往任何时候都更加重要。
+所">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>什么是向量数据库 | Pudding 个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    <div>
+                        
+                        <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                        
+                        <span class="logo-span">Pudding 个人博客</span>
+                    </div>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Pudding 个人博客</div>
+        <div class="logo-desc">
+            
+            这里是小布丁的私有小屋
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wu3227834" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wu3227834" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">什么是向量数据库</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">向量数据库</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                向量数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-09-16
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    19 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="什么是向量数据库"><a href="#什么是向量数据库" class="headerlink" title="什么是向量数据库"></a><center>什么是向量数据库</center></h1><p>我们正处于 AI 智能革命的中期。向量数据库引导了伟大的创新，并正在颠覆任何与之相关的行业，但是它也带了新的挑战。对于涉及大型语言模型、生成式人工智能和语义搜索的应用程序来说，高效的数据处理变得比以往任何时候都更加重要。</p>
+<p>所有这些新兴的应用程序都依赖于<strong>向量嵌入（vector embeddings）</strong>。这是一种数据表示形式，其中包含语义信息，这有助于人工智能获得、理解并维持能够应用在复杂任务上的长期记忆。</p>
+<p><strong>嵌入</strong>是由人工智能模型（如大型语言模型）生成的，并且具有大量属性或特性，这使得它们难以被表示。在人工智能和机器学习的背景下，这些特征代表了数据的不同维度，如何“精准”地表示它们，这取决于数据库的理解模式、关系和底层结构。</p>
+<p>这就是为什么我们需要专门为处理此类数据而设计的专用数据库。像 Pinecone 这样的<strong>向量数据库</strong>通过为嵌入提供优化的存储和查询功能来满足这一要求。向量数据库不仅传统标量数据库所没有的专门处理向量嵌入的能力，还具有独立向量索引的能力。</p>
+<p>使用向量嵌入的挑战在于，传统的基于标量的数据库无法跟上此类数据的复杂性和规模，所以难以捕捉关键语义并进行实时分析。这恰巧就是向量数据库的优势——它们专门为高效、灵活地处理此类数据而生。</p>
+<p>借助向量数据库，我们可以为人工智能添加更高级的功能，比如语义信息检索、长期记忆等等。下图能够让我们更好地理解向量数据库在此类应用中的作用：</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image1.png" alt="向量数据库的应用"></p>
+<p>让我们来分析一下：</p>
+<ol>
+<li>首先，我们使用<strong>嵌入模型</strong>为我们想要索引的<strong>内容</strong>创建<strong>向量嵌入</strong>。</li>
+<li>参考创建嵌入的原始内容，将向量<strong>嵌入</strong>写入到<strong>向量数据库</strong>中。</li>
+<li>当<strong>应用程序</strong>发出查询时，我们使用相同的<strong>嵌入模型</strong>为查询创建嵌入，并使用这些嵌入在<strong>数据库</strong>中查询类似的向量嵌入。如前所述，这些类似的嵌入与用于创建它们的原始<strong>内容相关联</strong>。</li>
+</ol>
+<h2 id="向量索引和向量数据库的区别是什么"><a href="#向量索引和向量数据库的区别是什么" class="headerlink" title="向量索引和向量数据库的区别是什么"></a>向量索引和向量数据库的区别是什么</h2><p>像 FAISS（Facebook AI 相似性搜索）这样的独立向量索引可以显著改善向量嵌入的搜索和检索，但它们缺乏数据库所具备的基础能力，例如存储。另一方面，向量数据库是专门为管理向量嵌入而构建的，与使用独立向量索引相比具有以下优势：</p>
+<ol>
+<li><p><strong>数据管理</strong>：向量数据库提供简单易用的数据存储功能，例如插入、删除和更新数据。这使得管理和维护向量数据比使用 FAISS 等独立向量索引更容易，后者需要额外的工作才能与存储解决方案集成。</p>
+</li>
+<li><p><strong>元数据存储和过滤</strong>：向量数据库可以存储与每个向量条目关联的元数据。然后，用户可以使用附加的元数据过滤器来查询数据库，以进行更细粒度的查询。</p>
+</li>
+<li><p><strong>可扩展性</strong>：向量数据库能够随着数据量和用户需求的增长而扩展，为分布式和并行处理提供更好的支持。独立向量索引可能需要定制解决方案来实现类似级别的可扩展性（例如在 Kubernetes 集群或其他类似系统上部署和管理它们）。</p>
+</li>
+<li><p><strong>实时更新</strong>：向量数据库通常支持实时数据更新，允许对数据进行动态更改，而独立向量索引可能需要完整的重新索引过程来合并新数据，这可能非常耗时且计算成本高昂。</p>
+</li>
+<li><p><strong>备份和收集</strong>：对于向量数据库来说，处理备份数据库中存储的所有数据是常规操作。Pinecone 还允许用户选择特定的索引，采用“集合”的形式进行数据备份。</p>
+</li>
+<li><p><strong>生态系统集成</strong>：向量数据库可以更轻松地与数据处理生态系统的其他组件集成，例如 ETL 管道（如 Spark）、分析工具（如Tableau 和 Segment）和可视化平台（如 Grafana），从而简化数据管理工作流程。它还可以与其他人工智能相关工具（例如LangChain、LlamaIndex 和 ChatGPT 的插件）轻松集成。</p>
+</li>
+<li><p><strong>数据安全和访问控制</strong>：向量数据库通常提供内置数据安全功能和访问控制机制来保护敏感信息，这在独立的向量索引解决方案中可能无法实现。</p>
+</li>
+</ol>
+<p>简而言之，向量数据库解决了独立向量指数的局限性（例如可扩展性挑战、繁琐的集成过程以及缺乏实时更新和内置安全措施），从而为处理向量嵌入提供了一个优越的解决方案，确保更有效和更精简的数据管理经验。</p>
+<h2 id="向量数据库是如何工作的"><a href="#向量数据库是如何工作的" class="headerlink" title="向量数据库是如何工作的"></a>向量数据库是如何工作的</h2><p>我们都或多或少地了解传统数据库的工作原理，它们在行和列中存储字符串、数字和其他类型的标量数据。但是，向量数据库对向量进行操作，因此其优化和查询的方式和传统数据库有很大的不同。</p>
+<p>在传统数据库中，我们通常在数据库中检索与查询值完全匹配的行；但在向量数据库中，我们应用相似性度量来查找与我们的查询<strong>最相似</strong>的向量。</p>
+<p>向量数据库使用不同算法的组合，这些算法都参与了近似最近邻 (ANN) 搜索。这些算法通过散列、量化或基于图的搜索来优化搜索。</p>
+<p>这些算法组合成一个流水线，可以快速准确地检索所查询向量的邻居。由于向量数据库提供<strong>近似</strong>结果，因此主要权衡是精度和速度。结果越准确，查询的速度就越慢。然而，一个好的系统可以提供近乎完美的精度超快搜索。</p>
+<p>这是向量数据库的常见流程：</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image2.png" alt="向量数据库常见流程"></p>
+<ol>
+<li><p><strong>索引（indexing）</strong>：向量数据库使用 PQ、LSH 或 HNSW 等算法对向量进行索引（更多内容见下文）。此步骤将向量映射到能够更快搜索的数据结构中。</p>
+</li>
+<li><p><strong>查询（querying）</strong>：向量数据库将索引查询向量与数据集中的索引向量进行比较，以找到最近的邻居（应用该索引使用的相似性度量）</p>
+</li>
+<li><p><strong>后期处理（post processing）</strong>：在某些情况下，向量数据库从数据集中检索最终的最近邻，并对它们进行后处理以返回最终结果。该步骤可以包括使用不同的相似性度量对最近邻居重新排序。</p>
+</li>
+</ol>
+<p>下面，我们将更详细地讨论这些算法，并解释它们如何提升向量数据库的整体性能。</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>有很多算法可以促进向量索引的创建。他们的共同目标是通过创建可快速遍历的数据结构来实现快速查询。它们通常会将原始向量的表示形式转换为压缩形式，以优化查询过程。</p>
+<p>然而，作为 Pinecone 的用户，您无需担心这些各种算法的复杂性和选择。Pinecone 旨在处理幕后的所有复杂性和算法决策，确保您轻松获得最佳性能和结果。通过利用 Pinecone 的专业知识，您可以专注于真正重要的事情——提取有价值的见解并提供强大的 AI 解决方案。</p>
+<p>以下部分将探讨几种算法及其处理向量嵌入的独特方法。</p>
+<h4 id="随即投影"><a href="#随即投影" class="headerlink" title="随即投影"></a>随即投影</h4><p><strong>随机投影背后的基本思想是使用随机投影矩阵</strong>将高维向量投影到低维空间。我们创建一个随机数矩阵。矩阵的大小将是我们想要的目标低维值。然后我们计算输入向量和矩阵的点积，这会产生一个投影矩阵，其维度比原始向量少，但仍保留它们的相似性。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image3.png" alt="随记投影算法"></p>
+<p>当我们查询时，我们使用相同的投影矩阵将查询向量投影到低维空间。然后，将投影查询向量与数据库中的投影向量进行比较，寻找最近邻。由于数据的维数降低了，因此搜索过程比搜索整个高维空间要快得多。</p>
+<p>请记住，随机投影是一种近似方法，投影质量取决于投影矩阵的属性。一般来说，投影矩阵越随机，投影的质量就越好。但生成一个真正随机的投影矩阵的计算成本可能很高，尤其是对于大型数据集。</p>
+<h4 id="乘积量化"><a href="#乘积量化" class="headerlink" title="乘积量化"></a>乘积量化</h4><p>另一种建立索引的方法是乘积量化(product quulization，PQ) ，这是一种用于高维向量（如向量嵌入）的有损数据压缩技术。它获取原始向量，将其分解成更小的块，通过为每个块创建一个代表性的”编码”来简化每个块的表示，然后将所有块放回到一起——而不会丢失对相似性操作至关重要的信息。PQ 的过程可以分为四个步骤: 拆分、训练、编码和查询。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image4.png" alt="乘积量化算法"></p>
+<ol>
+<li><strong>拆分</strong>：向量被分成多个片段。</li>
+<li><strong>训练</strong>：我们为每个片段建立一个“编码本”。简单地说，就是该算法会生成一个可以分配给向量的潜在“编码”池。实际上，这个“编码本”是由对每个向量片段的执行 K 均值算法而创建的聚类中心点组成。我们在片段编码本中值数量与 K 均值算法中使用的值的数量相同。</li>
+<li><strong>编码</strong>：算法为每个片段分配指定的编码。实际上，我们在训练完成后会在编码本中找到与每个向量段最接近的值。该片段的 PQ 编码将是编码本中相应值的标识符。我们可以使用任意数量的 PQ 编码，这意味着我们可以从编码本中选择多个值来表示每个段。</li>
+<li><strong>查询</strong>：当我们查询时，算法会将查询向量分解成多个子向量，并使用相同的编码本对它们进行量化。然后，使用索引编码来查找最接近查询向量的向量。</li>
+</ol>
+<p>编码本中代表向量的数目是表示的准确性和搜索编码本的计算成本之间的权衡。编码本中的具有代表性的向量越多，子空间中向量的表示就越精准，但是搜索编码本的计算成本就越高。反之，编码本中的代表向量越少，表示的精度越低，但计算成本越低。</p>
+<h4 id="局部敏感哈希"><a href="#局部敏感哈希" class="headerlink" title="局部敏感哈希"></a>局部敏感哈希</h4><p>局部敏感哈希（LSH）是一种在近似最近邻搜索上下文中建立索引的技术。它不仅优化了查询速度，还能提供一个近似的、非详尽的结果。LSH 使用一组哈希函数将相似的向量映射道“桶”中，如下图所示：</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image5.png" alt="局部敏感哈希算法"></p>
+<p>为了找到给定查询向量的最近邻，我们使用与将相似向量“存储”到哈希表中相同的哈希函数。查询向量被散列到特定的表中，然后与同一表中的其他向量进行比较，以找到最接近的匹配。这种方法比搜索整个数据集要快得多，因为每个哈希表中的向量比整个空间中的向量要少得多。</p>
+<p>但是 LSH 是一种近似方法，近似的质量取决于哈希函数的属性。一般来说，使用的哈希函数越多，近似质量就越好。但是，使用大量哈希函数的计算成本可能很高，并且 LSH 对于大型数据集可能不可行。</p>
+<h4 id="分层可导航小世界（HNSW）"><a href="#分层可导航小世界（HNSW）" class="headerlink" title="分层可导航小世界（HNSW）"></a>分层可导航小世界（HNSW）</h4><p>HNSW 创建了一个分层的树状结构，其中树的每个节点代表一组向量。节点直接的边代表向量之间的相似度。该算法首先创建一组节点，每个节点都具有少量的向量；这可以是随即完成，也可以通过使用 k 均值等算法对向量进行聚类来完成，其中每个聚类都成为一个节点。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image6.png" alt="聚类节点"></p>
+<p>然后，该算法检查每个节点的向量，并在该节点和具有最相似向量的节点之间绘制一条边。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image7.png" alt="聚类树"></p>
+<p>当我们查询 HNSW 索引时，它使用此图在树中导航，访问最有可能包含与查询向量最接近的向量的节点。</p>
+<h4 id="相似度量"><a href="#相似度量" class="headerlink" title="相似度量"></a>相似度量</h4><p>在前面讨论的算法的基础上，我们需要了解相似度量在向量数据库中的作用。这些度量是向量数据库如何比较和识别给定查询的最相关结果的基础。</p>
+<p>相似性度量是用于确定向量空间中两个向量相似程度的数学方法。在向量数据库中使用相似性度量来比较存储在数据库中的向量，并找出与给定查询向量最相似的向量。</p>
+<p>可以使用多种相似性度量，包括：</p>
+<ul>
+<li><strong>余弦相似度</strong>：计算向量空间中两个向量之间夹角的余弦。取值范围是 -1 到 1，其中 1 表示相同的向量，0 表示正交向量，-1 表示完全相反的向量。</li>
+<li><strong>欧式距离</strong>：计算向量空间内两个向量之间的直线距离。它的范围是从 0 到无穷大，其中 0 表示相同的向量，越大的值表示越不相似的向量。</li>
+<li><strong>点积</strong>：计算两个向量的大小玉他们之间夹角的乘积。范围为 -∞ 到 ∞，其中正值表示指向相同方向的向量，0 表示正交向量，负值表示指向相反方向的向量。</li>
+</ul>
+<p>相似性度量的选择会对从向量数据库获得的结果产生影响。还需要注意的是，每种相似性度量都有其自身的优点和缺点，因此根据用例和需求选择正确的相似性度量非常重要。</p>
+<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>数据库中存储的每个向量还包括元数据。除了能够查询相似的向量之外，向量数据库还可以基于元数据查询过滤结果。为此，向量数据库通常维护两个索引: 向量索引和元数据索引。然后，在向量搜索本身之前或之后执行元数据过滤，但是在这两种情况下，都会导致查询过程变慢。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image8.png" alt="预过滤"></p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image9.png" alt="后过滤"></p>
+<p>过滤过程可以在向量搜索本身之前或之后执行，但每种方法都有其自身的挑战，可能会影响查询性能：</p>
+<ol>
+<li><strong>预过滤</strong>：在这种方法中，元数据过滤是在向量搜索之前完成的。虽然这有助于减少搜索空间，但也可能导致系统忽略与元数据过滤条件不匹配的相关结果。此外，广泛的元数据过滤可能会由于增加的计算开销而减慢查询过程。</li>
+<li><strong>后过滤</strong>：在这种方法中，元数据过滤是在向量搜索之后完成的。这可以确保考虑所有相关结果，但因为搜索完成后需要过滤掉不相关的结果，可能会带来额外的开销并减慢查询过程，</li>
+</ol>
+<p>为了优化过滤过程，向量数据库使用各种技术，例如利用高级元数据索引方法或使用并行处理来加速过滤任务。平衡搜索性能和过滤精度对于在向量数据库中提供有效和相关的查询结果至关重要。</p>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><p>与向量索引不同，向量数据库配备了一组功能，使其更适于大规模生产环境。让我们看一下操作数据库所涉及的组件的总体概述。</p>
+<p><img src="/2023/09/16/2023-09-16-vector-database/image10.png" alt="数据库操作"></p>
+<h3 id="性能与容错"><a href="#性能与容错" class="headerlink" title="性能与容错"></a>性能与容错</h3><p>性能与容错密切相关。我们拥有的数据越多，需要的节点就越多，出现错误和失败的可能性也就越大。与其他类型的数据库一样，我们希望确保即使某些底层节点发生故障，查询也能尽快执行。这可能是由于硬件故障、网络故障或其他类型的技术错误造成的。这种故障可能导致停机，甚至查询结果不正确。</p>
+<p>为了确保高性能和容错能力，向量数据库使用分片和副本：</p>
+<ol>
+<li><strong>分片</strong>：将数据分片，并存储到多个节点。有不同的方法来划分数据，例如可以通过不同数据簇的相似性进行分片，以便将相似的向量存储在同一分片中。当进行查询时，它会被发送到所有分片，并检索和组合结果。这称为“分散-聚集”模式。</li>
+<li><strong>副本</strong>：跨不同节点创建数据的多个副本。这确保即使特定节点发生故障，其他节点也能够替代它。一致性模型主要有两种：最终一致性和强一致性。最终一致性允许不同数据副本之间出现临时不一致，这将提高可用性并减少延迟，但可能会导致冲突甚至数据丢失；强一致性要求在写入操作被视为完成之前更新所有数据副本，这种方法提供了更强的一致性，但可能会导致更高的延迟。</li>
+</ol>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><p>为了有效地管理和维护向量数据库，我们需要一个强大的监控系统来跟踪数据库的性能、健康状况和整体状态。监控对于发现潜在问题、优化性能和确保生产顺利运行至关重要。监控向量数据库的一些方面包括以下内容：</p>
+<ol>
+<li><strong>资源使用情况</strong>：监视资源使用情况，如 CPU、内存、磁盘空间和网络活动，可以识别可能影响数据库性能的潜在问题或资源限制。</li>
+<li><strong>查询性能</strong>：查询延迟、吞吐量和错误率可能表明需要解决的潜在系统问题。</li>
+<li><strong>系统运行状况</strong>：整个系统健康状况监视包括各个节点的状态、复制过程和其他关键组件。</li>
+</ol>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>访问控制是管理和规范用户对数据和资源的访问的过程。它是数据安全的重要组成部分，确保只有授权用户才能查看、修改向量数据库中存储的敏感数据或与之交互。</p>
+<p>访问控制很重要，原因如下：</p>
+<ol>
+<li><strong>数据保护</strong>：由于人工智能应用程序经常处理敏感和机密信息，实施严格的访问控制机制有助于保护数据免遭未经授权的访问和潜在的泄露。</li>
+<li><strong>合规性</strong>：许多行业，例如医疗保健和金融，都受到严格的数据隐私法规的约束。实施适当的访问控制有助于组织遵守这些法规，保护他们免受法律和财务影响。</li>
+<li><strong>问责制和审计</strong>：访问控制机制使组织能够在向量数据库中维护用户活动的记录。此信息对于审核目的至关重要，当发生安全漏洞时，它有助于追踪任何未经授权的访问或修改。</li>
+<li><strong>可扩展性和灵活性</strong>：随着组织的成长和发展，他们的访问控制需求可能会发生变化。强大的访问控制系统允许无缝修改和扩展用户权限，确保数据安全在组织的整个发展过程中保持完整。</li>
+</ol>
+<h3 id="备份和收藏"><a href="#备份和收藏" class="headerlink" title="备份和收藏"></a>备份和收藏</h3><p>当所有其他方法都失败时，向量数据库提供了依赖定期创建备份的能力。这些备份可以存储在外部存储系统或基于云的存储服务上，确保数据的安全性和可恢复性。如果发生数据丢失或损坏，这些备份可用于将数据库恢复到之前的状态，从而最大限度地减少停机时间和对整个系统的影响。</p>
+<h3 id="API-和-SDKs"><a href="#API-和-SDKs" class="headerlink" title="API 和 SDKs"></a>API 和 SDKs</h3><p>这就是橡胶与道路相遇的地方：与数据库交互的开发人员希望通过易于使用的 API、使用熟悉且舒适的工具集来完成此操作。通过提供用户友好的界面，向量数据库 API 层简化了高性能向量搜索应用程序的开发。</p>
+<p>除了 API 之外，向量数据库通常还会提供包装 API 的特定于编程语言的 SDK。SDK 使开发人员可以更轻松地在应用程序中与数据库进行交互。这使得开发人员能够专注于他们的特定用例，例如语义文本搜索、生成问答、混合搜索、图像相似性搜索或产品推荐，而不必担心底层基础设施的复杂性。</p>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>向量嵌入在自然语言处理、计算机视觉和其他人工智能应用等领域呈指数级增长，导致了向量数据库作为计算引擎的出现，使我们能够与应用程序中的向量嵌入进行有效交互。</p>
+<p>向量数据库是专门用来处理生产场景中管理向量嵌入时出现的问题的数据库。因此，与传统的基于标量的数据库和独立的向量索引相比，它们具有明显的优势。</p>
+<p>在这篇文章中，我们回顾了向量数据库的关键方面，包括它的工作原理、它使用的算法以及使其为生产场景做好操作准备的附加功能。我们希望这可以帮助您了解向量数据库的内部工作原理。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/vector-database/">What is a Vector Database?</a></li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Pudding</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/">https://wu3227834.github.io/2023/09/16/2023-09-16-vector-database/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Pudding</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">向量数据库</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/09/22/2023-09-22-vector-embeddings/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="什么是向量嵌入">
+                        
+                        <span class="card-title">什么是向量嵌入</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    向量数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">向量数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/09/11/2023-09-11-pycharm-2023.1-closing-project-stuck/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="pycharm-2023.1 closing project window stuck">
+                        
+                        <span class="card-title">pycharm-2023.1 closing project window stuck</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/pycharm/" class="post-category">
+                                    pycharm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
+                        <span class="chip bg-color">那些年遇到的坑</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2024</span>
+            
+            <a href="/about" target="_blank">Pudding</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">86.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "12";
+                        var startDate = "1";
+                        var startHour = "23";
+                        var startMinute = "39";
+                        var startSecond = "28";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-ch';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/wu3227834" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wu3227834@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1724941011" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1724941011" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
