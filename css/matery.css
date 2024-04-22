@@ -285,6 +285,7 @@ header .nav-transparent {
     box-shadow: none;
 }
 
+/* 默认样式，适用于电脑屏幕 */
 header nav .brand-span {
     font-size: 1.45rem;
 }
@@ -297,6 +298,22 @@ header .brand-logo .logo-img {
 
 header .brand-logo .logo-span {
     font-size: 1.6rem;
+}
+
+/* 当设备屏幕宽度小于 600px 时，适用于手机屏幕 */
+
+@media screen and (max-width: 600px) {
+    header nav .brand-span {
+        font-size: 1rem;
+    }
+
+    header .brand-logo .logo-img {
+        height: 30px;
+    }
+
+    header .brand-logo .logo-span {
+        font-size: 1.2rem;
+    }
 }
 
 /*修改顶部 logo 的文字垂直对齐为 top，避免默认 middle 看起来偏下*/

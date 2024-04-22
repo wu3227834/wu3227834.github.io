@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="HDF5 文件转 vecs 文件, 个人博客">
-    <meta name="description" content="HDF5 文件转 vecs 文件HDF5 文件的结构一个 HDF5 格式的文件是一个包含两个对象的容器，一个是数据集（datasets），另一个是组（groups）。数据集的结构非常类似于 Numpy 的 array，组的结构非常类似于 p">
+    <meta name="keywords" content="Linux 性能调优基础：top, 个人博客">
+    <meta name="description" content="Linux 性能调优基础：toptop 命令是 linux 下常用的性能分析工具，能够实时显示系统中各个进程的资源占用使用情况，类似于 windos 的任务窗口。
+top 理论#top - 16:55:39 up 220 days,  1:">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>HDF5 文件转 vecs 文件 | Pudding 个人博客</title>
+    <title>Linux 性能调优基础：top | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -291,12 +292,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">HDF5 文件转 vecs 文件</h1>
+                    <h1 class="description center-align post-title">Linux 性能调优基础：top</h1>
                 </div>
             </div>
         </div>
@@ -320,8 +321,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">向量数据库</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">性能测试</span>
                             </a>
                         
                     </div>
@@ -332,8 +337,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                向量数据库
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-category">
+                                性能测试
                             </a>
                         
                     </div>
@@ -345,7 +350,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-06
+                    2024-04-07
                 </div>
                 
 
@@ -354,14 +359,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    986
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -376,109 +381,177 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="HDF5-文件转-vecs-文件"><a href="#HDF5-文件转-vecs-文件" class="headerlink" title="HDF5 文件转 vecs 文件"></a><center>HDF5 文件转 vecs 文件</center></h1><h2 id="HDF5-文件的结构"><a href="#HDF5-文件的结构" class="headerlink" title="HDF5 文件的结构"></a>HDF5 文件的结构</h2><p>一个 HDF5 格式的文件是一个包含两个对象的容器，一个是<strong>数据集</strong>（datasets），另一个是<strong>组</strong>（groups）。数据集的结构非常类似于 Numpy 的 <strong>array</strong>，组的结构非常类似于 python 的字典，它像一个文件夹一样，它可以包含数据集和其它的组。总结起来：<strong>组像字典一样工作，数据集像 NumPy 数组一样工作</strong>。</p>
-<p>拿 HDF5 格式数据集 <strong>gist-960-euclidean.hdf5</strong> 为例（<a target="_blank" rel="noopener" href="http://ann-benchmarks.com/gist-960-euclidean.hdf5">下载地址</a>），整个文件有一个根组，就是下图的”&#x2F;“。</p>
-<p><img src="/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/pho1.jpg" alt="HDF5 文件结构示意图"></p>
-<p>根组下有四个键，分别为 <strong>distances</strong>、<strong>neighbors</strong>、<strong>test</strong> 和 <strong>train</strong>，类比于上图中的 A、B 和 C。</p>
-<ul>
-<li><strong>distances</strong> 对应的是 shape 为 (<strong>1000</strong>, <strong>100</strong>) 的数据集（类比于 Numpy 的 <strong>array</strong>），为每个查询向量最近的 100 个向量距该查询向量的距离，数据类型为 <strong>float32</strong></li>
-<li><strong>neighbors</strong> 对应的是 shape 为 (<strong>1000, 100</strong>) 的数据集，为每个查询向量最近的 100 个向量，数据类型为 <strong>int32</strong></li>
-<li><strong>test</strong> 对应的是 shape 为 (<strong>1000000, 960</strong>) 的数据集，这是基数据（原始数据），一共 1000000 个向量，每个向量的维度为 960 维，数据类型为 <strong>float32</strong></li>
-<li><strong>train</strong> 对应的是 shape 为 (<strong>1000, 960</strong>) 的数据集，只是查询数据，一共 1000 个向量，向量的维度为 960 维，数据类型为 <strong>float32</strong></li>
-</ul>
-<h2 id="vecs-文件的结构"><a href="#vecs-文件的结构" class="headerlink" title="vecs 文件的结构"></a>vecs 文件的结构</h2><p><img src="/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/pho2.jpg" alt="vecs 文件结构示意图"></p>
-<p>在常用的公开数据集中，<strong>数据集文件、查询文件</strong>往往使用 fvecs 格式存储。而<strong>真值集（即查询的答案）文件</strong>使用 ivecs 格式存储。其实这两种格式十分相似。</p>
-<h3 id="fvecs"><a href="#fvecs" class="headerlink" title="fvecs"></a>fvecs</h3><p>数据集、查询集采用fvecs格式，其实他们是完全相同的东西。在数据集中，存储的是所有向量，而查询集中，存储的同样是向量，只是向量数量会少一些。</p>
-<p>fvecs 采用<strong>二进制</strong>来存储，直接打开便是乱码。</p>
-<p>下面用一张图来表示 fvecs 的大致格式：</p>
-<p><img src="/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/pho3.jpg" alt="fvecs 文件格式示意图"></p>
-<p>每一“行”中，<strong>第一个数表示数据的维度 dim，后面跟着的 dim 个数便是向量各维度的值</strong>。(注：fvecs 中的 f 指 <strong>float32</strong>)</p>
-<p>因此，一“行”表示的便是一个向量。</p>
-<h3 id="ivecs"><a href="#ivecs" class="headerlink" title="ivecs"></a>ivecs</h3><p>ivecs 其实和 fvecs 的格式是一样的，只不过它存储的不是向量，而是每一条查询的答案。</p>
-<p>就是说，ivecs 里的每一“行”里，<strong>第一个数据是查询答案的数量 n，后面 n 个数是答案向量的 id</strong>。(注：ivecs 中的 i 指 <strong>int32</strong>)</p>
-<h2 id="HDF5-转-vecs-脚本"><a href="#HDF5-转-vecs-脚本" class="headerlink" title="HDF5 转 vecs 脚本"></a>HDF5 转 vecs 脚本</h2><pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">'''
-Author: pudding
-Date: 2024-02-02 10:15:39
-'''</span>
-<span class="token keyword">import</span> argparse
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> h5py
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">import</span> struct
+                <h1 id="Linux-性能调优基础：top"><a href="#Linux-性能调优基础：top" class="headerlink" title="Linux 性能调优基础：top"></a><center>Linux 性能调优基础：top</center></h1><p>top 命令是 linux 下常用的性能分析工具，能够实时显示系统中各个进程的资源占用使用情况，类似于 windos 的任务窗口。</p>
+<h2 id="top-理论"><a href="#top-理论" class="headerlink" title="top 理论"></a>top 理论</h2><pre class=" language-shell"><code class="language-shell">#top - 16:55:39 up 220 days,  1:16,  4 users,  load average: 299.05, 217.84, 106.90
+Tasks: 3355 total,  12 running, 3339 sleeping,   3 stopped,   1 zombie
+%Cpu(s): 40.7 us, 38.9 sy,  0.0 ni,  0.1 id,  0.0 wa, 20.1 hi,  0.2 si,  0.0 st
+MiB Mem : 257336.1 total,  17260.1 free,  77063.5 used, 163012.4 buff/cache
+MiB Swap:  32768.0 total,  19075.1 free,  13692.9 used.  42491.5 avail Mem
 
-<span class="token keyword">import</span> sklearn<span class="token punctuation">.</span>preprocessing
-
-<span class="token keyword">def</span> <span class="token function">load_hdf5_file</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'loading：'</span><span class="token operator">+</span> filename<span class="token punctuation">)</span>
-    hdf5_f <span class="token operator">=</span> h5py<span class="token punctuation">.</span>File<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'load done !'</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> hdf5_f
-
-<span class="token keyword">def</span> <span class="token function">to_fvecs</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> y <span class="token keyword">in</span> data<span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 将 y.size（dim） 以 C++ 的 unsigned int 的形式写入二进制文件</span>
-            d <span class="token operator">=</span> struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'I'</span><span class="token punctuation">,</span> y<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
-            fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>d<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> x <span class="token keyword">in</span> y<span class="token punctuation">:</span>
-                <span class="token comment" spellcheck="true"># 将 x（vector）以 C++ 的 float 的形式写入二进制文件</span>
-                a <span class="token operator">=</span> struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>	
-                fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">to_ivecs</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> y <span class="token keyword">in</span> data<span class="token punctuation">:</span>
-            d <span class="token operator">=</span> struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'I'</span><span class="token punctuation">,</span> y<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
-            fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>d<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> x <span class="token keyword">in</span> y<span class="token punctuation">:</span>
-                a <span class="token operator">=</span> struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'I'</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
-                fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>file_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    dataset <span class="token operator">=</span> load_hdf5_file<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>
-
-    dimension <span class="token operator">=</span> int<span class="token punctuation">(</span>dataset<span class="token punctuation">.</span>attrs<span class="token punctuation">[</span><span class="token string">"dimension"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token string">"dimension"</span> <span class="token keyword">in</span> dataset<span class="token punctuation">.</span>attrs <span class="token keyword">else</span> len<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">"train"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'======== HDF5 Basic Information ========'</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'dataset dimension：'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>dimension<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    filename <span class="token operator">=</span> file_path<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-    dataname <span class="token operator">=</span> filename<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-
-    X_train <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">"train"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    X_test <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">"test"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    distance <span class="token operator">=</span> dataset<span class="token punctuation">.</span>attrs<span class="token punctuation">[</span><span class="token string">"distance"</span><span class="token punctuation">]</span>
-
-    <span class="token comment" spellcheck="true"># if distance == "angular":</span>
-    <span class="token comment" spellcheck="true">#     X_train = sklearn.preprocessing.normalize(X_train, axis=1, norm="l2")</span>
-    <span class="token comment" spellcheck="true">#     X_test /= np.linalg.norm(X_test)</span>
-    
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Dataname："</span> <span class="token operator">+</span> dataname<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"distance："</span><span class="token punctuation">,</span> distance<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"got a train set of size (%d * %d)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dimension<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"got %d queries"</span> <span class="token operator">%</span> len<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'======== HDF5 to vesc ========'</span><span class="token punctuation">)</span>
-    dataset_dir <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'./vecs'</span><span class="token punctuation">,</span> dataname<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">)</span>
-    
-    to_fvecs<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_base.fvecs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> X_train<span class="token punctuation">)</span>
-    to_fvecs<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_query.fvecs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> X_test<span class="token punctuation">)</span>
-
-    to_ivecs<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_groundtruth.ivecs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dataset<span class="token punctuation">[</span><span class="token string">'neighbors'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dataset['train'] to "</span><span class="token operator">+</span> str<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_base.fvecs'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dataset['test'] to "</span><span class="token operator">+</span> str<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_query.fvecs'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dataset['neighbors'] to "</span><span class="token operator">+</span> str<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>dataset_dir<span class="token punctuation">,</span> dataname<span class="token operator">+</span><span class="token string">'_groundtruth.ivecs'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"Run the script with file path input"</span><span class="token punctuation">)</span>
-    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"--file_path"</span><span class="token punctuation">,</span> type<span class="token operator">=</span>str<span class="token punctuation">,</span> required<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"Path to the input file"</span><span class="token punctuation">)</span>
-    args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    run<span class="token punctuation">(</span>args<span class="token punctuation">.</span>file_path<span class="token punctuation">)</span>
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
 </code></pre>
+<p>统计信息区前五行是系统整体的统计信息。第一行是任务队列信息，同 uptime 命令的执行结果。其内容如下：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>16:55:39</td>
+<td>当前时间</td>
+</tr>
+<tr>
+<td>up 220 days</td>
+<td>系统运行时间</td>
+</tr>
+<tr>
+<td>4 users</td>
+<td>当前登录用户数</td>
+</tr>
+<tr>
+<td>load average: 299.05, 217.84, 106.90</td>
+<td>系统负载，即任务队列平均长度。分别为 1、5、15 min 前到现在平均值</td>
+</tr>
+</tbody></table>
+<p>第二、三行为进程和 CPU 的信息。当有多个 CPU 时，这些内容可能会超过两行。内容如下：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tasks: 3355 total</td>
+<td>进程总数[键入 H 可查看线程数]</td>
+</tr>
+<tr>
+<td>12 running, 3339 sleeping, 3 stopped</td>
+<td>正在运行的进程、睡眠进程、停止的进程</td>
+</tr>
+<tr>
+<td>1 zombie</td>
+<td>僵尸进程数</td>
+</tr>
+<tr>
+<td>%Cpu(s): 40.7 us, 38.9 sy</td>
+<td>用户空间占用 CPU 百分比、内核空间占用 CPU 百分比</td>
+</tr>
+<tr>
+<td>0.0 ni, 0.1 id</td>
+<td>用户进程空间内改变进程优先级占用 CPU、空闲 CPU 百分比</td>
+</tr>
+<tr>
+<td>0.0 wa, 20.1 hi, 0.2 si, 0.0 st</td>
+<td>等待 IO 的 CPU 时间百分比，最后三个是中断请求相关</td>
+</tr>
+</tbody></table>
+<p>倒数第二、三行为内存相关信息：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiB Mem</td>
+<td>表示系统内存的使用情况</td>
+</tr>
+<tr>
+<td>MiB Swap</td>
+<td>表示交换空间（虚拟内存）的使用情况</td>
+</tr>
+<tr>
+<td>xxx total, xxx free, xxx used</td>
+<td>分别是内存总量、空闲内存总量、使用内存总量</td>
+</tr>
+<tr>
+<td>xxx buff&#x2F;cache</td>
+<td>被用作缓冲或缓存的内存量</td>
+</tr>
+<tr>
+<td>xxx avail Mem</td>
+<td>可用的交换空间</td>
+</tr>
+</tbody></table>
+<ul>
+<li>buffe <a target="_blank" rel="noopener" href="http://wiki.answers.com/Q/Difference_between_buffer_and_cache">Difference between buffer and cache</a></li>
+</ul>
+<blockquote>
+<p>由硬件设备或程序共享的数据区域称为缓冲区。它们以不同的速度运行，或者有不同的优先顺序。缓冲区允许每个设备或进程在没有其他设备或进程阻碍的情况下运行。为了使缓冲区有效，缓冲区设计器需要考虑缓冲区的大小。与缓存一样，缓冲区是一个“中点保存位置”，但它的存在并不是为了加快活动的速度，而是为了支持单独活动的协调。</p>
+</blockquote>
+<blockquote>
+<p>这个术语不仅用于编程，也用于硬件。在编程中，缓冲有时需要从数据的最终预期位置筛选数据，以便在移动到常规文件或数据库之前对数据进行编辑或处理。</p>
+</blockquote>
+<ul>
+<li>cached</li>
+</ul>
+<blockquote>
+<p>高速缓冲存储器是随机存取存储器（RAM）的一种。计算机微处理器对高速缓冲存储器的访问速度比普通 RAM 的访问速度更快。就像微处理器处理数据一样，它首先在高速缓冲存储器中查找，如果在那里，它会从之前读取的数据中找到数据，它不需要从更大的内存中进行更耗时的数据读取。</p>
+</blockquote>
+<blockquote>
+<p>有时，高速缓冲存储器是按照与微处理器的接近程度和便利程度来描述的。L1 高速缓存与微处理器位于同一芯片上。</p>
+</blockquote>
+<blockquote>
+<p>除了高速缓存之外，RAM 本身也是一种用于硬盘存储的高速缓存，因为当你打开计算机并加载正在加载的操作系统时，所有 RAM 的内容都会先到达硬盘，稍后当你启动新应用程序并访问新数据。RAM 还包含一个称为磁盘缓存的特殊区域，该区域由最近从硬盘读取的数据组成。</p>
+</blockquote>
+<p>最后 1 行则是进程相关的资源占用信息:</p>
+<ul>
+<li>PID：进程ID。系统中每个进程都有一个唯一的ID号，称为进程ID。</li>
+<li>USER：进程的拥有者。显示启动这个进程的用户名称。</li>
+<li>PR：进程的优先级。内核根据这个值来决定进程的执行优先级。</li>
+<li>NI：进程的nice值。这是一个用户控制的为进程设置的优先级的值。数值可从-20（最高优先级）到19（最低优先级）。</li>
+<li>VIRT：虚拟内存使用量。进程使用的所有虚拟内存的和，包括进程使用的库，以及映射的文件和交换空间的大小。</li>
+<li>RES：常驻内存大小。这是进程当前使用的、未被调出的物理内存量，单位通常是KB。</li>
+<li>SHR：共享内存大小。这是多个进程可能共享的内存部分，通常包括库等。</li>
+<li>S：进程的状态。通常的状态有：<ul>
+<li>S（睡眠中）：等待事件完成（如输入&#x2F;输出完成）。</li>
+<li>R（运行中）：正在运行或在运行队列中等待。</li>
+<li>T（停止）：进程已停止执行。</li>
+<li>Z（僵尸）：进程已终止，但其父进程尚未收到其终止状态。</li>
+</ul>
+</li>
+<li>%CPU：CPU使用率。展示进程使用的CPU时间百分比，这个值是在最后一次更新的时候样本里CPU使用情况的近似值，可能超过100%在多核CPU的系统。</li>
+<li>%MEM：内存使用率。该进程使用的物理内存和总物理内存的百分比。</li>
+<li>TIME+：进程使用的CPU时间总计，格式通常为分钟:秒。</li>
+<li>COMMAND：启动进程的命令名称。</li>
+</ul>
+<h2 id="top-技巧"><a href="#top-技巧" class="headerlink" title="top 技巧"></a>top 技巧</h2><p>终端执行 top 命令之后【也可后接一些选项，比如 top -p 1 只监控 init 进程，top -u root 只显示 root 运行进程等等】，可以敲击如下按键，实现不同功能：</p>
+<ul>
+<li>h：获取 top 的命令帮助</li>
+<li>1（数字1）：列出所有的单个 CPU 负载情况</li>
+<li>z：top 显示颜色<ul>
+<li>x：类似高亮显示，在 z 模式下使用</li>
+</ul>
+</li>
+<li>P[大写]：按 CPU 占用高低顺序列出程序</li>
+<li>M[大写]：按内存占用高低顺序列出程序</li>
+<li>c：显示进程命令的全路径与参数</li>
+<li>H：显示线程，默认只显示进程</li>
+<li>top 默认按 cpu 占用排序，按F（大写）即可选择相应排序</li>
+<li>d：top 默认刷新时间是 3s ，使用d键可自定义刷新时间</li>
+<li>top 选择列排序[高到低]的方法[在z颜色和x高亮模式下显示效果明显]：<ul>
+<li>shift+&lt;：左选</li>
+<li>shift+&gt;：右选</li>
+</ul>
+</li>
+<li>f：可以指定 top 显示的内容，如 ppid、swap 等都可以选择显示<ul>
+<li>显示 Swap 利用率：按 f 键，然后按 p 键，回车即可看到 Swap 状态</li>
+</ul>
+</li>
+<li>k：输入 k 之后可以 kill 掉指定的进程</li>
+<li>A：分类显示各种系统资源高的进程。可用于快速识别系统上的性能要求极高的任务，推荐使用</li>
+<li>W[大写]:将当前设置写入 ~&#x2F;.toprc 文件中。这是写 top 配置文件的推荐方法</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/linuxwiki/SourceWiki/blob/master/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/top.md">SourceWiki-性能调优-top.md</a></li>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/">鸟哥Linux私房菜</a> </li>
+<li><a target="_blank" rel="noopener" href="http://www.cyberciti.biz/tips/top-linux-monitoring-tools.html">top - Process Activity Command</a></li>
+<li><a target="_blank" rel="noopener" href="http://how-to.linuxcareer.com/learning-linux-commands-top">Learning Linux Commands: top</a></li>
+</ul>
 
                 
             </div>
@@ -505,7 +578,7 @@ Date: 2024-02-02 10:15:39
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/">https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</a>
+                    <a href="https://wu3227834.github.io/2024/04/06/2024-04-07-linux-tracing-basis/">https://wu3227834.github.io/2024/04/06/2024-04-07-linux-tracing-basis/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -543,8 +616,12 @@ Date: 2024-02-02 10:15:39
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">向量数据库</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">性能测试</span>
                                 </a>
                             
                         </div>
@@ -590,17 +667,18 @@ Date: 2024-02-02 10:15:39
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/02/18/2024-02-19-scalar-quantization/">
+                <a href="/2024/04/06/2024-04-07-linux-tracing-basis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="量化索引：Scalar Quantization 标量量化">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux 性能调优基础：top">
                         
-                        <span class="card-title">量化索引：Scalar Quantization 标量量化</span>
+                        <span class="card-title">Linux 性能调优基础：top</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -610,26 +688,31 @@ Date: 2024-02-02 10:15:39
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    向量数据库
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-category">
+                                    性能测试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">向量数据库</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">性能测试</span>
                     </a>
                     
                 </div>
@@ -643,13 +726,13 @@ Date: 2024-02-02 10:15:39
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/">
+                <a href="/2024/04/06/2024-04-22-flamegraph/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="一文让你应对 Linux 进程 &#34;D&#34; 状态">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="性能测试——火焰图进阶">
                         
-                        <span class="card-title">一文让你应对 Linux 进程 &#34;D&#34; 状态</span>
+                        <span class="card-title">性能测试——火焰图进阶</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -660,14 +743,14 @@ Date: 2024-02-02 10:15:39
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-category">
+                                    性能测试
                                 </a>
                             
                             
@@ -677,8 +760,16 @@ Date: 2024-02-02 10:15:39
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">性能测试</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%81%AB%E7%84%B0%E5%9B%BE/">
+                        <span class="chip bg-color">火焰图</span>
+                    </a>
+                    
+                    <a href="/tags/pref/">
+                        <span class="chip bg-color">pref</span>
                     </a>
                     
                 </div>
