@@ -83,6 +83,15 @@
   </url>
   
   <url>
+    <loc>https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/</loc>
     
     <lastmod>2024-04-22</lastmod>
@@ -137,7 +146,16 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</loc>
+    <loc>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</loc>
     
     <lastmod>2024-04-22</lastmod>
     
@@ -173,33 +191,6 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</loc>
     
     <lastmod>2024-04-22</lastmod>
@@ -219,6 +210,15 @@
   
   <url>
     <loc>https://wu3227834.github.io/2023/09/10/2023-09-11-pycharm-2023.1-closing-project-stuck/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/09/15/2023-09-16-vector-database/</loc>
     
     <lastmod>2024-04-22</lastmod>
     
@@ -255,6 +255,42 @@
   
   <url>
     <loc>https://wu3227834.github.io/2023/06/24/2023-06-25-raft-zh-cn/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</loc>
     
     <lastmod>2024-04-22</lastmod>
     
@@ -335,33 +371,6 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/04/16/2023-04-17-es-you-qu-de-yu-ju/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-jmeter-wen-ti-yi/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/05/07/2023-05-08-git-add-wen-ti/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wu3227834.github.io/2022/12/16/2022-12-17-a-yang-liao/</loc>
     
     <lastmod>2024-04-22</lastmod>
@@ -372,42 +381,6 @@
   
   <url>
     <loc>https://wu3227834.github.io/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/01/03/2023-01-04-bai-hua-rong-qi-ji-chu-san-shen-ru-li-jie-rong-qi-jing-xiang/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-python-zhi-jie-fu-zhi-qian-kao-bei-he-shen-du-kao-bei-jie-xi/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-yi-xie-ji-chu-zhi-shi/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/07/2022-12-08-docker-he-k8s-de-guan-xi/</loc>
     
     <lastmod>2024-04-22</lastmod>
     
@@ -443,24 +416,6 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2022/12/01/2022-12-01-a-xin-de-kai-shi/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</loc>
-    
-    <lastmod>2024-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-dao-du/</loc>
     
     <lastmod>2024-04-22</lastmod>
@@ -471,6 +426,51 @@
   
   <url>
     <loc>https://wu3227834.github.io/2022/12/03/2022-12-04-tu-jie-sql-de-zhi-xing-shun-xu/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-python-zhi-jie-fu-zhi-qian-kao-bei-he-shen-du-kao-bei-jie-xi/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/05/2022-12-06-yi-xie-ji-chu-zhi-shi/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/07/2022-12-08-docker-he-k8s-de-guan-xi/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/01/2022-12-01-a-xin-de-kai-shi/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</loc>
     
     <lastmod>2024-04-22</lastmod>
     
