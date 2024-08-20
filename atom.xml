@@ -6,7 +6,7 @@
   <link href="https://wu3227834.github.io/atom.xml" rel="self"/>
   
   <link href="https://wu3227834.github.io/"/>
-  <updated>2024-06-30T10:32:30.616Z</updated>
+  <updated>2024-08-20T09:18:14.793Z</updated>
   <id>https://wu3227834.github.io/</id>
   
   <author>
@@ -17,38 +17,61 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Java命令学习系列（一）— Jps</title>
-    <link href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/"/>
-    <id>https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/</id>
-    <published>2024-06-29T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <title>github 国内代理访问下载</title>
+    <link href="https://wu3227834.github.io/2024/08/19/2024-08-20-github-guo-nei-dai-li-fang-wen-xia-zai/"/>
+    <id>https://wu3227834.github.io/2024/08/19/2024-08-20-github-guo-nei-dai-li-fang-wen-xia-zai/</id>
+    <published>2024-08-19T16:00:00.000Z</published>
+    <updated>2024-08-20T09:18:14.793Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Java命令学习系列（一）—-Jps&quot;&gt;&lt;a href=&quot;#Java命令学习系列（一）—-Jps&quot; class=&quot;headerlink&quot; title=&quot;Java命令学习系列（一）— Jps&quot;&gt;&lt;/a&gt;Java命令学习系列（一）—</summary>
+    <summary type="html">&lt;h1 id=&quot;github-国内代理访问下载&quot;&gt;&lt;a href=&quot;#github-国内代理访问下载&quot; class=&quot;headerlink&quot; title=&quot; github 国内代理访问下载 &quot;&gt;&lt;/a&gt;&lt;center&gt; github 国内代理访问下载</summary>
         
       
     
     
     
-    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    <category term="git" scheme="https://wu3227834.github.io/categories/git/"/>
     
     
-    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    <category term="git" scheme="https://wu3227834.github.io/tags/git/"/>
     
-    <category term="Java" scheme="https://wu3227834.github.io/tags/Java/"/>
+  </entry>
+  
+  <entry>
+    <title>python 并发函数</title>
+    <link href="https://wu3227834.github.io/2024/08/19/2024-08-20-python-bing-fa-han-shu/"/>
+    <id>https://wu3227834.github.io/2024/08/19/2024-08-20-python-bing-fa-han-shu/</id>
+    <published>2024-08-19T16:00:00.000Z</published>
+    <updated>2024-08-20T09:18:14.797Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;python-并发函数&quot;&gt;&lt;a href=&quot;#python-并发函数&quot; class=&quot;headerlink&quot; title=&quot; python 并发函数&quot;&gt;&lt;/a&gt;&lt;center&gt; python 并发函数&lt;/center&gt;&lt;/h1&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://wu3227834.github.io/categories/python/"/>
+    
+    
+    <category term="python" scheme="https://wu3227834.github.io/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Java命令学习系列（三）— Jmap</title>
-    <link href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/"/>
-    <id>https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/</id>
+    <link href="https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/"/>
+    <id>https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/</id>
     <published>2024-06-29T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.685Z</updated>
     
     
       
@@ -72,10 +95,10 @@
   
   <entry>
     <title>Java命令学习系列（二）— Jstack</title>
-    <link href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/"/>
-    <id>https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/</id>
+    <link href="https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/"/>
+    <id>https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/</id>
     <published>2024-06-29T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.685Z</updated>
     
     
       
@@ -98,11 +121,38 @@
   </entry>
   
   <entry>
-    <title>Java命令学习系列（四）— Jstat</title>
-    <link href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/"/>
-    <id>https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/</id>
+    <title>Java命令学习系列（一）— Jps</title>
+    <link href="https://wu3227834.github.io/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/"/>
+    <id>https://wu3227834.github.io/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/</id>
     <published>2024-06-29T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.793Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java命令学习系列（一）—-Jps&quot;&gt;&lt;a href=&quot;#Java命令学习系列（一）—-Jps&quot; class=&quot;headerlink&quot; title=&quot;Java命令学习系列（一）— Jps&quot;&gt;&lt;/a&gt;Java命令学习系列（一）—</summary>
+        
+      
+    
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="Java" scheme="https://wu3227834.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java命令学习系列（四）— Jstat</title>
+    <link href="https://wu3227834.github.io/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/"/>
+    <id>https://wu3227834.github.io/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/</id>
+    <published>2024-06-29T16:00:00.000Z</published>
+    <updated>2024-08-20T09:18:14.793Z</updated>
     
     
       
@@ -126,10 +176,10 @@
   
   <entry>
     <title>Java开发必须掌握的线上问题排查命令</title>
-    <link href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/"/>
-    <id>https://wu3227834.github.io/2024/06/29/2026-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/</id>
+    <link href="https://wu3227834.github.io/2024/06/29/2024-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/"/>
+    <id>https://wu3227834.github.io/2024/06/29/2024-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/</id>
     <published>2024-06-29T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.793Z</updated>
     
     
       
@@ -156,7 +206,7 @@
     <link href="https://wu3227834.github.io/2024/04/06/2024-04-07-linux-tracing-basis/"/>
     <id>https://wu3227834.github.io/2024/04/06/2024-04-07-linux-tracing-basis/</id>
     <published>2024-04-06T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.785Z</updated>
     
     
       
@@ -172,9 +222,9 @@
     <category term="性能测试" scheme="https://wu3227834.github.io/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
     
-    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
-    
     <category term="性能测试" scheme="https://wu3227834.github.io/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="linux" scheme="https://wu3227834.github.io/tags/linux/"/>
     
   </entry>
   
@@ -183,7 +233,7 @@
     <link href="https://wu3227834.github.io/2024/04/06/2024-04-22-flamegraph/"/>
     <id>https://wu3227834.github.io/2024/04/06/2024-04-22-flamegraph/</id>
     <published>2024-04-06T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.616Z</updated>
+    <updated>2024-08-20T09:18:14.785Z</updated>
     
     
       
@@ -212,7 +262,7 @@
     <link href="https://wu3227834.github.io/2024/03/31/2024-04-01-product-quantization/"/>
     <id>https://wu3227834.github.io/2024/03/31/2024-04-01-product-quantization/</id>
     <published>2024-03-31T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.761Z</updated>
     
     
       
@@ -237,7 +287,7 @@
     <link href="https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/"/>
     <id>https://wu3227834.github.io/2024/02/18/2024-02-19-scalar-quantization/</id>
     <published>2024-02-18T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.757Z</updated>
     
     
       
@@ -262,7 +312,7 @@
     <link href="https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/"/>
     <id>https://wu3227834.github.io/2024/02/05/2024-02-06-hdf5-wen-jian-zhuan-vecs-wen-jian/</id>
     <published>2024-02-05T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.757Z</updated>
     
     
       
@@ -287,7 +337,7 @@
     <link href="https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/"/>
     <id>https://wu3227834.github.io/2024/01/15/2024-01-16-linux-jin-cheng-d-zhuang-tai/</id>
     <published>2024-01-15T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.757Z</updated>
     
     
       
@@ -312,7 +362,7 @@
     <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.757Z</updated>
     
     
       
@@ -337,7 +387,7 @@
     <link href="https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/"/>
     <id>https://wu3227834.github.io/2023/12/13/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</id>
     <published>2023-12-13T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.604Z</updated>
+    <updated>2024-08-20T09:18:14.757Z</updated>
     
     
       
@@ -362,7 +412,7 @@
     <link href="https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/"/>
     <id>https://wu3227834.github.io/2023/12/12/2023-12-13-vector-embeddings-for-developers/</id>
     <published>2023-12-12T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.600Z</updated>
+    <updated>2024-08-20T09:18:14.753Z</updated>
     
     
       
@@ -387,7 +437,7 @@
     <link href="https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/"/>
     <id>https://wu3227834.github.io/2023/11/19/2023-11-20-hnsw/</id>
     <published>2023-11-19T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.596Z</updated>
+    <updated>2024-08-20T09:18:14.749Z</updated>
     
     
       
@@ -412,7 +462,7 @@
     <link href="https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/"/>
     <id>https://wu3227834.github.io/2023/11/05/2023-11-06-cmake-an-zhuang/</id>
     <published>2023-11-05T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.596Z</updated>
+    <updated>2024-08-20T09:18:14.745Z</updated>
     
     
       
@@ -437,7 +487,7 @@
     <link href="https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/"/>
     <id>https://wu3227834.github.io/2023/10/25/2023-10-26-linux-an-zhuang-python-3.10/</id>
     <published>2023-10-25T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.596Z</updated>
+    <updated>2024-08-20T09:18:14.745Z</updated>
     
     
       
@@ -462,7 +512,7 @@
     <link href="https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/"/>
     <id>https://wu3227834.github.io/2023/10/10/2023-10-11-xiang-liang-jian-suo-jian-jie/</id>
     <published>2023-10-10T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.592Z</updated>
+    <updated>2024-08-20T09:18:14.745Z</updated>
     
     
       
@@ -470,56 +520,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;向量检索简介&quot;&gt;&lt;a href=&quot;#向量检索简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>向量相似性解释</title>
-    <link href="https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/"/>
-    <id>https://wu3227834.github.io/2023/10/08/2023-10-09-vector-similarity-explained/</id>
-    <published>2023-10-08T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.592Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;向量相似性解释&quot;&gt;&lt;a href=&quot;#向量相似性解释&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="向量数据库" scheme="https://wu3227834.github.io/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-    <category term="向量数据库" scheme="https://wu3227834.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是向量嵌入</title>
-    <link href="https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/"/>
-    <id>https://wu3227834.github.io/2023/09/21/2023-09-22-vector-embeddings/</id>
-    <published>2023-09-21T16:00:00.000Z</published>
-    <updated>2024-06-30T10:32:30.592Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;什么是向量嵌入&quot;&gt;&lt;a href=&quot;#什么是向量嵌入&quot; class=&quot;headerlink&quot; title=&quot;什么是向量嵌入&quot;&gt;&lt;/a&gt;&lt;center&gt;什么是向量嵌入&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot;</summary>
         
       
     

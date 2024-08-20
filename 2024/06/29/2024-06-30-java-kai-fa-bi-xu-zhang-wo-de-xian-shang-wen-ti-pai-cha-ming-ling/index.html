@@ -4,9 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java命令学习系列（四）— Jstat, 个人博客">
-    <meta name="description" content="Java命令学习系列（四）— Jstat
-jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态信息的命令行工具。它可以显示本地或远程虚拟机进程中类加载、内存、垃圾收集、JIT 编译等运行数">
+    <meta name="keywords" content="Java开发必须掌握的线上问题排查命令, 个人博客">
+    <meta name="description" content="Java 开发必须掌握的线上问题排查命令作为一个合格的开发人员，不仅要能写得一手代码，还要有一项很重要的技能就是排查问题。这里提到的排查问题不仅仅是在 coding 的过程中 debug 等，还包括的就是线上问题的排查。由于在生成环境中，一">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java命令学习系列（四）— Jstat | Pudding 个人博客</title>
+    <title>Java开发必须掌握的线上问题排查命令 | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -292,12 +291,12 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java命令学习系列（四）— Jstat</h1>
+                    <h1 class="description center-align post-title">Java开发必须掌握的线上问题排查命令</h1>
                 </div>
             </div>
         </div>
@@ -359,14 +358,14 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    3 分
                 </div>
                 
 
@@ -381,78 +380,64 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java命令学习系列（四）—-Jstat"><a href="#Java命令学习系列（四）—-Jstat" class="headerlink" title="Java命令学习系列（四）— Jstat"></a>Java命令学习系列（四）— Jstat</h1><blockquote>
-<p>jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态信息的命令行工具。它可以显示本地或远程虚拟机进程中类加载、内存、垃圾收集、JIT 编译等运行数据，再没有 GUI 图形的服务器上，它是运行期间定位虚拟机性能问题首选工具。</p>
+                <h1 id="Java-开发必须掌握的线上问题排查命令"><a href="#Java-开发必须掌握的线上问题排查命令" class="headerlink" title="Java 开发必须掌握的线上问题排查命令"></a>Java 开发必须掌握的线上问题排查命令</h1><p>作为一个合格的开发人员，不仅要能写得一手代码，还要有一项很重要的技能就是排查问题。这里提到的排查问题不仅仅是在 coding 的过程中 debug 等，还包括的就是线上问题的排查。由于在生成环境中，一般没办法 debug（其实有些问题，debug 也白扯…），所以我们需要借助一些常见命令来查看运行时的具体情况，这些运行时信息包括但不限于运行日志、异常堆栈、堆使用情况、GC情况、JVM参数情况、线程情况等。</p>
+<p>给一个系统定位问题的时候，知识、经验是关键，数据是依据，工具是运用知识处理数据的手段。为了便于我们排查和解决问题，Sun 公司为我们提供了一些常用命令。这些命令一般都是 jdk&#x2F;lib&#x2F;tools.jar 中类库的一层薄包装。随着 JVM 的安装一起被安装到机器中，在 bin 目录中。下面就来认识一下这些命令以及具体使用方式。</p>
+<h2 id="JPS"><a href="#JPS" class="headerlink" title="JPS"></a>JPS</h2><p><strong>功能：</strong>显示当前所有 java 进程 pid 的命令。</p>
+<p><strong>常见指令：</strong></p>
+<p><code>jps</code>：显示当前用户的所有java进程的PID</p>
+<p><code>jps -v 3331</code>：显示虚拟机参数</p>
+<p><code>jps -m 3331</code>：显示传递给 main() 函数的参数</p>
+<p><code>jps -l 3331</code>：显示主类的全路径</p>
+<h2 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h2><p><strong>功能：</strong>实时查看和调整虚拟机参数，可以显示未被显示指定的参数的默认值（jps  -v 则不能）</p>
+<blockquote>
+<p>jdk8 中已经不支持该命令</p>
 </blockquote>
-<p>jstat 位于 java 的 bin 目录下，主要利用 JVM 内建的指令对 Java 应用程序的资源和性能进行实施的命令行的监控，包括了对 Heap size 和垃圾回收状况的监控。可见，Jstat 是轻量级的、专门针对 JVM 的工具，非常适用。</p>
-<h1 id="jstat-命令格式"><a href="#jstat-命令格式" class="headerlink" title="jstat 命令格式"></a>jstat 命令格式</h1><pre class=" language-bash"><code class="language-bash">jstat -<span class="token operator">&lt;</span>option<span class="token operator">></span> <span class="token punctuation">[</span>-t<span class="token punctuation">]</span> <span class="token punctuation">[</span>-h<span class="token operator">&lt;</span>lines<span class="token operator">></span><span class="token punctuation">]</span> <span class="token operator">&lt;</span>vmid<span class="token operator">></span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>interval<span class="token operator">></span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>count<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<p><strong>常用指令：</strong></p>
+<p><code>jinfo -flag CMSIniniatingOccupancyFration 1444</code>：查询 CMSIniniatingOccupancyFration 参数值</p>
+<h2 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h2><p><strong>功能：</strong>显示进程中的类加载、内存、垃圾收集、JIT 编译等运行数据。</p>
+<p><strong>常用指令：</strong></p>
+<p><code>jstat -gc 3331 250 20</code> ：查询进程2764的垃圾收集情况，每250毫秒查询一次，一共查询20次。</p>
+<p><code>jstat -gccause</code>：额外输出上次GC原因</p>
+<p><code>jstat -calss</code>：件事类装载、类卸载、总空间以及所消耗的时间</p>
+<h2 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h2><p><strong>功能：</strong>生成堆准储快照（heapdump）</p>
+<p><strong>常用指令：</strong></p>
+<p><code>jmap -heap 3331</code>：查看java 堆（heap）使用情况</p>
+<p><code>jmap -histo 3331</code>：查看堆内存（histogram）中的对象数量及大小</p>
+<p><code>jmap -histo:live 3331</code>：JVM 会先触发 gc，然后再统计信息</p>
+<p><code>jmap -dump:format=b,file=heapDump 3331</code>：将内存使用的详细情况输出到文件，之后一般使用其他工具进行分析。</p>
+<h2 id="jhat"><a href="#jhat" class="headerlink" title="jhat"></a><strong>jhat</strong></h2><p><strong>功能：</strong>一般与 jmap 搭配使用，用来分析 jmap 生成的堆转储文件。</p>
+<blockquote>
+<p>由于有很多可视化工具（Eclipse Memory Analyzer 、IBM HeapAnalyzer）可以替代，所以很少用。不过在没有可视化工具的机器上也是可用的。</p>
+</blockquote>
+<p><strong>常用指令：</strong></p>
+<p><code>jmap -dump:format=b,file=heapDump 3331</code> + <code>jhat heapDump</code>：解析 Java 堆转储文件，并启动一个 web server</p>
+<h2 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a><strong>jstack</strong></h2><p><strong>功能：</strong>生成当前时刻的线程快照。</p>
+<p><strong>常用指令：</strong></p>
+<p><code>jstack 3331</code>：查看线程情况</p>
+<p><code>jstack -F 3331</code>：正常输出不被响应时，使用该指令</p>
+<p><code>jstack -l 3331</code>：除堆栈外，显示关于锁的附件信息</p>
+<h1 id="常见问题定位过程"><a href="#常见问题定位过程" class="headerlink" title="常见问题定位过程"></a>常见问题定位过程</h1><h2 id="频繁-GC-问题或内存溢出问题"><a href="#频繁-GC-问题或内存溢出问题" class="headerlink" title="频繁 GC 问题或内存溢出问题"></a>频繁 GC 问题或内存溢出问题</h2><ol>
+<li>使用 <code>jps</code> 查看线程 ID</li>
+<li>使用 <code>jstat -gc xxx 250 20</code> 查看 gc 情况，一般比较关注 PERM 区的情况，查看 GC 的增长情况。</li>
+<li>使用 <code>jstat -gccause</code> 额外输出上次 GC 原因</li>
+<li>使用 <code>jmap -dump:format=b,file=heapDump xxx</code>  生成堆转储文件</li>
+<li>使用 jhat 或者可视化工具（Eclipse Memory Analyzer 、IBM HeapAnalyzer）分析堆情况。</li>
+<li>结合代码解决内存溢出或泄露问题。</li>
+</ol>
+<h2 id="死锁问题"><a href="#死锁问题" class="headerlink" title="死锁问题"></a><strong>死锁问题</strong></h2><ol>
+<li><p>使用<code>jps</code>查看线程 ID，转换为 16 进制</p>
+<pre class=" language-python"><code class="language-python">printf <span class="token operator">%</span>x 线程号
 </code></pre>
-<h2 id="参数解释："><a href="#参数解释：" class="headerlink" title="参数解释："></a><strong>参数解释：</strong></h2><ul>
-<li><p>Option — 选项，我们一般使用 -gcutil 查看 gc 情况</p>
 </li>
-<li><p>vmid — VM的进程号，即当前运行的java进程号</p>
+<li><p>使用<code>jstack xxx</code>：查看线程情况</p>
 </li>
-<li><p>interval– 间隔时间，单位为秒或者毫秒</p>
-</li>
-<li><p>count — 打印次数，如果缺省则打印无数次</p>
-</li>
-<li><p>参数 interval 和 count 代表查询间隔和次数，如果省略这两个参数，说明只查询一次。假设需要每 250 毫秒查询一次进程 5828 垃圾收集状况，一共查询 5 次，那命令行如下：</p>
-<pre class=" language-bash"><code class="language-bash">jstat -gc 5828 250 5
-</code></pre>
-</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash">对于命令格式中的 VMID 与 LVMID 需要特别说明下：
-如果是本地虚拟机进程，VMID<span class="token punctuation">(</span>Virtual Machine IDentifier,虚机标识符<span class="token punctuation">)</span> 和 LVMID<span class="token punctuation">(</span>Local Virtual Machine IDentifier，虚机标识符<span class="token punctuation">)</span> 是一致的；
-如果是远程虚拟机进程，那 VMID 的格式应当是：<span class="token punctuation">[</span>protocol:<span class="token punctuation">]</span><span class="token punctuation">[</span>//<span class="token punctuation">]</span> lvmid <span class="token punctuation">[</span>@hostname<span class="token punctuation">[</span>:port<span class="token punctuation">]</span>/servername<span class="token punctuation">]</span>
-</code></pre>
-<h2 id="option"><a href="#option" class="headerlink" title="option"></a><strong>option</strong></h2><p>选项 option 代表这用户希望查询的虚拟机信息，主要分为 3 类：类装载、垃圾收集和运行期编译状况，具体选项及作用如下：</p>
-<ul>
-<li><code>class</code> 监视类装载、卸载数量、总空间及类装载所耗费的时间</li>
-<li><code>gc</code> 监视 Java 堆状况，包括 Eden 区、2 个Survivor区、老年代、永久代等的容量</li>
-<li><code>gccapacity</code> 监视内容与 -gc 基本相同，但输出主要关注 Java 堆各个区域使用到的最大和最小空间</li>
-<li><code>gcutil</code> 监视内容与 -gc 基本相同，但输出主要关注已使用空间占总空间的百分比</li>
-<li><code>gccause</code> 与 -gcutil 功能一样，但是会额外输出导致上一次 GC 产生的原因</li>
-<li><code>gcnew</code> 监视新生代 GC 的状况</li>
-<li><code>gcnewcapacity</code>监视内容与 -gcnew 基本相同，输出主要关注使用到的最大和最小空间</li>
-<li><code>gcold</code> 监视老年代 GC 的状况</li>
-<li><code>gcoldcapacity</code> 监视内容与 -gcold 基本相同，输出主要关注使用到的最大和最小空间</li>
-<li><code>gcpermcapacity</code> 输出永久代使用到的最大和最小空间</li>
-<li><code>compiler</code> 输出 JIT 编译器编译过的方法、耗时等信息</li>
-<li><code>printcompilation</code> 输出已经被 JIT 编译的方法</li>
-</ul>
-<h1 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a><strong>常见术语</strong></h1><h2 id="1、jstat-–class-显示加载-class-的数量，及所占空间等信息。"><a href="#1、jstat-–class-显示加载-class-的数量，及所占空间等信息。" class="headerlink" title="1、jstat –class&lt;pid&gt; : 显示加载 class 的数量，及所占空间等信息。"></a><strong>1、<code>jstat –class&lt;pid&gt; :</code> 显示加载 class 的数量，及所占空间等信息。</strong></h2><blockquote>
-<p><code>Loaded</code> 装载的类的数量<br><code>Bytes</code> 装载类所占用的字节数 <br><code>Unloaded</code> 卸载类的数量 <br><code>Bytes</code> 卸载类的字节数 <br><code>Time</code> 装载和卸载类所花费的时间</p>
-</blockquote>
-<h2 id="2、jstat-compiler-显示-VM-实时编译的数量等信息。"><a href="#2、jstat-compiler-显示-VM-实时编译的数量等信息。" class="headerlink" title="2、jstat -compiler &lt;pid&gt;显示 VM 实时编译的数量等信息。"></a><strong>2、<code>jstat -compiler &lt;pid&gt;</code>显示 VM 实时编译的数量等信息。</strong></h2><blockquote>
-<p><code>Compiled</code> 编译任务执行数量 <br><code>Failed</code> 编译任务执行失败数量 <br><code>Invalid</code> 编译任务执行失效数量 <br><code>Time</code> 编译任务消耗时间 <br><code>FailedType</code> 最后一个编译失败任务的类型 <br><code>FailedMethod</code> 最后一个编译失败任务所在的类及方法</p>
-</blockquote>
-<h2 id="3、jstat-gc-可以显示-gc-的信息，查看-gc-的次数，及时间。"><a href="#3、jstat-gc-可以显示-gc-的信息，查看-gc-的次数，及时间。" class="headerlink" title="3、jstat -gc &lt;pid&gt;: 可以显示 gc 的信息，查看 gc 的次数，及时间。"></a><strong>3、<code>jstat -gc &lt;pid&gt;</code>: 可以显示 gc 的信息，查看 gc 的次数，及时间。</strong></h2><blockquote>
-<p><code>S0C</code> 年轻代中第一个 survivor（幸存区）的容量 （字节）<br><code>S1C</code> 年轻代中第二个 survivor（幸存区）的容量 （字节）<br><code>S0U</code> 年轻代中第一个 survivor（幸存区）目前已使用空间（字节）<br><code>S1U</code> 年轻代中第二个 survivor（幸存区）目前已使用空间（字节）<br><code>EC</code> 年轻代中 Eden（伊甸园）的容量（字节）<br><code>EU</code> 年轻代中 Eden（伊甸园）目前已使用空间（字节）<br><code>OC</code> Old 代的容量（字节）<br><code>OU</code> Old 代目前已使用空间（字节）<br><code>PC</code> Perm（持久代）的容量（字节） <br><code>PU</code> Perm（持久代）目前已使用空间（字节）<br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数<br><code>YGCT</code> 从应用程序启动到采样时年轻代中 gc 所用时间（s）<br><code>FGC</code> 从应用程序启动到采样时 old 代（全 gc）gc 次数<br><code>FGCT</code> 从应用程序启动到采样时 old 代（全 gc）gc 所用时间（s）<br><code>GCT</code> 从应用程序启动到采样时 gc 用的总时间（s）</p>
-</blockquote>
-<h2 id="4、jstat-gccapacity-可以显示，VM内存中三代（young-old-perm）对象的使用和占用大小"><a href="#4、jstat-gccapacity-可以显示，VM内存中三代（young-old-perm）对象的使用和占用大小" class="headerlink" title="4、jstat -gccapacity &lt;pid&gt;:可以显示，VM内存中三代（young,old,perm）对象的使用和占用大小"></a><strong>4、<code>jstat -gccapacity &lt;pid&gt;:</code>可以显示，VM内存中三代（young,old,perm）对象的使用和占用大小</strong></h2><blockquote>
-<p><code>NGCMN</code> 年轻代（young）中初始化（最小）的大小（字节） <br><code>NGCMX</code> 年轻代（young）的最大容量（字节）<br><code>NGC</code> 年轻代（young）中当前的容量（字节）<br><code>S0C</code> 年轻代中第一个 survivor（幸存区）的容量（字节） <br><code>S1C</code> 年轻代中第二个 survivor（幸存区）的容量（字节） <br><code>EC</code> 年轻代中 Eden（伊甸园）的容量（字节） <br><code>OGCMN</code> old 代中初始化（最小）的大小（字节）<br><code>OGCMX</code> old 代的最大容量（字节）<br><code>OGC</code> old代当前新生成的容量（字节）<br><code>OC</code> Old代的容量 （字节） <br><code>PGCMN</code> perm 代中初始化（最小）的大小 （字节） <br><code>PGCMX</code> perm 代的最大容量（字节）<br><code>PGC</code> perm 代当前新生成的容量（字节） <br><code>PC</code> Perm（持久代）的容量（字节） <br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数 <br><code>FGC</code> 从应用程序启动到采样时 old 代（全gc）gc 次数</p>
-</blockquote>
-<h2 id="5、jstat-gcutil-统计gc信息"><a href="#5、jstat-gcutil-统计gc信息" class="headerlink" title="5、jstat -gcutil &lt;pid&gt;:统计gc信息"></a><strong>5、<code>jstat -gcutil &lt;pid&gt;</code>:统计gc信息</strong></h2><blockquote>
-<p><code>S0</code> 年轻代中第一个 survivor（幸存区）已使用的占当前容量百分比<br><code>S1</code> 年轻代中第二个 survivor（幸存区）已使用的占当前容量百分比<br><code>E</code> 年轻代中 Eden（伊甸园）已使用的占当前容量百分比<br><code>O</code> old 代已使用的占当前容量百分比 <br><code>P</code> perm 代已使用的占当前容量百分比 <br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数 <br><code>YGCT</code> 从应用程序启动到采样时年轻代中 gc 所用时间（s）<br><code>FGC</code> 从应用程序启动到采样时 old 代（全 gc）gc 次数 <br><code>FGCT</code> 从应用程序启动到采样时 old 代（全 gc）gc 所用时间（s） <br><code>GCT</code> 从应用程序启动到采样时 gc 用的总时间（s）</p>
-</blockquote>
-<h2 id="6、jstat-gcnew-年轻代对象的信息。"><a href="#6、jstat-gcnew-年轻代对象的信息。" class="headerlink" title="6、jstat -gcnew &lt;pid&gt;:年轻代对象的信息。"></a><strong>6、<code>jstat -gcnew &lt;pid&gt;</code>:年轻代对象的信息。</strong></h2><blockquote>
-<p><code>S0C</code> 年轻代中第一个survivor（幸存区）的容量（字节）<br><code>S1C</code> 年轻代中第二个survivor（幸存区）的容量（字节）<br><code>S0U</code> 年轻代中第一个survivor（幸存区）目前已使用空间（字节）<br><code>S1U</code> 年轻代中第二个survivor（幸存区）目前已使用空间（字节）<br><code>TT</code> 持有次数限制<br><code>MTT</code> 最大持有次数限制<br><code>EC</code> 年轻代中 Eden（伊甸园）的容量（字节）<br><code>EU</code> 年轻代中 Eden（伊甸园）目前已使用空间（字节）<br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数<br><code>YGCT</code> 从应用程序启动到采样时年轻代中 gc 所用时间（s）</p>
-</blockquote>
-<h2 id="7、jstat-gcnewcapacity-年轻代对象的信息及其占用量。"><a href="#7、jstat-gcnewcapacity-年轻代对象的信息及其占用量。" class="headerlink" title="7、jstat -gcnewcapacity&lt;pid&gt;: 年轻代对象的信息及其占用量。"></a><strong>7、<code>jstat -gcnewcapacity&lt;pid&gt;</code>: 年轻代对象的信息及其占用量。</strong></h2><blockquote>
-<p><code>NGCMN</code> 年轻代（young）中初始化（最小）的大小（字节）<br><code>NGCMX</code> 年轻代（young）的最大容量（字节）<br><code>NGC</code> 年轻代（young）中当前的容量（字节）<br><code>S0CMX</code> 年轻代中第一个 survivor（幸存区）的最大容量（字节）<br><code>S0C</code> 年轻代中第一个 survivor（幸存区）的容量（字节）<br><code>S1CMX</code> 年轻代中第二个 survivor（幸存区）的最大容量（字节）<br><code>S1C</code> 年轻代中第二个 survivor（幸存区）的容量（字节）<br><code>ECMX</code> 年轻代中 Eden（伊甸园）的最大容量（字节）<br><code>EC</code> 年轻代中 Eden（伊甸园）的容量（字节）<br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数<br><code>FGC</code> 从应用程序启动到采样时 old 代（全 gc）gc 次数</p>
-</blockquote>
-<h2 id="8、jstat-gcold-：old代对象的信息。"><a href="#8、jstat-gcold-：old代对象的信息。" class="headerlink" title="8、jstat -gcold &lt;pid&gt;：old代对象的信息。"></a><strong>8、<code>jstat -gcold &lt;pid&gt;：</code>old代对象的信息。</strong></h2><blockquote>
-<p><code>PC</code> Perm（持久代）的容量 （字节） <br><code>PU</code> Perm（持久代）目前已使用空间 （字节） <br><code>OC</code> Old代的容量 （字节） OU Old 代目前已使用空间 （字节） <br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数 <br><code>FGC</code> 从应用程序启动到采样时 old 代（全gc）gc 次数 <br><code>FGCT</code> 从应用程序启动到采样时 old 代（全gc）gc 所用时间（s） <br><code>GCT</code> 从应用程序启动到采样时 gc 用的总时间（s）</p>
-</blockquote>
-<h2 id="9、stat-gcoldcapacity-old代对象的信息及其占用量。"><a href="#9、stat-gcoldcapacity-old代对象的信息及其占用量。" class="headerlink" title="9、stat -gcoldcapacity &lt;pid&gt;: old代对象的信息及其占用量。"></a><strong>9、<code>stat -gcoldcapacity &lt;pid&gt;</code>: old代对象的信息及其占用量。</strong></h2><blockquote>
-<p><code>OGCMN</code> old 代中初始化（最小）的大小 （字节）<br><code>OGCMX</code> old 代的最大容量（字节）<br><code>OGC</code> old 代当前新生成的容量 （字节）<br><code>OC</code> Old 代的容量 （字节）<br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数<br><code>FGC</code> 从应用程序启动到采样时 old 代（全gc）gc 次数<br><code>FGCT</code> 从应用程序启动到采样时 old 代（全gc）gc 所用时间（s）<br><code>GCT</code> 从应用程序启动到采样时 gc 用的总时间（s）</p>
-</blockquote>
-<h2 id="10、jstat-gcpermcapacity-perm对象的信息及其占用量。"><a href="#10、jstat-gcpermcapacity-perm对象的信息及其占用量。" class="headerlink" title="10、jstat -gcpermcapacity&lt;pid&gt;: perm对象的信息及其占用量。"></a><strong>10、<code>jstat -gcpermcapacity&lt;pid&gt;</code>: perm对象的信息及其占用量。</strong></h2><blockquote>
-<p><code>PGCMN</code> perm代中初始化（最小）的大小 （字节）<br><code>PGCMX</code> perm代的最大容量 （字节）<br><code>PGC</code> perm代当前新生成的容量 （字节）<br><code>PC</code> Perm（持久代）的容量 （字节）<br><code>YGC</code> 从应用程序启动到采样时年轻代中 gc 次数<br><code>FGC</code> 从应用程序启动到采样时 old 代（全gc）gc 次数<br><code>FGCT</code> 从应用程序启动到采样时 old 代（全gc）gc 所用时间（s）<br><code>GCT</code> 从应用程序启动到采样时 gc 用的总时间（s）</p>
-</blockquote>
-<h2 id="11、jstat-printcompilation-：当前VM执行的信息。"><a href="#11、jstat-printcompilation-：当前VM执行的信息。" class="headerlink" title="11、jstat -printcompilation &lt;pid&gt;：当前VM执行的信息。"></a><strong>11、<code>jstat -printcompilation &lt;pid&gt;</code>：当前VM执行的信息。</strong></h2><blockquote>
-<p><code>Compiled</code> 编译任务的数目<br><code>Size</code> 方法生成的字节码的大小<br><code>Type</code> 编译类型<br><code>Method</code> 类名和方法名用来标识编译的方法。<br>类名使用&#x2F;做为一个命名空间分隔符。方法名是给定类中的方法。上述格式是由-XX:+PrintComplation选项进行设置的</p>
-</blockquote>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a><strong>结语</strong></h1><p>经常使用适当的虚拟机监控和分析工具可以加快我们分析数据、定位解决问题的速度，但也要知道，工具永远都是知识技能的一层包装，没有什么工具是包治百病的。</p>
+<p><a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/"><strong>Java命令学习系列（一）— Jps</strong></a></p>
+<p><a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/"><strong>Java命令学习系列（二）— Jstack</strong></a></p>
+<p><a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/"><strong>Java命令学习系列（三）— Jmap</strong></a></p>
+<p><a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/"><strong>Java命令学习系列（四）— Jstat</strong></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/Java-Jhat-e4da5c23fe34484093bcd8607fd14d07?pvs=21"><strong>Java命令学习系列（五）— Jhat</strong></a></p>
 
                 
             </div>
@@ -479,7 +464,7 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/">https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/</a>
+                    <a href="https://wu3227834.github.io/2024/06/29/2024-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/">https://wu3227834.github.io/2024/06/29/2024-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,13 +557,13 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/">
+                <a href="/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java命令学习系列（二）— Jstack">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java命令学习系列（四）— Jstat">
                         
-                        <span class="card-title">Java命令学习系列（二）— Jstack</span>
+                        <span class="card-title">Java命令学习系列（四）— Jstat</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -625,13 +610,13 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/29/2026-06-30-java-kai-fa-bi-xu-zhang-wo-de-xian-shang-wen-ti-pai-cha-ming-ling/">
+                <a href="/2024/04/06/2024-04-07-linux-tracing-basis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Java开发必须掌握的线上问题排查命令">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux 性能调优基础：top">
                         
-                        <span class="card-title">Java开发必须掌握的线上问题排查命令</span>
+                        <span class="card-title">Linux 性能调优基础：top</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -642,7 +627,7 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
                             </span>
                         <span class="publish-author">
                             
@@ -663,8 +648,8 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
                         <span class="chip bg-color">性能测试</span>
                     </a>
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -803,7 +788,7 @@ jstat (JVM Statistics Monitoring Tool) 用于监控虚拟机各种运行状态�
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">101.9k</span>
+                        class="white-color">103.5k</span>
             
             
             

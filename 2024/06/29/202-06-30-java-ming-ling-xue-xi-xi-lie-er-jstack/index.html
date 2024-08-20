@@ -400,7 +400,7 @@ jstack 是 java 虚拟机自带的一种堆栈跟踪工具
 <li>TERMINATED，已退出的。</li>
 </ol>
 <h2 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h2><p>在多线程的 JAVA 程序中，实现线程之间的同步，就要说说 Monitor。Monitor 是 Java 中用来实现线程之间的互斥与协作的主要手段，它可以看成是对象或者 class 的锁。每一个对象都有，也仅有一个 monitor。下图，描述了线程和 Monitor 之间的关系，以及线程的状态转换图：</p>
-<p><img src="/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/Untitled.png" alt="monitor"></p>
+<p><img src="/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/Untitled.png" alt="monitor"></p>
 <p><strong>进入区（Entrt Set）</strong>：表示线程通过 synchronized 要求获取对象的锁。如果对象未被锁住，则进入拥有者；否则则在进入区等待。一旦对象锁被其他线程释放,立即参与竞争。</p>
 <p><strong>拥有者（The Owner）</strong>：表示某一线程成功竞争到对象锁。</p>
 <p><strong>等待区（Wait Set）</strong>：表示线程通过对象的 wait 方法，释放对象的锁，并在等待区等待被唤醒。</p>
@@ -663,7 +663,7 @@ Full thread dump OpenJDK <span class="token number">64</span><span class="token 
 <span class="token punctuation">}</span>
 </code></pre>
 <p>当我启动该程序时，我们看一下控制台：</p>
-<p><img src="/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/Untitled1.png" alt="控制台"></p>
+<p><img src="/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/Untitled1.png" alt="控制台"></p>
 <p>我们发现，程序只输出了两行内容，然后程序就不再打印其它的东西了，但是程序并没有停止。这样就产生了死锁。 当线程 1 使用 <code>synchronized</code> 锁住了 o1 的同时，线程 2 也是用 <code>synchronized</code> 锁住了 o2。当两个线程都执行完第一个打印任务的时候，线程 1 想锁住 o2，线程 2 想锁住 o1。但是，线程 1 当前锁着 o1，线程 2 锁着 o2。所以两个想成都无法继续执行下去，就造成了死锁。<br>然后，我们使用 <strong>jstack 来看一下线程堆栈信息</strong>：</p>
 <pre class=" language-java"><code class="language-java">Found one Java<span class="token operator">-</span>level deadlock<span class="token operator">:</span>
 <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
@@ -720,7 +720,7 @@ Found <span class="token number">1</span> deadlock<span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/">https://wu3227834.github.io/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/</a>
+                    <a href="https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/">https://wu3227834.github.io/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-er-jstack/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -813,7 +813,7 @@ Found <span class="token number">1</span> deadlock<span class="token punctuation
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/">
+                <a href="/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/">
                     <div class="card-image">
                         
                         
@@ -866,13 +866,13 @@ Found <span class="token number">1</span> deadlock<span class="token punctuation
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/29/2026-06-30-java-ming-ling-xue-xi-xi-lie-si-jstat/">
+                <a href="/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java命令学习系列（四）— Jstat">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Java命令学习系列（一）— Jps">
                         
-                        <span class="card-title">Java命令学习系列（四）— Jstat</span>
+                        <span class="card-title">Java命令学习系列（一）— Jps</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1044,7 +1044,7 @@ Found <span class="token number">1</span> deadlock<span class="token punctuation
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">101.9k</span>
+                        class="white-color">103.5k</span>
             
             
             
