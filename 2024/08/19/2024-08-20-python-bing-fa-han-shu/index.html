@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="python 并发函数, 个人博客">
-    <meta name="description" content=" python 并发函数前言工作需要向几十万表写入亿级别数据，像采用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。
+    <meta name="description" content=" python 并发函数前言工作需要向几十万表写入亿级别数据，想使用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。
 本文以">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -377,7 +377,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="python-并发函数"><a href="#python-并发函数" class="headerlink" title=" python 并发函数"></a><center> python 并发函数</center></h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>工作需要向几十万表写入亿级别数据，像采用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。</p>
+                <h1 id="python-并发函数"><a href="#python-并发函数" class="headerlink" title=" python 并发函数"></a><center> python 并发函数</center></h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>工作需要向几十万表写入亿级别数据，想使用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。</p>
 <p>本文以 python3.10 为例，学习一下 python 的并发执行。</p>
 <h1 id="并发执行"><a href="#并发执行" class="headerlink" title="并发执行"></a>并发执行</h1><p>python 并发执行分三个方面：多线程（threading）、多进程（multiprocessing）、多协程（asynico）</p>
 <p>适当的工具选择主要取决于要执行的任务（CPU 密集型或 IO 密集型）：</p>
@@ -632,13 +632,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/29/202-06-30-java-ming-ling-xue-xi-xi-lie-san-jmap/">
+                <a href="/2024/06/29/2024-06-30-java-ming-ling-xue-xi-xi-lie-yi-jps/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Java命令学习系列（三）— Jmap">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Java命令学习系列（一）— Jps">
                         
-                        <span class="card-title">Java命令学习系列（三）— Jmap</span>
+                        <span class="card-title">Java命令学习系列（一）— Jps</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -730,8 +730,8 @@
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            collapseDepth: Number('3'),
+            headingSelector: 'h1, h2, h3'
         });
 
         // Set scroll toc fixed.
@@ -810,7 +810,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">103.5k</span>
+                        class="white-color">111.4k</span>
             
             
             

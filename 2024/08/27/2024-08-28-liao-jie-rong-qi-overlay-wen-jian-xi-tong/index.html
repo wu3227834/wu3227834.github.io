@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-ch">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="了解容器 overlay 文件系统和 /var/lib/docker/overlay2下目录的作用, 个人博客">
+    <meta name="description" content="了解容器 overlay 文件系统和 &amp;#x2F;var&amp;#x2F;lib&amp;#x2F;docker&amp;#x2F;overlay2下目录的作用
+💡 转载自
+
+https://www.zsythink.net/archives/4345http">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>了解容器 overlay 文件系统和 /var/lib/docker/overlay2下目录的作用 | Pudding 个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Pudding 个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    <div>
+                        
+                        <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                        
+                        <span class="logo-span">Pudding 个人博客</span>
+                    </div>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Pudding 个人博客</div>
+        <div class="logo-desc">
+            
+            这里是小布丁的私有小屋
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wu3227834" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wu3227834" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">了解容器 overlay 文件系统和 /var/lib/docker/overlay2下目录的作用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/docker/">
+                                <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                            <a href="/tags/contain/">
+                                <span class="chip bg-color">contain</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Docker/" class="post-category">
+                                Docker
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-08-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    31 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="了解容器-overlay-文件系统和-var-lib-docker-overlay2下目录的作用"><a href="#了解容器-overlay-文件系统和-var-lib-docker-overlay2下目录的作用" class="headerlink" title="了解容器 overlay 文件系统和 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2下目录的作用"></a>了解容器 overlay 文件系统和 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2下目录的作用</h1><aside>
+💡 转载自
+
+<p><a target="_blank" rel="noopener" href="https://www.zsythink.net/archives/4345">https://www.zsythink.net/archives/4345</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24433609/article/details/130430322">https://blog.csdn.net/qq_24433609/article/details/130430322</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49023005/article/details/121583100">https://blog.csdn.net/m0_49023005/article/details/121583100</a></p>
+</aside>
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>有个问题困惑着我：容器删除 docker rm 后，docker cp 到容器内的文件，在 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2 目录中是否还会存在</p>
+<p>答案：容器删除后 docker rm 后，会自动删除 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2 中的对应文件</p>
+<p>实验步骤</p>
+<pre class=" language-bash"><code class="language-bash">docker run --name test-container -it busybox:latest sh
+<span class="token comment" spellcheck="true"># 主机拷贝文件到容器</span>
+docker <span class="token function">cp</span> test-file.txt  test-container:/tmp
+<span class="token comment" spellcheck="true"># 去  /var/lib/docker/overlay2  查看是否有此文件</span>
+<span class="token function">cd</span>  /var/lib/docker/overlay2 
+<span class="token function">find</span> ./ -name test-file.txt
+<span class="token comment" spellcheck="true"># 发现在容器运行时，该文件存在与 diff 和 merged 目录</span>
+<span class="token comment" spellcheck="true"># 容器内执行 exit 退出容器，容器会处于 exited 状态，或者 docker stop </span>
+<span class="token comment" spellcheck="true"># 发现在容器停止或 exited 状态，此时该文件会存在于 diff 文件中</span>
+<span class="token comment" spellcheck="true"># 删除容器后，此文件就不存在了</span>
+
+<span class="token comment" spellcheck="true"># 因此就好奇这几个目录的意义</span>
+<span class="token comment" spellcheck="true"># 同时发现 /var/lib/docker/overlay2  中的 hash id 与容器 id 并不对应，因此考虑就和 overlay 文件系统有关了</span>
+</code></pre>
+<p>简单解释，例如下边容器的信息：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># docker inspect 0fcfdcf1b5ff |jq '.[].GraphDriver'</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"Data"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"LowerDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/3cc96d59abc8c7653b124c39277c4da2830640a1a7b0939175ab3b41b1983303-init/diff:/var/lib/docker/overlay2/27ac3a1da2eea77dd8ecfcbb10dda293196408630099796c77bbf71840163759/diff:/var/lib/docker/overlay2/0ca615083cdc29e27697c00bd1ab6ce548760a3101f83bb6f697cb6c63ffcc55/diff:/var/lib/docker/overlay2/d11260c6a8a656e6c689417a2eabf2a097e65935da20b979b3f143ff5b0e7d92/diff:/var/lib/docker/overlay2/ff38b128d890e22b98851afcd608d4e70980d5e2a67a074e65fc68d40fb11f9b/diff:/var/lib/docker/overlay2/c1764658c479cfb45edac77699a4da0d2e481e6999db23854a40d54369fb132c/diff:/var/lib/docker/overlay2/b853ec37273e73902d6e9d3aa9fcc5aa4215b2ef8d56e7076d5673c699c34820/diff:/var/lib/docker/overlay2/e8d350b0980d01b145a7ce8dcf68f66d66c89d1f8b043a73e1d073896c20cdac/diff:/var/lib/docker/overlay2/2f69b30f1e7f26b4dfcaf483306b66bff6d2a9f301f49f02c0847bddc413caaa/diff:/var/lib/docker/overlay2/fbc7a7f9c03dbcd7fd507b802186a563c10d70718c019138d0f04389b9acf2bb/diff:/var/lib/docker/overlay2/1902c5596c2e232ecd2f74c1485e9742b8aa36cffb17abca756efb5020fba82c/diff:/var/lib/docker/overlay2/fdacc494a2fc86b92a1b6fdcec7074f985e0ff07b94be74baeb86399dd7187e1/diff:/var/lib/docker/overlay2/ad913d5690c729d32aef928345f8f84dc5fe9df3fb8d6b1eaf38ecb541408a82/diff:/var/lib/docker/overlay2/3f9061393985ee37edb071aac649af44bc7d19fa71861517d83000f69ba0a889/diff:/var/lib/docker/overlay2/0160cfc728093c0d737eeee1ce87ee7dbb36c27f41fa8301e6a966dee3205fe7/diff:/var/lib/docker/overlay2/d56448445573eb1d2236fd855c13a322b817ceb8482e9a64a8afa1423fbe859d/diff:/var/lib/docker/overlay2/2c8c22223361f41b06da49379023c8be1812dad70acbd0fff4b98508d813a343/diff:/var/lib/docker/overlay2/eb90ded5e398c49c6127187b68d7cf6a878f686cb4475bfd427ada9521905191/diff:/var/lib/docker/overlay2/aa4b8e69ae8ba46ddf2cbaa1db9bb63dc630471f829360f540a774533249c060/diff:/var/lib/docker/overlay2/acfea1fe0ce15416c5efac6bab4b52a27aec7205f7fa899e568e1d9dda9fc03c/diff:/var/lib/docker/overlay2/f843b96cc41cb5948dd88233fa961ad2433889bb2765c8737cd0408e999bacf9/diff:/var/lib/docker/overlay2/45f0eafde0438ec844886856ed68e07b2eb65fe8133353aa4240489d074e6e74/diff:/var/lib/docker/overlay2/3bbb18f0ad656534f45b20e6c8a3a869f3a4f177c2859e39121244737b5bd4cb/diff:/var/lib/docker/overlay2/7de504f0fd3c6aa359ec06ded02d3153405f1c4f7fac29d1b88e351d166364bc/diff:/var/lib/docker/overlay2/bb25f883772fc8502362a124574b3a741090502eaed6268e869843087f98cbe4/diff:/var/lib/docker/overlay2/b93a3576a6fa85ad54890c6163ad26b5c6fda0f403a8e8768a6c052cfad39c93/diff:/var/lib/docker/overlay2/023afc8e2f044ac2d55a804d577b4b5a9f93ff67c5e041f02dc45636ae66d949/diff:/var/lib/docker/overlay2/15573352d289785a83a1ecaa3b65168e68185125e395478e66ca4d71dc5c8e34/diff:/var/lib/docker/overlay2/5d149bcd3163486f89923e9dbc7d067909fd4c2328b3693ee9b4cd2bacb7b5d3/diff:/var/lib/docker/overlay2/9a6e123d5b2659c82fa6955cfd3e689ec0b43cedf8cce3586d11f5b9de31377d/diff:/var/lib/docker/overlay2/ab95d820e29c009efc444c6a3caff6b0cdb7c56bdd18c3fefeac35fdc2048074/diff:/var/lib/docker/overlay2/1ae1804931b744310f3410ce5dedcc3910839fb9e5b55f0483a6bd4abef51521/diff"</span>,
+    <span class="token string">"MergedDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/3cc96d59abc8c7653b124c39277c4da2830640a1a7b0939175ab3b41b1983303/merged"</span>,
+    <span class="token string">"UpperDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/3cc96d59abc8c7653b124c39277c4da2830640a1a7b0939175ab3b41b1983303/diff"</span>,
+    <span class="token string">"WorkDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/3cc96d59abc8c7653b124c39277c4da2830640a1a7b0939175ab3b41b1983303/work"</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"Name"</span><span class="token keyword">:</span> <span class="token string">"overlay2"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在 Docker  中，一个很重要的概念就是 GraphDriver，它主要用于管理和维护镜像，包括把镜像从仓库下载下来，到运行时把镜像挂载起来可以被容器访问等，都是 GraphDriver 去完成的。</p>
+<ul>
+<li>“Name”: “overlay2”：docker存储驱动是overlay2</li>
+<li>LowerDir：包含容器内所有层的文件系统，最后一层除外<ul>
+<li>基础镜像，可以看到有很多 init，这是对应 From 的基础镜像（所有只读层）</li>
+</ul>
+</li>
+<li>UpperDir：容器最上层的文件系统。这也是反映任何运行时修改的地方<ul>
+<li>容器读写层</li>
+</ul>
+</li>
+<li>MergedDir：文件系统所有层的组合视图<ul>
+<li>联合挂载层 ：将 基础层和容器读写层  挂载在一起 ，展示一个统一的视图</li>
+</ul>
+</li>
+<li>WorkDir：用于管理文件系统的内部工作目录</li>
+</ul>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/Untitled.png" alt="Untitled"></p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>通过上述实验，我们已经对 overlay2 有了一定认识了，现在，我们来看看 overlay2 是怎样和 docker 中的镜像层以及容器层结合在一起的。</p>
+<p>当我们通过 docker pull 命令拉去第一个镜像时，可以看到镜像每一层被拉取的过程，例如</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker pull 172.16.1.99/hippo/runtime/x86/faiss_benchmark:20240712_68ba1e1</span>
+20240712_68ba1e1: Pulling from hippo/runtime/x86/faiss_benchmark
+648c0ccfae96: Pull complete
+d77e7370c4fa: Pull complete
+00701f0aa522: Pull complete
+d4516580db57: Pull complete
+fca65a19a3bf: Pull complete
+Digest: sha256:e9b215174cd7a01eafd1913d2bd1c59aafd797649de906dea53eda3582dfdc6b
+Status: Downloaded newer image <span class="token keyword">for</span> 172.16.1.99/hippo/runtime/x86/faiss_benchmark:20240712_68ba1e1
+</code></pre>
+<p>如上所见，此处拉取的 <code>faiss_benchmark:20240712_68ba1e1</code> 镜像一共有 5 层，每一层拉取完毕后，都会显示 Pull complete（Already exists 则表示本地目录已经有该层的文件）；每一层都有一个 ID 号，比如上列中的 648c0ccfae96 就是层的哈希值前 12 位。</p>
+<p>下载镜像后，我们可以通过 docker inspect 命令查看镜像的详细信息，在镜像的详细信息中找到 RootFS 段，可以查看当前镜像包含的层，如下：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker inspect 172.16.1.99/hippo/runtime/x86/faiss_benchmark:20240712_68ba1e1 | jq '.[].RootFS'</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"Type"</span><span class="token keyword">:</span> <span class="token string">"layers"</span>,
+  <span class="token string">"Layers"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"sha256:4f118a86fef9debde65113068bd2b85f9c5fd65250ac6af2e8281a502cc0a724"</span>,
+    <span class="token string">"sha256:004114a8d0e34895acdd9c1c370b1184b239d538e3951887d04d1bda771bd441"</span>,
+    <span class="token string">"sha256:0d5cae34765c1f89a17e5e8e7e6f6f9ddc541151e3efab2487b013faeecac3a6"</span>,
+    <span class="token string">"sha256:fbc981c1f97f7139dd25bc0924272ae4f8f9e07d8c57a1ca4b0c9344266a93ff"</span>,
+    <span class="token string">"sha256:457b93dcc46ca598ce9378e015aae678218bb9a699c4e373250e4021b60c0566"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如上所示，faiss_benchmark 镜像的 RootFS 段中一共有 5 层，这 5 个层就是刚才 docker pull 拉取下来的层，RootFS 中的每个层也是用一个哈希值表示，RootFS 中的层的哈希值的前 12 位和刚才 docker pull 命令中的 ID 根本对应不上，这是因为 dcoker pull 中显示的 ID 是层在压缩状态下计算出的哈希值，当层被下载到本地，会自动解压，而 RootFS 中的层哈希值不是在压缩状态下计算的，显然它们两个的值不会一样。如果想要确定它们之间的对应关系，可以通过 <code>diffid-by-digest或者v2metadata-by-diffid/sha256/</code>目录中的文件来查看它们之间的对应关系</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 distribution<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/var/lib/docker/image/overlay2/distribution
+<span class="token punctuation">[</span>root@pudding-160 distribution<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># tree -L 2</span>
+<span class="token keyword">.</span>
+├── diffid-by-digest
+│   └── sha256
+└── v2metadata-by-diffid
+    └── sha256
+
+4 directories, 0 files
+</code></pre>
+<ul>
+<li>**<code>diffid-by-digest/sha256</code>**：<ul>
+<li>这个目录存储了按镜像层的 Digest (SHA256) 计算的映射到 DiffID 的信息。</li>
+<li>Digest 是一个唯一标识符，用于识别镜像层的内容。</li>
+<li>DiffID 是镜像层的一个变化 ID，表示这一层和它下面一层之间的差异。</li>
+<li>这个映射文件可以帮助 Docker 快速查找特定层的变化信息。</li>
+</ul>
+</li>
+<li>**<code>v2metadata-by-diffid/sha256</code>**：<ul>
+<li>这个目录存储了按 DiffID (SHA256) 计算的映射到 v2 元数据的文件。</li>
+<li>这些元数据包括关于镜像层的各种信息，如创建时间、大小、标签等。</li>
+<li>这个目录有助于 Docker 管理和检索与特定层相关的元数据。</li>
+</ul>
+</li>
+</ul>
+<p>例如 289ce7e41289 的对应关系：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 sha256<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># find . -name "648c0ccfae96*"</span>
+./648c0ccfae963a8b0d71c267d8cb5bb4fc6f26f5e9bd05ab7a6f82db8e95332e
+<span class="token punctuation">[</span>root@pudding-160 sha256<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat ./648c0ccfae963a8b0d71c267d8cb5bb4fc6f26f5e9bd05ab7a6f82db8e95332e</span>
+sha256:4f118a86fef9debde65113068bd2b85f9c5fd65250ac6af2e8281a502cc0a724
+
+这是我们可以看到 docker pull 中的 648c0ccfae96 和 docker insepct 中的 648c0ccfae96 联系了起来
+</code></pre>
+<p>在 RootFS 所显示的层中，第一层是最底层，最后一行是最上层，RootFS 显示的层顺序和在镜像中的实际顺序是相反的，在上例中 4f118a86fef9d 是镜像最底层，457b93dcc46 是镜像的最上层。</p>
+<p>既然这些层已经下载到本地，那么这些层对应的文件到底存放到那里呢？我们可以通过如下命令，可以查看这些层的实际存放位置。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 sha256<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker inspect 172.16.1.99/hippo/runtime/x86/faiss_benchmark:20240712_68ba1e1 -f '{{.GraphDriver.Data}}' | awk -v RS=' ' '{print}' | nl | sort -nr | cut -f2 | awk -v RS=':' '{print}' | grep diff</span>
+/var/lib/docker/overlay2/43722a4a12628179c70d588fcc7f64b86aa92cbd30c8599035d0433059423dcf/diff
+/var/lib/docker/overlay2/0fed41f6f307ef92b1b1d475108575f0130d224eb008dfa3ff4383c8fa506de6/diff
+/var/lib/docker/overlay2/cd5c2d405030b7ed966d1b78c3b038c1c6b313b8be7d0033835bf9ae20c34c37/diff
+/var/lib/docker/overlay2/784dc7dce7d8625dc10a4fa065f2a1f27ff65e19def543c9f491f32575ec09dd/diff
+/var/lib/docker/overlay2/0fee07bf5795a78e666b18059a4f64eb84d184d07eb6a5d1118ed487338e9edf/diff
+</code></pre>
+<p>如上所示，这些层实际存放在 <code>/var/lib/docker/overlay2/层哈希值/diff</code>目录中，很明显，上述命令查询出的路径中的层哈希值和之前<code>docker pull</code>或者<code>RootFS</code>中显示的哈希值都不一样，上述路径中的哈希值是根据一定的规律，层层递进计算出来的，如果对这些哈希值之间的关系和计算方法感兴趣，可以去搜索“docker layerID diffID chainID cacheID”这些关键字，这并不是此处要关注的重点，所以不用纠结这些细节，我们只要知道，这些查出来路径就是镜像层实际的存放路径即可。</p>
+<p>由于上述命令已经完成了排序，所以我们看到的层的顺序就是对应层在镜像中的位置，也就是说，上例中查询出来的 43722a4a12628 是最上层，对应 RootFS 中的 457b93dcc46 ，上例中的 0fee07bf5795a7 是最下层，对应 RootFS 中的 4f118a86fef9d ，总之，镜像的层对应的文件实际存放在 diff 目录中。</p>
+<p>其实聊了半天，无非都是在说镜像的层而已，现在咱们基于镜像，创建一个容器，看看容器层是怎么和镜像层结合的。</p>
+<p>此处基于 faiss_benchmark 镜像创建一个 faiss-demo1 容器：</p>
+<pre class=" language-bash"><code class="language-bash">docker run --name faiss-demo1 -dit 172.16.1.99/hippo/runtime/x86/faiss_benchmark:20240712_68ba1e1 <span class="token function">bash</span>
+</code></pre>
+<p>使用 docker inspect 命令查看容器的详细信息，在详细信息的 GraphDriver 段可以看到容器的层信息：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker inspect faiss-demo1 | jq '.[].GraphDriver'</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"Data"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"LowerDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4-init/diff:/var/lib/docker/overlay2/0fee07bf5795a78e666b18059a4f64eb84d184d07eb6a5d1118ed487338e9edf/diff:/var/lib/docker/overlay2/43722a4a12628179c70d588fcc7f64b86aa92cbd30c8599035d0433059423dcf/diff:/var/lib/docker/overlay2/0fed41f6f307ef92b1b1d475108575f0130d224eb008dfa3ff4383c8fa506de6/diff:/var/lib/docker/overlay2/cd5c2d405030b7ed966d1b78c3b038c1c6b313b8be7d0033835bf9ae20c34c37/diff:/var/lib/docker/overlay2/784dc7dce7d8625dc10a4fa065f2a1f27ff65e19def543c9f491f32575ec09dd/diff"</span>,
+    <span class="token string">"MergedDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/merged"</span>,
+    <span class="token string">"UpperDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/diff"</span>,
+    <span class="token string">"WorkDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/work"</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"Name"</span><span class="token keyword">:</span> <span class="token string">"overlay2"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>仔细观察上列的返回信息，你会发现，faiss-demo1 容器其实就是使用了 overlay2 文件系统，将 faiss_benchmark 镜像各个层的 diff 目录作为 LowerDir 只读层（在这个基础上添加了一层 init 只读层，之后再聊它），将容器的 diff 目录（c156d03c1532 文件夹中的 diff 目录）作为 UpperDir 可读写层，叠加后呈现在了 MergedDir 层（MergedDir 是 c156d03c1532 文件夹中的 merged 目录），而我们在容器中看到的、操作的文件，其实就是 MergedDir 中的内容。</p>
+<p>我们从宿主机的挂载信息中，也可以侧面验证这一点，在容器启动的情况下，执行如下命令，查看对应的 overlay2挂载点信息：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mount | grep overlay | grep c156d03c1532</span>
+overlay on /var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/merged <span class="token function">type</span> overlay <span class="token punctuation">(</span>rw,relatime,lowerdir<span class="token operator">=</span>/var/lib/docker/overlay2/l/62APW7R2QAZIKL2JBXGDL2SZFX:/var/lib/docker/overlay2/l/VHFAUXFFYMW7NZ5S3SKLFYMS6R:/var/lib/docker/overlay2/l/FUWWJ73CD3TWQY4ESCXJSQD3Y7:/var/lib/docker/overlay2/l/V2E4YYCC3PEBB4VYHJ3P2E7JMA:/var/lib/docker/overlay2/l/5FRUEQSAL6URPMBZ4V5VHEOJDR:/var/lib/docker/overlay2/l/54MNMNIOUGOPX7SLOTKFTZHE5R,upperdir<span class="token operator">=</span>/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/diff,workdir<span class="token operator">=</span>/var/lib/docker/overlay2/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4/work<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">#上述挂载点中的有很多/var/lib/docker/overlay2/l/下的路径，查看这些路径，会发现这些路径都是软链接，软连接指向的路径就是那些diff目录</span>
+<span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll /var/lib/docker/overlay2/l/62APW7R2QAZIKL2JBXGDL2SZFX</span>
+lrwxrwxrwx 1 root root 77 Jul 29 15:47 /var/lib/docker/overlay2/l/62APW7R2QAZIKL2JBXGDL2SZFX -<span class="token operator">></span> <span class="token punctuation">..</span>/c156d03c1532a2efce8670b7d665e0d4840e1b798c47998b8f746c3aaf8d82b4-init/diff
+<span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#</span>
+<span class="token punctuation">[</span>root@pudding-160 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll /var/lib/docker/overlay2/l/VHFAUXFFYMW7NZ5S3SKLFYMS6R</span>
+lrwxrwxrwx 1 root root 72 Jul 29 15:38 /var/lib/docker/overlay2/l/VHFAUXFFYMW7NZ5S3SKLFYMS6R -<span class="token operator">></span> <span class="token punctuation">..</span>/0fee07bf5795a78e666b18059a4f64eb84d184d07eb6a5d1118ed487338e9edf/diff
+</code></pre>
+<p>看到这里，我们应该能够完全理解镜像层、容器层、overlay2 文件系统时怎么融合在一起的了。首先，镜像下载到本地后，各个镜像层的文件存放在对应的 diff 目录中，当我们基于镜像创建容器时，docekr 引擎会为容器创建对应的各个目录，比如 diff、work、merged 目录，然后把镜像层的 diff 目录作为 overlay 中的 lowerDir，将容器的 diff 目录作为 overlay 中 upperDir，将折叠后的结果挂载到了 merge 目录中，最后，docekr 通过 <code>mount namespace</code> 技术，将 merged 目录隔离挂载到容器中。</p>
+<p>现在，再看下图是不是一目了然了</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/Untitled1.png" alt="Untitled"></p>
+<p>你可以做一些实验，比如，在容器中创建一些文件，修改一些文件，看看容器的 diff 目录中的变化情况，因为容器的 diff 目录就是读写层，当在容器中进行写操作时，最直接的变化会体现到容器的 diff 目录中，但是，你可能会遇到一些“意外情况”，比如，你在容器中修改了&#x2F;etc&#x2F;hosts 文件，发现容器的 diff 目录中并没有对应的 &#x2F;etc&#x2F;hosts 文件出现，这是因为有一个特殊的层存在，这个层就是我们刚才看到的”-init层”。当我们创建一个容器时，docker 会为容器进行一些初始化工作，其中就包括生成 hosts 信息、生成 hostname 等，你会发现，即使你在容器中修改了 &#x2F;etc&#x2F;host 文件，重启容器后，hosts 文件也会变成原来的样子（通过其他方法可以永久修改），因为 &#x2F;etc&#x2F;hosts、&#x2F;etc&#x2F;hostname、&#x2F;etc&#x2F;resolv.conf 文件中的信息都是 docker 生成的，docker 认为这些信息应该是针对容器当前的状态而存在的，以 hosts 文件为例来说，如果容器没有固定的 IP 地址，那么重启容器后，容器的 IP 可能会发生变化，所以每次重启容器时 docker 都会重新生成 hosts 内容，避免之前生成的 hosts 与当前状态所需要的 hosts 不符，当我们在容器中修改  &#x2F;etc&#x2F;hosts 文件时，会发现宿主机中的<code>/var/lib/docker/containers/容器ID/</code>目录下的 hosts 文件内容也发生了同样的变化，其实，docker 就是将宿主机中的<code>/var/lib/docker/containers/容器ID/hosts</code>文件挂载到了容器中的，既然这些状态应该属于容器，那么当我们基于容器创建镜像时，就不应该把容器中的这些信息带入到新创建的镜像中，当我们使用<code>docker commit</code>命令基于容器创建镜像时，会把容器的可读写层变成新创建出的镜像的最上层，所以，如果容器的可读写层中包含 hosts 文件，新镜像中就会带入容器的 hosts 信息，而容器因为 init 层和挂载操作的存在，避免了这些信息进入到容器的可读写层，所以可以保障我们基于容器创建镜像时，得到的镜像是“纯净”的。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="rootfs"><a href="#rootfs" class="headerlink" title="rootfs"></a>rootfs</h2><p>在讲 overlay2 之前，我们需要先简单了解一下什么是 rootfs：</p>
+<p>rootfs 也叫 <strong>根文件系统</strong>，是 Linux 使用的最基本的文件系统，是内核启动时挂载的第一个文件系统，提供了根目录 <code>/</code> ，根文件系统的各个目录，例如 &#x2F;bin、&#x2F;etc、&#x2F;mnt 等，再将其他分区挂载到 &#x2F;mnt，&#x2F;mnt 目录下就有了这个分区的各个目录和文件。</p>
+<p>docker 容器中使用的同样也是 rootfs 这种文件系统，当我们通过 <code>dockr exec</code> 命令进入到容器内部时也可以看到在根目录下有 &#x2F;bin、&#x2F;etc、&#x2F;tmp 等目录，但是在 docker 容器中与 Linux 不同的是，在挂载 rootfs 后，docker deamon 会利用<strong>联合挂载技术</strong>在已有的 rootfs 上再挂载一个读写层，容器在运行过程中文件系统发生的变化只会在读写层进行修改，并通过 whiteout 文件隐藏只读层中的旧版本文件。</p>
+<blockquote>
+<p>whiteout 文件：<br>whiteout 概念存在于联合文件系统（UnionFS）中，代表某一类占位符形态的特殊文件，当用户文件夹的共通部分联合到一个目录时（例如 bin）目录，用户可以删除归属于自己的某些系统文件副本，但归属于系统级的原件仍存留于同一个联合目录，此时系统将产生一份 whiteout 文件，表示该文件在当前用户目录中已删除，但系统目录中仍然保留。</p>
+</blockquote>
+<h2 id="联合挂载文件"><a href="#联合挂载文件" class="headerlink" title="联合挂载文件"></a>联合挂载文件</h2><p>所谓联合挂载文件（Union Mount），就是将原有的文件系统中的不同目录进行<strong>合并（merge）</strong>，最后向我们呈现出一个合并后文件系统。在 overlay2 文件结构中，联合挂载技术通过联合三个不同的目录来实现：lower 目录、upper 目录和 work 目录，这三个目录联合挂载后得到 merged 目录：</p>
+<ul>
+<li>lower 目录：<strong>只读层</strong>，可以有多个，处于最底层目录</li>
+<li>upper 目录：<strong>读写层</strong>，只有一个</li>
+<li>work 目录：工作基础目录，挂载后内容被清空，且在使用过程中其内容不可见</li>
+<li>merged 目录：联合挂载后得到的<strong>视图</strong>，其中本身并没有实体文件，实际文件都在 upper 目录和 lower 目录中。在 merged 目录中对文件进行编辑，实际会修改 upper 目录中文件；而在 upper 目录与 lower 目录中修改文件，都会影响我们在 merged 目录看到的结果。</li>
+</ul>
+<h1 id="overlayFS"><a href="#overlayFS" class="headerlink" title="overlayFS"></a><strong>overlayFS</strong></h1><p>在介绍 docker 中使用的 overlay2 文件结构前，我们先通过对 overlay 文件系统进行简单的操作演示以便更深入理解不同层不同目录之间的关系</p>
+<p>先创建几个文件夹和文件</p>
+<pre class=" language-bash"><code class="language-bash">pudding@DESKTOP-1QCHCU4:~$ <span class="token function">mkdir</span> A B C worker
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From A"</span> <span class="token operator">>></span> A/b.txt
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From A"</span> <span class="token operator">>></span> A/c.txt
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From B"</span> <span class="token operator">>></span> B/a.txt
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From B"</span> <span class="token operator">>></span> B/d.txt
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From C"</span> <span class="token operator">>></span> C/b.txt
+pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> <span class="token keyword">echo</span> <span class="token string">"From C"</span> <span class="token operator">>></span> C/e.txt
+pudding@DESKTOP-1QCHCU4:~$ tree
+</code></pre>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image.png" alt="image.png"></p>
+<p>使用 mount 命令挂载成 overlayFS 文件系统，格式如下</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mount</span> -t overlay overlay -o lowerdir<span class="token operator">=</span>lower1:lower2:lower3,upperdir<span class="token operator">=</span>upper,workdir<span class="token operator">=</span>work merged_dir
+</code></pre>
+<p>在这个例子中，我们用 A 和 B 两个文件夹作为 lower 目录，用 C 作为 upper 目录，worker 作为 work 目录，挂载到 &#x2F;home&#x2F;pudding&#x2F;merged 目录下</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mkdir</span> merged
+<span class="token function">sudo</span> <span class="token function">mount</span> -t overlay overlay -o lowerdir<span class="token operator">=</span>A:B,upperdir<span class="token operator">=</span>C,workdir<span class="token operator">=</span>worker /home/pudding/merged
+</code></pre>
+<p>挂载后我们可以查看一下 merged 目录下的文件</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image1.png" alt="image.png"></p>
+<p>可以看到我们原本的 A B C 三个目录下的文件已经合并，相同的文件名的文件将会选择性的显示，在 merged 中显示里 merged 层更近的文件，upper 层比 lower 层更近，同样 lower 层中，排序靠前的比排序靠后的更近（取决于mount 脚本中 lowerdir&#x3D;A:B ），在这个例子中就是 A 比 B 更靠近 merged 层</p>
+<p>根据这个规律，我们可以先分析下 merge 层中的文件来源，a.txt 在 A、B 中都有，但是 A 比 B 更靠近 merged 层，所以 merged 层的 a.txt 应该来自 A 目录，b.txt 在 A 和 C 中都有，但是 C 是 upper 层，所以 b.txt 应该来自 C 目录，我们可以核实一下</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image2.png" alt="image.png"></p>
+<p>接下来我们可以看下 upper 层、lower 曾和 merged 层之间的关系，上文已经提到了 upper 层是<strong>读写层</strong>而 lower 层是<strong>只读层</strong>，merged 层是联合挂载后的视图，那如果我们在 merged 层中对文件进行操作会生什么</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image3.png" alt="image.png"></p>
+<p>我们修改 merge 层的 a.txt 文件，可以看到 merged 层的 a.txt 内容虽然改变，但是 A 目录（只读层）下的 a.txt 内容并没有发生变化，而在 C 目录（读写层）下多了一个 a.txt 文件，内容就是我们修改过的 a.txt 的内容，这就是只读层和读写层的关系，<strong>在 merged 目录对文件进行修改并不会影响到只读层的源文件，只会对读写层进行编辑</strong>。</p>
+<p>如果我们在 merged 层删除文件会发生什么</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image4.png" alt="image.png"></p>
+<p>可以看到在 merged 目录中已经没有 c.txt 文件了，但是 c 目录下却多了一个 c.txt，这个文件就是我们在一开始提到的 <strong>whiteout 文件</strong>，它是主&#x2F;次设备号都为 0 的字符设备，overlay 文件结构通过使用这种特殊文件来实现文件删除功能，在 merged 目录下使用 ls 命令查看文件时，overlay 会自动过滤掉 upper 目录下的 whiteout 文件以及在 lower 目录下的同名文件，以此实现文件删除效果</p>
+<p>还有一个值得提到的点：overlay 在文件进行操作时用到了<strong>写时复制（Copy on Write）技术</strong>，在没有对文件进行修改时，merged 目录直接使用 lower 目录下的文件，只有当我们在 merged 目录对文件进行修改时，才会把修改的文件复制到 upper 目录</p>
+<h1 id="Docker-overlay2"><a href="#Docker-overlay2" class="headerlink" title="Docker overlay2"></a><strong>Docker overlay2</strong></h1><p>有了对 overlayFS 的基本了解，我们接下来就可以着手分析 Docker 的 overlay2 文件结构了，实际上 Docker 支持的存储驱动有很多种：overlay、overlay2、aufs、vfs 等，在 Ubuntu 较新版本中的 Docker 中普遍采用了 overlay2 这种文件结构，其具有更优越的驱动性能，而 overlay 和 overlay2 的本质区别就是二者在镜像层之间的共享数据方法不同：</p>
+<ul>
+<li>overlay 通过 硬链接 的方式共享数据，只支持，增加磁盘 inode 负担</li>
+<li>overlay2 通过 将多层的 lower 文件联合在一起</li>
+</ul>
+<p>简而言之，overlay2 就是 overlay 的改进版本，我们可以通过 docker info 命令查看</p>
+<pre class=" language-bash"><code class="language-bash">pudding@DESKTOP-1QCHCU4:~$ <span class="token function">sudo</span> docker info <span class="token operator">|</span> <span class="token function">grep</span> -i <span class="token string">"storage driver"</span>
+ Storage Driver: overlay2
+</code></pre>
+<p>在 Docker 中，我们日常操作主要涉及两个方面：镜像层与容器层，镜像层就是我们通过 <strong>docker pull</strong> 等命令下载到本机中的镜像，而容器层则是我们通过 <strong>docker exec</strong> 等命令进入的交互式终端，如果你使用过 Docker，你会发现我们只用一个镜像，通过 <strong>docker run</strong> 可以产生很多个容器，这就可以类比 upper 与 lower 两层，镜像作为 lower 层，只读提供文件系统基础，而容器作为 upper 层，我们可以在其中进行任意文件操作，只用同一个镜像就可以申引出不同的容器，这也是一种节约空间资源的方式吧（我的推测</p>
+<p>接下来我们稍微详细地探讨下镜像层与容器层，还有他们的元数据</p>
+<h2 id="镜像层"><a href="#镜像层" class="headerlink" title="镜像层"></a>镜像层</h2><p>我们可以通过 <code>docker inspect [IMAGE ID]</code> 来查看镜像配置</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image5.png" alt="image.png"></p>
+<p>其中的 GraphDriver 字段中关于 overlay2 文件结构的目录信息</p>
+<p>每一层的对应都在配置信息中体现的非常清楚，但是有一点问题，我们在实际查看文件夹的时候，可以发现镜像层其实并没有 &#x2F;merged 目录，<strong>我的理解</strong> &#x2F;merged 目录只在运行容器时存在；这个目录是 Docker 为容器提供的一个视图，它将 lowerdir 和 upperdir 层合并为一个统一的文件系统供容器访问；虽然 merged 目录不存在于镜像层，但 Docker 在 GraphDriver 字段中提供了这些信息，以确保我们能够理解整个 overlay2 文件系统的结构。（不一定对</p>
+<p>可以看到镜像的目录是在 <code>/var/lib/docker/overlay2</code> 下，我们打开一个镜像层看一看其中都有哪些文件</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image6.png" alt="image.png"></p>
+<p>其中我们关注一下 diff 目录、link 和 lower 文件</p>
+<h3 id="diff-目录"><a href="#diff-目录" class="headerlink" title="diff 目录"></a>diff 目录</h3><p><strong>在这个目录中存放的是当前镜像层的文件，</strong>刚刚在介绍 overlay2 与 overlay 区别的时候提到了 overlay2 是将多个 lower 层联合到一起，在上面的图中也可以看到，多个 lower 层之间用<code>:</code>分割，在这些层中每一层都有一部分文件，把他们联合到一起就得到了完整的 rootfs</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image7.png" alt="image.png"></p>
+<h3 id="link-文件"><a href="#link-文件" class="headerlink" title="link 文件"></a>link 文件</h3><p>link 文件中的内容是<strong>当前层的软链接名称</strong></p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image8.png" alt="image.png"></p>
+<p>这些链接都在 <code>/var/lib/docker/overlay2/l</code> 目录下</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image9.png" alt="image.png"></p>
+<p>使用软链接的目的是<strong>为了避免受到 mount 命令参数的长度限制</strong></p>
+<blockquote>
+<p><code>getconf ARG_MAX</code><br>该值决定了一个进程的命令行参数和环境变量的总长度<br>通常在 Linux 系统上为 2MB（2097152 字节）</p>
+</blockquote>
+<h3 id="lower-文件"><a href="#lower-文件" class="headerlink" title="lower 文件"></a>lower 文件</h3><p>lower 文件中的内容是<strong>在此层之下的所有层的软连接名称</strong>，最底层不存在该文件，我们知道 upper 层在 lower 层之上，而 lower 层中越靠后的则越在底层</p>
+<p>我们查看 upper 层对应目录下 lower 文件，可以看到其中有 4 个软链接</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image10.png" alt="image.png"></p>
+<p>恰好 lower 目录中有 4 个镜像层</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image11.png" alt="image.png"></p>
+<p>在 lower 层中，处于最底层的则是应该在 <code>:</code> 最后的目录，即，</p>
+<pre class=" language-bash"><code class="language-bash">/var/lib/docker/overlay2/784dc7dce7d8625dc10a4fa065f2a1f27ff65e19def543c9f491f32575ec09dd
+</code></pre>
+<p>查看这一目录下的文件，可以发现它并没有 lower 文件</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image12.png" alt="image.png"></p>
+<p>这一层对应的软链接即 link 文件内容为 <code>54MNMNIOUGOPX7SLOTKFTZHE5R</code>，我们查看其上一层的 lower 文件内容</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image13.png" alt="image.png"></p>
+<p>可以发现确实对应了最底层目录的软链接</p>
+<h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><p>Docker 的元数据存储目录为 <code>/var/lib/docker/image/overlay2</code> </p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image14.png" alt="image.png"></p>
+<p>我们主要看 imagedb 和 layerdb 这两个文件夹</p>
+<h3 id="imagedb"><a href="#imagedb" class="headerlink" title="imagedb"></a>imagedb</h3><p>这个文件夹中存储了镜像相关的元数据，具体位置是在 <code>/imagedb/content/sha256</code>  目录下，这个目录下的文件以 <strong>IMAGE ID</strong> 来命令</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image15.png" alt="image.png"></p>
+<p>这个文件的内容就是我们通过 <code>docker inspect [IMAGE ID]</code> 命令查看到的信息，其中我们关注 <code>RootFS</code> 字段</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/Untitled2.png" alt="image.png"></p>
+<p>可以看出这个字段中有很多 sha256 值，这些哈希值称为 <strong>diff_id</strong>，其从上至下的顺序就表示镜像层最底层到最顶层，也就是说每个 diff_id 对应了一个镜像层，实际上，对应每一个镜像层的还有另外两个 id：<strong>cache_id</strong> 和 <strong>chain_id</strong></p>
+<ul>
+<li><p><strong>cache_id</strong> 就是在 <code>docker/overlay2</code> 目录下看到的文件夹名称，也是我们通过 <code>docker inspect [IMAGE ID]</code> 命令查看 GraphDriver 字段对应不同的 Dir，其本质是宿主机随机生成的 uuid</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image16.png" alt="image.png"></p>
+</li>
+<li><p>chain_id 是通过 diff_id 计算出来的，是 Docker 内容寻址机制采用的索引 ID</p>
+<ul>
+<li>chain_id 在目录 <code>/var/lib/docker/image/overlay2/layerdb/sha256</code> 查看</li>
+<li>如果当前镜像层为最底层，则其 chain_id 与 diff_id 相同</li>
+<li>如果当前镜像层不是最底层，则其 chain_id 计算方式为：<code>sha256(上层chain_id + &quot; &quot; + 本层diff_id)</code></li>
+</ul>
+</li>
+</ul>
+<p>这三个 id 之间存在一一对应的关系，我们可以通过 diff_id 计算得到 chain_id，又可以通过 chain_id 找到对应的 cache_id，下面我们举个栗子说明一下：</p>
+<p>我们刚刚提到了 diff_id 从上至下是最底层到最顶层</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image17.png" alt="image.png"></p>
+<p>查看 chain_id</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image18.png" alt="image.png"></p>
+<p>可以看到其中确实有一个 chain_id 与 最底层的 diff_id 相同，有了最底层的 chain_id 我们就可以计算出下一层的 chain_id，至于具体如何计算，以及如何通过 chain_id 找到对应的 cache_id，我们需要先了解 layerdb 目录下的内容</p>
+<h3 id="layerdb"><a href="#layerdb" class="headerlink" title="layerdb"></a>layerdb</h3><p>我们现在已知 Docker 的镜像层作为只读层，容器曾作为读写层，而 Docekr 实际上定义了 roLayer 接口与 mountLayer 接口，分别用来描述（只读）镜像层与（读写）容器层，这两个接口的元数据就在目录 <code>/var/lib/docker/image/overlay2/layerdb</code> 下</p>
+<ul>
+<li><p><strong>roLayer</strong></p>
+<p>  rolayer 接口用来描述镜像层，元数据的具体目录在 <code>layerdb/sha256/</code> 下，在此目录下每个文件夹都以每个镜像层的 chain_id 命名</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image19.png" alt="image.png"></p>
+<p>  在文件夹中主要有这 5 个文件，我们简单介绍一下：</p>
+<ul>
+<li>cache-id：当前 chain_id 对应的 cache_id，用来索引镜像层</li>
+<li>diff：当前 chain_id 对应的 diff_id</li>
+<li>parent：当前 chain_id 对应的镜像层的下一层（父层）镜像 chain_id，最底层不存在该文件</li>
+<li>size：当前 chain_id 对应的镜像层物理大小，单位是字节</li>
+<li>tar-split.json.gz：当前 chain_id 对应镜像层压缩包的 split 文件，可以用来还原镜像层的 tar 包，通过 <code>docker save</code> 命令导出镜像时会用到</li>
+</ul>
+<p>  我们在上一节中已经判断出了最底层对应的 chain_id，不妨查看一下对应目录下的文件</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image20.png" alt="image.png"></p>
+<p>  可以看到该目录下确实没有 parent 文件，那么我们再查看其下一层，通过 diff_id 的顺序我们可以得知其下一层的 diff_id 为 <code>0d5cae34765c1f89a17e5e8e7e6f6f9ddc541151e3efab2487b013faeecac3a6</code> （上文提到的 inspect 的 RootFS 里 Layers 的 sha256 信息），通过计算 sha256，我们可以得出下一层的 chain_id</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image21.png" alt="image.png"></p>
+<p>  计算得到最底层的下一层镜像 chain_id 为 <code>696245322de78f67f7f15ab9ade64bf0c35cf1f280a66d763230d9e99a3a6d39</code></p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image22.png" alt="image.png"></p>
+<p>  确实存在该目录，可以看到：</p>
+<ul>
+<li>diff 文件内容是 <code>004114a8d0e34895acdd9c1c370b1184b239d538e3951887d04d1bda771bd441</code></li>
+<li>parent 文件内容是 <code>4f118a86fef9debde65113068bd2b85f9c5fd65250ac6af2e8281a502cc0a724</code></li>
+</ul>
+<p>  可以看到与我们计算用到的两个值也完全相同
+  </p>
+</li>
+<li><p><strong>mountLayer</strong></p>
+<p>  mountLayer 接口用来描述容器层，元数据的具体目录在 <code>layerdb/mounts/</code> ，在此目录下的文件夹以每个容器的容器 ID（CONTAINER ID）命名</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image23.png" alt="image.png"></p>
+<p>  在这个文件夹下只有 3 个文件，内容如下：</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image24.png" alt="image.png"></p>
+<p>  简单介绍一下这3个文件：</p>
+<ul>
+<li>init-id：对应容器 init 层目录名，源文件在 <code>/var/lib/docker/overlay2</code> 目录下</li>
+<li>mount-id：容器层存储在 <code>/var/lib/docker/overlay2</code> 目录下的名称</li>
+<li>parent：容器的镜像层<strong>最顶层</strong>镜像的 chain_id</li>
+</ul>
+<p>  我们可以查看 parent 文件中 chain_id 对应目录下的 diff 文件</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image25.png" alt="image.png"></p>
+<p>  根据 diff_id 从上至下的顺序，我们可以确定这个 diff_id 的确是镜像层的最顶层</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image26.png" alt="image.png"></p>
+<p>  在这里我们引入了一个叫做 <strong>init 层</strong> 的概念，实际上，一个完善的容器分为 3 层：镜像层、init 层和容器层，镜像层提供完整的文件系统基础（rootfs），容器层提供给用户进行交互操作与读写权限，而 init 层则是对应每个容器自己的一些系统配置文件，我们可以看一下 ini 层的内容</p>
+<p>  <img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image27.png" alt="image.png"></p>
+<p>  可以看到在 diff 目录中有一些 &#x2F;etc&#x2F;hosts、&#x2F;etc&#x2F;resolv.conf 等配置文件，需要这一层的原因是当容器启动的时候，会有一些每个容器特定的配置文件（例如 hostname），但由于镜像层是只读层无法进行修改，所以就在镜像层之上单独挂载一层 init 层，用户通过修改每个容器对应的 init 层中的一些配置文件从而达到修改镜像配置文件的目的，而在 init 层中的配置文件也仅对当前容器生效，通过 docker commit 命令创建镜像时也不会提交 init 层。</p>
+</li>
+</ul>
+<h2 id="容器层"><a href="#容器层" class="headerlink" title="容器层"></a>容器层</h2><p>最后我们来看一下容器层的构造，刚刚我们在 <strong>mountLayer</strong> 一节的讲述中提到了 <strong>mount-id</strong> 这个文件，而这个文件的内容就是容器目录的名称，我们可以通过 <code>docker inspect [CONTAINER ID]</code> 命令也可以判断</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image28.png" alt="image.png"></p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image29.png" alt="image.png"></p>
+<p>可以看到其实容器层的目录与镜像层、init层都在同一目录下，其实也就说明了他们在文件结构上都是相同的</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image30.png" alt="image.png"></p>
+<p>同样都是这几个文件，但不同的是，我们可以看到在容器层确实有了 merge 这个目录，与我们在文章一开始实现的 overlayFS 是相同的</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image31.png" alt="image.png"></p>
+<p>在 merge 目录下展现了完整的 rootfs 文件系统，这就是 overlay2 通过联合挂载技术，将镜像层、init 层与容器层挂载到一起呈现的结果，这也是我们通过 <code>docker exec</code> 命令进入容器的交互式终端看到的结果，也就是所谓的<strong>视图</strong></p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image32.png" alt="image.png"></p>
+<h3 id="link-lower-文件"><a href="#link-lower-文件" class="headerlink" title="link &amp; lower 文件"></a><strong>link &amp; lower 文件</strong></h3><p>我们在镜像层的时候已经讲过这两个文件了，在容器层中这两个文件与镜像层作用是相同的，不过我们可以看一下 lower 文件的内容</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image33.png" alt="image.png"></p>
+<p>前面讲过，lower 文件的内容是在此层之下的所有层的软链接名称，我们已知此镜像的镜像层共 4 层（lower 层 3 个，upper 层 1 个），但是我们从上图可以看到在容器层之下有 5 个其他层，那多出来的一个就是我们在上一节中提到的 init 层，init 层也有其对应的软链接（看上一节中的图），所以在 <code>docker/overlay2/l</code> 目录下实际上有 6 个软连接（4个镜像层，1个 init 层，1 个容器层）</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image34.png" alt="image.png"></p>
+<p>而通过 <code>docker inspect [CONTAINER ID]</code> 命令我们也可以判断出容器层是最顶层，其次是 init 层，最下面是镜像层，也对应了 lower 文件中软链接的顺序</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image35.png" alt="image.png"></p>
+<h3 id="diff-目录-1"><a href="#diff-目录-1" class="headerlink" title="diff 目录"></a><strong>diff 目录</strong></h3><p>这个目录实际上就是 overlayFS 文件结构中的 upper 层（上图中也能看到），所以它的用途就是保存用户在容器中（merged 层）对文件进行的编辑</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image36.png" alt="image.png"></p>
+<p>我们在容器内的 &#x2F;root&#x2F;A 目录下创建了一个 a.txt 文件，可以看到在 diff 目录下也体现了出来，我们再尝试在容器中删除原本镜像自带的文件看一看效果</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image37.png" alt="image.png"></p>
+<p>我们在容器中删除 &#x2F;etc 目录下的 shadow 文件，可以看到在 diff 目录下的 &#x2F;etc 中多了一个 shadow 文件，而这个文件实际上就是我们在文章一开始讲到的 whiteout 文件，用来隐藏我们已经删掉的 shadow 文件，而实际上镜像层的 shadow 文件并没有被删除</p>
+<p><img src="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/image38.png" alt="image.png"></p>
+<p>至此，我们对于 Docker 使用的 overlay2 文件结构分析结束。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Pudding</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://wu3227834.github.io/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/">https://wu3227834.github.io/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Pudding</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                                <a href="/tags/contain/">
+                                    <span class="chip bg-color">contain</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/08/27/2024-08-28-liao-jie-rong-qi-overlay-wen-jian-xi-tong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="了解容器 overlay 文件系统和 /var/lib/docker/overlay2下目录的作用">
+                        
+                        <span class="card-title">了解容器 overlay 文件系统和 /var/lib/docker/overlay2下目录的作用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Docker/" class="post-category">
+                                    Docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/contain/">
+                        <span class="chip bg-color">contain</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/19/2024-08-20-github-guo-nei-dai-li-fang-wen-xia-zai/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="github 国内代理访问下载">
+                        
+                        <span class="card-title">github 国内代理访问下载</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/git/" class="post-category">
+                                    git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h1, h2, h3'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2024</span>
+            
+            <a href="/about" target="_blank">Pudding</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">111.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "12";
+                        var startDate = "1";
+                        var startHour = "23";
+                        var startMinute = "39";
+                        var startSecond = "28";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-ch';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/wu3227834" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wu3227834@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1724941011" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1724941011" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
