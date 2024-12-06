@@ -4,15 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="tokenizer 和 analyzer 的关系, 个人博客">
-    <meta name="description" content="tokenizer 和 analyzer 的关系Tokenizer、Token-filter 和 analyzer：
-
-    tokenizer：分词器
-    analyzer：分析器
-    token-filter：分词过滤器
-
-
-">
+    <meta name="keywords" content="为什么我们需要 Pod, 个人博客">
+    <meta name="description" content="为什么我们需要 Pod前言Pod，是 K8s 项目中最小的 API 对象，换句更专业的话，Pod，是 K8s 项目的原子调度单位。
+为了更好的理解，我们为什么需要 pod，这里抛出一个场景：
+已知 rsyslogd 由三个进程组成：一个 i">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>tokenizer 和 analyzer 的关系 | Pudding 个人博客</title>
+    <title>为什么我们需要 Pod | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -300,12 +295,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tokenizer 和 analyzer 的关系</h1>
+                    <h1 class="description center-align post-title">为什么我们需要 Pod</h1>
                 </div>
             </div>
         </div>
@@ -329,8 +324,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Elasticsearch/">
-                                <span class="chip bg-color">Elasticsearch</span>
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
                     </div>
@@ -341,8 +340,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Elasticsearch/" class="post-category">
-                                Elasticsearch
+                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                极客时间——学习笔记
                             </a>
                         
                     </div>
@@ -354,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-02-01
+                    2023-02-24
                 </div>
                 
 
@@ -363,14 +362,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    331
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -385,29 +384,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="tokenizer-和-analyzer-的关系"><a href="#tokenizer-和-analyzer-的关系" class="headerlink" title="tokenizer 和 analyzer 的关系"></a><center>tokenizer 和 analyzer 的关系</center></h1><p>Tokenizer、Token-filter 和 analyzer：</p>
+                <h1 id="为什么我们需要-Pod"><a href="#为什么我们需要-Pod" class="headerlink" title="为什么我们需要 Pod"></a><center>为什么我们需要 Pod</center></h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Pod，是 K8s 项目中最小的 API 对象，换句更专业的话，Pod，是 K8s 项目的原子调度单位。</p>
+<p>为了更好的理解，我们为什么需要 pod，这里抛出一个场景：</p>
+<p>已知 rsyslogd 由三个进程组成：一个 imklog 模块，一个 imuxsock 模块，一个 rsyslogd 自己的 main 函数主进程。<strong>这三个进程一定要运行在同一台机器上，否则，它们之间基于 Socket 的通信和文件交换，都会出现问题。</strong></p>
+<blockquote>
+<p>注意：容器的“单进程模型”，并不是指容器里只能运行“一个”进程，而是指容器没有管理多个进程的能力。这是因为容器里 PID&#x3D;1 的进程就是应用本身，其他的进程都是这个 PID&#x3D;1 进程的子进程。可是，用户编写的应用，并不能够像正常操作系统里的 init 进程或者 systemd 那样拥有进程管理的功能。比如，你的应用是一个 Java Web 程序（PID&#x3D;1），然后你执行 docker exec 在后台启动了一个 Nginx 进程（PID&#x3D;3）。可是，当这个 Nginx 进程异常退出的时候，你该怎么知道呢？这个进程退出后的垃圾收集工作，又应该由谁去做呢？</p>
+</blockquote>
+<p>假设我们的 K8s 集群上有两个节点：node-1 上有 3 GB 可用内存，node-2 有 2.5 GB 可用内存。</p>
+<p>这时，假设我要用 Docker Swarm 来运行这个 rsyslogd 程序。为了能够让这三个容器都运行在同一台机器上，我就必须在另外两个容器上设置一个 affinity&#x3D;main（与 main 容器有亲密性）的约束，即：它们俩必须和 main 容器运行在同一台机器上。</p>
+<p>然后，我顺序执行：”docker run main”、”docker run imklog” 和 “docker run imuxsock”，创建这三个容器。</p>
+<p>这样，这三个容器都会进入 Swarm 的待调度队列。然后，main 容器和 imklog 容器都先后出队并被调度到了 node-2 上（这个情况是完全有可能的）。</p>
+<p>可是，当 imuxsock 容器出队开始被调度时，Swarm 就有点懵了：node-2 上的可用资源只有 0.5 GB 了，并不足以运行 imuxsock 容器；可是，根据 affinity&#x3D;main 的约束，imuxsock 容器又只能运行在 node-2 上。</p>
+<p><strong>这就是一个典型的成组调度（gang scheduling）没有被妥善处理的例子。</strong></p>
+<h2 id="Pod-的作用"><a href="#Pod-的作用" class="headerlink" title="Pod 的作用"></a>Pod 的作用</h2><p>对于上边的场景，在工业界和学术界讨论可谓旷日持久，也产生了很多可供选择的解决方案。</p>
+<p>比如，Mesos 中就有一个资源囤积（resource hoarding）的机制，会在所有设置了 Affinity 约束的任务都达到时，才开始对它们统一进行调度。而在 Google Omega 论文中，则提出了使用乐观调度处理冲突的方法，即：先不管这些冲突，而是通过精心设计的回滚机制在出现了冲突之后解决问题。</p>
+<p>可是这些方法都谈不上完美。资源囤积带来了不可避免的调度效率损失和死锁的可能性；而乐观调度的复杂程度，则不是常规技术团队所能驾驭的。</p>
+<p>但是，到了 K8s 项目里，这样的问题就迎刃而解了：Pod 是 K8s 里的原子调度单位。这就意味着，K8s 项目的调度器，是统一按照 Pod 而非容器的资源需求进行计算的。</p>
+<p>所以，像 imklog、imuxsock 和 main 函数主进程这样的三个容器，正是一个典型的由三个容器组成的 Pod。K8s 项目在调度时，自然就会去选择可用内存等于 3 GB 的 node-1 节点进行绑定，而根本不会考虑 node-2。</p>
+<p>像这样容器间的紧密协作，我们可以称为“超亲密关系”。这些具有“超亲密关系”容器的典型特征包括但不限于：互相之间会发生直接的文件交换、使用 localhost 或者 Socket 文件进行本地通信、会发生非常频繁的远程调用、需要共享某些 Linux Namespace（比如，一个容器要加入另一个容器的 Network Namespace）等等。</p>
+<p>这也就意味着，并不是所有有“关系”的容器都属于同一个 Pod。比如，PHP 应用容器和 MySQL 虽然会发生访问关系，但并没有必要、也不应该部署在同一台机器上，它们更适合做成两个 Pod。</p>
+<h2 id="Pod-容器设计模式"><a href="#Pod-容器设计模式" class="headerlink" title="Pod 容器设计模式"></a>Pod 容器设计模式</h2><p>对于初学者来说，一般都是先学会了用 Docker 这种单容器的工具，才会开始接触 Pod。</p>
+<p>而如果 Pod 的设计只是出于调度上的考虑，那么 K8s 项目似乎完全没有必要非得把 Pod 作为“一等公民”吧？这不是故意增加用户的学习门槛吗？</p>
+<p>没错，如果只是处理“超亲密关系”这样的调度问题，有 Borg 和 Omega 论文珠玉在前，K8s 项目肯定可以在调度器层面给它解决掉。</p>
+<p>不过，Pod 在 K8s 项目里还有更重要的意义，那就是：<strong>容器设计模式</strong>。</p>
+<h3 id="Pod-实现原理"><a href="#Pod-实现原理" class="headerlink" title="Pod 实现原理"></a>Pod 实现原理</h3><p><strong>首先，关于 Pod 最重要的一个事实是：它只是一个逻辑概念。</strong></p>
+<p>也就是说，K8s 真正处理的，还是宿主机操作系统上 Linux 容器的 Namespace 和 Cgroups，而并不存在一个所谓的 Pod 的边界或者隔离环境。</p>
+<p>那么，Pod 又是怎么被“创建”出来的呢？</p>
+<p>答案是：Pod，其实是一组共享了某些资源的容器。</p>
+<p>具体的说：<strong>Pod 里的所有容器，共享的是同一个 Network Namespace，并且可以声明共享同一个 Volume（磁盘目录）</strong>。</p>
+<p>那这么来看的话，一个有 A、B 两个容器的 Pod，不就是等同于一个容器（容器 A）共享另外一个容器（容器 B）的网络和 Volume 的玩儿法么？</p>
+<p>这好像通过 docker run –net –volumes-from 这样的命令就能实现嘛，比如：</p>
+<pre class=" language-bash"><code class="language-bash">$ docker run --net<span class="token operator">=</span>B --volumes-from<span class="token operator">=</span>B --name<span class="token operator">=</span>A image-A <span class="token punctuation">..</span>.
+</code></pre>
+<p>但是，这样做存在一个问题，那就是容器 B 就必须比容器 A 先启动，这样一个 Pod 里的多个容器就不是对等关系，而是拓扑关系了。</p>
+<p>所以，在 Kubernetes 项目里，Pod 的实现需要使用一个中间容器，这个容器叫作 Infra 容器。在这个 Pod 中，Infra 容器永远都是第一个被创建的容器，而其他用户定义的容器，则通过 Join Network Namespace 的方式，与 Infra 容器关联在一起。这样的组织关系，可以用下面这样一个示意图来表达：</p>
+<p><img src="/2023/02/23/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/pod%E6%A1%86%E6%9E%B6.png" alt="Pod结构图"></p>
+<p>如上图所示，这个 Pod 里有两个用户容器 A 和 B，还有一个 Infra 容器。很容易理解，在 Kubernetes 项目里，Infra 容器一定要占用极少的资源，所以它使用的是一个非常特殊的镜像，叫作：k8s.gcr.io&#x2F;pause。这个镜像是一个用汇编语言编写的、永远处于“暂停”状态的容器，解压后的大小也只有 100~200 KB 左右。</p>
+<p>而在 Infra 容器 “Hold 住” Network Namespace 后，用户容器就可以加入到 Infra 容器的 Network Namespace 当中了。所以，如果你查看这些容器在宿主机上的 Namespace 文件（这个 Namespace 文件的路径，我已经在前面的内容中介绍过），它们指向的值一定是完全一样的。</p>
+<p>这也就意味着，对于 Pod 里的容器 A 和容器 B 来说：</p>
+<p>它们可以直接使用 localhost 进行通信；</p>
+<p>它们看到的网络设备跟 Infra 容器看到的完全一样；</p>
+<p>一个 Pod 只有一个 IP 地址，也就是这个 Pod 的 Network Namespace 对应的 IP 地址；当然，其他的所有网络资源，都是一个 Pod 一份，并且被该 Pod 中的所有容器共享；Pod 的生命周期只跟 Infra 容器一致，而与容器 A 和 B 无关。</p>
+<p>而对于同一个 Pod 里面的所有用户容器来说，它们的进出流量，也可以认为都是通过 Infra 容器完成的。这一点很重要，因为<strong>将来如果你要为 Kubernetes 开发一个网络插件时，应该重点考虑的是如何配置这个 Pod 的 Network Namespace，而不是每一个用户容器如何使用你的网络配置，这是没有意义的</strong>。</p>
+<p>这就意味着，如果你的网络插件需要在容器里安装某些包或者配置才能完成的话，是不可取的：Infra 容器镜像的 rootfs 里几乎什么都没有，没有你随意发挥的空间。当然，这同时也意味着你的网络插件完全不必关心用户容器的启动与否，而只需要关注如何配置 Pod，也就是 Infra 容器的 Network Namespace 即可。</p>
+<p>有了这个设计之后，共享 Volume 就简单多了：Kubernetes 项目只要把所有 Volume 的定义都设计在 Pod 层级即可。</p>
+<p>这样，一个 Volume 对应的宿主机目录对于 Pod 来说就只有一个，Pod 里的容器只要声明挂载这个 Volume，就一定可以共享这个 Volume 对应的宿主机目录。比如下面这个例子：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> two<span class="token punctuation">-</span>containers
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+    <span class="token key atrule">hostPath</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">path</span><span class="token punctuation">:</span> /data
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> debian<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> debian
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /pod<span class="token punctuation">-</span>data
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/bin/sh"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"-c"</span><span class="token punctuation">,</span> <span class="token string">"echo Hello from the debian container > /pod-data/index.html"</span><span class="token punctuation">]</span>
+</code></pre>
+<p>在这个例子中，debian-container 和 nginx-container 都声明挂载了 shared-data 这个 Volume。而 shared-data 是 hostPath 类型。所以，它对应在宿主机上的目录就是：&#x2F;data。而这个目录，其实就被同时绑定挂载进了上述两个容器当中。</p>
+<p>这就是为什么，nginx-container 可以从它的 &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html 目录中，读取到 debian-container 生成的 index.html 文件的原因。</p>
+<h3 id="Pod-设计模式"><a href="#Pod-设计模式" class="headerlink" title="Pod 设计模式"></a>Pod 设计模式</h3><p>Pod 这种“超亲密关系”容器的设计思想，实际上就是希望，当用户想在一个容器里跑多个功能并不相关的应用时，应该优先考虑它们是不是更应该被描述成一个 Pod 里的多个容器。</p>
+<p>为了能够掌握这种思考方式，你就应该尽量尝试使用它来描述一些用单个容器难以解决的问题。</p>
+<p><strong>一个最典型的例子是：WAR 包与 Web 服务器。</strong></p>
+<p>我们现在有一个 Java Web 应用的 WAR 包，它需要被放在 Tomcat 的 webapps 目录下运行起来。</p>
+<p>假如，你现在只能用 Docker 来做这件事情，那该如何处理这个组合关系呢？</p>
 <ul>
-    <li>tokenizer：分词器</li>
-    <li>analyzer：分析器</li>
-    <li>token-filter：分词过滤器</li>
+    <li>
+        一种方法是，把 WAR 包直接放在 Tomcat 镜像的 webapps 目录下，做成一个新的镜像运行起来。可是，这时候，如果你要更新 WAR 包的内容，或者要升级 Tomcat 镜像，就要重新制作一个新的发布镜像，非常麻烦。
+    </li>
+    <li>
+        另一种方法是，你压根儿不管 WAR 包，永远只发布一个 Tomcat 容器。不过，这个容器的 webapps 目录，就必须声明一个 hostPath 类型的 Volume，从而把宿主机上的WAR 包挂载进 Tomcat 容器当中运行起来。不过，这样你就必须要解决一个问题，即：如何让每一台宿主机，都预先准备好这个存储有 WAR 包的目录呢？这样来看，你只能独立维护一套分布式存储系统了。
+    </li>
 </ul>
 
-<p>1、Tokenizer（分词器）</p>
-<p>分词，就是将一个字符串，按照某种特定规则打散为多个字符串的过程。</p>
-<p>2、Token-filter（分词过滤器）</p>
-<p>分词过滤器，是对分词器处理后得到的子字符串，进行字符的修改。 （例如：大小写转换、时态、复数……）</p>
-<p>3、Analyzer（分析器）</p>
-<p>分析器是分词器和分词过滤器的结合。</p>
-<p>ES 使用分析器（Analyzer）对文档进行分词，ES 中内置了很多分析器供我们使用，我们也可以定制自己的分析器。</p>
-<p>一个分析器有 3 个组成部分，分析过程会依次经过这些部分：</p>
-<ol>
-    <li>Character Filters：字符过滤，用于删去某些字符。该组件可以有 0 或多个。</li>
-    <li>Tokenizer：分词过程，按照某个规则将文档切分为单词，比如用空格来切分。该组件有且只能有一个。</li>
-    <li>Token Filter：对切分好的单词进一步加工，比如大小写转换，删除停用词等。该组件可以有 0 或多个。</li>
-</ol>
-
-<p>也就是说，分词器就是划分子字符串，分词过滤器就是子字符串的格式转换，分析器是两者结合。</p>
-<p><img src="/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/pho1.png" alt="tokenizer和analyzer的关系图"></p>
+<p>实际上，有了 Pod 之后，这样的问题就很容易解决了。我们可以把 WAR 包和 Tomcat 分别做成镜像，然后把它们作为一个 Pod 里的两个容器“组合”在一起。这个 Pod 的配置文件如下所示：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> javaweb<span class="token punctuation">-</span><span class="token number">2</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">initContainers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> geektime/sample<span class="token punctuation">:</span>v2
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> war
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"cp"</span><span class="token punctuation">,</span> <span class="token string">"/sample.war"</span><span class="token punctuation">,</span> <span class="token string">"/app"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /app
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> geektime/tomcat<span class="token punctuation">:</span><span class="token number">7.0</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> tomcat
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"sh"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"/root/apache-tomcat-7.0.42-v2/bin/start.sh"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /root/apache<span class="token punctuation">-</span>tomcat<span class="token punctuation">-</span>7.0.42<span class="token punctuation">-</span>v2/webapps
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">hostPort</span><span class="token punctuation">:</span> <span class="token number">8001 </span>
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>volume
+    <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p>在这个 Pod 中，我们定义了两个容器，第一个容器使用的镜像是 geektime&#x2F;sample:v2，这个镜像里只有一个 WAR 包（sample.war）放在根目录下。而第二个容器则使用的是一个标准的 Tomcat 镜像。</p>
+<p>不过，你可能已经注意到，WAR 包容器的类型不再是一个普通容器，而是一个 Init Container 类型的容器。</p>
+<p>在 Pod 中，所有 Init Container 定义的容器，都会比 spec.containers 定义的用户容器先启动。并且，Init Container 容器会按顺序逐一启动，而直到它们都启动并且退出了，用户容器才会启动。</p>
+<p>所以，这个 Init Container 类型的 WAR 包容器启动后，我执行了一句”cp &#x2F;sample.war&#x2F;app”，把应用的 WAR 包拷贝到 &#x2F;app 目录下，然后退出。</p>
+<p>而后这个 &#x2F;app 目录，就挂载了一个名叫 app-volume 的 Volume。</p>
+<p>接下来就很关键了。Tomcat 容器，同样声明了挂载 app-volume 到自己的 webapps 目录下。</p>
+<p>所以，等 Tomcat 容器启动时，它的 webapps 目录下就一定会存在 sample.war 文件：这个文件正是 WAR 包容器启动时拷贝到这个 Volume 里面的，而这个 Volume 是被这两个容器共享的。</p>
+<p>像这样，我们就用一种“组合”方式，解决了 WAR 包与 Tomcat 容器之间耦合关系的问题。</p>
+<p>实际上，这个所谓的“组合”操作，正是容器设计模式里最常用的一种模式，它的名字叫：sidecar。</p>
+<p>顾名思义，sidecar 指的就是我们可以在一个 Pod 中，启动一个辅助容器，来完成一些独立于主进程（主容器）之外的工作。</p>
+<p>比如，在我们的这个应用 Pod 中，Tomcat 容器是我们要使用的主容器，而 WAR 包容器的存在，只是为了给它提供一个 WAR 包而已。所以，我们用 Init Container 的方式优先运行 WAR 包容器，扮演了一个 sidecar 的角色。</p>
 
                 
             </div>
@@ -434,7 +533,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/">https://wu3227834.github.io/2023/01/31/2023-02-15-fen-ci-qi-xiang-guan/</a>
+                    <a href="https://wu3227834.github.io/2023/02/23/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/">https://wu3227834.github.io/2023/02/23/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -472,8 +571,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Elasticsearch/">
-                                    <span class="chip bg-color">Elasticsearch</span>
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
                         </div>
@@ -523,13 +626,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/01/31/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/">
+                <a href="/2023/04/04/2023-04-05-jmeter-chang-yong-han-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="curl 常用命令使用方法">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="jmeter 常用函数">
                         
-                        <span class="card-title">curl 常用命令使用方法</span>
+                        <span class="card-title">jmeter 常用函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -540,14 +643,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-05
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux-%E5%91%BD%E4%BB%A4/" class="post-category">
-                                    linux 命令
+                            <a href="/categories/jmeter%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    jmeter实操技术
                                 </a>
                             
                             
@@ -557,8 +660,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/jmeter/">
+                        <span class="chip bg-color">jmeter</span>
                     </a>
                     
                 </div>
@@ -572,13 +675,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/01/22/2023-01-23-cong-rong-qi-dao-rong-qi-yun-tan-tan-kubernetes-de-ben-zhi/">
+                <a href="/2023/02/22/2023-02-23-dsl-bei-wang-yi-constant-score-query-he-bool-query/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从容器到容器云：谈谈 Kubernetes 的本质">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="DSL备忘（一）：Constant score query 和 Bool Query">
                         
-                        <span class="card-title">从容器到容器云：谈谈 Kubernetes 的本质</span>
+                        <span class="card-title">DSL备忘（一）：Constant score query 和 Bool Query</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -589,14 +692,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    极客时间——学习笔记
+                            <a href="/categories/Elasticsearch/" class="post-category">
+                                    Elasticsearch
                                 </a>
                             
                             
@@ -606,12 +709,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/Elasticsearch/">
+                        <span class="chip bg-color">Elasticsearch</span>
                     </a>
                     
                 </div>
@@ -670,8 +769,8 @@
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

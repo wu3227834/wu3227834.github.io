@@ -387,7 +387,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="虚拟机Linux使用perf-stat提示cycles-not-supported"><a href="#虚拟机Linux使用perf-stat提示cycles-not-supported" class="headerlink" title=" 虚拟机Linux使用perf stat提示cycles not supported "></a><center> 虚拟机Linux使用perf stat提示cycles not supported </center></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>项目希望评估算法的 CPU 开销，使用 linux 常用的 perf 工具。<br>查看 perf stat 只显示 cpu-clock, context-switches, cpu-migrations<br>剩余cycles, instructions, branches, branch-misses均为not supported</p>
-<p><img src="/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/pho1.jpg" alt="problem_test"></p>
+<p><img src="/2023/07/06/2023-07-07-perf-stat-wen-ti/pho1.jpg" alt="problem_test"></p>
 <h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>该参数使用物理机可测量，猜测问题出在虚拟化。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>关闭VMware虚拟机电源，找到硬件配置选项中CPU</p>
 <p>勾选☑️虚拟化CPU性能计数器重启问题解决</p>
@@ -417,7 +417,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/">https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti-yi/</a>
+                    <a href="https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti/">https://wu3227834.github.io/2023/07/06/2023-07-07-perf-stat-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -514,13 +514,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/07/06/2023-02-24-wei-shi-me-wo-men-xu-yao-pod/">
+                <a href="/2023/08/30/2023-08-31-yum-qia-zhu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="为什么我们需要Pod？">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="yum 卡住">
                         
-                        <span class="card-title">为什么我们需要Pod？</span>
+                        <span class="card-title">yum 卡住</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -531,14 +531,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-31
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    极客时间——学习笔记
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -548,12 +548,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
+                        <span class="chip bg-color">那些年遇到的坑</span>
                     </a>
                     
                 </div>
@@ -665,8 +665,8 @@
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

@@ -379,16 +379,16 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="python-并发函数"><a href="#python-并发函数" class="headerlink" title=" python 并发函数"></a><center> python 并发函数</center></h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>工作需要向几十万表写入亿级别数据，想使用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。</p>
+                <h1 id="python-并发函数"><a href="#python-并发函数" class="headerlink" title=" python 并发函数"></a><center> python 并发函数</center></h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>工作需要向几十万表写入亿级别数据，想使用 pyhon 的并发执行。才开始使用 ThreadPoolExecutor 发现奇慢无比，大佬说这其实是串行，并发得用  multiprocessing，立帖研究。</p>
 <p>本文以 python3.10 为例，学习一下 python 的并发执行。</p>
-<h1 id="并发执行"><a href="#并发执行" class="headerlink" title="并发执行"></a>并发执行</h1><p>python 并发执行分三个方面：多线程（threading）、多进程（multiprocessing）、多协程（asynico）</p>
+<h2 id="并发执行"><a href="#并发执行" class="headerlink" title="并发执行"></a>并发执行</h2><p>python 并发执行分三个方面：多线程（threading）、多进程（multiprocessing）、多协程（asynico）</p>
 <p>适当的工具选择主要取决于要执行的任务（CPU 密集型或 IO 密集型）：</p>
 <ul>
 <li>CPU 密集型（CPU-bound）：也叫做计算密集型，是指 I&#x2F;O 在很短时间内就可以完成，CPU  需要大量的计算和处理，特点是 CPU 占用率相当高；例如：<strong>压缩&#x2F;解压缩、加密解密、正则表达式搜索、计算</strong>；</li>
 <li>IO 密集型（I&#x2F;O bound）：是指系统运作大部分的状况是 CPU 在等 I&#x2F;O（硬盘，内存）的读写操作，CPU 占用率较低，例如：<strong>文件处理，网络爬虫，读写数据库；</strong></li>
 </ul>
 <p>在对比这三种方式之前，让我们先了解两个概念：<strong>并行和并发</strong></p>
-<h2 id="并行和并发的区别"><a href="#并行和并发的区别" class="headerlink" title="并行和并发的区别"></a>并行和并发的区别</h2><p>在 Python 中，”并发”和”并行”是两个相关但不同的概念。</p>
+<h3 id="并行和并发的区别"><a href="#并行和并发的区别" class="headerlink" title="并行和并发的区别"></a>并行和并发的区别</h3><p>在 Python 中，”并发”和”并行”是两个相关但不同的概念。</p>
 <blockquote>
 <p>并发 （Concurrency）是指程序的设计方式，允许多个任务在重叠的时间段内执行。虽然在同一时刻只能执行一个任务，但任务之间可以通过切换上下文来实现交替执行。这种交替执行的方式可以提高程序的响应性和效率，尤其是在处理 I&#x2F;O 密集型任务时。在并发编程中，任务之间通常是独立的，它们可以通过多线程、多进程、协程或异步编程等方式来实现。</p>
 <p>并行（Parallelism）是指多个任务同时执行的能力。在并行编程中，多个任务真正地同时执行，通常需要多个物理或逻辑处理单元（例如多核 CPU）。并行执行任务可以显著提高计算密集型任务的性能，但对于I&#x2F;O密集型任务则没有明显的优势。</p>
@@ -421,7 +421,7 @@
 </code></pre>
 <p>在上面的示例中，’task’ 函数模拟了一个耗时 2 秒的任务，并使用线程池实现了并发执行。’parallel_task’ 函数也是一个耗时 2 秒的任务，但使用了进程池实现了并行执行。我们可以运行这段代码，观察任务启动时 python 进程的数目、执行的顺序和时间，以更好地理解并发和并行的区别。</p>
 <p>然后，我们来聊 多进程、多线程、多协程的不同、关系以及怎么选择。</p>
-<h2 id="进程、线程、协程的对比"><a href="#进程、线程、协程的对比" class="headerlink" title="进程、线程、协程的对比"></a>进程、线程、协程的对比</h2><ul>
+<h3 id="进程、线程、协程的对比"><a href="#进程、线程、协程的对比" class="headerlink" title="进程、线程、协程的对比"></a>进程、线程、协程的对比</h3><ul>
 <li>多进程：<ul>
 <li>优点：可以实现并行，且只有多进程可以实现并行</li>
 <li>缺点：占用资源多，可启动数目最少</li>
@@ -441,11 +441,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="进程、线程、协程的关系"><a href="#进程、线程、协程的关系" class="headerlink" title="进程、线程、协程的关系"></a>进程、线程、协程的关系</h2><ul>
+<h3 id="进程、线程、协程的关系"><a href="#进程、线程、协程的关系" class="headerlink" title="进程、线程、协程的关系"></a>进程、线程、协程的关系</h3><ul>
 <li>一个进程中可以启动很多线程</li>
 <li>一个线程中可以启动很多协程</li>
 </ul>
-<h2 id="python-慢的原因"><a href="#python-慢的原因" class="headerlink" title="python 慢的原因"></a><strong>python 慢的原因</strong></h2><p>两个原因：</p>
+<h3 id="python-慢的原因"><a href="#python-慢的原因" class="headerlink" title="python 慢的原因"></a><strong>python 慢的原因</strong></h3><p>两个原因：</p>
 <ul>
 <li>是解释型语言，边解释边执行</li>
 <li>GIL，无法利用多核 CPU</li>
@@ -458,13 +458,13 @@
 <li>IO 期间线程会释放 GIL，实现 CPU 和 IO 的并发，因此 GIL 的存在对于 IO 密集型计算是有好的，但是对 CPU 密集型则会拖累速度</li>
 <li>利用 multiprocessing，可以利用多核 CPU 的优势</li>
 </ul>
-<h2 id="怎样选择"><a href="#怎样选择" class="headerlink" title="怎样选择"></a><strong>怎样选择</strong></h2><ul>
+<h3 id="怎样选择"><a href="#怎样选择" class="headerlink" title="怎样选择"></a><strong>怎样选择</strong></h3><ul>
 <li>IO 密集型运算优先选择多进程</li>
 <li>若满足三点：需要超多任务量、有现成协程库支持 、代码复杂度可以接受，则选择协程，否则选择线程</li>
 </ul>
-<h1 id="threading-—-基于线程的并行"><a href="#threading-—-基于线程的并行" class="headerlink" title="threading — 基于线程的并行"></a><strong>threading — 基于线程的并行</strong></h1><p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/library/threading.html">3.10.13 Documentation » Python 标准库 » 并发执行 » threading — 基于线程的并行</a></p>
-<h1 id="multiprocessing-—-基于进程的并行"><a href="#multiprocessing-—-基于进程的并行" class="headerlink" title="multiprocessing — 基于进程的并行"></a>multiprocessing — 基于进程的并行</h1><p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/library/multiprocessing.html">3.10.13 Documentation » Python 标准库 » 并发执行 » multiprocessing — 基于进程的并行</a></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<h2 id="threading-—-基于线程的并行"><a href="#threading-—-基于线程的并行" class="headerlink" title="threading — 基于线程的并行"></a><strong>threading — 基于线程的并行</strong></h2><p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/library/threading.html">3.10.13 Documentation » Python 标准库 » 并发执行 » threading — 基于线程的并行</a></p>
+<h2 id="multiprocessing-—-基于进程的并行"><a href="#multiprocessing-—-基于进程的并行" class="headerlink" title="multiprocessing — 基于进程的并行"></a>multiprocessing — 基于进程的并行</h2><p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/library/multiprocessing.html">3.10.13 Documentation » Python 标准库 » 并发执行 » multiprocessing — 基于进程的并行</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/library/concurrency.html">3.10.13 Documentation » Python 标准库 » 并发执行</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52906070/article/details/132317118">python并发编程这一篇就够了</a></li>
 <li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12766?time__1311=GqGxu7G=oYqWqGN4eeqBKIh4Rh=9kFda4D">python并发从0到1</a></li>
@@ -732,8 +732,8 @@
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

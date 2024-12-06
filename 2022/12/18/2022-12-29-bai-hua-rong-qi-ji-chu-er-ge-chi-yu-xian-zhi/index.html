@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="白话容器基础（二）：隔离与限制, 个人博客">
-    <meta name="description" content="白话容器基础（二）：隔离与限制 容器基础 —— 隔离思考
+    <meta name="description" content="容器基础 —— 隔离思考
 在这个虚拟机与容器技术的对比图里，应不应该把 Docker Engine 或者任何容器管理工具放在跟 Hypervisor 相同的位置？
-在《白话容器基础（一）：从进程说开去》中详细">
+在《白话容器基础（一）：从进程说开去》中详细介绍了 Linux 容器中用来实">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -384,7 +384,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="白话容器基础（二）：隔离与限制"><a href="#白话容器基础（二）：隔离与限制" class="headerlink" title="白话容器基础（二）：隔离与限制 "></a><center>白话容器基础（二）：隔离与限制 </center></h1><h2 id="容器基础-——-隔离"><a href="#容器基础-——-隔离" class="headerlink" title="容器基础 —— 隔离"></a>容器基础 —— 隔离</h2><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p><img src="/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/pho1.png" alt="虚拟机和容器的对比图"></p>
+                <h2 id="容器基础-——-隔离"><a href="#容器基础-——-隔离" class="headerlink" title="容器基础 —— 隔离"></a>容器基础 —— 隔离</h2><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p><img src="/2022/12/18/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/pho1.png" alt="虚拟机和容器的对比图"></p>
 <p>在这个虚拟机与容器技术的对比图里，应不应该把 Docker Engine 或者任何容器管理工具放在跟 Hypervisor 相同的位置？</p>
 <p>在<a href="../12/白话容器基础-一-从进程说开去.html">《白话容器基础（一）：从进程说开去》</a>中详细介绍了 Linux 容器中用来实现“隔离”的技术手段：<strong>Namespace</strong>。而通过这些讲解，你应该能够明白，Namespace 技术实际上只是修改了应用进程看待整个计算机“视图”，即它的“视线”被操作系统做了限制，只能“看到”某些指定的内容。但对于宿主机来说，这些被“隔离”了的进程跟其他进程并没有太大区别。</p>
 <p>我相信你应该有了思考的答案，那就是不应该。因为它们（Docker Engine 或者任何容器管理工具）并不像 Hypervisor 那样对应用进程的隔离环境负责，也不会创建任何实体的“容器”，真正对隔离环境负责的是宿主机操作系统本身：</p>
@@ -756,8 +756,8 @@ $ <span class="token function">cat</span> /sys/fs/cgroup/cpu/docker/5d5c9f67d/cp
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

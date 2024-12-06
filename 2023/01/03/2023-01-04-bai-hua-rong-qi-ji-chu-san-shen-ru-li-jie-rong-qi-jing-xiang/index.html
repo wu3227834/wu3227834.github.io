@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="白话容器基础（三）：深入理解容器镜像, 个人博客">
-    <meta name="description" content="白话容器基础（三）：深入理解容器镜像Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是">
+    <meta name="description" content="深入理解容器镜像Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是“限制”，它给这个“">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -382,7 +382,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="白话容器基础（三）：深入理解容器镜像"><a href="#白话容器基础（三）：深入理解容器镜像" class="headerlink" title="白话容器基础（三）：深入理解容器镜像"></a><center>白话容器基础（三）：深入理解容器镜像</center></h1><p>Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是“限制”，它给这个“世界”围上了一圈看不见的墙。</p>
+                <h1 id="深入理解容器镜像"><a href="#深入理解容器镜像" class="headerlink" title="深入理解容器镜像"></a><center>深入理解容器镜像</center></h1><p>Linux 容器最基础的两种技术：Namespace 和 Cgroups，其中 Namespace 的作用是“隔离”，它让应用进程只能看到该 Namespace 内的“世界”；而 Cgroups 的作用是“限制”，它给这个“世界”围上了一圈看不见的墙。</p>
 <p>这么一折腾，进程就真的被“装”在了一个与世隔绝的房间里，而这些房间就是 PaaS 项目赖以生存的应用“沙盒”。</p>
 <p>可是，现在这个房间四周虽然有了墙，但是如果容器进程低头一看地面，又是怎样一副景象呢？</p>
 <p>换句话说，容器里的进程看到的文件系统又是什么样子的呢？</p>
@@ -823,8 +823,8 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

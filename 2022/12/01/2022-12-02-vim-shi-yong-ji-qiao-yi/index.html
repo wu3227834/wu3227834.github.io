@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vim实用技巧必知必会-基础命令, 个人博客">
-    <meta name="description" content=" 基本命令 vim 命令速查
+    <meta name="keywords" content="vim 实用技巧（一）, 个人博客">
+    <meta name="description" content="vim 实用技巧（一）导语vim 号称编译之神，唯快不破，可拓展，插件遍天下。学习曲线虽曲折，但是学成之后，基本就成肌肉记忆了，写程序双手不离键盘，上下腾飞，可谓快意编程。
+--极客时间
 
-yy 复制一行，nyy 复制当前光标之后的 n 行，p 粘贴
-dd 删除一行，ndd 删除当前光标之后的 n 行
-显示行号：set number
-从第一行开始全文替换：1,$s&amp;#x2F;&amp;lt;源字符串&amp;g">
+简介四种模式
+   普通模式：vim 启动后的默认">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vim实用技巧必知必会-基础命令 | Pudding 个人博客</title>
+    <title>vim 实用技巧（一） | Pudding 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -298,12 +297,12 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vim实用技巧必知必会-基础命令</h1>
+                    <h1 class="description center-align post-title">vim 实用技巧（一）</h1>
                 </div>
             </div>
         </div>
@@ -365,14 +364,14 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    103
+                    577
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -387,15 +386,67 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="基本命令"><a href="#基本命令" class="headerlink" title=" 基本命令 "></a><center> 基本命令 </center></h1><p>vim 命令速查<br><br><img src="/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/vim_orders.png" alt="vim 命令速查" title="vim_orders.png"></p>
+                <h1 id="vim-实用技巧（一）"><a href="#vim-实用技巧（一）" class="headerlink" title="vim 实用技巧（一）"></a>vim 实用技巧（一）</h1><h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p><strong>vim 号称编译之神，唯快不破，可拓展，插件遍天下。学习曲线虽曲折，但是学成之后，基本就成肌肉记忆了，写程序双手不离键盘，上下腾飞，可谓快意编程。</strong><br><br></p>
+<p style="text-align:right"><b>--极客时间</b></p>
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="四种模式"><a href="#四种模式" class="headerlink" title="四种模式"></a>四种模式</h3><ul>
+  <li> 普通模式：vim 启动后的默认模式，用来移动光标、删除文本、覆盖输入文本、回复操作、粘贴文本等等。</li> 
+  <li> 插入模式：输入 i 或 a 进入插入模式，在这个模式下敲击键盘会往文字缓冲区增加文字，相当于普通编译器的编辑模式。</li> 
+  <li> 可视模式：选择文本，可以行选、块选和依次选择，选择后可以进行复制、删除、排序等操作。</li> 
+  <li> 命令模式：执行内部和外部命令，通过 ":" "/" "?" ":!" 可以进入命令模式：执行内部命令、向上或向下搜索、执行外部命令。</li> 
+</ul>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>一般是默认安装</p>
+<h3 id="Linux-下的安装"><a href="#Linux-下的安装" class="headerlink" title="Linux 下的安装"></a>Linux 下的安装</h3><h4 id="Red-Hat-和-CentOS-系列"><a href="#Red-Hat-和-CentOS-系列" class="headerlink" title="Red Hat 和 CentOS 系列"></a>Red Hat 和 CentOS 系列</h4><p>查看已经安装的 vim 版本：</p>
+<pre class=" language-bash"><code class="language-bash">yum list installed <span class="token operator">|</span> <span class="token function">grep</span> vim
+</code></pre>
+<p>如果输出如下，则说明安装的 vim 版本只有基本功能：</p>
+<pre class=" language-bash"><code class="language-bash">vim-minimal.x86_64 2:8.0.1763-13.el8 @System
+</code></pre>
+<p><del>推荐</del></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> yum <span class="token function">install</span> vim-X11    <span class="token comment" spellcheck="true"># 安装图形界面vim</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> vim-enhanced   <span class="token comment" spellcheck="true"># 安装增强版本vim</span>
+</code></pre>
+<h4 id="Debin-和-Ubuntu-系列"><a href="#Debin-和-Ubuntu-系列" class="headerlink" title="Debin 和 Ubuntu 系列"></a>Debin 和 Ubuntu 系列</h4><p>查看已经安装的 vim 版本：</p>
+<pre class=" language-bash"><code class="language-bash">apt list --installed <span class="token operator">|</span> <span class="token function">grep</span> vim
+</code></pre>
+<p><del>推荐</del></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt update <span class="token comment" spellcheck="true"># 更新环境</span>
+<span class="token function">sudo</span> apt <span class="token function">install</span> vim-gtk3 
+</code></pre>
+<h3 id="MacOS-下的安装"><a href="#MacOS-下的安装" class="headerlink" title="MacOS 下的安装"></a>MacOS 下的安装</h3><p>安装 MacVim 有两种常见方式：</p>
+<ul>
+  <li> 使用 Homebrew 。（推荐） </li>
+  <li> 使用 MacVim 的独立安装包。</li>
+</ul>
+
+<p>使用 Homebrew 安装 Macvim：</p>
 <ol>
-<li>yy 复制一行，nyy 复制当前光标之后的 n 行，p 粘贴</li>
-<li>dd 删除一行，ndd 删除当前光标之后的 n 行</li>
-<li>显示行号：set number</li>
-<li>从第一行开始全文替换：1,$s&#x2F;&lt;源字符串&gt;&#x2F;&lt;目标字符串&gt;&#x2F;g </li>
-<li>查找某个字符串：&#x2F;&lt;目标字符串&gt;</li>
-<li>回到文尾：$ 行首：0</li>
+<li>安装 Homebrew 。<a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn"><del>官网网址</del></a></li>
+<li>配置 .bash_profile</li>
 </ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$PATH</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$HOME</span>/bin"</span>* <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  PATH<span class="token operator">=</span>~/bin:/usr/local/bin:/usr/local/sbin:`echo <span class="token variable">$PATH</span><span class="token operator">|</span><span class="token function">sed</span> -e <span class="token string">"s!:<span class="token variable">$HOME</span>/bin!!"</span> -e <span class="token string">'s!:/usr/local/bin!!'</span>`
+<span class="token keyword">fi</span>
+</code></pre>
+<p>这样，可以确保个人的路径优先于 &#x2F;usr&#x2F;local，而 &#x2F;usr&#x2F;local 下的路径又优先于系统的路径。<br>然后执行：</p>
+<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> macvim
+vim -g / gvim <span class="token comment" spellcheck="true"># 启动 vim 图形界面</span>
+</code></pre>
+<h3 id="windows-下的安装"><a href="#windows-下的安装" class="headerlink" title="windows 下的安装"></a>windows 下的安装</h3><p>vim 网站下载：<a target="_blank" rel="noopener" href="https://www.vim.org/download.php#pc">Downloading Vim</a>。安装完后，vim 会缺省打开一个 README 文件。在这个窗口，输入：</p>
+<pre class=" language-bash"><code class="language-bash">:e ~\_vimrc 
+</code></pre>
+<p>回车再输入：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> enc<span class="token operator">=</span>utf-8
+<span class="token keyword">set</span> nocompatible
+<span class="token function">source</span> <span class="token variable">$VIMRUNTIME</span>/vimrc_example.vim
+</code></pre>
+<p>然后在输入</p>
+<pre class=" language-bash"><code class="language-bash">ZZ
+</code></pre>
+<p>存盘退出即可。</p>
+<h2 id="vim-手册"><a href="#vim-手册" class="headerlink" title="vim 手册"></a>vim 手册</h2><p><a target="_blank" rel="noopener" href="https://github.com/yianwillis/vimcdoc/releases">大佬网址</a></p>
+<p>有 vim 中文手册和 vim 中文用户手册</p>
 
                 
             </div>
@@ -422,7 +473,7 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/">https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-ji-ben-ming-ling/</a>
+                    <a href="https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-yi/">https://wu3227834.github.io/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -515,13 +566,13 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/12/03/2022-12-04-tu-jie-sql-de-zhi-xing-shun-xu/">
+                <a href="/2022/12/02/2022-12-03-vim-shi-yong-ji-qiao-er/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="图解SQL的执行顺序">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="vim 实用技巧（二）">
                         
-                        <span class="card-title">图解SQL的执行顺序</span>
+                        <span class="card-title">vim 实用技巧（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -532,57 +583,8 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-03
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/sql/" class="post-category">
-                                    sql
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/sql/">
-                        <span class="chip bg-color">sql</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/12/01/2022-12-02-vim-shi-yong-ji-qiao-bi-zhi-bi-hui-dao-du/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="vim实用技巧必知必会-导读">
-                        
-                        <span class="card-title">vim实用技巧必知必会-导读</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-02
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -604,6 +606,55 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
                     
                     <a href="/tags/vim/">
                         <span class="chip bg-color">vim</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/12/01/2022-12-01-a-xin-de-kai-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="新的开始">
+                        
+                        <span class="card-title">新的开始</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9D%82%E6%96%87/" class="post-category">
+                                    杂文
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%9A%8F%E8%AE%B0/">
+                        <span class="chip bg-color">随记</span>
                     </a>
                     
                 </div>
@@ -662,8 +713,8 @@ dd 删除一行，ndd 删除当前光标之后的 n 行
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.

@@ -5,11 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Python 直接赋值、浅拷贝和深度拷贝解析, 个人博客">
-    <meta name="description" content="Python 直接赋值、浅拷贝和深度拷贝解析直接赋值对象的引用（别名） —— 父子共用实例：
+    <meta name="description" content="直接赋值、浅拷贝和深度拷贝解析直接赋值对象的引用（别名） —— 父子共用实例：
 &gt;&gt;&gt; a = {1:[1,2,3]}
 &gt;&gt;&gt; b = a
 &gt;&gt;&gt; # 修改父对象，给父对象添加元素，同时影响 a 和 b
-&gt;&gt;&gt; b[2] = ">
+&gt;&gt;&gt; b[2] = [4, 5, ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -360,7 +360,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    435
+                    434
                 </div>
                 
 
@@ -382,7 +382,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Python-直接赋值、浅拷贝和深度拷贝解析"><a href="#Python-直接赋值、浅拷贝和深度拷贝解析" class="headerlink" title="Python 直接赋值、浅拷贝和深度拷贝解析"></a><center>Python 直接赋值、浅拷贝和深度拷贝解析</center></h1><h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>对象的引用（别名） —— 父子共用<br><br>实例：</p>
+                <h1 id="直接赋值、浅拷贝和深度拷贝解析"><a href="#直接赋值、浅拷贝和深度拷贝解析" class="headerlink" title="直接赋值、浅拷贝和深度拷贝解析"></a><center>直接赋值、浅拷贝和深度拷贝解析</center></h1><h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>对象的引用（别名） —— 父子共用<br><br>实例：</p>
 <pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
 <span class="token operator">>></span><span class="token operator">></span> b <span class="token operator">=</span> a
 <span class="token operator">>></span><span class="token operator">></span> <span class="token comment" spellcheck="true"># 修改父对象，给父对象添加元素，同时影响 a 和 b</span>
@@ -690,8 +690,8 @@ a<span class="token operator">=</span> <span class="token punctuation">{</span><
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3'
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
         });
 
         // Set scroll toc fixed.
