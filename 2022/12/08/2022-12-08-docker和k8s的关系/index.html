@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="这里是小布丁的私有小屋">
+    <meta property="og:type" content="website">
+    <meta name="description" content="这里是小布丁的私有小屋">
+    <meta name="keyword"  content="Pudding,Pudding的博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Docker 和 K8s 到底有啥关系 - Pudding 个人博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> a week is 2% of the year </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Pudding</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E7%82%B9"><span class="toc-text">观点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Docker%EF%BC%9F"><span class="toc-text">什么是 Docker？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Kubernetes%EF%BC%9F"><span class="toc-text">什么是 Kubernetes？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K8s-%E4%B8%8E-Docker"><span class="toc-text">K8s 与 Docker</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> a week is 2% of the year </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Docker 和 K8s 到底有啥关系
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2022-12-08 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2022-12-08</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#docker" title="docker">docker</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>&emsp;&emsp;学了和用了一段时间 Docker 和 K8s，虽然学的不深、用的很浅，但是真真真感觉两者联系紧密。为了满足自己的好奇心，搜集了写资料，汇总一下。<br/><br>&emsp;&emsp;<del>感觉自己的初高中时代，计算机领域真的风云突变啊，有点春秋百家争鸣的感觉。</del></p>
+<h2 id="观点"><a href="#观点" class="headerlink" title="观点"></a>观点</h2><ul>
+    <li><b>Docker 和 K8s 不是“非此即彼”的竞争对手，而是两种相辅相成的技术。</b></li>
+    <li> Docker 是一家提供一系列工具的公司，这些工具用于构建和共享容器镜像，以及运行小规模和大规模的容器。</li>
+    <li> K8s 是一个管理（“协调”）在服务器集群上运行的基于容器的应用程序的工具。</li>
+</ul>
+
+<p>官方定义——简要介绍：</p>
+<ol>
+<li>Docker 是一个开源的应用容器引擎，开发者可以打包他们的应用及依赖到一个可移植的容器中，发布到流行的 Linux 机器上，也可实现虚拟化。</li>
+<li>K8s 是一个开源的容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</li>
+</ol>
+<h2 id="什么是-Docker？"><a href="#什么是-Docker？" class="headerlink" title="什么是 Docker？"></a>什么是 Docker？</h2><p>它是一个公司，是一套工具，也是个命令……<br/><br><del>Docker 公司的“枭雄”故事，可自行百度;</del><br/><br><del>后边的内容，把 Docker 看作是开源的技术。</del><br><br><strong>“分割应用，使之容器化，便于交付”</strong>，这是我对 Docker 的理解。<br/><br>那么，Docker到底做了什么，这里借用 Dirk Merkel 的话：</p>
+<blockquote>
+&nbsp;&nbsp;Docker promises the ability to package applications and their dependencies into lightweight containers that move easily between different distros, start up quickly and are isolated from each other.<br>
+（Docker 承诺将应用程序及其依赖性打包到轻量级容器中，轻量级容器可以在不同发行版之间轻松移动、快速启动并彼此隔离。）
+</blockquote>
+
+<p>费话一点来说，使用 Docker：<br/><br>&emsp;&emsp;开发者可以轻松地打包任何应用以及依赖包到一个轻量级的、可移植的、自给自足的容器中。然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br/><br>&emsp;&emsp;开发者把编译测试通过的容器可以批量地在生产环境中部署，包括 VMs（虚拟机）、bare metal、OpenStack 集群和其他的基础应用平台。<br/><br>&emsp;&emsp;容器是完全使用沙箱机制，相互之间不会有任何接口。<br/></p>
+<p>Docker 生态流程：</p>
+<p><img src="/img/2022-12-08-docker%E5%92%8Ck8s%E7%9A%84%E5%85%B3%E7%B3%BB/pho1.jpg" alt="docker流程"></p>
+<p><strong>一个完整的Docker有以下几个部分组成：</strong></p>
+<ul>
+    <li> Docker Client 客户端</li>
+    <li> Docker Daemon 守护进程</li>
+    <li> Docker Image 镜像</li>
+    <li>Docker Container 容器</li>
+</ul>
+
+<p>Docker通常用于如下场景：</p>
+<ul>
+    <li> web应用的自动化打包和发布</li>
+    <li> 自动化测试和持续集成、发布</li>
+    <li> 在服务型环境中部署和调整数据库或其他的后台应用</li>
+    <li> 从头编译或者扩展现有的 OpenShift 或 Cloud Foundry 平台来搭建自己的PaaS环境</li>
+</ul>
+
+<p>&emsp;&emsp;虽然 Docker 提供了一种高效方式来打包和发布容器化应用，但仅依靠 Docker 来实现大规模部署和管理容器仍面临挑战。跨多个服务器/集群协调和调度容器，在零停机的前提下升级或部署应用，以及监控容器的运行状况，这些使用姿势还有待优化。</p>
+<p>&emsp;&emsp;为解决这些问题以及其他问题，容器编排解决方案以 Kubernetes、Docker Swarm、Mesos、HashiCorp Nomad 等形式陆续诞生，它们可让组织管理大量容器和用户、高效平衡负载、提供身份验证和安全性，以及开展多平台部署等等。</p>
+<h2 id="什么是-Kubernetes？"><a href="#什么是-Kubernetes？" class="headerlink" title="什么是 Kubernetes？"></a>什么是 Kubernetes？</h2><p>&emsp;&emsp;如果 docker run 是在笔记本电脑上运行容器的方式，那么 K8s 就像一个机器人，在几十个或几百个服务器上运行 docker run。<br/><br>&emsp;&emsp;Kubernetes（常简称为K8s）是用于自动部署、扩展和管理“容器化应用程序”的开源系统。它目标是让部署容器化应用更简单高效,旨在提供一个“跨主机集群的自动部署、扩展以及运行应用程序容器”的平台。它支持一系列容器类工具，可以跨越网络资源集群来编排容器运行时系统。不论有无 Docker，均可使用 K8s。<br/><br>K8s 架构图：<br/></p>
+<p><img src="/img/2022-12-08-docker%E5%92%8Ck8s%E7%9A%84%E5%85%B3%E7%B3%BB/pho2.jpg" alt="K8s架构"></p>
+<p>&emsp;&emsp;在 K8s 中，我们可以创建多个容器，每个容器里面运行一个应用实例，然后通过内置的负载均衡策略，实现对这一组应用实例的管理、发现、访问，而这些细节都不需要运维人员去进行复杂的手工配置和处理。<br/><br><strong>K8s 特点</strong></p>
+<ul>
+    <li> 可移植: 支持公有云，私有云，混合云，多重云（multi-cloud）</li>
+    <li> 可扩展: 模块化, 插件化, 可挂载, 可组合</li>
+    <li> 自动化: 自动部署，自动重启，自动复制，自动伸缩/扩展</li>
+</ul>
+
+<h2 id="K8s-与-Docker"><a href="#K8s-与-Docker" class="headerlink" title="K8s 与 Docker"></a>K8s 与 Docker</h2><p><img src="/img/2022-12-08-docker%E5%92%8Ck8s%E7%9A%84%E5%85%B3%E7%B3%BB/pho3.jpg" alt="K8s与docker对比图"></p>
+<p>&emsp;&emsp;Docker 是一个容器运行环境，K8s 则是一个运行和管理容器的平台。K8s 支持众多容器运行环境，例如 Docker、containerd、CRI-O 以及 K8s CRI（容器运行时接口）。做个恰当比喻，如果 K8s 是“操作系统”，那么 Docker 容器就是您安装在“操作系统”上的“应用”。<br/><br>&emsp;&emsp;就其本身而言，Docker 对现代应用开发助益良多。它解决了“在我的机器上工作”的典型问题，但并未涉足其他地方。容器编排工具 Docker Swarm 能够应付部署有少许容器的生产容器工作负载。当系统扩大并需要添加许多彼此联网的容器时，单纯使用 Docker 可能会遭遇一些不断加剧的难题，而 K8s 则可帮助解决这些问题。<br/><br>&emsp;&emsp;若要比较二者，最好是将 K8s 与 Docker Swarm 进行比较。Docker Swarm 是一种类似于 K8s 的容器编排工具，这意味着它允许管理在运行 Docker 服务器的多个主机上部署的多个容器。默认情况下，Swarm 模式处于禁用状态，需要由 DevOps 团队进行设置和配置。<br/><br>&emsp;&emsp;K8s 编排计算机集群以协同工作，并根据可用的资源安排容器在这些机器上运行。通过声明式定义，将多个容器组合成容器集 (Pod)，后者是 K8s 的基本单元。K8s 自动管理诸如服务发现、负载平衡、资源分配、隔离以及垂直或水平扩展容器集一类的操作。如今它已被开源社区采纳，成为云原生计算基金会的一部分。Amazon、Microsoft 和 Google 均在自己的云计算平台上提供托管 K8s 服务，从而大大减轻了运行和维护 K8s 集群及其容器化工作负载的运营负担。</p>
+<blockquote>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.atlassian.com/zh/microservices/microservices-architecture/kubernetes-vs-docker">Kubernetes 和 Docker 之间的主要区别，以及它们与容器化有何关系</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI1NzI5NDM4Mw==&mid=2247483724&idx=2&sn=7868943b1a31fc7bc65c97110ecfc97e&chksm=ea18e80cdd6f611acfea08392e87b1cfc79791b4eafa0e88607b53ab67f2e4f80891324b9a06&token=1662552961&lang=zh_CN&scene=21#wechat_redirect">Kubernetes 和 Docker 到底有啥关系？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.tutorialworks.com/kubernetes-vs-docker/">Kubernetes and Docker: What’s the difference?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/zhishi/suyu-docker.html">容器应用</a></li>
+</ol>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/wu3227834">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+        data-repo="wu3227834/wu3227834.github.io"
+        data-repo-id="R_kgDOIh8vuA"
+        data-category="General"
+        data-category-id="DIC_kwDOIh8vuM4CpDjz"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+</html>

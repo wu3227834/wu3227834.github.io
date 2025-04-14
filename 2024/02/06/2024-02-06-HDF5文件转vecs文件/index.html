@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="这里是小布丁的私有小屋">
+    <meta property="og:type" content="website">
+    <meta name="description" content="这里是小布丁的私有小屋">
+    <meta name="keyword"  content="Pudding,Pudding的博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        HDF5 文件转 vecs 文件 - Pudding 个人博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> a week is 2% of the year </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Pudding</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDF5-%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">HDF5 文件的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vecs-%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">vecs 文件的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fvecs"><span class="toc-text">fvecs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ivecs"><span class="toc-text">ivecs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDF5-%E8%BD%AC-vecs-%E8%84%9A%E6%9C%AC"><span class="toc-text">HDF5 转 vecs 脚本</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> a week is 2% of the year </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        HDF5 文件转 vecs 文件
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2024-02-06 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2024-02-06</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#向量数据库" title="向量数据库">向量数据库</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="HDF5-文件的结构"><a href="#HDF5-文件的结构" class="headerlink" title="HDF5 文件的结构"></a>HDF5 文件的结构</h2><p>一个 HDF5 格式的文件是一个包含两个对象的容器，一个是<strong>数据集</strong>（datasets），另一个是<strong>组</strong>（groups）。数据集的结构非常类似于 Numpy 的 <strong>array</strong>，组的结构非常类似于 python 的字典，它像一个文件夹一样，它可以包含数据集和其它的组。总结起来：<strong>组像字典一样工作，数据集像 NumPy 数组一样工作</strong>。</p>
+<p>拿 HDF5 格式数据集 <strong>gist-960-euclidean.hdf5</strong> 为例（<a target="_blank" rel="noopener" href="http://ann-benchmarks.com/gist-960-euclidean.hdf5">下载地址</a>），整个文件有一个根组，就是下图的”/“。</p>
+<p><img src="/img/2024-02-06-HDF5%E6%96%87%E4%BB%B6%E8%BD%ACvecs%E6%96%87%E4%BB%B6/pho1.jpg" alt="HDF5 文件结构示意图"></p>
+<p>根组下有四个键，分别为 <strong>distances</strong>、<strong>neighbors</strong>、<strong>test</strong> 和 <strong>train</strong>，类比于上图中的 A、B 和 C。</p>
+<ul>
+<li><strong>distances</strong> 对应的是 shape 为 (<strong>1000</strong>, <strong>100</strong>) 的数据集（类比于 Numpy 的 <strong>array</strong>），为每个查询向量最近的 100 个向量距该查询向量的距离，数据类型为 <strong>float32</strong></li>
+<li><strong>neighbors</strong> 对应的是 shape 为 (<strong>1000, 100</strong>) 的数据集，为每个查询向量最近的 100 个向量，数据类型为 <strong>int32</strong></li>
+<li><strong>test</strong> 对应的是 shape 为 (<strong>1000000, 960</strong>) 的数据集，这是基数据（原始数据），一共 1000000 个向量，每个向量的维度为 960 维，数据类型为 <strong>float32</strong></li>
+<li><strong>train</strong> 对应的是 shape 为 (<strong>1000, 960</strong>) 的数据集，只是查询数据，一共 1000 个向量，向量的维度为 960 维，数据类型为 <strong>float32</strong></li>
+</ul>
+<h2 id="vecs-文件的结构"><a href="#vecs-文件的结构" class="headerlink" title="vecs 文件的结构"></a>vecs 文件的结构</h2><p><img src="/img/2024-02-06-HDF5%E6%96%87%E4%BB%B6%E8%BD%ACvecs%E6%96%87%E4%BB%B6/pho2.jpg" alt="vecs 文件结构示意图"></p>
+<p>在常用的公开数据集中，<strong>数据集文件、查询文件</strong>往往使用 fvecs 格式存储。而<strong>真值集（即查询的答案）文件</strong>使用 ivecs 格式存储。其实这两种格式十分相似。</p>
+<h3 id="fvecs"><a href="#fvecs" class="headerlink" title="fvecs"></a>fvecs</h3><p>数据集、查询集采用fvecs格式，其实他们是完全相同的东西。在数据集中，存储的是所有向量，而查询集中，存储的同样是向量，只是向量数量会少一些。</p>
+<p>fvecs 采用<strong>二进制</strong>来存储，直接打开便是乱码。</p>
+<p>下面用一张图来表示 fvecs 的大致格式：</p>
+<p><img src="/img/2024-02-06-HDF5%E6%96%87%E4%BB%B6%E8%BD%ACvecs%E6%96%87%E4%BB%B6/pho3.jpg" alt="fvecs 文件格式示意图"></p>
+<p>每一“行”中，<strong>第一个数表示数据的维度 dim，后面跟着的 dim 个数便是向量各维度的值</strong>。(注：fvecs 中的 f 指 <strong>float32</strong>)</p>
+<p>因此，一“行”表示的便是一个向量。</p>
+<h3 id="ivecs"><a href="#ivecs" class="headerlink" title="ivecs"></a>ivecs</h3><p>ivecs 其实和 fvecs 的格式是一样的，只不过它存储的不是向量，而是每一条查询的答案。</p>
+<p>就是说，ivecs 里的每一“行”里，<strong>第一个数据是查询答案的数量 n，后面 n 个数是答案向量的 id</strong>。(注：ivecs 中的 i 指 <strong>int32</strong>)</p>
+<h2 id="HDF5-转-vecs-脚本"><a href="#HDF5-转-vecs-脚本" class="headerlink" title="HDF5 转 vecs 脚本"></a>HDF5 转 vecs 脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Author: pudding</span></span><br><span class="line"><span class="string">Date: 2024-02-02 10:15:39</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sklearn.preprocessing</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_hdf5_file</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;loading：&#x27;</span>+ filename)</span><br><span class="line">    hdf5_f = h5py.File(filename, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;load done !&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> hdf5_f</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">to_fvecs</span>(<span class="params">filename, data</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> data:</span><br><span class="line">            <span class="comment"># 将 y.size（dim） 以 C++ 的 unsigned int 的形式写入二进制文件</span></span><br><span class="line">            d = struct.pack(<span class="string">&#x27;I&#x27;</span>, y.size)</span><br><span class="line">            fp.write(d)</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> y:</span><br><span class="line">                <span class="comment"># 将 x（vector）以 C++ 的 float 的形式写入二进制文件</span></span><br><span class="line">                a = struct.pack(<span class="string">&#x27;f&#x27;</span>, x)	</span><br><span class="line">                fp.write(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">to_ivecs</span>(<span class="params">filename, data</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> data:</span><br><span class="line">            d = struct.pack(<span class="string">&#x27;I&#x27;</span>, y.size)</span><br><span class="line">            fp.write(d)</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> y:</span><br><span class="line">                a = struct.pack(<span class="string">&#x27;I&#x27;</span>, x)</span><br><span class="line">                fp.write(a)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">file_path</span>):</span><br><span class="line">    dataset = load_hdf5_file(file_path)</span><br><span class="line"></span><br><span class="line">    dimension = <span class="built_in">int</span>(dataset.attrs[<span class="string">&quot;dimension&quot;</span>]) <span class="keyword">if</span> <span class="string">&quot;dimension&quot;</span> <span class="keyword">in</span> dataset.attrs <span class="keyword">else</span> <span class="built_in">len</span>(dataset[<span class="string">&quot;train&quot;</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;======== HDF5 Basic Information ========&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;dataset dimension：&#x27;</span>+ <span class="built_in">str</span>(dimension))</span><br><span class="line">    filename = file_path.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>]</span><br><span class="line">    dataname = filename.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    X_train = np.array(dataset[<span class="string">&quot;train&quot;</span>])</span><br><span class="line">    X_test = np.array(dataset[<span class="string">&quot;test&quot;</span>])</span><br><span class="line">    distance = dataset.attrs[<span class="string">&quot;distance&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># if distance == &quot;angular&quot;:</span></span><br><span class="line">    <span class="comment">#     X_train = sklearn.preprocessing.normalize(X_train, axis=1, norm=&quot;l2&quot;)</span></span><br><span class="line">    <span class="comment">#     X_test /= np.linalg.norm(X_test)</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Dataname：&quot;</span> + dataname)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;distance：&quot;</span>, distance)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;got a train set of size (%d * %d)&quot;</span> % (X_train.shape[<span class="number">0</span>], dimension))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;got %d queries&quot;</span> % <span class="built_in">len</span>(X_test))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;======== HDF5 to vesc ========&#x27;</span>)</span><br><span class="line">    dataset_dir = os.path.join(<span class="string">&#x27;./vecs&#x27;</span>, dataname)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dataset_dir):</span><br><span class="line">        os.makedirs(dataset_dir)</span><br><span class="line">    </span><br><span class="line">    to_fvecs(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_base.fvecs&#x27;</span>), X_train)</span><br><span class="line">    to_fvecs(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_query.fvecs&#x27;</span>), X_test)</span><br><span class="line"></span><br><span class="line">    to_ivecs(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_groundtruth.ivecs&#x27;</span>), dataset[<span class="string">&#x27;neighbors&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;dataset[&#x27;train&#x27;] to &quot;</span>+ <span class="built_in">str</span>(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_base.fvecs&#x27;</span>)))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;dataset[&#x27;test&#x27;] to &quot;</span>+ <span class="built_in">str</span>(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_query.fvecs&#x27;</span>)))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;dataset[&#x27;neighbors&#x27;] to &quot;</span>+ <span class="built_in">str</span>(os.path.join(dataset_dir, dataname+<span class="string">&#x27;_groundtruth.ivecs&#x27;</span>)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&quot;Run the script with file path input&quot;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&quot;--file_path&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, required=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&quot;Path to the input file&quot;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    run(args.file_path)</span><br></pre></td></tr></table></figure>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/wu3227834">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+        data-repo="wu3227834/wu3227834.github.io"
+        data-repo-id="R_kgDOIh8vuA"
+        data-category="General"
+        data-category-id="DIC_kwDOIh8vuM4CpDjz"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+</html>

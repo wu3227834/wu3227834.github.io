@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="这里是小布丁的私有小屋">
+    <meta property="og:type" content="website">
+    <meta name="description" content="这里是小布丁的私有小屋">
+    <meta name="keyword"  content="Pudding,Pudding的博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        线程上下文切换与进程上下文切换的区别 - Pudding 个人博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> a week is 2% of the year </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Pudding</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%EF%BC%9F"><span class="toc-text">什么是线程上下文切换？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%EF%BC%9F"><span class="toc-text">什么是进程上下文切换？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E5%92%8C%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-text">线程上下文切换和进程上下文切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> a week is 2% of the year </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        线程上下文切换与进程上下文切换的区别
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2023-12-14 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2023-12-14</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#性能测试" title="性能测试">性能测试</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>上下文切换是操作系统在多任务环境中管理多个线程或进程的基本操作。它涉及到保存一个线程或进程的当前执行上下文，并恢复另一个线程或进程的执行上下文。这允许操作系统在不同的线程之间快速切换，给人一种并发执行的错觉。</p>
+<p>有两种类型的上下文切换：“线程上下文切换”和“进程上下文切换”。让我们来看看它们之间的区别。</p>
+<h2 id="什么是线程上下文切换？"><a href="#什么是线程上下文切换？" class="headerlink" title="什么是线程上下文切换？"></a>什么是线程上下文切换？</h2><p>线程上下文切换指的是保存正在进行的线程的当前执行上下文，并恢复另一个线程的执行上下文以允许它在运行的过程。在多线程环境中，单个进程中的多个线程可以并发执行，操作系统执行线程上下文切换以在不同线程之间切换执行。下面是线程上下文切换的关键特征：</p>
+<ul>
+<li><p><strong>粒度（Granularity）</strong>：线程上下文切换操作的粒度比进程上下文切换更细。它们涉及在同一进程内的线程之间切换，与进程上下文切换相比，允许更快的切换和更低的开销。</p>
+</li>
+<li><p><strong>执行上下文（Execution Context）</strong>：在线程上下文切换期间，保存当前线程的执行上下文，包括程序计数器、堆栈指针和寄存器值。然后恢复另一个线程的上下文，允许它从停止的地方继续执行。</p>
+</li>
+<li><p><strong>共享内存（Shared Memory）</strong>：进程中的线程共享相同的内存空间。因此，在线程上下文切换期间，不需要切换内存地址空间或更新内存管理结构。内存保持完整，线程可以直接访问共享数据，而不需要任何额外的开销。</p>
+</li>
+</ul>
+<h2 id="什么是进程上下文切换？"><a href="#什么是进程上下文切换？" class="headerlink" title="什么是进程上下文切换？"></a>什么是进程上下文切换？</h2><p>另一方面，进程上下文切换涉及到保存正在运行的进程的当前执行上下文和恢复另一个进程的执行上下文。它允许操作系统在不同的独立进程之间切换，每个进程都有自己的内存空间和资源。以下是进程上下文切换的关键特征:</p>
+<ul>
+<li><p><strong>粒度（Granularity）</strong>：进程上下文切换操作的粒度比线程上下文切换操作的粒度更粗。它们涉及在不同进程之间切换，这些进程通常有自己的内存空间和资源分配。由于需要内存管理更新和潜在的缓存刷新，进程上下文切换通常比线程上下文切换更加昂贵和耗时。</p>
+</li>
+<li><p><strong>执行上下文（Execution Context）</strong>：在进程上下文切换期间，保存当前进程的执行上下文，包括程序计数器、堆栈指针、寄存器值和内存管理结构。然后还原另一个进程的执行上下文，允许它从中断的地方继续执行。</p>
+</li>
+<li><p><strong>共享内存（Shared Memory）</strong>：进程有其独立的内存空间，其中可能包括虚拟地址空间、页表和内存保护机制。在进程上下文切换期间，内存管理结构需要更新，以反映新进程的内存空间，与线程上下文切换相比，这会带来额外的开销。</p>
+</li>
+<li><p><strong>保护和隔离（Protection and Isolation）</strong>：进程上下文切换在进程之间提供更高级别的保护和隔离。每个进程在自己的内存空间中运行，提供更好的安全性和故障隔离。进程上下文切换确保进程不能直接访问或干扰彼此的内存或资源。</p>
+</li>
+</ul>
+<h2 id="线程上下文切换和进程上下文切换"><a href="#线程上下文切换和进程上下文切换" class="headerlink" title="线程上下文切换和进程上下文切换"></a>线程上下文切换和进程上下文切换</h2><p>线程上下文切换和进程上下文切换：</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>线程上下文切换</th>
+<th>进程上下文切换</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>保存正在运行的线程的当前状态(上下文)并加载另一个线程的保存状态以供执行的过程</td>
+<td>保存正在运行的进程的当前状态(上下文)并加载另一个进程的保存状态以供执行的进程</td>
+</tr>
+<tr>
+<td>粒度</td>
+<td>在进程的线程级别上发生，一个进程中可以存在多个线程</td>
+<td>在进程级别发生，每个进程可以有一个或多个线程。</td>
+</tr>
+<tr>
+<td>执行环境</td>
+<td>在同一个进程中，线程上下文切换发生在相同的内存空间中，并共享相同的资源</td>
+<td>进程上下文切换涉及不同的进程，它们有自己的内存空间和资源</td>
+</tr>
+<tr>
+<td>开销</td>
+<td>线程上下文切换通常比进程上下文切换具有更低的开销，因为它们涉及在同一进程内的线程之间进行切换</td>
+<td>由于需要在不同进程之间进行切换，因此进程上下文切换的开销较高，需要对内存和资源映射进行更广泛的更改</td>
+</tr>
+<tr>
+<td>调度</td>
+<td>线程上下文切换通常由操作系统的线程调度程序管理</td>
+<td>进程上下文切换由操作系统的进程调度程序管理</td>
+</tr>
+<tr>
+<td>时间复杂性</td>
+<td>线程上下文切换通常具有较低的时间复杂性，因为它们涉及在同一进程内的线程之间进行切换</td>
+<td>由于需要为不同的进程执行更广泛的上下文保存和恢复操作，进程上下文切换的时间复杂度较高</td>
+</tr>
+<tr>
+<td>对系统资源的影响</td>
+<td>线程上下文切换对系统资源的影响相对较小，因为进程中的线程共享许多资源</td>
+<td>进程上下文切换对系统资源的影响更大，因为不同的进程有自己的内存空间和资源分配</td>
+</tr>
+<tr>
+<td>通讯与同步</td>
+<td>同一进程中的线程可以使用共享内存或同步原语轻松地进行通信和同步</td>
+<td>进程通常使用进程间通信机制(如管道、套接字或消息队列)彼此进行通信和同步</td>
+</tr>
+<tr>
+<td>例子</td>
+<td>在 Web 服务器中的不同线程之间切换以同时处理多个客户端请求。</td>
+<td>在多任务操作系统上运行不同应用程序的不同进程之间切换</td>
+</tr>
+</tbody></table>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>线程上下文切换涉及在同一进程内的线程之间切换执行，而进程上下文切换涉及在不同独立进程之间切换执行。</li>
+<li>线程上下文切换速度更快，开销更低，因为它们不需要更新内存管理结构。</li>
+<li>进程上下文切换较慢，涉及更新内存管理结构，以便在不同的内存空间之间切换，并在进程之间提供更好的隔离</li>
+</ol>
+<blockquote>
+<p>参考链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/difference-between-thread-context-switch-and-process-context-switch">https://www.tutorialspoint.com/difference-between-thread-context-switch-and-process-context-switch</a></li>
+</ul>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/wu3227834">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+        data-repo="wu3227834/wu3227834.github.io"
+        data-repo-id="R_kgDOIh8vuA"
+        data-category="General"
+        data-category-id="DIC_kwDOIh8vuM4CpDjz"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="这里是小布丁的私有小屋">
+    <meta property="og:type" content="website">
+    <meta name="description" content="这里是小布丁的私有小屋">
+    <meta name="keyword"  content="Pudding,Pudding的博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        线程和进程的区别 - Pudding 个人博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> a week is 2% of the year </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Pudding</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="toc-text">什么是进程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-text">什么是线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">进程与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> a week is 2% of the year </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        线程和进程的区别
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2023-12-14 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2023-12-14</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#性能测试" title="性能测试">性能测试</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p><strong>进程</strong>（process）和<strong>线程</strong>（thread）彼此相关，非常相似，因为它们是独立的执行顺序。进程和线程的基本区别在于，进程发生在不同的内存空间，而线程在相同的内存空间中执行。</p>
+<p>通读本文，希望你能找出在操作系统上下文中进程与线程的不同之处。让我们从线程和进程的一些基本知识开始。</p>
+<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><p><strong>进程</strong>是一个活动的程序，也就是说，一个正在执行的程序。它不仅仅是程序代码，因为它包括程序计数器、进程堆栈、寄存器、程序代码等。与此相比，程序代码只是文本部分。</p>
+<p>当计算机程序被触发执行时，它并不是直接运行，而是首先确定程序执行所需的步骤，而遵循这些步骤执行的过程称为进程。</p>
+<p>进程可以分为两种类型，即<strong>克隆进程</strong>和<strong>父进程</strong>。克隆进程也称为子进程，是由另一个进程创建的进程，而主进程是负责创建其他进程，以同时执行多个任务的进程，称为父进程。</p>
+<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><p><strong>线程</strong>是可由调度程序独立管理的轻量级进程。它使用并行性提高了应用程序的性能。线程与其对等线程共享数据段、代码段、文件等信息，同时包含自己的寄存器、堆栈、计数器等。</p>
+<p>线程基本上是大型进程的一个子部分。在进程中，进程中的所有线程都是相互关联的。典型的线程包含一些信息，如数据段、代码段等。这些信息将在执行期间共享给它们的对等线程。</p>
+<p>线程最重要的特性是它们与它们所属的进程中的对等线程共享内存、数据、资源等。此外，进程中的所有线程都需要进行同步，以避免意外的结果。</p>
+<h2 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h2><p>下表突出显示了进程和线程之间的主要区别：</p>
+<table>
+<thead>
+<tr>
+<th>比较</th>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>进程是一个正在执行的程序，也就是活动的程序</td>
+<td>线程是可由调度程序独立管理的轻量级进程</td>
+</tr>
+<tr>
+<td>上下文切换时间</td>
+<td>进程需要更多的时间进行上下文切换，因为它们比较繁重</td>
+<td>线程需要更少的时间进行上下文切换，因为它们比进程轻</td>
+</tr>
+<tr>
+<td>内存共享</td>
+<td>进程是完全独立的，不共享内存</td>
+<td>进程是完全独立的，不共享内存。</td>
+</tr>
+<tr>
+<td>通信耗时</td>
+<td>进程之间的通信比线程之间的通信需要更多的时间</td>
+<td>线程之间的通信比进程之间的通信需要更少的时间</td>
+</tr>
+<tr>
+<td>阻塞处理</td>
+<td>如果一个进程被阻塞，其余进程可以继续执行</td>
+<td>如果用户级线程被阻塞，它的所有对等线程也会被阻塞</td>
+</tr>
+<tr>
+<td>资源消耗</td>
+<td>进程比线程需要更多的资源</td>
+<td>线程通常比进程需要更少的资源</td>
+</tr>
+<tr>
+<td>依赖性</td>
+<td>各个过程是相互独立的</td>
+<td>线程是进程的一部分，因此是依赖的</td>
+</tr>
+<tr>
+<td>数据和代码共享</td>
+<td>进程具有独立的数据和代码段</td>
+<td>线程与其对等线程共享数据段、代码段、文件等</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>进程创建需要更多的时间</td>
+<td>线程创建所需的时间更少</td>
+</tr>
+<tr>
+<td>终止时间</td>
+<td>进程需要更多的时间来终止</td>
+<td>进程需要更多的时间来终止</td>
+</tr>
+</tbody></table>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>进程和线程之间最显著的区别在于，进程被定义为由计算机完成的任务，而线程是可由调度程序独立管理的轻量级进程。</p>
+<blockquote>
+<p>参考链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/difference-between-process-and-thread">https://www.tutorialspoint.com/difference-between-process-and-thread</a></li>
+</ul>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/wu3227834">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+        data-repo="wu3227834/wu3227834.github.io"
+        data-repo-id="R_kgDOIh8vuA"
+        data-category="General"
+        data-category-id="DIC_kwDOIh8vuM4CpDjz"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+</html>

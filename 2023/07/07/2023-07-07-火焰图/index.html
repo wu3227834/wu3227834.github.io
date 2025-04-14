@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="这里是小布丁的私有小屋">
+    <meta property="og:type" content="website">
+    <meta name="description" content="这里是小布丁的私有小屋">
+    <meta name="keyword"  content="Pudding,Pudding的博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        性能测试——火焰图 - Pudding 个人博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Pudding 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> a week is 2% of the year </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Pudding</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-perf-%E7%AE%80%E4%BB%8B"><span class="toc-text">0. perf 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-perf"><span class="toc-text">1. 安装 perf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-perf-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">2. perf 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-perf-%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="toc-text">2.1 perf 分析流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-perf-%E4%BA%8B%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="toc-text">2.2 perf 事件支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-perf-stat%EF%BC%88%E7%BB%9F%E8%AE%A1%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BA%8B%E4%BB%B6%EF%BC%89"><span class="toc-text">2.3 perf stat（统计特定类型的事件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-perf-record%EF%BC%88%E8%AE%B0%E5%BD%95%E7%89%B9%E5%AE%9A%E4%BA%8E%E7%89%B9%E5%AE%9A%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BA%8B%E4%BB%B6%EF%BC%89"><span class="toc-text">2.4 perf record（记录特定于特定命令的事件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%AB%E7%84%B0%E5%9B%BE"><span class="toc-text">火焰图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="toc-text">一个实例：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-st-%E7%94%9F%E6%88%90-perf-data"><span class="toc-text">1.st 生成 perf.data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-st-%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE"><span class="toc-text">2.st 生成火焰图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%AB%E7%84%B0%E5%9B%BE%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">火焰图的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%AE%E5%88%86%E7%81%AB%E7%84%B0%E5%9B%BE"><span class="toc-text">差分火焰图</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> a week is 2% of the year </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        性能测试——火焰图
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2023-07-07 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2023-07-07</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#性能测试" title="性能测试">性能测试</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#火焰图" title="火焰图">火焰图</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#pref" title="pref">pref</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="0-perf-简介"><a href="#0-perf-简介" class="headerlink" title="0. perf 简介"></a>0. perf 简介</h2><p>Perf 是一个用于访问处理器性能监视单元 (PMU) 以及记录和显示软件事件（例如页错误）的界面。它支持系统范围的监视、按线程的监视和 KVM 虚拟化 Guest 监视。</p>
+<p>可以在报告中储存生成的信息。例如，此报告包含有关指令指针的信息，或线程执行的代码的信息。</p>
+<p>Perf 由两部分组成：</p>
+<ul>
+  <li>集成到 Linux 内核的代码，负责向硬件发出指令。</li>
+  <li>perf 用户空间实用程序，可让您使用内核代码并帮助您分析收集的数据。</li>
+</ul>
+
+<h2 id="1-安装-perf"><a href="#1-安装-perf" class="headerlink" title="1. 安装 perf"></a>1. 安装 perf</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> yum install perf</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-perf-的使用"><a href="#2-perf-的使用" class="headerlink" title="2. perf 的使用"></a>2. perf 的使用</h2><h3 id="2-1-perf-分析流程"><a href="#2-1-perf-分析流程" class="headerlink" title="2.1 perf 分析流程"></a>2.1 perf 分析流程</h3><p>Perf 进行性能分析的方式通常有两种：</p>
+<ul>
+  <li>使用 perf stat 等命令对特定的事件计数器进行计算，并在程序结束后打印数值</li>
+  <li>使用 perf record 等命令以若干的事件为触发间隔对系统进行采样，将数据保存至 perf.data 文件以供后续分析</li>
+  <li>也就是说，perf stat 命令只能记录事件发生的次数，perf record 在此基础之上可以记录事件发生时详细的数据(比如 IP、堆栈等等)。</li>
+</ul>
+
+<p>perf record 流程图：</p>
+<p><img src="/img/2023-07-07-%E7%81%AB%E7%84%B0%E5%9B%BE/perf_record.png" alt="perf record 流程图"></p>
+<p>在虚拟机上演示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">perf <span class="built_in">stat</span> <span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">&#x27;ls&#x27;</span>:</span><br><span class="line"></span><br><span class="line">          1.643793      task-clock (msec)         <span class="comment">#    0.750 CPUs utilized</span></span><br><span class="line">                 0      context-switches          <span class="comment">#    0.000 K/sec</span></span><br><span class="line">                 0      cpu-migrations            <span class="comment">#    0.000 K/sec</span></span><br><span class="line">               265      page-faults               <span class="comment">#    0.161 M/sec</span></span><br><span class="line">   &lt;not supported&gt;      cycles</span><br><span class="line">   &lt;not supported&gt;      instructions</span><br><span class="line">   &lt;not supported&gt;      branches</span><br><span class="line">   &lt;not supported&gt;      branch-misses</span><br><span class="line"></span><br><span class="line">       0.002190790 seconds <span class="keyword">time</span> elapsed</span><br><span class="line"></span><br><span class="line">perf record <span class="built_in">ls</span></span><br><span class="line">perf.data</span><br><span class="line">[ perf record: Woken up 1 <span class="built_in">times</span> to write data ]</span><br><span class="line">[ perf record: Captured and wrote 0.016 MB perf.data (7 samples) ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-perf-事件支持"><a href="#2-2-perf-事件支持" class="headerlink" title="2.2 perf 事件支持"></a>2.2 perf 事件支持</h2><p>通过 perf list 可以查看当前支持的所有时间包括硬件事件、软件事件、硬件cache事件、PMU事件以及预设Tracepoint事件</p>
+<p><img src="/img/2023-07-07-%E7%81%AB%E7%84%B0%E5%9B%BE/perf_2.png" alt="perf list"></p>
+<h2 id="2-3-perf-stat（统计特定类型的事件）"><a href="#2-3-perf-stat（统计特定类型的事件）" class="headerlink" title="2.3 perf stat（统计特定类型的事件）"></a>2.3 perf stat（统计特定类型的事件）</h2><p>要统计某个事件（例如 perf list 显示的事件）的发生次数，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf <span class="built_in">stat</span> -e EVENT -a</span><br></pre></td></tr></table></figure>
+
+<p>要一次性统计多种类型的事件，请列出这些事件并以逗号分隔。例如，要统计 cpu-cycles 和 instructions，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf <span class="built_in">stat</span> -e cpu-cycles,instructions -a</span><br></pre></td></tr></table></figure>
+
+<p>要停止会话，请按 Ctrl+C。</p>
+<p>还可以统计某个事件在特定时间范围内发生的次数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf <span class="built_in">stat</span> -e EVENT -a -- <span class="built_in">sleep</span> TIME</span><br></pre></td></tr></table></figure>
+
+<p>请将 TIME 替换为以秒为单位的值。</p>
+<h2 id="2-4-perf-record（记录特定于特定命令的事件）"><a href="#2-4-perf-record（记录特定于特定命令的事件）" class="headerlink" title="2.4 perf record（记录特定于特定命令的事件）"></a>2.4 perf record（记录特定于特定命令的事件）</h2><p>1、可通过各种方式来对特定于特定命令的事件采样：</p>
+<p>1）要创建新调用的命令的报告，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf record COMMAND</span><br></pre></td></tr></table></figure>
+
+<p>然后正常使用启动的进程。退出该进程时，Perf 会话也会停止。</p>
+<p>2）要在运行新调用的命令时创建整个系统的报告，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf record -a COMMAND</span><br></pre></td></tr></table></figure>
+
+<p>3）要创建已运行的进程的报告，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf record -p PID</span><br></pre></td></tr></table></figure>
+
+<p>请将 PID 替换为进程 ID。要停止会话，请按 Ctrl–C。</p>
+<p>2、现在，可使用以下命令查看收集到的数据 (perf.data)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf report</span><br></pre></td></tr></table></figure>
+
+<p>这会打开一个伪图形界面。要获得帮助，请按 H。要退出，请按 Q。</p>
+<p>3、如果您偏向于使用图形界面，请尝试 Perf 的 GTK+ 界面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf report --gtk</span><br></pre></td></tr></table></figure>
+
+<p>但请注意，GTK+ 界面的功能很有限。</p>
+<h2 id="火焰图"><a href="#火焰图" class="headerlink" title="火焰图"></a>火焰图</h2><p>火焰图是用图形化的方式来展现perf等工具采集的性能数据，对数据进行统计和分析，方便找出性能热点。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/brendangregg/FlameGraph.git</span><br></pre></td></tr></table></figure>
+
+<p>在 <a herf="https://github.com/brendangregg/FlameGraph.git">GitHub 项目：FlameGraph</a> 主页有生成火焰图的详细说明。</p>
+<p>克隆项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/brendangregg/FlameGraph.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023-07-07-%E7%81%AB%E7%84%B0%E5%9B%BE/perf_3.png" alt="FlameGraph list"></p>
+<h2 id="一个实例："><a href="#一个实例：" class="headerlink" title="一个实例："></a>一个实例：</h2><h3 id="1-st-生成-perf-data"><a href="#1-st-生成-perf-data" class="headerlink" title="1.st 生成 perf.data"></a>1.st 生成 perf.data</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">perf record -F 99 -a -g -- <span class="built_in">sleep</span> 60 </span><br><span class="line"></span><br><span class="line">上述代码中 perf record 表示记录，</span><br><span class="line">-F 99 表示每秒99次，</span><br><span class="line">-p 13204 是进程号，即对哪个进程进行分析，</span><br><span class="line">-g 表示记录调用栈，</span><br><span class="line"><span class="built_in">sleep</span> 30 则是持续30秒，-a 表示记录所有cpu调用。更多参数可以执行</span><br></pre></td></tr></table></figure>
+
+<p>这条指令的意思是，对CPU所有进程以 99Hz 采集,它的执行频率是 99Hz（每秒99次），如果 99 次都返回同一个函数名，那就说明 CPU 这一秒钟都在执行同一个函数，可能存在性能问题。执行60秒后会弹出如下图提示表示采集完成，在当前目录会生成一个perf.data的文件。</p>
+<p>perf.data 文件生成后，表示采集完成。<strong>最好是在火焰图的目录下进行采集，方便转换成SVG图形。</strong></p>
+<h3 id="2-st-生成火焰图"><a href="#2-st-生成火焰图" class="headerlink" title="2.st 生成火焰图"></a>2.st 生成火焰图</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//生成脚本文件</span><br><span class="line">perf script -i perf.data &amp;&gt; perf.unfold</span><br><span class="line"></span><br><span class="line">//生成火炬图</span><br><span class="line">./FlameGraph/stackcollapse-perf.pl perf.unfold &amp;&gt; perf.folded</span><br><span class="line">./FlameGraph/flamegraph.pl perf.folded &gt; perf.svg</span><br></pre></td></tr></table></figure>
+
+<p>执行完成后生成 perf.svg 图片，可以下载到本地，用浏览器打开 perf.svg，如下图</p>
+<p><img src="/img/2023-07-07-%E7%81%AB%E7%84%B0%E5%9B%BE/perf_4.png" alt="perf.svg"></p>
+<h2 id="火焰图的含义"><a href="#火焰图的含义" class="headerlink" title="火焰图的含义"></a>火焰图的含义</h2><p>火焰图是基于 perf 结果产生的 SVG 图片，用来展示 CPU 的调用栈。</p>
+<p><img src="/img/2023-07-07-%E7%81%AB%E7%84%B0%E5%9B%BE/perf_5.svg" alt="perf_5.svg"></p>
+<p>y 轴表示调用栈，每一层都是一个函数。调用栈越深，火焰就越高，顶部就是正在执行的函数，下方都是它的父函数。</p>
+<p>x 轴表示抽样数，如果一个函数在 x 轴占据的宽度越宽，就表示它被抽到的次数多，即执行的时间长。注意，x 轴不代表时间，而是所有的调用栈合并后，按字母顺序排列的。</p>
+<p>火焰图就是看顶层的哪个函数占据的宽度最大。只要有”平顶”（plateaus），就表示该函数可能存在性能问题。</p>
+<p>颜色没有特殊含义，因为火焰图表示的是 CPU 的繁忙程度，所以一般选择暖色调。</p>
+<h2 id="差分火焰图"><a href="#差分火焰图" class="headerlink" title="差分火焰图"></a>差分火焰图</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一次Profiling结果</span></span><br><span class="line">perf record -ag -F 999 -- <span class="built_in">sleep</span> 20</span><br><span class="line">perf script -i perf.data &amp;&gt; A.stacks</span><br><span class="line"><span class="comment"># 第二次Profiling结果</span></span><br><span class="line">perf record -ag -F 999 -- <span class="built_in">sleep</span> 20</span><br><span class="line">perf script -i perf.data &amp;&gt; B.stacks</span><br><span class="line"><span class="comment"># 下载FlameGraph仓库</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 http://github.com/brendangregg/FlameGraph </span><br><span class="line"><span class="comment"># 折叠A.stacks和B.stacks</span></span><br><span class="line">./FlameGraph/stackcollapse-perf.pl A.stacks &amp;&gt; A.folded</span><br><span class="line">./FlameGraph/stackcollapse-perf.pl B.stacks &amp;&gt; B.folded</span><br><span class="line"><span class="comment"># 基于折叠结果做差</span></span><br><span class="line">./FlameGraph/difffolded.pl A.folded B.folded &gt; diff.folded</span><br><span class="line"><span class="comment"># 生成差分火焰图</span></span><br><span class="line">./FlameGraph/flamegraph.pl diff.folded &gt; diff.svg</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：</p>
+<ul>
+  <li>
+    <a target="_blank" rel="noopener" href="https://documentation.suse.com/zh-cn/sles/15-SP3/html/SLES-all/cha-perf.html">使用 Perf 进行基于硬件的性能监视</a>
+    </li>
+  <li>
+    <a target="_blank" rel="noopener" href="https://yoc.docs.t-head.cn/linuxbook/Chapter4/perf.html">Perf 使用说明</a>
+  </li>
+  <li>
+    <a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx170119/p/11459995.html">火焰图（Flame Graphs）的安装和基本用法</a>
+  </li>
+  <li>
+    <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/639996512">差分火焰图，让你的代码优化验证事半功倍</a>
+  </li>
+</ul>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/wu3227834">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+        data-repo="wu3227834/wu3227834.github.io"
+        data-repo-id="R_kgDOIh8vuA"
+        data-category="General"
+        data-category-id="DIC_kwDOIh8vuM4CpDjz"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+</html>
