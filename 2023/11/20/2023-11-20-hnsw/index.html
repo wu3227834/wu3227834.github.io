@@ -167,7 +167,7 @@
     </div>
     <div class="post-content no-indent">
         <blockquote>
-<p>本文是一篇英文翻译转载文章，主要介绍了HNSW算法。<br><br>原英文链接：<a target="_blank" rel="noopener" href="https://dataman-ai.medium.com/search-like-light-speed-1-hnsw-c5b0d4665926">https://dataman-ai.medium.com/search-like-light-speed-1-hnsw-c5b0d4665926</a><br><br>参考中文转载链接：<a target="_blank" rel="noopener" href="https://luxiangdong.com/2023/11/06/hnsw/">https://luxiangdong.com/2023/11/06/hnsw/</a></p>
+<p>本文是一篇英文翻译转载文章，主要介绍了HNSW算法。<br><br>原英文链接：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://dataman-ai.medium.com/search-like-light-speed-1-hnsw-c5b0d4665926">https://dataman-ai.medium.com/search-like-light-speed-1-hnsw-c5b0d4665926</a><br><br>参考中文转载链接：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://luxiangdong.com/2023/11/06/hnsw/">https://luxiangdong.com/2023/11/06/hnsw/</a></p>
 </blockquote>
 <p>我喜欢《玩具总动员》中的太空巡逻员“巴斯光年”，我也喜欢他的口号“飞向无限，飞向更远!”当我搜索信息时，我也喜欢快速找到正确的信息。这一切都是关于高速互联网和足够的带宽吗？不完全是！<strong>事实上，近乎即时搜索结果的算法是至关重要的。</strong>信息检索的速度是计算机科学中的一个重要课题。随着文本、图像或音频数据的高维嵌入式大语言模型（LLM），信息检索的速度成为数据科学的优先话题。</p>
 <p>在这篇文章中，我将谈论: </p>
@@ -198,17 +198,17 @@
 <p><strong>基于树的算法</strong>：将数据集划分为树状结构，以便快速搜索。流行的是 kd树、环树和随机投影树（RP树）。对于低纬空间（≤10），基于树的算法是非常有效的</p>
 <p>有几个流行的代码库：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/scikit-learn/scikit-learn">Scikit-learn</a>：它的 NearestNeighbors 类提供了一个简单的接口，可以使用 LSH 等技术进行精确和近似的最近邻搜索。</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/nmslib/hnswlib">Hnwlib</a>：它是HNSW的Python包装器。</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss">faiss</a>：该库支持多种 ANN 算法，包括 HNSW, IVFADC（带ADC量化的倒置文件）和IVFPQ（带产品量化的倒置文件）。</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/spotify/annoy">Annoy（Approximate Nearest Neighbors Oh Yeah）</a>：Annoy是一个 c++ 库，也提供了 Python 接口。</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/nmslib/nmslib">NMSLIB（非度量空间库）</a>：它是用 c++ 编写的，并具有 Python 包装器。它可以执行 HNSW、LSH、MIH 或随机投影树等算法。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/scikit-learn/scikit-learn">Scikit-learn</a>：它的 NearestNeighbors 类提供了一个简单的接口，可以使用 LSH 等技术进行精确和近似的最近邻搜索。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/nmslib/hnswlib">Hnwlib</a>：它是HNSW的Python包装器。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/facebookresearch/faiss">faiss</a>：该库支持多种 ANN 算法，包括 HNSW, IVFADC（带ADC量化的倒置文件）和IVFPQ（带产品量化的倒置文件）。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/spotify/annoy">Annoy（Approximate Nearest Neighbors Oh Yeah）</a>：Annoy是一个 c++ 库，也提供了 Python 接口。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/nmslib/nmslib">NMSLIB（非度量空间库）</a>：它是用 c++ 编写的，并具有 Python 包装器。它可以执行 HNSW、LSH、MIH 或随机投影树等算法。</li>
 </ul>
 <p>使用上述代码库，你可以超级快速地执行搜索查询。还有一些库的变体你需要注意。这里我只提到其中的三个：</p>
-<p>第一个是 <a target="_blank" rel="noopener" href="https://github.com/lmcinnes/pynndescent">PyNNDescent</a>。PyNNDescent 是一个 Python 库，用于基于 NN-descent 的搜索算法，它是 LSH 的一个变体。</p>
-<p>第二个是 <a target="_blank" rel="noopener" href="http://pixelogik.github.io/NearPy/">NearPy</a>。它支持多个距离度量和哈希族。</p>
-<p>第三个是 <a target="_blank" rel="noopener" href="https://github.com/storpipfugl/pykdtree">PyKDTree</a>。PyKDTree 是一个 Python 库，用于基于 kd 树的最近邻（KNN）搜索。虽然 kd 树更常用于精确搜索，但 PyKDTree 也可以通过一些启发式优化用于近似搜索。</p>
-<p>此外，如果您询问哪些算法和库执行速度最好，您只需要了解 <a target="_blank" rel="noopener" href="https://github.com/erikbern/ann-benchmarks"><strong>ANN-benchmark</strong></a> 库，专门为对人工神经网络搜索算法进行基准测试而设计。它提供了一个标准化的框架来评估算法，如 Annoy、FLANN、scikit-learn (LSHForest, KDTree, BallTree)、PANNS、NearPy、KGraph、NMSLIB(非度量空间库)、hnswlib、RPForest、FAISS、nndescent、PyNNDescent 等等。</p>
+<p>第一个是 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lmcinnes/pynndescent">PyNNDescent</a>。PyNNDescent 是一个 Python 库，用于基于 NN-descent 的搜索算法，它是 LSH 的一个变体。</p>
+<p>第二个是 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://pixelogik.github.io/NearPy/">NearPy</a>。它支持多个距离度量和哈希族。</p>
+<p>第三个是 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/storpipfugl/pykdtree">PyKDTree</a>。PyKDTree 是一个 Python 库，用于基于 kd 树的最近邻（KNN）搜索。虽然 kd 树更常用于精确搜索，但 PyKDTree 也可以通过一些启发式优化用于近似搜索。</p>
+<p>此外，如果您询问哪些算法和库执行速度最好，您只需要了解 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/erikbern/ann-benchmarks"><strong>ANN-benchmark</strong></a> 库，专门为对人工神经网络搜索算法进行基准测试而设计。它提供了一个标准化的框架来评估算法，如 Annoy、FLANN、scikit-learn (LSHForest, KDTree, BallTree)、PANNS、NearPy、KGraph、NMSLIB(非度量空间库)、hnswlib、RPForest、FAISS、nndescent、PyNNDescent 等等。</p>
 <p>但是“巴斯光年”不仅仅关注最近邻在哪里，还想高效地找到他们。那让我们学习第一个算法——HNSW。HNSW 通常可以在几毫秒内从数百万个数据点中找到最近邻。</p>
 <h2 id="了解-HNSW（分层导航小世界图）"><a href="#了解-HNSW（分层导航小世界图）" class="headerlink" title="了解 HNSW（分层导航小世界图）"></a>了解 HNSW（分层导航小世界图）</h2><p>HNSW 是一种用于高维空间中进行高效人工神经网络搜索的数据结构和算法。它是<strong>跳表（Skip Lists）</strong>和<strong>小世界（SWG）</strong>结构的拓展，可以高效地找到近似的最近邻。如果我们先学习跳表和小世界图，学习 HNSW 就会很简单。</p>
 <p>跳表是一种用于维护已排序的元素集的数据结构，它允许进行高效的搜索、插入和删除操作。它由 William Pugh 在 1989 年发明。图（2）显示了数字 [3,6,7,9,12,17,19,21,25,26] 的排序链表。假设我们想找到目标 19。当值小于目标值时，我们向右移动。找到它需要 6 个步骤。</p>
@@ -234,9 +234,9 @@
 <p>每个数据点会被随机分配到一个层。最高的层是最粗略的表示，随着层的向下移动，表示就会变得更精细。这个任务是用一个特定的概率分布来完成的，这个概率分布叫做<strong>指数衰减概率分布（exponential decaying probability distribution）</strong>。这种分布使得数据点到达更高层的可能性大大降低。如果你还记得跳跃列表中随机选择的数据点作为“高速公路”，这里的一些数据点是随机选择到最高层的。在后面的代码示例中，我们将看到每层中的数据点数量，并且数据点的数量在更高层中呈指数级减少。</p>
 <p>为了在每一层内有效地构建连接，HNSW 使用贪婪搜索算法。它从顶层开始，试图将每个数据点连接到同一层内最近的邻居。一旦建立了一层中的连接，HNSW 将使用连接点作为搜索的起点继续向下扩展到下一层。构建过程一直持续到处理完所有层，并且完全构建了数据结构。</p>
 <p>让我们简单总结一下 HNSW 中数据结构的构造。让我也参考 Malkov 和 Yashunin[3] 中的符号，并在附录中解释 HNSW 算法。你可能会发现它们有助于更明确地理解 HNSW 的算法。HNSW 声明一个空结构并逐个插入数据元素。它保持每个数据点每层最多有 M 个连接的属性，并且每个数据点的连接总数不超过最大值（Mmax）。在每一层中，HNSW 找到与新数据点最近的 K 个邻居。然后，它根据距离更新候选数据点集和找到的最近邻居列表（W）。如果 W 中的数据点数量超过了动态候选列表（ef）的大小，则该函数从 W 中删除最远的数据点。</p>
-<p>接下来，我将向你展示代码示例。该笔记本可通过<a target="_blank" rel="noopener" href="https://github.com/dataman-git/codes_for_articles/blob/master/HNSW.ipynb">此链接</a>获得。</p>
+<p>接下来，我将向你展示代码示例。该笔记本可通过<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/dataman-git/codes_for_articles/blob/master/HNSW.ipynb">此链接</a>获得。</p>
 <h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>接下来，让我们使用库 FAISS 执行 HNSW 搜索。我将使用 NLP 中包含新闻文章的流行数据集。然后，我使用“SentenceTransformer”执行 Embeddings。然后，我将向你展示如何使用 HNSW 通过查询搜索类似的文章。</p>
-<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>总检察长的新闻文章语料库由 <a target="_blank" rel="noopener" href="http://groups.di.unipi.it/~gulli/AG_corpus_of_news_articles.html">A.Gulli</a>，是一个从2000多个新闻来源收集100多万篇新闻文章的大型网站。Zhang、Zhao和LeCun在论文中构建了一个较小的集合，其中采样了“世界”、“体育”、“商业”和“科学”等新闻文章，并将其用作文本分类基准。这个数据集“ag_news”已经成为一个经常使用的数据集，可以在Kaggle、PyTorch、Huggingface和Tensorflow中使用。让我们从 Kaggle <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/amananandrai/ag-news-classification-dataset">下载数据</a>。训练样本和测试样本分别有 12 万篇和 7600 篇新闻文章。</p>
+<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>总检察长的新闻文章语料库由 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://groups.di.unipi.it/~gulli/AG_corpus_of_news_articles.html">A.Gulli</a>，是一个从2000多个新闻来源收集100多万篇新闻文章的大型网站。Zhang、Zhao和LeCun在论文中构建了一个较小的集合，其中采样了“世界”、“体育”、“商业”和“科学”等新闻文章，并将其用作文本分类基准。这个数据集“ag_news”已经成为一个经常使用的数据集，可以在Kaggle、PyTorch、Huggingface和Tensorflow中使用。让我们从 Kaggle <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.kaggle.com/datasets/amananandrai/ag-news-classification-dataset">下载数据</a>。训练样本和测试样本分别有 12 万篇和 7600 篇新闻文章。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> faiss</span><br><span class="line">pd.set_option(<span class="string">&#x27;display.max_colwidth&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">path = <span class="string">&quot;/mnt/disk8/djw/anaconda_project/content/gdrive/data&quot;</span></span><br><span class="line"></span><br><span class="line">train = pd.read_csv(path + <span class="string">&quot;/train.csv&quot;</span>)</span><br><span class="line">train.shape</span><br><span class="line">train.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <p>输出形状为(120000,3)，列为[‘Class Index’,’Title’,’Description’]。我们对“描述”栏感兴趣。以下是排名前五的记录：</p>
 <p><img src="/img/2023-11-20-hnsw/pho7.png" alt="排名前五的记录"></p>
@@ -246,7 +246,7 @@
 <p>您需要 pip 安装”sentence_transformers”库。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!pip install sentence_transformers</span><br><span class="line"><span class="keyword">from</span> sentence_transformers <span class="keyword">import</span> SentenceTransformer</span><br></pre></td></tr></table></figure>
 
-<p>然后让我们使用预训练模型”bert-base-nli-mean-tokens”来声明模型。在<a target="_blank" rel="noopener" href="https://www.sbert.net/docs/pretrained_models.html">本页</a>上有许多预先训练好的模型。</p>
+<p>然后让我们使用预训练模型”bert-base-nli-mean-tokens”来声明模型。在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.sbert.net/docs/pretrained_models.html">本页</a>上有许多预先训练好的模型。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = SentenceTransformer(<span class="string">&#x27;bert-base-nli-mean-tokens&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>然后我们将“句子”编码为“sentence_embeddings”。</p>
@@ -310,7 +310,7 @@
 
 <p><img src="/img/2023-11-20-hnsw/pho10.png" alt="输出"></p>
 <p>这些文章都是关于经济和股票市场的新闻。搜索速度以毫秒计非常快。这不仅仅是结果在哪里的问题，而是如何快速得到结果的问题，不是吗?</p>
-<p>您可以通过<a target="_blank" rel="noopener" href="https://github.com/dataman-git/codes_for_articles/blob/master/HNSW.ipynb">此链接</a>下载笔记本进行上述搜索。</p>
+<p>您可以通过<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/dataman-git/codes_for_articles/blob/master/HNSW.ipynb">此链接</a>下载笔记本进行上述搜索。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我希望这篇文章能帮助你理解近似近邻（ANN），以及它是如何提供高效搜索的。本文介绍了不同的人工神经网络算法，包括基于图的 HNSW，基于哈希的 LSH 或乘积量化，以及基于树的 KD-Trees。是如何构建它的数据结构并逐个插入数据元素的。这篇文章演示了如何使用 FAISS 库构建用于查询搜索的 HNSW。</p>
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>在 Malkov 和 Yashunin [3]的论文中，算法 1 到 5 伪代码中介绍了 HNSW 算法。伪代码给出了算法的具体定义。我在伪代码中加入了以下的描述，可能会帮助一些读者更轻松地理解 HNSW。算法 1、算法 2、算法 3 和算法 4 中的任意一个，都可被用来构建数据结构。但一旦数据结构完成，任何未来的查询搜索只使用算法 5。</p>
 <ul>
@@ -447,7 +447,7 @@
 
         
         <li>
-            <a target="_blank"  href="https://github.com/wu3227834">
+            <a target="_blank"  href="https://github.com/wu3227834" rel="external nofollow noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="iconfont icon-github"></i>
                             </span>
@@ -466,7 +466,7 @@
         <span id="busuanzi_container_site_uv">
             <span id="busuanzi_value_site_uv"></span>UV
         </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        Created By <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 

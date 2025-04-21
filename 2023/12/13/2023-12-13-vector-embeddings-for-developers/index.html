@@ -167,7 +167,7 @@
     </div>
     <div class="post-content no-indent">
         <blockquote>
-<p>本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。<br><br>原英文链接：<a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/vector-embeddings-for-developers/">https://www.pinecone.io/learn/vector-embeddings-for-developers/</a><br></p>
+<p>本文是一篇英文翻译转载文章，主要介绍了向量嵌入的一些基础知识。<br><br>原英文链接：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pinecone.io/learn/vector-embeddings-for-developers/">https://www.pinecone.io/learn/vector-embeddings-for-developers/</a><br></p>
 </blockquote>
 <p>你可能还不知道，但是向量已经嵌入无处不在。它们是许多机器学习和深度学习算法的基石，从搜索到人工智能助手等应用程序都是用这些算法。如果你正在考虑在这些领域中构建自己的应用程序，那么未来你可能会遇到向量嵌入。在这篇文章中，我们将尝试介绍向量嵌入是什么以及如何使用它们。</p>
 <h2 id="我们要解决什么问题？"><a href="#我们要解决什么问题？" class="headerlink" title="我们要解决什么问题？"></a>我们要解决什么问题？</h2><p>在构建传统应用程序时，数据结构表示为可能来自数据库的对象。这些对象具有与你正在构建的应用程序相同的属性（或数据库中的列）。</p>
@@ -187,7 +187,7 @@
 <p>要做到这一点，我们需要一个所谓的<strong>嵌入模型</strong>。许多现代嵌入模型都是通过将大量的标记数据传递给神经网络来建立的。你可能以前听说过神经网络——它们是用来解决各种复杂问题的流行算法。用非常简单的术语来说，神经网络是由函数连接的节点层组成的；然后我们训练这些神经网络来执行各种任务。</p>
 <p>我们通过监督式学习训练神经网络——向神经网络提供由成对输入和标记输出组成的大量训练数据。或者，我们可以应用自我监督或非监督式学习，其中任何一个都不需要标记输出。这些值通过网络激活和操作的每一层进行转换。通过每次迭代训练，神经网络修改每一层的激活。最终，它可以预测给定输入的输出标签应该是什么——即使它以前从来未见过这种特定输入。</p>
 <p>嵌入模型基本上是去掉最后一层的神经网络。我们得到的不是输入的特定标记值，而是向量嵌入。</p>
-<p>嵌入模型的一个很好的例子是流行的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Word2vec">word2vec</a>，它经常用于各种基于文本的任务。让我们看看<a target="_blank" rel="noopener" href="https://projector.tensorflow.org/"> TensorFlow 的投影仪工具</a>产生的可视化，它使嵌入更容易可视化。</p>
+<p>嵌入模型的一个很好的例子是流行的 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Word2vec">word2vec</a>，它经常用于各种基于文本的任务。让我们看看<a target="_blank" rel="noopener external nofollow noreferrer" href="https://projector.tensorflow.org/"> TensorFlow 的投影仪工具</a>产生的可视化，它使嵌入更容易可视化。</p>
 <p><img src="/img/2023-12-13-vector_embeddings_for_developers/pho3.png" alt="TensorFlow&#39;s projector tool"></p>
 <p>尽管这种可视化只表示嵌入的三个维度，但它可以帮助我们理解嵌入模型是如何工作的。可视化中突出显示了多个数据点，每个数据点表示一个单词的向量嵌入。顾名思义，word2vec 嵌入了单词。相邻的词语在语义上是相似的，而相距较远的词语在词义上是不同的。</p>
 <p>经过训练，嵌入模型可以将原始数据转换为向量嵌入。这意味着它知道在向量空间中放置新的数据点。</p>
@@ -229,7 +229,7 @@
 
         
         <li>
-            <a target="_blank"  href="https://github.com/wu3227834">
+            <a target="_blank"  href="https://github.com/wu3227834" rel="external nofollow noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="iconfont icon-github"></i>
                             </span>
@@ -248,7 +248,7 @@
         <span id="busuanzi_container_site_uv">
             <span id="busuanzi_value_site_uv"></span>UV
         </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        Created By <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 

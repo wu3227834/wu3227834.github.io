@@ -178,12 +178,12 @@
       <li><b>"D" 状态进程通常被阻塞等待资源</b>，磁盘 IO 和锁是进程可能阻塞的几种常见资源。</li>
       <li>一个例子可能是与硬件通信的 low level 驱动程序，可能从 NIC 固件检索网络数据包数据或访问硬盘驱动器上的数据块--读写 IO。</li>
       <li>通常，这种情况发生得非常快，并且线程保持这种状态的时间非常短（因此通常不会观察到，尤其是在用户空间中）。</li>
-      <li>"D" 状态名称有历史原因，因为最初认为这种状态是进程处于“磁盘等待”状态。但现在，与“磁盘 IO”分离的网络、锁和其他资源可能导致进程处于不可中断的等待状态。有关进程状态的更多背景信息，请参阅 "<a target="_blank" rel="noopener" href="https://access.redhat.com/sites/default/files/attachments/processstates_20120831.pdf">了解 Linux 进程状态</a>"。具体来说，我们总结了 "D" 状态过程如下：“不可中断睡眠状态是不会立即处理信号的状态。它只有在等待资源变得可用或者在等待期间发生超时(如果在进程进入睡眠时指定了超时)时才会被唤醒。”</li>
+      <li>"D" 状态名称有历史原因，因为最初认为这种状态是进程处于“磁盘等待”状态。但现在，与“磁盘 IO”分离的网络、锁和其他资源可能导致进程处于不可中断的等待状态。有关进程状态的更多背景信息，请参阅 "<a target="_blank" rel="noopener external nofollow noreferrer" href="https://access.redhat.com/sites/default/files/attachments/processstates_20120831.pdf">了解 Linux 进程状态</a>"。具体来说，我们总结了 "D" 状态过程如下：“不可中断睡眠状态是不会立即处理信号的状态。它只有在等待资源变得可用或者在等待期间发生超时(如果在进程进入睡眠时指定了超时)时才会被唤醒。”</li>
     </ul>
   </li>
   <li>当线程进入 "D" 状态并且未能在合理的时间内退出该状态时，就会出现问题。这个进程现在被“卡住”，任何等待它的进程（可能在它后面的队列中访问相同的硬件）或依赖它的进程也同样被卡住。
     <ul>
-      <li>虽然“合理的时间”是主观的，但如果一个任务在 D 状态下停滞太久，那么 "<a target="_blank" rel="noopener" href="https://access.redhat.com/solutions/31453">INFO: task <process>:<pid> blocked for more than ... seconds</a>" 的消息就会输出，通知系统管理员需要调查或可能需要<a target="_blank" rel="noopener" href="https://access.redhat.com/solutions/39188">系统调优</a>的潜在情况。</li>
+      <li>虽然“合理的时间”是主观的，但如果一个任务在 D 状态下停滞太久，那么 "<a target="_blank" rel="noopener external nofollow noreferrer" href="https://access.redhat.com/solutions/31453">INFO: task <process>:<pid> blocked for more than ... seconds</a>" 的消息就会输出，通知系统管理员需要调查或可能需要<a target="_blank" rel="noopener external nofollow noreferrer" href="https://access.redhat.com/solutions/39188">系统调优</a>的潜在情况。</li>
     </ul>
   </li>
   <li>要查看哪个进程/线程保持在 "D" 状态：
@@ -201,7 +201,7 @@
 <h2 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h2><ul>
 <li>发现处于 D 状态的进程是相当普遍和正常的</li>
 <li>在大多数情况下，这是由于对 I/O 资源（通常是本地或远程存储、网络文件系统等）的访问中断造成的</li>
-<li>如果一个进程在 D 状态停滞太久，那么内核中的“<a target="_blank" rel="noopener" href="https://access.redhat.com/solutions/31453">停滞任务</a>”逻辑将被启用</li>
+<li>如果一个进程在 D 状态停滞太久，那么内核中的“<a target="_blank" rel="noopener external nofollow noreferrer" href="https://access.redhat.com/solutions/31453">停滞任务</a>”逻辑将被启用</li>
 </ul>
 <h2 id="诊断步骤"><a href="#诊断步骤" class="headerlink" title="诊断步骤"></a>诊断步骤</h2><ul>
 <li>检查 ps 输出中是否有处于 D 状态的线程，可以使用类似于以下内容的内容：<code>ps auxH | awk '$8 ~ /^D/&#123;print&#125;'</code></li>
@@ -213,7 +213,7 @@
 <p>参考链接</p>
 <ul>
 <li><a href>What is “D” state (or dstate, d-state)?</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI0OTIzOTMzMA==&mid=2247485072&idx=1&sn=c9bd418f4dcb9ce2cffd9dfb20461640&chksm=e995c4dddee24dcbc6450633da0627cf65ec92ca61e4e487b774882c5a51db0210a79f3f890a&scene=21#wechat_redirect">一文让你应对Linux 进程“D”状态</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mp.weixin.qq.com/s?__biz=MzI0OTIzOTMzMA==&mid=2247485072&idx=1&sn=c9bd418f4dcb9ce2cffd9dfb20461640&chksm=e995c4dddee24dcbc6450633da0627cf65ec92ca61e4e487b774882c5a51db0210a79f3f890a&scene=21#wechat_redirect">一文让你应对Linux 进程“D”状态</a></li>
 </ul>
 </blockquote>
 
@@ -242,7 +242,7 @@
 
         
         <li>
-            <a target="_blank"  href="https://github.com/wu3227834">
+            <a target="_blank"  href="https://github.com/wu3227834" rel="external nofollow noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="iconfont icon-github"></i>
                             </span>
@@ -261,7 +261,7 @@
         <span id="busuanzi_container_site_uv">
             <span id="busuanzi_value_site_uv"></span>UV
         </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        Created By <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 

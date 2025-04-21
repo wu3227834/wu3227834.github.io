@@ -279,11 +279,11 @@ mjx-container[display="true"] + br {
     </div>
     <div class="post-content no-indent">
         <blockquote>
-<p>本文转载：<a target="_blank" rel="noopener" href="https://yongyuan.name/blog/scalar-quantization.html">https://yongyuan.name/blog/scalar-quantization.html</a><br>本意为了归纳总结向量索引相关的知识，方便日后翻阅，自己做了些许的修改~</p>
+<p>本文转载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://yongyuan.name/blog/scalar-quantization.html">https://yongyuan.name/blog/scalar-quantization.html</a><br>本意为了归纳总结向量索引相关的知识，方便日后翻阅，自己做了些许的修改~</p>
 </blockquote>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在工作中遇到这样一个场景：通过多模态学习到的 64 维 video embedding，在搜索竞拍的时候，需要实时取到前 K（K&gt;=300）个结果对应得的 video embedding，由于模型比较大，这个 video embedding，不支持实时计算，而是在视频上传时候，就被计算好。工程架构对存储和读取性能是有要求的，既不能直接将这 664 维 embedding 直接写到 kiwi（redis改造后的数据库）里面。</p>
 <p>这个问题，可以简化为：有没有一种量化方法，将一个 d 维 float 型向量，encode 为一个 d 维 int8 型的向量，这个 d 维 int8 型的向量经过 decode 后，与原始向量的误差尽可能小？这样一来，存储空间降低为原来的 1/4 倍，并且读取 int8 的性能比 float 型会快很多。答案是肯定的，这就是本篇博文要介绍总结的 Scalar Quantization。</p>
-<p>Scalar Quantization，即标量量化。关于 Scalar Quantization，网上资料比较多（<a target="_blank" rel="noopener" href="https://www.google.com.hk/search?q=Scalar+Quantization&newwindow=1&safe=strict&biw=1389&bih=766&sxsrf=ALeKk01QFkem3Lrzgoe3vrfd5uyeVr2RPQ%3A1624178770171&ei=UgDPYOjkCMWxr7wP98CqkA0&oq=Scalar+Quantization&gs_lcp=Cgdnd3Mtd2l6EAMyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECdQ06k-WOSrPmDwrD5oAxACeACAAckBiAHJAZIBAzItMZgBAKABAaABAqoBB2d3cy13axqwAQrAAQE&sclient=gws-wiz&ved=0ahUKEwjo1ZW16axxAhxFy4sBHxegCtIQ4dUDCBI&uact=5">Google</a>）但小白菜在查过很多资料后，发觉能把 Scalar Quantization 向量量化过程讲清楚，并且还能剖析 faiss 中实现的 Scalar Quantization。为了方便后面的同学理解，小白菜结合自己对 Scalar Quantization 原理与实现，做了整理。</p>
+<p>Scalar Quantization，即标量量化。关于 Scalar Quantization，网上资料比较多（<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.google.com.hk/search?q=Scalar+Quantization&newwindow=1&safe=strict&biw=1389&bih=766&sxsrf=ALeKk01QFkem3Lrzgoe3vrfd5uyeVr2RPQ%3A1624178770171&ei=UgDPYOjkCMWxr7wP98CqkA0&oq=Scalar+Quantization&gs_lcp=Cgdnd3Mtd2l6EAMyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECdQ06k-WOSrPmDwrD5oAxACeACAAckBiAHJAZIBAzItMZgBAKABAaABAqoBB2d3cy13axqwAQrAAQE&sclient=gws-wiz&ved=0ahUKEwjo1ZW16axxAhxFy4sBHxegCtIQ4dUDCBI&uact=5">Google</a>）但小白菜在查过很多资料后，发觉能把 Scalar Quantization 向量量化过程讲清楚，并且还能剖析 faiss 中实现的 Scalar Quantization。为了方便后面的同学理解，小白菜结合自己对 Scalar Quantization 原理与实现，做了整理。</p>
 <h2 id="Scalar-Quantization-原理"><a href="#Scalar-Quantization-原理" class="headerlink" title="Scalar Quantization 原理"></a>Scalar Quantization 原理</h2><p>Scalar Quantization 标量量化，分为 3 个过程：</p>
 <ul>
 <li>training 过程，主要是训练 encode 过程，需要的一些参数，这些的参数，主要是每 1 维对应的最大值、最小值；</li>
@@ -314,18 +314,18 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p><strong>加 0.5 的作用是将这两种误差平均到每个取值区间内</strong><br>例如，对于取值区间 [0, 1]，如果不对编码值加 0.5，那么所有落在该区间内的浮点型数据都会被映射到同一个离散值 0。这会导致量化误差过大。而加 0.5 后，所有落在该区间内的浮点型数据都会被映射到 0 或 1，并将量化误差平均到这两个离散值上。</p>
 </blockquote>
-<h2 id="Scalar-Quantization-实现"><a href="#Scalar-Quantization-实现" class="headerlink" title="Scalar Quantization 实现"></a>Scalar Quantization 实现</h2><p>Scalar Quantization 的训练、编码、解码实现，可以参考小白菜的实现<a target="_blank" rel="noopener" href="https://github.com/willard-yuan/cvt/tree/master/scalar_quantization">scalar_quantization</a>。训练过程，就是计算各维最大值、最小值，自己实现的话，具体可以看 <a target="_blank" rel="noopener" href="https://github.com/willard-yuan/cvt/blob/master/scalar_quantization/train/src/sq_train.cpp#L68">L68-L97</a> 。使用faiss的话，如下：</p>
+<h2 id="Scalar-Quantization-实现"><a href="#Scalar-Quantization-实现" class="headerlink" title="Scalar Quantization 实现"></a>Scalar Quantization 实现</h2><p>Scalar Quantization 的训练、编码、解码实现，可以参考小白菜的实现<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/willard-yuan/cvt/tree/master/scalar_quantization">scalar_quantization</a>。训练过程，就是计算各维最大值、最小值，自己实现的话，具体可以看 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/willard-yuan/cvt/blob/master/scalar_quantization/train/src/sq_train.cpp#L68">L68-L97</a> 。使用faiss的话，如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">faiss::IndexScalarQuantizer <span class="title">SQuantizer</span><span class="params">(d, faiss::ScalarQuantizer::QT_8bit, faiss::METRIC_L2)</span></span>;</span><br><span class="line">SQuantizer.<span class="built_in">train</span>(num_db, xb);</span><br><span class="line"><span class="comment">// SQuantizer.add(num_db, xb);    </span></span><br><span class="line">faiss::<span class="built_in">write_index</span>(&amp;SQuantizer, model_path.<span class="built_in">c_str</span>());</span><br></pre></td></tr></table></figure>
 
 <p>在 <code>sq_train.cpp</code> 里面，对比了自己实现的训练过程结果和 faiss 训练出来的结果，训练出来的参数结果，两者是一致的。</p>
-<p>faiss encode 的实现，如 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L328">L328</a> 所示：</p>
+<p>faiss encode 的实现，如 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L328">L328</a> 所示：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">encode_vector</span><span class="params">(<span class="type">const</span> <span class="type">float</span>* x, <span class="type">uint8_t</span>* code)</span> <span class="type">const</span> <span class="keyword">final</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; d; i++) {</span><br><span class="line">        <span class="type">float</span> xi = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (vdiff != <span class="number">0</span>) {</span><br><span class="line">            xi = (x[i] - vmin) / vdiff;</span><br><span class="line">            <span class="keyword">if</span> (xi &lt; <span class="number">0</span>) {</span><br><span class="line">                xi = <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (xi &gt; <span class="number">1.0</span>) {</span><br><span class="line">                xi = <span class="number">1.0</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        Codec::<span class="built_in">encode_component</span>(xi, code, i);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
 <p>其中 vdiff = max - min。faiss decode 的实现，如 <a hef="https://github.com/facebookresearch/faiss/blob/master/faiss/impl/ScalarQuantizer.cpp#L344">L344</a> 所示：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode_vector</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span>* code, <span class="type">float</span>* x)</span> <span class="type">const</span> <span class="keyword">final</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; d; i++) {</span><br><span class="line">        <span class="type">float</span> xi = Codec::<span class="built_in">decode_component</span>(code, i);</span><br><span class="line">        x[i] = vmin + xi * vdiff;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
-<p>针对小白菜 Scalar Quantization，小白菜实现的编解码过程，同时提供了 faiss 实现的接口调用，也提供了自己实现的接口调用，具体可以阅读 <a target="_blank" rel="noopener" href="https://github.com/willard-yuan/cvtk/blob/master/scalar_quantization/scalar_quantization/int8_quan.cc">int8_quan.cc</a>。</p>
-<p>另外，关于 Faiss 实现的 decode 接口，由于采用了多线程方式，在实际使用的时候，<strong>当请求解码的数据量不够大的时候，多线程的方式，性能反而下降</strong>，具体可以看这里提到的<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/issues/1530">Issue: Scale quantization decodes does not fast</a>。</p>
+<p>针对小白菜 Scalar Quantization，小白菜实现的编解码过程，同时提供了 faiss 实现的接口调用，也提供了自己实现的接口调用，具体可以阅读 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/willard-yuan/cvtk/blob/master/scalar_quantization/scalar_quantization/int8_quan.cc">int8_quan.cc</a>。</p>
+<p>另外，关于 Faiss 实现的 decode 接口，由于采用了多线程方式，在实际使用的时候，<strong>当请求解码的数据量不够大的时候，多线程的方式，性能反而下降</strong>，具体可以看这里提到的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/facebookresearch/faiss/issues/1530">Issue: Scale quantization decodes does not fast</a>。</p>
 
         
         <br />
@@ -352,7 +352,7 @@ mjx-container[display="true"] + br {
 
         
         <li>
-            <a target="_blank"  href="https://github.com/wu3227834">
+            <a target="_blank"  href="https://github.com/wu3227834" rel="external nofollow noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="iconfont icon-github"></i>
                             </span>
@@ -371,7 +371,7 @@ mjx-container[display="true"] + br {
         <span id="busuanzi_container_site_uv">
             <span id="busuanzi_value_site_uv"></span>UV
         </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        Created By <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
