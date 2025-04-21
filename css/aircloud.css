@@ -1,6 +1,6 @@
 /*varibles*/
 * {
-  font-family: "italic", Helvetica, Arial, "Heiti SC", "Microsoft YaHei";
+  font-family: "italic", Helvetica, Arial, "Heiti SC", "SimSun";
 }
 body,
 html {
@@ -1052,7 +1052,7 @@ pre,
 pre,
 pre span,
 code {
-  font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: consolas, Menlo, "PingFang SC", "SimSun", monospace;
 }
 code {
   padding: 2px 4px;
