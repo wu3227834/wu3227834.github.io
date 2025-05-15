@@ -111,7 +111,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">CPU性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E4%BD%BF%E7%94%A8%E7%8E%87"><span class="toc-text">CPU使用率</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">CPU性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E4%BD%BF%E7%94%A8%E7%8E%87"><span class="toc-text">CPU使用率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E8%B4%9F%E8%BD%BD"><span class="toc-text">平均负载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-text">进程上下文切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU-%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E7%8E%87"><span class="toc-text">CPU 缓存命中率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU-%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7"><span class="toc-text">CPU 性能工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%89%BE%E5%B7%A5%E5%85%B7"><span class="toc-text">性能指标找工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%89%BE%E6%8C%87%E6%A0%87"><span class="toc-text">工具找指标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90-CPU-%E7%9A%84%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88"><span class="toc-text">如何分析 CPU 的性能瓶颈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E8%BD%BD"><span class="toc-text">转载</span></a></li></ol>
 </div>
     
 </div>
@@ -169,7 +169,33 @@
 <p><img src="/img/2025-05-15-%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BACPU%E7%9A%84%E7%93%B6%E9%A2%88/image.png" alt="性能指标总览"></p>
 <h3 id="CPU使用率"><a href="#CPU使用率" class="headerlink" title="CPU使用率"></a>CPU使用率</h3><p>CPU 使用率描述了非空闲时间占总 CPU 时间的百分比，根据 CPU 上运行任务的不同，又被分为用户 CPU、系统 CPU、等待 I/0 CPU、软中断和硬中断等。用户 CPU 使用率，包括用户态 CPU 使用率（user）和低优先级用户态：</p>
 <ul>
-<li>CPU 使用率（nice），表示 CPU 在<strong>用户态</strong>运行的时间百分比。用户 CPU 使用率高，通常说明有<strong>应用程序</strong>比较繁忙。</li>
+<li>CPU 使用率（nice），表示 CPU 在<strong>用户态</strong>运行的时间百分比。用户 CPU 使用率高，通常说明有<strong>应用程序</strong>比较繁忙</li>
+<li>系统 CPU 使用率，表示 CPU 在内核状态运行的时间百分比（不包括中断）。系统 CPU 使用率高，说明<strong>内核</strong>比较繁忙</li>
+<li>等待 I/O 的 CPU 使用率，通常为 iowait，表示<strong>等待 I/O</strong> 的时间百分比。iowait 高，通常说明系统与硬件设备的 I/O 交互比较长</li>
+<li>软中断和硬中断的 CPU 利用率，分别表示内核调用软中断处理程序、硬中断处理程序的时间百分比。它们的使用率高，通常说明系统发生了大量的中断</li>
+<li>除了上述这些，还有在虚拟化环境中会用到的<strong>窃取 CPU 利用率（steal）和客户 CPU 使用率（guest）</strong>，分别表示被其他虚拟机占用的 CPU 时间百分比，和运行客户虚拟机的 CPU 时间百分比</li>
+</ul>
+<h3 id="平均负载"><a href="#平均负载" class="headerlink" title="平均负载"></a>平均负载</h3><p>系统的活跃进程数。反映了系统的整体负载情况，主要包括三个数值，分别表示过去 1 分钟、过去 5 分钟和过去 15 分钟的平均负载。理想情况下，平均负载等于逻辑 CPU 个数，这个代表每个 CPU 都恰好被充分利用。如果负载大于逻辑 CPU 个数，就表示负载比较重了。</p>
+<h3 id="进程上下文切换"><a href="#进程上下文切换" class="headerlink" title="进程上下文切换"></a>进程上下文切换</h3><p>进程上下文切换分为：自愿上下文切换和非自愿上下文切换</p>
+<p>注意：过多的上下文切换，会将原本运行进程的 CPU 时间，消耗在<strong>寄存器、内核栈以及虚拟内存等数据的保存和恢复上</strong>，缩短进程真正进行的时间，成为性能瓶颈。</p>
+<h3 id="CPU-缓存命中率"><a href="#CPU-缓存命中率" class="headerlink" title="CPU 缓存命中率"></a>CPU 缓存命中率</h3><p>CPU 缓存的速度介于 CPU 和内存之间，缓存的是<strong>热点的内存数据</strong>。</p>
+<p>如下图，根据不断增长的热点数据，这些缓存按照大小不同分为 L1、L2、L3 等三级缓存，其中 L1 和 L2 常在单核中，L3 则在多核中。从 L1 到 L3，三级缓存的大小依次增大，相应的，性能依次减少（当然内存还是好得多）。而它们的命中率，衡量的是 <strong>CPU 缓存的复用情况</strong>，命中率越高，则表示性能越好。</p>
+<p><img src="/img/2025-05-15-%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BACPU%E7%9A%84%E7%93%B6%E9%A2%88/image2.png" alt="CPU 缓存"></p>
+<h2 id="CPU-性能工具"><a href="#CPU-性能工具" class="headerlink" title="CPU 性能工具"></a>CPU 性能工具</h2><p>平均负载案例：使用 uptime 查看平均负载，在平均负载升高时，使用 mpstat 和 pidstat 分别观察每个 CPU 和每个进程 CPU 的使用情况，找到导致平均负载升高的 stress 进程</p>
+<p>上下文切换的案例：先使用 vmstat，查看系统上下文切换次数和中断次数；然后使用 pidstat（-w 参数）观察进程的自愿上下文切换和非自愿上下文切换；最后通过 vmstat（-wt参数）查看线程的上下文切换情况，从而找到了线程上下文切换增多的原因是 sysbench 工具</p>
+<p>进程 CPU 使用率升高的案例：先使用 top 找出系统和进程 CPU 的使用情况，发现了 CPU 使用率很高的进程 php-fpm，再使用 perf top 找出热点函数 sqrt()；如果是 Python 应用，可以使用 profiler 工具 pyflame 对指定进程分析（pyflame -p pid –threads -s 检测时间 -r 取样间隔 -o &lt;file.txt&gt;），再通过 flamegraph.pl 将输出的 txt 文件转换为 *.svg 格式的火焰图（./flamegraph.pl prof.txt &gt; prof.svg）</p>
+<p>不可中断进程和僵尸进程的案例：</p>
+<ul>
+<li>不可中断进程分析过程：先使用 top 查看，发现存在 D 状态（不可中断休眠进程）和 Z 状态（僵尸进程），并且 iowait 较高；使用 dstat 分析磁盘 I/O，发现 app 进程有大量的磁盘读请求；使用 pidstat（-d -p 参数）分析 app 进程的 I/O 操作，发现没有大量的 I/O 操作，再用 pidstat -d 分析系统的 I/O 情况，发现还是 app 进程在进行磁盘读；再使用 strace 跟踪 D 状态进程对应进程号的系统调用，发现没有权限；ps 查看发现对应进程号的进程已经变成僵尸进程；之后，通过 perf record -g 和 perf report 生成报告，查看 app 进程的调用栈，发现 CPU 使用主要是在 sys_read() 函数，定位到是在对磁盘进行直接读（direct_IO）；查看代码发现 open() 系统调用使用了 O_DIRECT 参数</li>
+<li>僵尸进程分析：使用 pstree 命令找出僵尸进程的父进程是 app 进程，然后查看 app.c 文件，发现 wait() 使用位置不当导致不能回收子进程</li>
+</ul>
+<p>软中断的案例：先使用 top 查看系统指标，发现系统 CPU 使用率很低，但是主要是在软中断 si 上，然后查看 /proc/softirqs 查看系统软中断变化情况，发现 NET_RX 变化率很快，再使用 sar 工具查看系统的网络收发情况，发现 eth0 网卡接收到了大量的小包；在通过抓包工具 tcpdump，发现 eth0 接受到了大量的 SYN 包，最终确定了是 SYN FLOOD 攻击</p>
+<h3 id="性能指标找工具"><a href="#性能指标找工具" class="headerlink" title="性能指标找工具"></a>性能指标找工具</h3><p><img src="/img/2025-05-15-%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BACPU%E7%9A%84%E7%93%B6%E9%A2%88/image3.png" alt="性能指标找工具"></p>
+<h3 id="工具找指标"><a href="#工具找指标" class="headerlink" title="工具找指标"></a>工具找指标</h3><p><img src="/img/2025-05-15-%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BACPU%E7%9A%84%E7%93%B6%E9%A2%88/image4.png" alt="工具对应指标"></p>
+<h2 id="如何分析-CPU-的性能瓶颈"><a href="#如何分析-CPU-的性能瓶颈" class="headerlink" title="如何分析 CPU 的性能瓶颈"></a>如何分析 CPU 的性能瓶颈</h2><p>重点：弄清楚性能指标之间的关联性</p>
+<p><img src="/img/2025-05-15-%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BACPU%E7%9A%84%E7%93%B6%E9%A2%88/image5.png" alt="指标关联性"></p>
+<h2 id="转载"><a href="#转载" class="headerlink" title="转载"></a>转载</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Miller-Xie/Linux-kernel-notes/blob/master/Linux%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.md#8-%E5%A5%97%E8%B7%AF%E7%AF%87%E5%A6%82%E4%BD%95%E8%BF%85%E9%80%9F%E5%88%86%E6%9E%90%E5%87%BAcpu%E7%9A%84%E7%93%B6%E9%A2%88%E5%9C%A8%E5%93%AA%E9%87%8C"> 8 套路篇：如何迅速分析出CPU的瓶颈在哪里？</a></li>
 </ul>
 
         
