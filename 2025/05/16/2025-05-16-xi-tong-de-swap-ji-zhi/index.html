@@ -12,7 +12,7 @@
 
     <title>
         
-            About - Pudding 个人博客
+            系统的Swap机制 - Pudding 个人博客
                 
     </title>
 
@@ -93,7 +93,7 @@
                     <span>存档</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>关于</span>
@@ -109,6 +109,10 @@
             
         </ul>
     </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Swap-%E5%8E%9F%E7%90%86"><span class="toc-text">Swap 原理</span></a></li></ol>
+</div>
     
 </div>
 
@@ -135,14 +139,49 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-content no-indent">
-    <p>E-mail: <a href="mailto:&#119;&#x75;&#x33;&#x32;&#50;&#55;&#x38;&#x33;&#52;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;" rel="external nofollow noreferrer">&#119;&#x75;&#x33;&#x32;&#50;&#55;&#x38;&#x33;&#52;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a><br>Brief：测试开发工程师<br>introduction: 我希望每一次去一个地方都留下记忆，因为这个世界这么大，不是每一个地方你都可以再去一次</p>
 
-    
-    <div id="comment-container"></div>
-    <div id="disqus_thread"></div>
-    <div class="giscus"></div>
-    <div id="lv-container"></div>
+
+<div class="post-container">
+    <div class="post-title">
+        系统的Swap机制
+    </div>
+
+    <div class="post-meta">
+        <!-- <span class="attr">发布于：<span>2025-05-16 00:00:00</span></span> -->
+        <span class="attr">发布于：<span>2025-05-16</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#性能测试" title="性能测试">性能测试</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p><strong>文件页</strong>：代表可回收内存，文件页的大部分可以直接回收，以后有需要时，再从磁盘重新读取；而那些被应用程序修改过，并且暂时还没写入磁盘的数据（也就是脏页），就得先写入磁盘，然后才能进行内存释放</p>
+<p>脏页一般以两个方式写入磁盘：</p>
+<ul>
+<li>在应用程序中，通过系统调用 fync，把脏页同步到磁盘中</li>
+<li>由内核线程 pdflush 负载这些脏页的刷新</li>
+</ul>
+<p><strong>匿名页</strong>：应用程序动态分配的<strong>堆空间</strong>，使用 swap 机制回收</p>
+<h2 id="Swap-原理"><a href="#Swap-原理" class="headerlink" title="Swap 原理"></a>Swap 原理</h2><p>doing</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
 </div>
 
     </div>
@@ -206,7 +245,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 
 <script src="/js/index.js"></script>
