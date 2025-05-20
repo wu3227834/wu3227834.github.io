@@ -111,7 +111,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Swap-%E5%8E%9F%E7%90%86"><span class="toc-text">Swap 原理</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Swap-%E5%8E%9F%E7%90%86"><span class="toc-text">Swap 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NUMA-%E5%92%8C-Swap"><span class="toc-text">NUMA 和 Swap</span></a></li></ol>
 </div>
     
 </div>
@@ -172,7 +172,36 @@
 <li>由内核线程 pdflush 负载这些脏页的刷新</li>
 </ul>
 <p><strong>匿名页</strong>：应用程序动态分配的<strong>堆空间</strong>，使用 swap 机制回收</p>
-<h2 id="Swap-原理"><a href="#Swap-原理" class="headerlink" title="Swap 原理"></a>Swap 原理</h2><p>doing</p>
+<h2 id="Swap-原理"><a href="#Swap-原理" class="headerlink" title="Swap 原理"></a>Swap 原理</h2><p>Swap 简单来说就是把一块磁盘空间或者一个本地文件夹，当成内存来使用。它包括换出和换入两个过程：</p>
+<ul>
+<li><strong>换出</strong>，就是把进程暂时不用的内存数据存储到磁盘中，并释放这些数据占用的内存</li>
+<li><strong>换入</strong>，则是把进程再次访问这些内存的时候，把它们从磁盘读到内存中来</li>
+</ul>
+<p>常见的笔记本电脑的休眠和快速开机功能，也基于 Swap。休眠时，把系统的内存存入磁盘，这样等到再次开机时，只要从磁盘中加载内存就可以。这样省去了很多应用程序的初始化过程，加快了开机速度。</p>
+<p>内存回收的时机：</p>
+<p>1、<strong>直接内存回收</strong>：当有新的大块内存分配请求，但是剩余内存不足，这个时候系统就需要回收一部分内存</p>
+<p>2、<strong>内核线程 kswapd0</strong>来定期回收内存，它定义了三个内存阈值（watermark，也称为水位），分别是页最小阈值（pages_min）、页最低阈值（pages_low）和页最高阈值（pages_high）。剩余内存，则使用 pages_free 表示</p>
+<p><img src="/img/2025-05-16-%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E6%9C%BA%E5%88%B6%5Cimage.png" alt="pages_free"></p>
+<p>kswapd0 定期扫描内存的使用情况，并根据剩余内存落在这三个阈值的空间位置，进行内存的会后操作：</p>
+<ul>
+<li>剩余内存小于页最小阈值，说明进程可用内存都耗尽了，只有内核才可以分配空间</li>
+<li>剩余内存落在页最小阈值和页最低阈值中间，说明内存压力比较大，剩余内存不多了。这时 kswapd0 会执行内存回收，直到剩余内存大于高阈值为止</li>
+<li>剩余内存落在页最低阈值和页最高阈值中间，说明内存有一定压力，但还可以满足新压力请求</li>
+<li>剩余内存大于页内存阈值，说明剩余内存比较多，没有内存压力</li>
+</ul>
+<p><strong>页低阈值</strong>是由内核选项 /proc/sys/vm/min_free_kbytes 设置，其他两个阈值，都是根据页最小阈值计算生成的</p>
+<h2 id="NUMA-和-Swap"><a href="#NUMA-和-Swap" class="headerlink" title="NUMA 和 Swap"></a>NUMA 和 Swap</h2><p>在 NUMA 架构下，多个处理器被划分到不同 Node 上，且每个 Node 都拥有自己的本地内存空间。而同一个 Node 内部的内存空间，实际上又可以在进一步分为不同的内存域（Zone），比如直接内存访问区（DMA）、普通内存区（NORMAL）、伪内存区（MOVABLE）等，如下图所示：</p>
+<p><img src="/img/2025-05-16-%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E6%9C%BA%E5%88%B6%5Cimage2.png" alt="Node 内部的内存空间"></p>
+<p>使用 numactl 命令查看 Node 的分布情况</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@idc19 ~]<span class="comment"># numactl --hardware</span></span><br><span class="line">available:<span class="number"> 2 </span>nodes (0-1)</span><br><span class="line">node<span class="number"> 0 </span>cpus:<span class="number"> 0 </span>1<span class="number"> 2 </span>3<span class="number"> 4 </span>5<span class="number"> 6 </span>7<span class="number"> 8 </span>9<span class="number"> 20 </span>21<span class="number"> 22 </span>23<span class="number"> 24 </span>25<span class="number"> 26 </span>27<span class="number"> 28 </span>29</span><br><span class="line">node<span class="number"> 0 </span>size:<span class="number"> 130960 </span>MB</span><br><span class="line">node<span class="number"> 0 </span>free:<span class="number"> 7308 </span>MB</span><br><span class="line">node<span class="number"> 1 </span>cpus:<span class="number"> 10 </span>11<span class="number"> 12 </span>13<span class="number"> 14 </span>15<span class="number"> 16 </span>17<span class="number"> 18 </span>19<span class="number"> 30 </span>31<span class="number"> 32 </span>33<span class="number"> 34 </span>35<span class="number"> 36 </span>37<span class="number"> 38 </span>39</span><br><span class="line">node<span class="number"> 1 </span>size:<span class="number"> 131072 </span>MB</span><br><span class="line">node<span class="number"> 1 </span>free:<span class="number"> 17581 </span>MB</span><br><span class="line">node distances:</span><br><span class="line">node  <span class="number"> 0 </span>  1</span><br><span class="line">  0: <span class="number"> 10 </span> 21</span><br><span class="line">  1: <span class="number"> 21 </span> 10</span><br></pre></td></tr></table></figure>
+
+<p>前面提到的三个内存阈值（页最小阈值、页低阈值和页高阈值），都可以通过内存域在 proc 文件系统中的接口 /proc/zoneinfo 来查看</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@idc19 ~]# cat /<span class="keyword">proc</span>/zoneinfo|<span class="title"> head</span> -n 20<span class="title"></span></span><br><span class="line"><span class="title">Node</span> 0,<span class="title"> zone</span> <span class="title">     DMA</span></span><br><span class="line"><span class="title">  pages</span> free     3957<span class="title"></span></span><br><span class="line"><span class="title">        min</span>      7<span class="title"></span></span><br><span class="line"><span class="title">        low</span>      8<span class="title"></span></span><br><span class="line"><span class="title">        high</span>     10<span class="title"></span></span><br><span class="line"><span class="title">        scanned</span>  0<span class="title"></span></span><br><span class="line"><span class="title">        spanned</span>  4095<span class="title"></span></span><br><span class="line"><span class="title">        present</span>  3992<span class="title"></span></span><br><span class="line"><span class="title">        managed</span>  3971<span class="title"></span></span><br><span class="line"><span class="title">    nr_free_pages</span> 3957<span class="title"></span></span><br><span class="line"><span class="title">    nr_alloc_batch</span> 2<span class="title"></span></span><br><span class="line"><span class="title">    nr_inactive_anon</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_active_anon</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_inactive_file</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_active_file</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_unevictable</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_mlock</span>     0<span class="title"></span></span><br><span class="line"><span class="title">    nr_anon_pages</span> 0<span class="title"></span></span><br><span class="line"><span class="title">    nr_mapped</span>    0<span class="title"></span></span><br><span class="line"><span class="title">    nr_file_pages</span> 0</span><br></pre></td></tr></table></figure>
+
+<p>主要指标包括：</p>
+<ul>
+<li>pages 处的 </li>
+</ul>
 
         
         <br />
