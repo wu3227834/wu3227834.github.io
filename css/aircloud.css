@@ -693,13 +693,26 @@ body {
   color: #2f3339;
   font-weight: 300;
 }
-.post-content > table,
-.post-content > table tr th,
-.post-content > table tr td {
-  border: 1px solid #e7e8e9;
-}
-.post-content table {
+.post-content > table {
+  width: 100%;
+  max-width: 65em;
+  border: 1px solid #dedede;
+  margin: 15px auto;
   border-collapse: collapse;
+  empty-cells: show;
+}
+.post-content > table th,
+.post-content > table td {
+  height: 25px;
+  font-size: 10px;
+  border: 1px solid #dedede;
+  padding: 0 10px;
+}
+.post-content > table th {
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center; 
+  background: rgba(158,188,226,0.2);
 }
 .post-content blockquote {
   border-top: 1px solid #cccccc;
