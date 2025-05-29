@@ -1,0 +1,42 @@
+name: Push to Bing Webmaster API
+on:
+  schedule:
+    - cron: '0 0 */5 * *' # 每 5 天在 UTC 时间 00:00 触发
+
+jobs:
+  push-to-bing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查分支
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: 安装依赖
+        run: |
+          sudo apt-get update && sudo apt-get install -y xmlstarlet jq
+
+      - name: 推送最新 5 条文章链接到 Bing Webmaster API
+        run: |
+          urls=$(xmlstarlet sel -N x="http://www.sitemaps.org/schemas/sitemap/0.9" -t -m "//x:url/x:loc" -v . -n ./sitemap.xml | grep -E '/[0-9]{4}/[0-9]{2}/[0-9]{2}/' | grep .)
+
+          if [ -z "$urls" ]; then
+            echo "No article URLs found in sitemap.xml"
+            exit 1
+          fi
+
+          sorted_urls=$(echo "$urls" | sort -r | head -n 5)
+          url_list=$(echo "$sorted_urls" | jq -R . | jq -s .)
+          json_payload=$(jq -n \
+            --arg siteUrl "https://wu3227834.github.io" \
+            --argjson urlList "$url_list" \
+            '{siteUrl: $siteUrl, urlList: $urlList}')
+
+          echo "JSON Payload: $json_payload"
+
+          curl -X POST \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$json_payload" \
+            "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_APIKEY}"
+        env:
+          BING_APIKEY: ${{ secrets.BING_APIKEY }}
