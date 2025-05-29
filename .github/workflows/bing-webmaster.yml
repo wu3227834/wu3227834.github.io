@@ -38,6 +38,6 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json; charset=utf-8" \
             -d "$json_payload" \
-            "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${INDEXNOW_bing}"
+            "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_APIKEY}"
         env:
-          INDEXNOW_bing: ${{ secrets.INDEXNOW_bing }}
+          BING_APIKEY: ${{ secrets.BING_APIKEY }}
