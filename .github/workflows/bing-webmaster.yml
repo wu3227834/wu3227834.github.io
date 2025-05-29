@@ -2,6 +2,7 @@ name: Push to Bing Webmaster API
 on:
   schedule:
     - cron: '0 0 */5 * *' # 每 5 天在 UTC 时间 00:00 触发
+  workflow_dispatch: # 允许手动触发
 
 jobs:
   push-to-bing:
@@ -18,7 +19,7 @@ jobs:
 
       - name: 推送最新 5 条文章链接到 Bing Webmaster API
         run: |
-          urls=$(xmlstarlet sel -N x="http://www.sitemaps.org/schemas/sitemap/0.9" -t -m "//x:url/x:loc" -v . -n ./sitemap.xml | grep -E '/[0-9]{4}/[0-9]{2}/[0-9]{2}/' | grep .)
+          urls=$(xmlstarlet sel -N x="http://www.sitemaps.org/schemas/sitemap/0.9" -t -m "//x:url/x:loc" -v . -n public/sitemap.xml | grep -E '/[0-9]{4}/[0-9]{2}/[0-9]{2}/' | grep .)
 
           if [ -z "$urls" ]; then
             echo "No article URLs found in sitemap.xml"
@@ -37,6 +38,6 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json; charset=utf-8" \
             -d "$json_payload" \
-            "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_APIKEY}"
+            "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${INDEXNOW_bing}"
         env:
-          BING_APIKEY: ${{ secrets.BING_APIKEY }}
+          INDEXNOW_bing: ${{ secrets.INDEXNOW_bing }}
