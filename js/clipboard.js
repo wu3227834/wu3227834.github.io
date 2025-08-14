@@ -2,15 +2,15 @@
     var initCopyCode = function () {
         // 按钮容器（复制 + 查看）
         var actionsHtml = `
-        <div class="code-actions">
-            <button class="btn-copy" data-clipboard-snippet="">
-                <i class="fa fa-clipboard"></i><span>复制</span>
-            </button>
-            <button class="btn-view-raw">
-                <i class="fa fa-expand"></i><span>查看</span>
-            </button>
-        </div>
-    `;
+            <div class="code-actions">
+                <button class="btn-copy" data-clipboard-snippet="">
+                    <i class="fa fa-clipboard"></i><span>复制</span>
+                </button>
+                <button class="btn-view-raw">
+                    <i class="fa fa-expand"></i><span>查看</span>
+                </button>
+            </div>
+        `;
         $(".highlight").prepend(actionsHtml);
 
         // 悬停显示按钮
@@ -64,14 +64,15 @@
                         <!DOCTYPE html>
                         <html>
                         <head>
-                            <title>原始代码查看</title>
+                            <title>view code</title>
                             <style>
-                                body { background-color: #f5f5f5; padding: 20px; }
-                                pre { font-family: monospace; white-space: pre-wrap; word-wrap: break-word; }
+                                body { background-color: #f5f5f5; padding: 20px; margin: 0; }
+                                .code-container { background-color: #282c34; color: #abb2bf; padding: 16px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; }
+                                pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; line-height: 1.5; }
                             </style>
                         </head>
                         <body>
-                            <pre>${codeContent.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+                            <div class="code-container"><pre>${codeContent.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>
                         </body>
                         </html>
                     `);
