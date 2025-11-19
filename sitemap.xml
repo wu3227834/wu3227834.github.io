@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/10/30/2025-10-30-gu-piao-ji-chu-zhi-shi/</loc>
+    <loc>https://wu3227834.github.io/2025/10/22/2025-10-22-robotframework-jiao-cheng-yi-ge-wan-zheng-de-li-zi/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/11/12/2025-11-12-gu-piao-fen-xi-chang-yong-zhi-biao/</loc>
+    <loc>https://wu3227834.github.io/2025/10/30/2025-10-30-gu-piao-ji-chu-zhi-shi/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/11/17/2025-11-17-git-jiao-cheng/</loc>
+    <loc>https://wu3227834.github.io/2025/11/12/2025-11-12-gu-piao-fen-xi-chang-yong-zhi-biao/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/10/22/2025-10-22-robotframework-jiao-cheng-yi-ge-wan-zheng-de-li-zi/</loc>
+    <loc>https://wu3227834.github.io/2025/11/17/2025-11-17-git-jiao-cheng/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/05/28/2025-05-28-linux-tracing-mem/</loc>
+    <loc>https://wu3227834.github.io/2025/05/30/2025-05-30-ru-he-kuai-zhun-hen-de-zhao-dao-xi-tong-nei-cun-wen-ti/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2025/05/30/2025-05-30-ru-he-kuai-zhun-hen-de-zhao-dao-xi-tong-nei-cun-wen-ti/</loc>
+    <loc>https://wu3227834.github.io/2025/05/28/2025-05-28-linux-tracing-mem/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -236,15 +236,6 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2024/06/30/2024-06-30-java-ming-ling-xue-xi-xi-lie-jstack/</loc>
-    
-    <lastmod>2025-11-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wu3227834.github.io/2024/06/30/2024-06-30-java-ming-ling-xue-xi-xi-lie-jstat/</loc>
     
     <lastmod>2025-11-19</lastmod>
@@ -264,6 +255,15 @@
   
   <url>
     <loc>https://wu3227834.github.io/2024/08/20/2024-08-20-github-guo-nei-dai-li-fang-wen-xia-zai/</loc>
+    
+    <lastmod>2025-11-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2024/06/30/2024-06-30-java-ming-ling-xue-xi-xi-lie-jstack/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -326,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/</loc>
+    <loc>https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/10/11/2023-10-11-xiang-liang-jian-suo-jian-jie/</loc>
+    <loc>https://wu3227834.github.io/2023/10/09/2023-10-09-vector-similarity-explained/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -362,15 +362,6 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/</loc>
-    
-    <lastmod>2025-11-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wu3227834.github.io/2023/12/13/2023-12-13-vector-embeddings-for-developers/</loc>
     
     <lastmod>2025-11-19</lastmod>
@@ -380,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</loc>
+    <loc>https://wu3227834.github.io/2023/11/20/2023-11-20-hnsw/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -390,6 +381,15 @@
   
   <url>
     <loc>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-he-jin-cheng-de-qu-bie/</loc>
+    
+    <lastmod>2025-11-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/12/14/2023-12-14-xian-cheng-shang-xia-wen-qie-huan-yu-jin-cheng-shang-xia-wen-qie-huan-de-qu-bie/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -426,15 +426,6 @@
   
   <url>
     <loc>https://wu3227834.github.io/2024/04/01/2024-04-01-product-quantization/</loc>
-    
-    <lastmod>2025-11-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wu3227834.github.io/2023/02/15/2023-02-15-fen-ci-qi-xiang-guan/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -533,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/</loc>
+    <loc>https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -542,7 +533,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2023/08/31/2023-08-31-yum-qia-zhu/</loc>
+    <loc>https://wu3227834.github.io/2023/07/07/2023-07-07-huo-yan-tu/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -650,7 +641,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2022/12/17/2022-12-17-a-yang-liao/</loc>
+    <loc>https://wu3227834.github.io/2022/12/19/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -659,7 +650,7 @@
   </url>
   
   <url>
-    <loc>https://wu3227834.github.io/2022/12/19/2022-12-29-bai-hua-rong-qi-ji-chu-er-ge-chi-yu-xian-zhi/</loc>
+    <loc>https://wu3227834.github.io/2022/12/17/2022-12-17-a-yang-liao/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
@@ -696,6 +687,15 @@
   
   <url>
     <loc>https://wu3227834.github.io/2023/02/01/2023-02-01-curl-chang-yong-ming-ling-shi-yong-fang-fa/</loc>
+    
+    <lastmod>2025-11-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wu3227834.github.io/2023/02/15/2023-02-15-fen-ci-qi-xiang-guan/</loc>
     
     <lastmod>2025-11-19</lastmod>
     
