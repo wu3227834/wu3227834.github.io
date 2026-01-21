@@ -1,7 +1,7 @@
 name: Push to Bing Webmaster API
 on:
   schedule:
-    - cron: '0 0 */5 * *' # 每 5 天在 UTC 时间 00:00 触发
+    - cron: '0 0 */20 * *' # 每 5 天在 UTC 时间 00:00 触发
   workflow_dispatch: # 允许手动触发
 
 jobs:
