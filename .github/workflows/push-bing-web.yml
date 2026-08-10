@@ -11,21 +11,18 @@ jobs:
   submit-indexnow:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出代码
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: main
 
-      - name: 安装依赖
-        run: |
-          sudo apt-get update && sudo apt-get install -y xmlstarlet jq
+      - name: Install deps
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet jq
 
-      - name: 提取文章 URL 并提交到 IndexNow
+      - name: Extract URLs and submit to IndexNow
+        env:
+          BING_APIKEY: ${{ secrets.BING_APIKEY }}
         run: |
-          # 提取文章 URL（带日期格式的文章链接）
           article_urls=$(xmlstarlet sel -N x="http://www.sitemaps.org/schemas/sitemap/0.9" -t -m "//x:url/x:loc" -v . -n ./sitemap.xml | grep -E '/[0-9]{4}/[0-9]{2}/[0-9]{2}/' | grep .)
-
-          # 首页 URL
           home_url="https://wu3227834.github.io/"
 
           if [ -z "$article_urls" ]; then
@@ -33,28 +30,22 @@ jobs:
             exit 1
           fi
 
-          # 合并首页和文章 URL，去重
           all_urls=$(printf "%s\n%s\n" "$home_url" "$article_urls" | sort -u)
-
-          # 转换为 JSON 数组
           url_list=$(echo "$all_urls" | jq -R . | jq -s .)
 
-          # 构造 IndexNow 请求体
+          # 使用 secret（注意：如果 key 需要公开放在 /<key>.txt，key 就不能是私密）
           json_payload=$(jq -n \
             --arg host "wu3227834.github.io" \
-            --arg key "2cd7d856fdab4582a44027fbb026d494" \
-            --arg keyLocation "https://wu3227834.github.io/2cd7d856fdab4582a44027fbb026d494.txt" \
+            --arg key "$BING_APIKEY" \
+            --arg keyLocation "https://wu3227834.github.io/$BING_APIKEY.txt" \
             --argjson urlList "$url_list" \
             '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}')
 
-          echo "JSON Payload: $json_payload"
+          # 不要直接打印包含密钥的 payload，打印时去掉 key 字段或不打印 payload
+          echo "Prepared payload (key redacted):"
+          echo "$json_payload" | jq 'del(.key)'
 
-          # 提交到 IndexNow API
-          response=$(curl -s -w "\n%{http_code}" -X POST \
-            -H "Content-Type: application/json" \
-            -d "$json_payload" \
-            "https://api.indexnow.org/IndexNow")
-
+          response=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -d "$json_payload" "https://api.indexnow.org/IndexNow")
           http_code=$(echo "$response" | tail -n1)
           response_body=$(echo "$response" | sed '$d')
 
