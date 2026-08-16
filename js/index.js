@@ -58,6 +58,34 @@ if (navToggle) {
     })
 }
 
+// Desktop sidebar collapse/expand toggle
+/*****************************************************************************/
+var navToggleBtn = document.getElementById('nav-toggle-btn')
+var navEl = document.getElementById('nav')
+if (navToggleBtn && navEl) {
+    // 从 localStorage 恢复状态
+    var savedNavState = localStorage.getItem('nav-collapsed')
+    if (savedNavState === 'false') {
+        navEl.classList.remove('is-collapsed')
+        navEl.classList.add('is-expanded')
+    }
+
+    navToggleBtn.addEventListener('click', function () {
+        var isCollapsed = navEl.classList.contains('is-collapsed')
+        if (isCollapsed) {
+            navEl.classList.remove('is-collapsed')
+            navEl.classList.add('is-expanded')
+            navToggleBtn.title = '收起导航'
+            localStorage.setItem('nav-collapsed', 'false')
+        } else {
+            navEl.classList.remove('is-expanded')
+            navEl.classList.add('is-collapsed')
+            navToggleBtn.title = '展开导航'
+            localStorage.setItem('nav-collapsed', 'true')
+        }
+    })
+}
+
 // global search
 /*****************************************************************************/
 var searchButton = document.getElementById('search')
@@ -221,20 +249,26 @@ function search() {
             isXml = true
         }
         var path = window.hexo_root + search_path
-        $.ajax({
-            url: path,
-            dataType: isXml ? 'xml' : 'json',
-            async: true,
-            success: function (res) {
-                searchJson = isXml ? $('entry', res).map(function () {
-                    return {
-                        title: $('title', this).text(),
-                        content: $('content', this).text(),
-                        url: $('url', this).text()
-                    }
-                }).get() : res
-            }
-        })
+        fetch(path)
+            .then(function (res) { return isXml ? res.text() : res.json() })
+            .then(function (res) {
+                if (isXml) {
+                    var parser = new DOMParser()
+                    var doc = parser.parseFromString(res, 'application/xml')
+                    searchJson = Array.from(doc.querySelectorAll('entry')).map(function (entry) {
+                        return {
+                            title: entry.querySelector('title').textContent,
+                            content: entry.querySelector('content').textContent,
+                            url: entry.querySelector('url').textContent
+                        }
+                    })
+                } else {
+                    searchJson = res
+                }
+            })
+            .catch(function (err) {
+                console.error('Search load failed:', err)
+            })
     }
 }
 
