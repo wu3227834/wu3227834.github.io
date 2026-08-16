@@ -1,15 +1,9 @@
-User-agent: Googlebot
-Allow: /
 User-agent: *
 Allow: /
+# 仅屏蔽对 SEO 无价值且不参与渲染的资源目录
 Disallow: /live2dw/
-Disallow: /assets/
-Disallow: /lib/
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
 Disallow: /vendors/
-Disallow: /404.html
 
+# 主 sitemap 与百度 sitemap
 Sitemap: https://wu3227834.github.io/sitemap.xml
 Sitemap: https://wu3227834.github.io/baidusitemap.xml
