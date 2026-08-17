@@ -62,6 +62,16 @@ if (navToggle) {
 /*****************************************************************************/
 var navToggleBtn = document.getElementById('nav-toggle-btn')
 var navEl = document.getElementById('nav')
+var sidebarEl = document.querySelector('.index-left')
+
+function syncSidebarState() {
+    if (!navEl || !sidebarEl) return
+
+    var collapsed = navEl.classList.contains('is-collapsed')
+    sidebarEl.classList.toggle('is-collapsed', collapsed)
+    sidebarEl.classList.toggle('is-expanded', !collapsed)
+}
+
 if (navToggleBtn && navEl) {
     // 从 localStorage 恢复状态
     var savedNavState = localStorage.getItem('nav-collapsed')
@@ -69,6 +79,7 @@ if (navToggleBtn && navEl) {
         navEl.classList.remove('is-collapsed')
         navEl.classList.add('is-expanded')
     }
+    syncSidebarState()
 
     navToggleBtn.addEventListener('click', function () {
         var isCollapsed = navEl.classList.contains('is-collapsed')
@@ -83,6 +94,7 @@ if (navToggleBtn && navEl) {
             navToggleBtn.title = '展开导航'
             localStorage.setItem('nav-collapsed', 'true')
         }
+        syncSidebarState()
     })
 }
 
@@ -138,9 +150,9 @@ function toggleSeachField() {
 function showSearchField() {
     if (!searchField || !searchInput) return
 
-    searchInput.focus()
     searchField.classList.add('show-flex-fade', 'search-animation')
     searchField.classList.remove('hide-flex-fade')
+    window.setTimeout(function () { searchInput.focus() }, 0)
 }
 
 function hideSearchField() {
@@ -149,6 +161,7 @@ function hideSearchField() {
     window.onkeydown = null
     searchField.classList.add('hide-flex-fade')
     searchField.classList.remove('show-flex-fade')
+    if (searchButton) searchButton.focus()
 }
 
 function searchFromKeyWord(keyword) {
@@ -192,7 +205,7 @@ function searchFromKeyWord(keyword) {
     })
 
     if (!result.length) {
-        searchResultContainer.innerHTML = '<div class="no-search-result">No Result</div>'
+        searchResultContainer.innerHTML = '<div class="no-search-result">没有找到相关内容</div>'
         return
     }
 
