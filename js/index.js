@@ -45,39 +45,37 @@ window.onresize = function () {
 var navToggle = document.getElementById('site-nav-toggle')
 if (navToggle) {
     var navToggleButton = navToggle.querySelector('button')
-    navToggle.addEventListener('click', function () {
-        var aboutContent = document.getElementById('nav-content')
-        if (!aboutContent) return
+    var aboutContent = document.getElementById('nav-content')
 
-        var isOpen = aboutContent.classList.contains('show-block')
-        if (!isOpen) {
-            aboutContent.classList.add('show-block')
-            aboutContent.classList.remove('hide-block')
-            if (navToggleButton) {
-                navToggleButton.setAttribute('aria-expanded', 'true')
-                navToggleButton.setAttribute('aria-label', '关闭站点导航')
-            }
-        } else {
-            aboutContent.classList.add('hide-block')
-            aboutContent.classList.remove('show-block')
-            if (navToggleButton) {
-                navToggleButton.setAttribute('aria-expanded', 'false')
-                navToggleButton.setAttribute('aria-label', '打开站点导航')
-            }
-        }
-    })
+    function setMobileNavOpen(isOpen) {
+        if (!aboutContent || !navToggleButton) return
+        aboutContent.classList.toggle('is-mobile-open', isOpen)
+        navToggle.classList.toggle('is-open', isOpen)
+        navToggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+        navToggleButton.setAttribute('aria-label', isOpen ? '关闭站点导航' : '打开站点导航')
+    }
+
+    if (navToggleButton && aboutContent) {
+        navToggleButton.addEventListener('click', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
+            setMobileNavOpen(!aboutContent.classList.contains('is-mobile-open'))
+        })
+
+        document.addEventListener('click', function (event) {
+            if (window.innerWidth > 680 || !aboutContent.classList.contains('is-mobile-open')) return
+            if (!aboutContent.contains(event.target)) setMobileNavOpen(false)
+        })
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') setMobileNavOpen(false)
+        })
+    }
 
     document.querySelectorAll('#nav-content a').forEach(function (link) {
         link.addEventListener('click', function () {
             if (window.innerWidth > 680) return
-            var aboutContent = document.getElementById('nav-content')
-            if (!aboutContent) return
-            aboutContent.classList.add('hide-block')
-            aboutContent.classList.remove('show-block')
-            if (navToggleButton) {
-                navToggleButton.setAttribute('aria-expanded', 'false')
-                navToggleButton.setAttribute('aria-label', '打开站点导航')
-            }
+            setMobileNavOpen(false)
         })
     })
 }
