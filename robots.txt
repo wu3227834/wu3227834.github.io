@@ -4,6 +4,5 @@ Allow: /
 Disallow: /live2dw/
 Disallow: /vendors/
 
-# 主 sitemap 与百度 sitemap
+# 标准 sitemap
 Sitemap: https://wu3227834.github.io/sitemap.xml
-Sitemap: https://wu3227834.github.io/baidusitemap.xml
