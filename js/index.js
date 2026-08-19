@@ -44,17 +44,52 @@ window.onresize = function () {
 /*****************************************************************************/
 var navToggle = document.getElementById('site-nav-toggle')
 if (navToggle) {
+    var navToggleButton = navToggle.querySelector('button')
     navToggle.addEventListener('click', function () {
         var aboutContent = document.getElementById('nav-content')
         if (!aboutContent) return
 
-        if (!aboutContent.classList.contains('show-block')) {
+        var isOpen = aboutContent.classList.contains('show-block')
+        if (!isOpen) {
             aboutContent.classList.add('show-block')
             aboutContent.classList.remove('hide-block')
+            if (navToggleButton) {
+                navToggleButton.setAttribute('aria-expanded', 'true')
+                navToggleButton.setAttribute('aria-label', '关闭站点导航')
+            }
         } else {
             aboutContent.classList.add('hide-block')
             aboutContent.classList.remove('show-block')
+            if (navToggleButton) {
+                navToggleButton.setAttribute('aria-expanded', 'false')
+                navToggleButton.setAttribute('aria-label', '打开站点导航')
+            }
         }
+    })
+
+    document.querySelectorAll('#nav-content a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.innerWidth > 680) return
+            var aboutContent = document.getElementById('nav-content')
+            if (!aboutContent) return
+            aboutContent.classList.add('hide-block')
+            aboutContent.classList.remove('show-block')
+            if (navToggleButton) {
+                navToggleButton.setAttribute('aria-expanded', 'false')
+                navToggleButton.setAttribute('aria-label', '打开站点导航')
+            }
+        })
+    })
+}
+
+var mobileToc = document.getElementById('toc-mobile')
+var mobileTocToggle = mobileToc ? mobileToc.querySelector('.toc-mobile-toggle') : null
+var mobileTocList = document.getElementById('toc-mobile-list')
+if (mobileToc && mobileTocToggle && mobileTocList) {
+    mobileTocToggle.addEventListener('click', function () {
+        var isOpen = mobileToc.classList.toggle('is-open')
+        mobileTocToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+        mobileTocToggle.textContent = isOpen ? '收起' : '展开'
     })
 }
 
