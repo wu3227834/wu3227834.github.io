@@ -319,19 +319,20 @@
     });
 
     // 收集文章内的图片，建立图库；点击打开
-    function init() {
+    var imgs = [];
+    var clickBound = false;
+
+    function collectImages() {
         var container = document.querySelector('.post-content') || document.querySelector('.index-middle');
         if (!container) return;
 
-        var imgs = Array.from(container.querySelectorAll('img')).filter(function (img) {
+        imgs = Array.from(container.querySelectorAll('img')).filter(function (img) {
             // 排除赞赏二维码等
             if (img.closest('.donate-container')) return false;
             // 排除极小图标
             if (img.width && img.width < 24 && img.height && img.height < 24) return false;
             return true;
         });
-
-        if (!imgs.length) return;
 
         imgs.forEach(function (img, i) {
             img.style.cursor = 'zoom-in';
@@ -343,7 +344,16 @@
             var src = img.dataset.src || img.currentSrc || img.src;
             return { src: src, alt: img.alt || img.title || '' };
         });
+    }
 
+    function init() {
+        collectImages();
+        if (clickBound || !images.length) return;
+
+        var container = document.querySelector('.post-content') || document.querySelector('.index-middle');
+        if (!container) return;
+
+        clickBound = true;
         container.addEventListener('click', function (e) {
             var target = e.target;
             if (target.tagName === 'IMG' && !target.closest('.donate-container')) {
@@ -364,4 +374,9 @@
     } else {
         init();
     }
+
+    // 加密文章解密后重新收集图片（点击委托只绑定一次）
+    window.addEventListener('hexo-blog-decrypt', function () {
+        init();
+    });
 }();

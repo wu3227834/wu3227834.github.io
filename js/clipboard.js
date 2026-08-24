@@ -158,4 +158,9 @@
     } else {
         initCopyCode();
     }
+
+    // 加密文章解密后，为新出现的代码块注入操作按钮（已有防重复注入守卫）
+    window.addEventListener('hexo-blog-decrypt', function () {
+        initCopyCode();
+    });
 }();

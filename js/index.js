@@ -455,3 +455,13 @@ if (donateButton && donateImgContainer) {
         donateImg.src = donateImg.dataset.src
     }
 }
+
+// 加密文章解密成功后显示目录（hexo-blog-encrypt 触发的事件）
+/*****************************************************************************/
+window.addEventListener('hexo-blog-decrypt', function () {
+    ;['toc', 'toc-mobile'].forEach(function (id) {
+        var el = document.getElementById(id)
+        if (el) el.classList.remove('toc-encrypted')
+    })
+    reHeightToc()
+})
