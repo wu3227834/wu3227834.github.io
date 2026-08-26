@@ -345,7 +345,6 @@
             return { src: src, alt: img.alt || img.title || '' };
         });
     }
-
     function init() {
         collectImages();
         if (clickBound || !images.length) return;

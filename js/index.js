@@ -34,6 +34,8 @@ window.onresize = function () {
         if (aboutContent) {
             aboutContent.classList.remove('hide-block')
             aboutContent.classList.remove('show-block')
+            aboutContent.classList.remove('is-mobile-open')
+            aboutContent.hidden = true
         }
     }
 
@@ -51,11 +53,13 @@ if (navToggle) {
         if (!aboutContent || !navToggleButton) return
         aboutContent.classList.toggle('is-mobile-open', isOpen)
         navToggle.classList.toggle('is-open', isOpen)
+        aboutContent.hidden = !isOpen
         navToggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
         navToggleButton.setAttribute('aria-label', isOpen ? '关闭站点导航' : '打开站点导航')
     }
 
     if (navToggleButton && aboutContent) {
+        aboutContent.hidden = true
         navToggleButton.addEventListener('click', function (event) {
             event.preventDefault()
             event.stopPropagation()
@@ -461,7 +465,10 @@ if (donateButton && donateImgContainer) {
 window.addEventListener('hexo-blog-decrypt', function () {
     ;['toc', 'toc-mobile'].forEach(function (id) {
         var el = document.getElementById(id)
-        if (el) el.classList.remove('toc-encrypted')
+        if (el) {
+            el.hidden = false
+            el.classList.remove('toc-encrypted')
+        }
     })
     reHeightToc()
 })
