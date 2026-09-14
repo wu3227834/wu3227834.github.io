@@ -1,7 +1,6 @@
 /**
  * Created by Xiaotao.Nie on 09/04/2018.
  * All right reserved
- * IF you have any question please email onlythen@yeah.net
  */
 
 function escapeHTML(value) {
